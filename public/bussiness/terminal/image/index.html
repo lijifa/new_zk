@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+
+	<body class="layui-layout-body">
+		<img src="../../common/image/bghei.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="商务区末端监控"></div>
+
+		<div class="layui-row sc-container">
+			<div class="layui-col-md8 height100 layui-col-space20">
+				<div class="left-top posrelative" >
+					<div class="l-title">
+						<img src="./image/icon_circle.png" class="icon-circle">
+						<img src="./image/icon_circle2.png" class="icon-circle2">
+						<span>商务区项目</span> 
+						<span class="fontsize18">末端布设三维图</span>						
+					</div>
+					<div class="l-firstbar">
+							<div class="item">
+								<img src="./image/humidity.gif"><br>
+								室外温度<br>
+								<span class="yellow"><em id="temperature">--</em>℃</span>
+							</div>
+							<div class="item">
+								<img src="./image/temperature.gif"><br>
+								室外湿度<br>
+								<span class="green"><em id="humidity">--</em>%</span>
+							</div>
+					</div>	
+					<div class="legend">
+						<video src="./image/sjwg.mp4" muted="true" loop="true" autoplay="true" class="iconvideo1 video"></video>
+						<span class="span1">数据网关</span>
+						<video src="./image/wkq.mp4" muted="true" loop="true" autoplay="true" class="iconvideo2 video"></video>
+						<span class="span2">温控器</span>
+					</div>			
+				</div>
+				<div class="left-bottom posrelative">
+					<!-- <iframe src="chars.html" width="100%" height="100%" frameborder="0" style="overflow: hidden;"></iframe> -->
+					<video src="./image/box.mp4" muted="true" loop="true" autoplay="true" class="bgvideo video"></video>	
+					<div class="floor">
+						<span class="hover">1F</span>
+						<span>2F</span>
+						<span>3F</span>
+						<span>4F</span>
+					</div>
+					<div class="cover-pos1 coverpos" data-index="1"></div>
+					<div class="cover-pos2 coverpos" data-index="2"></div>
+					<div class="cover-pos3 coverpos" data-index="3"></div>
+					<div class="cover-pos4 coverpos" data-index="4"></div>
+					<div class="cover-pos5 coverpos" data-index="5"></div>
+					
+					<ul class="pos1 pos" data-title="培训室" style="display: block;">
+						<li class="title">
+							--
+						</li>
+						<li>
+							<span class="rolling-over-animated duration1">温度</span>
+							<span class="rolling-over-animated duration1"><em class="temperature">--</em>℃</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration2">湿度</span>
+							<span class="rolling-over-animated duration2"><em class="humidity">--</em>%</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration3">CO<sub>2</sub>浓度</span>
+							<span class="rolling-over-animated duration3"><em class="co2">--</em>ppm</span>
+						</li>						
+					</ul>
+					<ul class="pos2 pos" data-title="大厅">
+						<li class="title">
+							--
+						</li>
+						<li>
+							<span class="rolling-over-animated duration1">温度</span>
+							<span class="rolling-over-animated duration1"><em class="temperature">--</em>℃</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration2">湿度</span>
+							<span class="rolling-over-animated duration2"><em class="humidity">--</em>%</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration3">CO<sub>2</sub>浓度</span>
+							<span class="rolling-over-animated duration3"><em class="co2">--</em>ppm</span>
+						</li>						
+					</ul>
+					<ul class="pos3 pos" data-title="电梯间">
+						<li class="title">
+							--
+						</li>
+						<li>
+							<span class="rolling-over-animated duration1">温度</span>
+							<span class="rolling-over-animated duration1"><em class="temperature">--</em>℃</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration2">湿度</span>
+							<span class="rolling-over-animated duration2"><em class="humidity">--</em>%</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration3">CO<sub>2</sub>浓度</span>
+							<span class="rolling-over-animated duration3"><em class="co2">--</em>ppm</span>
+						</li>						
+					</ul>
+					<ul class="pos4 pos" data-title="办公室">
+						<li class="title">
+							--
+						</li>
+						<li>
+							<span class="rolling-over-animated duration1">温度</span>
+							<span class="rolling-over-animated duration1"><em class="temperature">--</em>℃</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration2">湿度</span>
+							<span class="rolling-over-animated duration2"><em class="humidity">--</em>%</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration3">CO<sub>2</sub>浓度</span>
+							<span class="rolling-over-animated duration3"><em class="co2">--</em>ppm</span>
+						</li>						
+					</ul>
+					<ul class="pos5 pos" data-title="卫生间">
+						<li class="title">
+							--
+						</li>
+						<li>
+							<span class="rolling-over-animated duration1">温度</span>
+							<span class="rolling-over-animated duration1"><em class="temperature">--</em>℃</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration2">湿度</span>
+							<span class="rolling-over-animated duration2"><em class="humidity">--</em>%</span>
+						</li>
+						<li>
+							<span class="rolling-over-animated duration3">CO<sub>2</sub>浓度</span>
+							<span class="rolling-over-animated duration3"><em class="co2">--</em>ppm</span>
+						</li>						
+					</ul>
+				 </div>
+			</div>
+			<div class="layui-col-md4 height100 layui-col-space20">
+				<div class="layui-col-md12 hd-hei">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						数据统计
+					</div>
+					<div class="hd-con-hei publicborder">
+						<div class="hd-innercontent">
+							<div class="datatiatis-l">
+								<div id="main2" class="en-echars"></div>
+							</div>							
+							<div class="datatiatis-r posrelative">
+								<div>
+									<video src="./image/build.mov" muted="true" loop="true" autoplay="true" class="video turnbuild" width="210px" height="130px"></video>
+								</div>
+								<ul class="bottom">
+									<li><img src="./image/icon_tem.png"/>末端平均温度<br/><span class="colyellow1"><em id="temp-average">--</em>℃</span></li>
+									<li><img src="./image/icon_fs.png"/>末端平均湿度<br/><span class="colblue"><em id="humidity-average">--</em>%</span></li>									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12 hd-hei">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						末端环境质量监测
+					</div>
+					<div class="hd-con-hei publicborder environmental">
+						<div class="hd-innercontent">
+							<div class="left posrelative">
+								<img src="./image/circle1.png" class="circle1 "/>
+								<img src="./image/circle2.png" class="circle2"/>
+								<div class="status">优</div>
+								<div class="details">室内空气质量</div>
+							</div>
+							<div class="right">
+								<div class="item">
+									<img src="./image/icon1.png" />
+									温度监测设备
+									<div class="number col1"><span>8</span>/<em>8</em></div>
+								</div>
+								<div class="item">
+									<img src="./image/icon2.png" />
+									湿度监测设备
+									<div class="number col2"><span>8</span>/<em>8</em></div>
+								</div>
+								<div class="item">
+									<img src="./image/icon3.png" />
+									供冷设备
+									<div class="number col3"><span>8</span>/<em>8</em></div>
+								</div>
+								<div class="item">
+									<img src="./image/icon4.png" />
+									送风设备
+									<div class="number"><span>8</span>/<em>8</em></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12 hd-hei">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						当前实时末端监控
+					</div>
+					<div class="hd-con-hei publicborder">
+						<div class="hd-innercontent equlist">
+							<div class="equlist-title">
+								<span class="width1"> 房间</span>
+								<span class="width2"> 温度℃</span>
+								<span class="width2"> 湿度%</span>
+								<span class="width3"> CO<sub>2</sub>浓度ppm</span>
+								<span class="width2"> 风速</span>
+								<span class="width2"> 开关</span>
+							</div>
+							<div class="txtMarquee-top">
+								<div class="bd">
+									<ul class="infoList" id="equipmentstatus">
+										<!-- <li>
+											<span class="width1"> 电梯间</span>
+											<span class="width2"> 50</span>
+											<span class="width2"> 80</span>
+											<span class="width2"> 80</span>
+											<span class="width2"> 高</span>
+											<span class="width2"><img src="./image/open.png"/> </span>
+										</li> -->
+									
+							
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="../../common/lib/config.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/hdTools.js"></script>
+<script src="./js/index.js"></script>
+<!-- <script src="./js/index.map.js"></script> -->
+<script>
+
+</script>

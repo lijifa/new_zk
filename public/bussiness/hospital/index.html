@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<!-- <meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" href="../../common/lib/swiper-5.2.0/package/css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<script>
+			document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/monitoring-index.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div>
+		<div class="layui-row sc-container containerBg" id="camera-container">
+			<div class="camera camera1 cameraMove" data-flag="false" id="camera10">
+				<i class="layui-icon layui-icon-close cameraclose"></i>
+				<div id="camerID" style="width: 580px; height: 350px"></div>
+			</div>
+			<div class="btnLeft" id="btnLeft">
+				<i class="layui-icon layui-icon1 layui-icon-left"></i>
+			</div>
+			<div class="btnRight" id="btnRight">
+				<i class="layui-icon layui-icon1 layui-icon-right"></i>
+			</div>
+			<div class="div_rules">
+				<div class="title">评分规则：</div>
+				<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br /> 最低分为 0 分，无负数的分数。</div>
+			</div>
+			<div class="pop_fault" id="pop_fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+			</div>
+			<div class="pop_fault" id="bob_fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+			</div>
+			<div class="leftbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">机房安全</span>
+					<img src="./image/wenhao1.png" class="btn_rules" />
+				</div>
+				<div class="compre_sort clear">
+					<div class="backgroundGray" style="display: flex;" id="safe">
+						<div class="compreText textColorYellow" id="devAlarm">
+							<video src="../../common/image/video/yellow.mp4" class="video" muted="true" loop="true"
+								autoplay="true" width="80px" height="80px"></video>
+							<div class="position50" style="top: 110px;">
+								<span>系统预警(<em id="realWarnRuleCount">--</em>)</span>
+							</div>
+						</div>
+						<div class="compreText textColorGreen">
+							<div class="position50">
+								<span class="anqu"></span>
+								<span class="anqunei"></span>
+								<span class="fontsize40" id="safetyScore">--</span>
+								<span style="margin-top: 30px;">安全评分</span>
+							</div>
+						</div>
+						<div class="compreText textColorRed" id="devFault">
+							<video src="../../common/image/video/red.mp4" class="video" muted="true" loop="true"
+								autoplay="true" width="80px" height="80px"></video>
+							<div class="position50" style="top: 110px;">
+								<span>系统报警(<em id="deviceAlarmCount">--</em>)</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">系统预警平均修复时间</span>
+					<div class="control_btn">
+						单位：min
+					</div>
+				</div>
+				<ul class="equpro">
+					<li>
+						<div class="position50">
+							<span>当日</span>
+							<span class="fontsize24" id="currentDay">--</span>
+						</div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>当月</span>
+							<span class="fontsize24" id="currentMonth">--</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>上月</span>
+							<span class="fontsize24" id="lastMonth">--</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">系统报警平均修复时间</span>
+					<div class="control_btn">
+						单位：min
+					</div>
+				</div>
+				<ul class="equpro">
+					<li>
+						<div class="position50">
+							<span>当日</span>
+							<span class="fontsize24" id="EqucurrentDay">--</span>
+						</div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>当月</span>
+							<span class="fontsize24" id="EqucurrentMonth">--</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>上月</span>
+							<span class="fontsize24" id="EqulastMonth">--</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">设备状态</span>
+					<div class="control_btn">
+						单位：台
+					</div>
+				</div>
+				<ul class="equpro" style="margin-bottom: 10px;">
+					<li>
+						<div class="position50">
+							<span>设备总数</span>
+							<span class="fontsize24" id="deviceCount">--</span>
+						</div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>离线设备</span>
+							<span class="fontsize24" id="deviceOfflineCount">--</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>运行设备</span>
+							<span class="fontsize24" id="deviceRunCount">--</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">机房设备列表</span>
+				</div>
+				<div class="control" id="deviceList">
+					<img src="/common/image/load.gif" class="load">
+				</div>
+
+			</div>
+			<div class="rightbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">能耗分析</span>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日能耗费用</span>
+					<div class="control_btn">
+						单位：元
+					</div>
+				</div>
+				<ul class="equpro" style="height: 110px;">
+					<li>
+						<div class="position50">
+							<img src="image/nhfy11.png">
+							<span>当日能耗费用</span>
+							<span class="fontsize24 colorLinghtYellow" id="dayenergyCost">--</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<img src="image/nhzb11.png">
+							<span>当日费用指标</span>
+							<span class="fontsize24 colorLinghtYellow" id="daycostQuota">--</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当月能耗费用</span>
+					<div class="control_btn">
+						单位：元
+					</div>
+				</div>
+				<ul class="equpro" style="height: 70px;">
+					<li>
+						<div class="position50">
+							<span>当月能耗费用</span>
+							<span class="fontsize24" id="monthenergyCost">--</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>当月费用指标</span>
+							<span class="fontsize24" id="monthcostQuota">--</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日总能耗</span>
+				</div>
+				<ul class="equpro">
+					<li>
+						<div class="position50">
+							<span>当日总能耗</span>
+							<span class="fontsize24" id="energyStaticsallSum">--</span>
+							<span>单位：标准煤(kgce)</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>耗冷（热）量</span>
+							<span class="fontsize24" id="energyStaticsenergy">--</span>
+							<span>单位：吉焦(GJ)</span>
+						</div>
+					</li>
+				</ul>
+				<div class="lev3title_pub" style="padding: 5px 20px;">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日供回水温度</span>
+					<span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em
+							class="font">回水</em></span>
+					<span class="legend_pub fr"><em class="icon_line" style="background-color: #00ffff;"></em><em
+							class="font">供水</em></span>
+					<span class="legend_pub fr"><em class="icon_line blue1_legend_pub"></em><em
+							class="font">室外</em></span>
+				</div>
+				<div id="temp_echars" class="selectInsideTemperatureCurve">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;">
+					</div>
+				</div>
+				<div class="lev3title_pub" style="padding: 5px 20px;">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日机房COP</span>
+					<span class="legend_pub fr">
+						<em class="icon_line blue1_legend_pub"></em><em class="font">COP</em>
+						<em class="icon_line red3_legend_pub"></em><em class="font">标准值</em>
+					</span>
+				</div>
+				<div id="cop_echars" class="realSystemCop">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;">
+					</div>
+				</div>
+			</div>
+			<!-- <div class="videoBox">
+				<video loop muted autoplay src="imageHospital/hospitalVideo.mp4" width="1920" height="1080"></video>
+			</div> -->
+		</div>
+	</body>
+	<script src="../../common/lib/jquery-3.2.1.js"></script>
+	<script src="../../common/lib/TcPlayer-2.3.3.js"></script>
+	<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+	<script src="../../common/js/public.js"></script>
+	<script src="../../common/lib/layui/layui.js"></script>
+	<script src="../../common/lib/echarts.min.js"></script>
+	<script src="../../common/lib/countadd.js"></script>
+	<script src="../../common/lib/tagcloud.js"></script>
+	<script src="../../common/lib/EZUIKit-JavaScript/ezuikit.js"></script>
+	<script src="../../common/js/utils.js"></script>
+	<script src="../../common/js/echarsComponent.js"></script>
+	<script src="../../common/lib/jquery.liMarquee.js"></script>
+	<script src="../../common/js/listRollNew.js"></script>
+	<script src="../../common/js/slideMenuNew.js"></script>
+	<script type="text/javascript">
+		document.write('<script language="javascript" src="js/monitoring.js?v=' + version + '"><\/script\>');
+	</script>
+</html>
+

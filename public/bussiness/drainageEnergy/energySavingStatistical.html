@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>华德智慧能源管理系统</title>
+	<link rel="stylesheet" href="../../common/css/public.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+	<link rel="stylesheet" href="../../common/css/generalStyle.css">
+	<link rel="stylesheet" href="../../common/css/rank.css">
+	<script>
+		document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+	</script>
+	<script>
+		document.write('<link rel="stylesheet" href="./css/energySavingStatistical.css?v='+version+'"/>');
+	</script>
+</head>
+
+<body class="layui-layout-body">
+	<div class="part-header" id="partheader"></div>
+	<div class="control_btn2" id="energy-day-control">
+		<span class="on" data-type="month">近30天</span>
+		<span data-type="year">近一年</span>
+	</div>
+	<!-- 近一月 -->
+	<div class="layui-row sc-container2 month" style="opacity: 1;z-index: 1;" data-type="month">
+		<div class="custom">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				能耗总计
+			</div>
+			<div class="content">
+				<div class="contentItem">
+					<img src="./image/dianBlue.png" >
+					<div class="contentText">
+						<div class="contentTitle">耗电量(kW·h)</div>
+						<div class="contentNum">15750</div>
+					</div>
+				</div>
+				<div class="contentItem">
+					<img src="./image/waterBlue.png" >
+					<div class="contentText">
+						<div class="contentTitle">耗自来水量(m³)</div>
+						<div class="contentNum">24300</div>
+					</div>
+				</div>
+				<div class="contentItem">
+					<img src="./image/reclaimedBlue.png" >
+					<div class="contentText">
+						<div class="contentTitle">耗中水量(m³)</div>
+						<div class="contentNum">4517.5</div>
+					</div>
+				</div>
+				<div class="contentItem">
+					<img src="./image/dianYellow.png" >
+					<div class="contentText">
+						<div class="contentTitle">用电费用(元)</div>
+						<div class="contentNum">15750</div>
+					</div>
+				</div>
+				<div class="contentItem">
+					<img src="./image/waterYellow.png" >
+					<div class="contentText">
+						<div class="contentTitle">自来水费用(元)</div>
+						<div class="contentNum">142155</div>
+					</div>
+				</div>
+				<div class="contentItem">
+					<img src="./image/reclaimedYellow.png" >
+					<div class="contentText">
+						<div class="contentTitle">中水费用(元)</div>
+						<div class="contentNum">26325</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="list" id="monthList" style="position: relative;margin-top: 10px;padding: 0 20px;">
+			<img src="../../common/image/load.gif" class="load"/>
+		</div>
+		<div class="cost">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				费用曲线
+				<span class="unit">
+					<em style="background-color: rgba(54, 208, 255, 1);"></em>耗电费用
+					<em style="background-color: rgba(22, 143, 255, 1);"></em>自来水费用
+					<em style="background-color: rgba(252, 234, 69, 1);"></em>中水费用
+				</span>
+			</div>
+			<div class="content" id="monthCost">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="electricity">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				耗电量前5名
+				<span class="unit">单位：kW·h</span>
+			</div>
+			<div class="content" id="monthElectric">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="water">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				耗自来水量前5名
+				<span class="unit">单位：m³</span>
+			</div>
+			<div class="content" id="monthWater">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="reclaimed">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				耗中水量前5名
+				<span class="unit">单位：m³</span>
+			</div>
+			<div class="content" id="monthReclaimed">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="electricityTrend">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				耗电量趋势图
+				<span class="unit">单位：kW·h</span>
+			</div>
+			<div class="content" id="monthElectricTrend">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="waterTrend">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				自来水流量趋势图
+				<span class="unit">单位：m³/h</span>
+			</div>
+			<div class="content" id="monthWaterTrend">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+		<div class="reclaimedTrend">
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				中水流量趋势图
+				<span class="unit">单位：m³/h</span>
+			</div>
+			<div class="content" id="monthReclaimedTrend">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+		</div>
+	</div>
+	<!-- 近一年 -->
+	<div class="layui-row sc-container2 year opacitynone" style="opacity: 0;z-index: -100;" data-type="year">
+		<div class="custom">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					能耗总计
+				</div>
+				<div class="content">
+					<div class="contentItem">
+						<img src="./image/dianBlue.png" >
+						<div class="contentText">
+							<div class="contentTitle">耗电量(kW·h)</div>
+							<div class="contentNum">19883</div>
+						</div>
+					</div>
+					<div class="contentItem">
+						<img src="./image/waterBlue.png" >
+						<div class="contentText">
+							<div class="contentTitle">耗自来水量(m³)</div>
+							<div class="contentNum">291627.4</div>
+						</div>
+					</div>
+					<div class="contentItem">
+						<img src="./image/reclaimedBlue.png" >
+						<div class="contentText">
+							<div class="contentTitle">耗中水量(m³)</div>
+							<div class="contentNum">54210</div>
+						</div>
+					</div>
+					<div class="contentItem">
+						<img src="./image/dianYellow.png" >
+						<div class="contentText">
+							<div class="contentTitle">用电费用(元)</div>
+							<div class="contentNum">19883</div>
+						</div>
+					</div>
+					<div class="contentItem">
+						<img src="./image/waterYellow.png" >
+						<div class="contentText">
+							<div class="contentTitle">自来水费用(元)</div>
+							<div class="contentNum">1706020.29</div>
+						</div>
+					</div>
+					<div class="contentItem">
+						<img src="./image/reclaimedYellow.png" >
+						<div class="contentText">
+							<div class="contentTitle">中水费用(元)</div>
+							<div class="contentNum">317128.5</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="list" id="yearList" style="position: relative;margin-top: 10px;padding: 0 20px;">
+				<img src="../../common/image/load.gif" class="load"/>
+			</div>
+			<div class="cost">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					费用曲线
+					<span class="unit">
+						<em style="background-color: rgba(54, 208, 255, 1);"></em>耗电费用
+						<em style="background-color: rgba(22, 143, 255, 1);"></em>自来水费用
+						<em style="background-color: rgba(252, 234, 69, 1);"></em>中水费用
+					</span>
+				</div>
+				<div class="content" id="yearCost">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="electricity">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					耗电量前5名
+					<span class="unit">单位：kW·h</span>
+				</div>
+				<div class="content" id="yearElectric">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="water">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					耗自来水量前5名
+					<span class="unit">单位：m³</span>
+				</div>
+				<div class="content" id="yearWater">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="reclaimed">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					耗中水量前5名
+					<span class="unit">单位：m³</span>
+				</div>
+				<div class="content" id="yearReclaimed">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="electricityTrend">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					耗电量趋势图
+					<span class="unit">单位：kW·h</span>
+				</div>
+				<div class="content" id="yearElectricTrend">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="waterTrend">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					自来水流量趋势图
+					<span class="unit">单位：m³/h</span>
+				</div>
+				<div class="content" id="yearWaterTrend">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+			<div class="reclaimedTrend">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					中水流量趋势图
+					<span class="unit">单位：m³/h</span>
+				</div>
+				<div class="content" id="yearReclaimedTrend">
+					<img src="../../common/image/load.gif" class="load"/>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/loadPng.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/rank.js"></script>
+<script type="text/javascript">
+	document.write('<script src="./js/energySavingStatistical.js?v='+version+'"><\/script>');
+</script>

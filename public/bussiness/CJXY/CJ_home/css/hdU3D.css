@@ -1,0 +1,439 @@
+html,
+body {
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+.sc-container {
+  /* height: calc(100% - 70px); */
+}
+.pad10 {
+  padding: 10px;
+}
+.paddingR5 {
+  padding: 0 5px;
+}
+.frosted-glass {
+  height: 100%;
+  background-color: rgba(20, 30, 41, 0.8);
+}
+@keyframes move {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 85%;
+  }
+}
+.videotitle {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 600px;
+  height: 65px;
+  text-align: center;
+  color: #a5eaff;
+  z-index: 1;
+  background-image: url(/common/image/dabiaoti1.png);
+  background-size: 100% 100%;
+}
+.videotitle .tit {
+  line-height: 30px;
+}
+.videotitle .cont {
+  font-size: 20px;
+  padding-top: 10px;
+  color: #00ffff;
+}
+.videotitle .point {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  -webkit-animation: 6s move infinite linear;
+}
+.bottombar {
+  position: absolute;
+  bottom: 10px;
+  height: 230px;
+  display: flex;
+  /* width: 100%; */
+}
+.left-Bar {
+  position: absolute;
+  left: 50px;
+  top: 160px;
+  width: 330px;
+}
+.left-Bar .btn-bar {
+  padding-bottom: 20px;
+  color: #0aceff;
+  min-height: 50px;
+}
+.left-Bar .btn-bar img {
+  float: left;
+  margin-right: 15px;
+}
+.left-Bar .btn-bar .title {
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #00ffff;
+}
+.btn-show {
+  width: 110px;
+  padding: 0 0 0 63px;
+  height: 59px;
+  line-height: 59px;
+  font-size: 18px;
+  cursor: pointer;
+  background-size: 100% 100%;
+  user-select: none;
+}
+.close {
+  background-image: url(../image/close.png);
+  color: #00ffff;
+}
+.open {
+  background-image: url(../image/open.png);
+  color: #fcea45;
+}
+#provinceName,
+#address {
+  display: block;
+  width: 100%;
+}
+.flex {
+  width: 100%;
+  height: calc(100% - 45px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.img {
+  width: 185px;
+  height: 185px;
+  background-image: url(../image/2020beijing.png);
+  position: relative;
+  color: #48d396;
+  text-align: center;
+}
+.posi50 {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.img span,
+.img em {
+  display: block;
+  font-size: 16px;
+  padding: 3px 0;
+  font-weight: 400;
+}
+.fontsize28 {
+  font-size: 28px !important;
+}
+.energyYear {
+  flex: 1;
+  height: 100%;
+  margin-top: -20px;
+}
+.energyYear:not(:last-child) {
+  background: url(../image/right_line.png) no-repeat right 10px;
+}
+.energyYear1 {
+  flex: 1;
+  height: 100%;
+}
+.energyYear1:not(:last-child) {
+  background: url(../image/right_line.png) no-repeat right 10px;
+}
+.iconSize {
+  width: 48px;
+  height: 48px;
+  margin: 10px 0 0 50%;
+  transform: translate(-50%, 0);
+}
+.energyYear_title {
+  text-align: center;
+  color: #a5eaff;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.num {
+  text-align: center;
+  color: #00ffff;
+  font-weight: bold;
+  margin: 10px 0 10px 0;
+}
+.unit {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+  color: #00ffff;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.flexColLi {
+  height: 48px;
+  padding-left: 15px;
+  background-repeat: no-repeat;
+  background-position: 0 center;
+}
+.imgLine {
+  background-image: url(../image/line.png);
+}
+.flexColLi_title {
+  color: #a5eaff;
+  font-size: 16px;
+  line-height: 18px;
+}
+.flexColLi_num {
+  color: #00ffff;
+  font-size: 18px;
+}
+.wenDu {
+  background-image: url(../image/wenduBlue.png);
+}
+.xiaoFang {
+  background-image: url(../image/xiaofang.png);
+}
+.dinLiu {
+  background-image: url(../image/dianliuBlue.png);
+}
+.sheBei {
+  background-image: url(../image/shebei.png);
+}
+.waterTank {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+.waterTank_title {
+  width: 100%;
+  color: #a5eaff;
+  font-size: 14px;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  /* padding: 10px 0 0 0; */
+}
+.waterTankBorder {
+  width: 130px;
+  height: 134px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-image: url(../image/energytop.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.energyText {
+  text-align: center;
+  font-size: 26px;
+  color: #fff;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.energyUnit {
+  text-align: center;
+  color: #fff;
+  line-height: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#waterTank1,
+#waterTank2,
+#waterTank3 {
+  /* height: calc(100% - 25%); */
+  width: 116px;
+  height: 134px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.fontsize24 {
+  font-size: 24px !important;
+}
+.pop_fault {
+  background: url(../image/down_rules.png) no-repeat;
+  background-size: 100% 100%;
+  width: 340px;
+  height: 100px;
+  position: fixed;
+  /* top: 0; */
+  /* left: 350px; */
+  z-index: 11;
+  /* display: none; */
+  padding: 20px 15px 40px;
+  opacity: 0;
+  z-index: -100;
+}
+.gDDiv {
+  height: 100%;
+  padding: 0;
+  min-height: 0;
+}
+.gDlistOut {
+  min-height: 0;
+  height: 80px;
+}
+.gDlie_title0 {
+  text-align: left !important;
+}
+.gDhang_item0 {
+  text-align: left !important;
+}
+.gDhang_item0,
+.gDhang_item1,
+.gDhang_item2 {
+  height: 35px;
+  line-height: 35px;
+}
+.buttomIcon {
+  width: 30px;
+  height: 15px;
+  text-align: center;
+  background-color: #073b71;
+  position: fixed;
+  bottom: 240px;
+  right: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.layui-icon {
+  font-size: 14px;
+}
+.sky {
+  width: 190px;
+  height: 40px;
+  background-image: url(../image/whiteSky.png);
+  background-size: 100% 100%;
+  position: absolute;
+  right: 20px;
+  top: 100px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color: rgba(165, 234, 255, 1);
+}
+.sky > div {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.sky > .skyOn {
+  color: rgba(0, 255, 255, 1);
+}
+.score {
+  position: absolute;
+  width: 200px;
+  height: 130px;
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%, 0);
+  padding: 0 20px;
+  background-image: url(/common/image/faultBottomMiddle.png);
+  background-size: 100% 100%;
+  display: none;
+  color: #a5eaff;
+  text-align: left;
+  font-size: 14px;
+}
+.control_btn {
+  float: right;
+  font-weight: bold;
+  font-size: 14px;
+}
+.control_btn span {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  line-height: 31px;
+  cursor: pointer;
+  padding-left: 3px;
+  background: #16263b;
+  color: #a5eaff;
+}
+.control_btn span.on {
+  color: #00ffff;
+  background: #0c3056;
+}
+.bottomside {
+  width: 35%;
+}
+.bottomCenter {
+  width: 35%;
+}
+.liveItem {
+  flex: 20%;
+  height: 90px;
+  text-align: center;
+  float: left;
+}
+.liveItemIcon {
+  width: 50px;
+  height: 50px;
+}
+.liveItemText {
+  color: #a5eaff;
+  font-size: 14px;
+  margin: 10px 0 10px 0;
+}
+.cardContent {
+  width: 100%;
+  display: flex;
+  height: calc(100% - 45px);
+  /* justify-content: space-evenly; */
+  flex-wrap: wrap;
+}
+.tb10 {
+  margin: 10px 0 10px 0;
+}
+@media only screen and (max-width: 1800px) {
+}
+
+@media screen and (min-height: 995px) {
+  /* @media screen and (min-height: 900px) { */
+  /*按f11但未隐藏导航模式*/
+}
+
+@media screen and (min-height: 1080px) {
+  /*按f11隐藏导航模式*/
+}
+@media only screen and (max-width: 1800px) {
+}
+/* 竖屏 */
+@media screen and (orientation: portrait) and (max-width: 720px) {
+  .mobile_videotitle {
+    display: none;
+  }
+  .mobile_none {
+    display: none;
+  }
+}
+/* 横屏 */
+@media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 998px) {
+  .mobile_videotitle {
+    display: none;
+  }
+  .mobile_none {
+    display: none;
+  }
+}

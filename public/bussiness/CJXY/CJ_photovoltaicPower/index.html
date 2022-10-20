@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="/common/css/animated.css">
+		<link rel="stylesheet" href="/common/css/public.css">
+		<link rel="stylesheet" href="/common/css/generalStyle.css">
+		<link rel="stylesheet" href="/common/lib/Animate/animate.min.css">
+		<script>
+			document.write('<script src="/common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/index.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="/common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="节能驾驶舱"></div>
+		<div class="layui-row sc-container">
+			<div class="leftBar">
+				<div class="TNT">
+					<div class="weatherInfo">
+						<img src="./image/temperature.gif"/>
+						<div>
+							<span class="infoTitle">室外温度</span>
+							<span class="infoNum colorYellow"><em id="temperature">--</em> ℃</span>
+						</div>
+					</div>
+					<div class="weatherInfo">
+						<img src="./image/humidity.gif"/>
+						<div>
+							<span class="infoTitle">室外湿度</span>
+							<span class="infoNum colorGreen"><em id="humidity">--</em> %</span>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					光伏发电量统计
+				</div>
+				<div class="floorBg">
+					<div class="power">
+						<img src="image/moon.png" >
+						<div class="powerText">
+							<span><em class="colorYellow bold" id="Monele">--</em> kW·h</span>
+							<div class="powerTitle">光伏当月发电量</div>
+						</div>
+					</div>
+				</div>
+				<div class="floorBg">
+					<div class="power">
+						<img src="image/lighting.png" >
+						<div class="powerText">
+							<span><em class="colorBlue bold" id="Yearele">--</em> kW·h</span>
+							<div class="powerTitle">光伏当年发电量</div>
+						</div>
+					</div>
+				</div>
+				<div class="floorBg">
+					<div class="power" style="width: 220px; text-align: center; justify-content: space-between;">
+						<div class="powerText">
+							<span><em class="colorBlue bold">16</em> 台</span>
+							<div class="powerTitle">光伏板数量</div>
+						</div>
+						<div class="powerText">
+							<span><em class="colorBlue bold">14</em> 台</span>
+							<div class="powerTitle">运行台数</div>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日蓄电池电压
+				</div>
+				<div class="powerToday">
+					<div class="echarts" id="echarts">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+			</div>
+			<div class="rightBar">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					节能降碳<span class="standard">计算标准>></span>
+				</div>
+				<div class="energyBg">
+					<div class="energy">
+						<img src="image/mei.png">
+						<div class="energyText">
+							<div class="energyTitle">月节约标准煤</div>
+							<span><em class="colorGreen bold" id="Moncoal">--</em> kgce</span>
+						</div>
+					</div>
+				</div>
+				<div class="energyBg">
+					<div class="energy">
+						<img src="image/co2.png">
+						<div class="energyText">
+							<div class="energyTitle">月累计减少排放CO<span style="vertical-align: sub;font-size: 12px;">2<span></div>
+							<span><em class="colorGreen bold" id="MonCo2">--</em> kg</span>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日逆变器输入输出电压
+					<div class="legend">
+						<em style="background-color: rgba(78, 223, 146, 1);"></em>
+						<span>输入电压</span>
+						<em style="background-color: rgba(0, 126, 255, 1);"></em>
+						<span>输出电压</span>
+					</div>
+				</div>
+				<div class="AUEcharts">
+					<div class="echarts" id="echarts1">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日逆变器输入输出电流
+					<div class="legend">
+						<em style="background-color: rgba(78, 223, 146, 1);"></em>
+						<span>输入电流</span>
+						<em style="background-color: rgba(0, 126, 255, 1);"></em>
+						<span>输出电流</span>
+					</div>
+				</div>
+				<div class="AUEcharts">
+					<div class="echarts" id="echarts2">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+			</div>
+			<div class="videoBox">
+				<video class="video" src="image/photovoltaicPower.mp4" muted loop autoplay></video>
+			</div>
+			<div class="tipInfo">
+				<span>发电量=功率*时间 </span>
+				<span>该光伏发电板额定功率3kW，</span>
+				<span style="margin-bottom: 15px;">当前发电量为监测值的历史累计值。</span>
+				<span>标准煤=电量*0.1229</span>
+				<span style="margin-bottom: 15px;">根据国家发改委提供数据估算。</span>
+				<span>排放CO<em style="vertical-align: sub;font-size: 12px;">2</em>量=电量*0.9288</span>
+				<span>0.9288为华北地区2014年CO<em style="vertical-align: sub;font-size: 12px;">2</em>减排因子。</span>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="/common/lib/wodry-master/dist/jquery-1.9.1.min.js"></script>
+<script src="/common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/lib/echarts.min.js"></script>
+<script src="/common/lib/countadd.js"></script>
+<script src="/common/lib/tagcloud.js"></script>
+<script src="/common/js/loadPng.js"></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/echarsComponent.js"></script>
+<script>
+	document.write('<script src="js/index.js?v=' + version + '"><\/script>');
+</script>

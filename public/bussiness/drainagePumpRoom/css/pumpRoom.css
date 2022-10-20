@@ -1,0 +1,244 @@
+html, body{
+	height: 100%;
+	user-select: none;
+}
+body{
+	color: #A5EAFF!important;
+}
+.sc-container{
+	/* height: calc(100% - 70px); */
+}
+.videotitle{
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	transform: translate(-50%,0);
+	width: 600px;
+	height: 65px;
+	text-align: center;
+	color: #A5EAFF;
+	z-index: 1;
+	/* background: url(../image/title_video.png); */
+	background-image: url(../../../common/image/dabiaoti1.png);
+	background-size: 100% 100%;
+}
+.videotitle .tit{
+	line-height: 30px;
+}
+.videotitle .cont{
+	font-size: 20px;
+	padding-top: 10px;
+	color: #00ffff;
+}
+.btnCenter{
+	width: 700px;
+	height: 40px;
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.btnBlue0{
+	background: transparent;
+	background-image: url(../image/dianBlue.png);
+	background-size: 100% 100%;
+}
+.btnBlue1{
+	background: transparent;
+	background-image: url(../image/emBlue.png);
+	background-size: 100% 100%;
+}
+.btnBlue2{
+	background: transparent;
+	background-image: url(../image/videoBlue.png);
+	background-size: 100% 100%;
+}
+.btnBlue3{
+	background: transparent;
+	background-image: url(../image/suBlue.png);
+	background-size: 100% 100%;
+}
+.btn{
+	width: 160px;
+	height: 40px;
+	color: #D4F5FF;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+}
+.btnOn{
+}
+.btnYellow0{
+	background: transparent;
+	background-image: url(../image/dianYellow.png);
+	background-size: 100% 100%;
+}
+.btnYellow1{
+	background: transparent;
+	background-image: url(../image/emYellow.png);
+	background-size: 100% 100%;
+}
+.btnYellow2{
+	background: transparent;
+	background-image: url(../image/videoYellow.png);
+	background-size: 100% 100%;
+}
+.btnYellow3{
+	background: transparent;
+	background-image: url(../image/suYellow.png);
+	background-size: 100% 100%;
+}
+.backBtn{
+	width: 182px;
+	height: 34px;
+	position: absolute;
+	top: 180px;
+	left: 360px;
+	display: none;
+	cursor: pointer;
+	background-image: url(../image/backBtn.png);
+	background-size: 100% 100%;
+	transition: all ease .5s;
+}
+
+.cameraclose{
+	position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    background: #403f3f;
+    text-align: center;
+	z-index: -111;
+	display: none;
+}
+#camera10{
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.camera{
+	position: absolute;
+	z-index: -111;	
+	width: 580px;
+	height: 350px;
+}
+.camera .iconbg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+.camera .icon{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+.camera .line{
+	width: 1px;
+    height: 200px;
+    background: #00ffff;
+    position: absolute;
+    left: 31px;
+    top: 63px;
+	display: none;
+}
+.camera .camera-details{
+	background: rgba(3,27,51,0.7);
+	width: 240px;
+	height: 390px;
+	border-radius: 5px;
+	position: absolute;
+	left: 70px;
+	top: -180px;
+	border: 1px solid #4f7bac;
+	padding: 5px 5px;
+	z-index: 3;
+	overflow: hidden;
+}
+.camera .camera-details .de-title{
+	background: url(../image/camera_bg.png);
+	height: 31px;
+	color: #00FFFF;
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+.camera .camera-details .de-title button{
+	float: right;
+    background: transparent;
+    border: 0;
+    color: #00f2f3;
+    font-weight: normal;
+    cursor: pointer;
+}
+.camera-details ul li{
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #78a7a1;
+}
+.camera-details ul li span{
+	display: inline-block;
+	width: 47%;
+	overflow: hidden;
+	height: 39px;
+}
+.camera-details ul li:last-child{
+	border-bottom: 0;
+}
+.camera-details img{
+	width: 100%;
+}
+.camera-details video{
+	width: 100%;
+	height: 195px;
+}
+.camera-details h2{
+	font-size: 16px;
+}
+.fontsize24{
+	font-size: 24px;
+}
+.fontsize20{
+	font-size: 20px;
+}
+.fontsize16{
+	font-size: 16px;
+}
+.fontsize14{
+	font-size: 14px;
+}
+
+.colorLinghtYellow{
+	color: #FCEA45!important;
+}
+
+.textColorBlue{
+	color: #00FFFF!important;
+}
+.textColorGreen{
+	color: #48D396;
+}
+.textColorYellow{
+	color: #FFB72C;
+}
+.textColorRed{
+	color: #FF4444!important;
+}
+.fontsize40{
+	font-size: 40px;
+}

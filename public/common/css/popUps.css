@@ -1,0 +1,15 @@
+.popUps{
+	width: 260px;
+	height: 110px;
+	padding: 20px 15px 20px 30px;
+	position: fixed;
+	display: none;
+	background-color: #009688;
+	border-radius: 20px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.popUpsconcainer{
+	height: 100%;
+}

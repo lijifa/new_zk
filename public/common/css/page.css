@@ -1,0 +1,36 @@
+.pager{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: rgba(165, 234, 255, 1);
+	font-size: 12px;
+}
+.pagerInfo{
+	height: 30px;
+	line-height: 30px;
+}
+.pagerBtn ul{
+	display: flex;
+	justify-content: space-between;
+	color: #fff;
+}
+.pagerBtn .pageNum,.pagerBtn .next,.pagerBtn .prev{
+	width: 30px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid rgba(19, 55, 85, 1);
+	text-align: center;
+	cursor: pointer;
+}
+.pagerBtn .omit{
+	width: 30px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid rgba(19, 55, 85, 1);
+	text-align: center;
+}
+.pagerBtn .on{
+	background-color: rgba(30, 80, 132, 1);
+}

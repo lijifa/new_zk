@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/animated.css">
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<!-- <link rel="stylesheet" href="./css/emergencySituation.css"> -->
+		<script type="text/javascript">
+			document.write('<script language="javascript" src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/emergencySituation.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="../../../common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="应急概况"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md6 hei-sc">
+				<div class="padding10">
+					<div class="titleBar">
+						<div class="lev1title_pub bgTil">
+							<span class="titfont">防火分区监控系统</span>
+						</div>
+					</div>
+					<ul class="system" style="margin: 15px 0;">
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/fhmB.png);"></div>
+									<span class="fontsize24" id="alarm1">--</span>
+									<span>防火门监控器</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/gz.png);"></div>
+									<span class="fontsize24" id="fault1">--</span>
+									<span>防火门故障</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/jlmB.png);"></div>
+									<span class="fontsize24" id="onLine1">--</span>
+									<span>卷帘门控制器</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/jlmY.png);"></div>
+									<span class="fontsize24" id="outLine1">--</span>
+									<span>卷帘门关闭</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="img" style="background-image: url(image/fhm.png);"></div>
+					<div class="layui-col-md6 deviceLi">
+						<div class="lev3title_pub">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							主要设备数量
+						</div>
+						<ul class="system">
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/fhmS.png);">
+										</div>
+										<span class="fontsize24"><em id="main1">--</em> <em
+												class="fontsize16">套</em></span>
+										<span>防火门数量</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/jlmB.png);">
+										</div>
+										<span class="fontsize24"><em id="main2">--</em> <em
+												class="fontsize16">个</em></span>
+										<span>卷帘门数量</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="system">
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/fhmJ.png);">
+										</div>
+										<span class="fontsize24"><em id="main3">--</em> <em
+												class="fontsize16">台</em></span>
+										<span>防火门检测器</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/dzmZ.png);">
+										</div>
+										<span class="fontsize24"><em id="main4">--</em> <em
+												class="fontsize16">台</em></span>
+										<span>电子门磁</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="system">
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/ldbM.png);">
+										</div>
+										<span class="fontsize24"><em id="main5">--</em> <em
+												class="fontsize16">套</em></span>
+										<span>联动闭门器</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/dy.png);">
+										</div>
+										<span class="fontsize24"><em id="main6">--</em> <em
+												class="fontsize16">个</em></span>
+										<span>电源</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="layui-col-md6 deviceLi">
+						<div class="lev3title_pub" style="padding-left: 0;">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							设备故障详情
+						</div>
+						<div class="main1" id="device1">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6 hei-sc">
+				<div class="padding10">
+					<div class="titleBar">
+						<div class="lev1title_pub bgTil">
+							<span class="titfont">智能应急疏散系统</span>
+						</div>
+					</div>
+					<ul class="system" style="margin: 15px 0;">
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/zmB.png);"></div>
+									<span class="fontsize24" id="alarm2">--</span>
+									<span>应急照明控制器</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/gz.png);"></div>
+									<span class="fontsize24" id="fault2">--</span>
+									<span>设备故障</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/zx.png);"></div>
+									<span class="fontsize24" id="onLine2">--</span>
+									<span>在线设备</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="posi50">
+								<div class="icon">
+									<div class="iconBack" style="background-image: url(image/lx.png);"></div>
+									<span class="fontsize24" id="outLine2">--</span>
+									<span>离线设备</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="img" style="background-image: url(image/zm.png);"></div>
+					<div class="layui-col-md6 deviceLi">
+						<div class="lev3title_pub">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							主要设备数量
+						</div>
+						<ul class="system" style="margin-top: 20px;margin-bottom: 27px;">
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/zmdS.png);">
+										</div>
+										<span class="fontsize24"><em id="main7">--</em> <em
+												class="fontsize16">个</em></span>
+										<span>照明灯数量</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/zsdS.png);">
+										</div>
+										<span class="fontsize24"><em id="main8">--</em> <em
+												class="fontsize16">个</em></span>
+										<span>指示灯数量</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="system">
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/dy.png);">
+										</div>
+										<span class="fontsize24"><em id="main9">--</em> <em
+												class="fontsize16">台</em></span>
+										<span>应急电源</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="posi50">
+									<div class="icon icon1">
+										<div class="iconBack iconBack1" style="background-image: url(image/znfp.png);">
+										</div>
+										<span class="fontsize24"><em id="main10">--</em> <em
+												class="fontsize16">台</em></span>
+										<span>智能分配电装置</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="layui-col-md6 deviceLi">
+						<div class="lev3title_pub" style="padding-left: 0;">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							设备故障详情
+						</div>
+						<div class="main1" id="device2">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<!-- <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<!-- <script src="../../common/lib/wodry-master/dist/jquery-1.9.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script> -->
+<!-- <script src="../../common/lib/countadd.js"></script> -->
+<!-- <script src="../../common/lib/tagcloud.js"></script> -->
+<!-- <script src="http://www.jq22.com/jquery/jquery-ui-1.10.2.js"></script> -->
+<!-- <script type="text/javascript" src="../../common/lib/wodry-master/dist/jquery.fullPage.js"></script> -->
+<!-- <script src="../../common/lib/wodry-master/dist/bootstrap.min.js"></script> -->
+<!-- <script src="../../common/lib/wodry-master/dist/wodry.min.js"></script> -->
+<!-- <script src="../../common/js/loadPng.js"></script> -->
+
+<!-- <script src="../../common/js/public.js"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="../../common/js/public.js?r=' + Math.random() + '"><\/script>');
+</script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<!-- <script src="js/emergencySituation.js"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="js/emergencySituation.js?v=' + version + '"><\/script>');
+</script>

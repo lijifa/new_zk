@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>智慧园区·国际企业社区</title>
+		<link rel="shortcut icon" href="/common/image/favicon.ico" type="image/x-icon" />
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				background: #444;
+			}
+
+			#gameContainer {
+				width: 100vw;
+				height: 100vh;
+			}
+
+			canvas {
+				width: 100% !important;
+				height: 100% !important;
+				display: block;
+			}
+
+			.logo {
+				display: block;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.progress {
+				margin: 1.5em;
+				border: 1px solid #02a7fe;
+				width: 30vw;
+				display: none;
+				position: absolute;
+				bottom: 100px;
+				left: 50%;
+				margin-left: -15vw;
+			}
+
+			.progress .full {
+				margin: 2px;
+				background: #02a7ce;
+				height: 0.1em;
+				transform-origin: top left;
+			}
+
+			#loader {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.spinner,
+			.spinner:after {
+				border-radius: 50%;
+				width: 5em;
+				height: 5em;
+			}
+
+			.spinner {
+				margin: 10px;
+				font-size: 10px;
+				position: relative;
+				text-indent: -9999em;
+				border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-left: 1.1em solid #ffffff;
+				transform: translateZ(0);
+				animation: spinner-spin 1.1s infinite linear;
+			}
+
+			@keyframes spinner-spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+		<script>
+			document.write('<script src="/common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui">
+	</head>
+
+	<body onload="Reset()" onresize="Reset()" scroll=no, style="overflow:hidden">
+		<div id="gameContainer" style="width: 100%; height: 100%;margin:auto;"></div>
+		<div id="loader">
+			<img class="logo" src="logo.png">
+			<div class="spinner"></div>
+			<div class="progress">
+				<div class="full"></div>
+			</div>
+		</div>
+		<div id="#pointer" style="cursor:pointer"></div>
+		<div id="#default" style="cursor:default"></div>
+		<button Type="button" onclick="JsToUnity()">WebToUnity</button>
+	</body>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+	<script src="/common/lib/jquery-3.2.1.js"></script>
+	<script>
+		document.write('<script src="Build/UnityLoader.js?v=' + version + '"><\/script>');
+		document.write('<script src="/common/js/u3dTools.js?v=' + version + '"><\/script\>');
+	</script>
+	<script>
+		//屏蔽右键菜单
+		document.oncontextmenu = function () {
+			event.returnValue = false;
+		}
+		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/A7.json", {
+			onProgress: UnityProgress,
+		});
+		var canvas = document.getElementById("#canvas");
+		var pointerDiv = document.getElementById("#pointer");
+		var defaultDiv = document.getElementById("#default");
+
+		function Reset() {
+			var canvas = document.getElementById("#canvas"); //获取#canvas
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			if (typeof canvas.width != "number") {
+				//在标准模式下面
+				if (document.compatMode == "CSS1Compat") {
+					canvas.width = document.documentElement.clientWidth;
+					canvas.height = document.documentElement.clientHeight;
+				} else {
+					canvas.width = document.body.clientWidth;
+					canvas.height = window.body.clientHeight;
+				}
+			}
+		}
+		//JS发送消息给Unity
+		function JsToUnity() {
+			gameInstance.SendMessage("gameObjName", "JsMessage", "unity你好");
+		}
+		//修改鼠标指针为手型
+		function ChangeMouse2Pointer(arg0) {
+			canvas.style.cursor = pointerDiv.style.cursor;
+		}
+
+		//修改鼠标指针为默认
+		function ChangeMouse2Default(arg0) {
+			canvas.style.cursor = defaultDiv.style.cursor;
+		}
+
+		function showVideo() {
+			gameInstance.SendMessage("ItemDetailPanel", "HideDetailPanel");
+		}
+
+		function closeVideo() {
+
+		}
+
+		function canmerHide() {
+
+		}
+
+		function Log(str) {
+			// console.log(str);
+		}
+
+		function canShowCameraPositionById(str) {
+			console.log(str);
+		}
+
+		function UnityProgress(gameInstance, progress) {
+			if (!gameInstance.Module) {
+				return;
+			}
+			const loader = document.querySelector("#loader");
+			if (!gameInstance.progress) {
+				const progress = document.querySelector("#loader .progress");
+				progress.style.display = "block";
+				gameInstance.progress = progress.querySelector(".full");
+				loader.querySelector(".spinner").style.display = "none";
+			}
+			gameInstance.progress.style.transform = `scaleX(${progress})`;
+			if (progress === 1 && !gameInstance.removeTimeout) {
+				gameInstance.removeTimeout = setTimeout(function() {
+					loader.style.display = "none";
+					Reset();
+				}, 0);
+			}
+		}
+
+		function UnityStart() {
+			loadWeather();
+			parent.A7Project.U3Dinit(gameInstance);
+			if(window.matchMedia("(any-pointer: coarse)").matches) {
+				console.log('触摸屏');
+				gameInstance.SendMessage("RecvJsMessageObject", 'GetEvent', '15000' + ', ');
+			} else {
+				console.log('非触摸屏');
+			} 
+		}
+
+		// console.log(returnCitySN["cip"] + ',' + returnCitySN["cname"])
+		function weatherAjax(ip, callBack) {
+			$.ajax({
+				url: 'https://weather01.market.alicloudapi.com/ip-to-weather?ip=' + ip +
+					'&need3HourForcast=0&needAlarm=0&needHourData=0&needIndex=0&needMoreDay=0',
+				dataType: 'json',
+				method: 'get',
+				beforeSend: function(XMLHttpRequest) {
+					XMLHttpRequest.setRequestHeader("Authorization", 'APPCODE 4102f2f1c1c3479292e776c76785dcbb')
+				},
+				success: function(res) {
+					if (res.showapi_res_code == 0) {
+						let obj = {
+							code: res.showapi_res_code,
+							msg: 'success',
+							data: {
+								wind_direction: res.showapi_res_body.now.wind_direction,
+								temperature_time: res.showapi_res_body.now.temperature_time,
+								wind_power: res.showapi_res_body.now.wind_power,
+								aqi: res.showapi_res_body.now.aqi,
+								sd: res.showapi_res_body.now.sd,
+								weather_pic: res.showapi_res_body.now.weather_pic,
+								weather: res.showapi_res_body.now.weather,
+								rain: res.showapi_res_body.now.rain,
+								temperature: res.showapi_res_body.now.temperature,
+							}
+						}
+						// console.log(obj);
+						if (callBack && typeof callBack == 'function') {
+							callBack(obj);
+						}
+					} else {
+						console.log('未知错误' + res.showapi_res_code);
+					}
+				},
+				error: function(res) {
+					// alert("失败")
+					console.log('失败：', res);
+				}
+			})
+		}
+
+		function loadWeather() {
+			let timer = undefined;
+			let ip = window.returnCitySN["cip"];
+			let period = new Date().getTime() - JSON.parse(localStorage.getItem('period'));
+			// console.log(period);
+			if (period >= 1000 * 60 * 60 * 3) {
+				/* 创建过期时间 */
+				console.log('本地缓存过期');
+				localStorage.setItem('period', new Date().getTime());
+				weatherAjax(ip, function(data) {
+					localStorage.setItem('weather', JSON.stringify(data));
+					/* 读取本地缓存向U3D传值 */
+					let weather = JSON.parse(localStorage.getItem('weather'));
+					gameInstance.SendMessage("CanvasLongTimeShow", "TemperatureTimeWeatherData", weather.data
+						.temperature);
+					gameInstance.SendMessage("CanvasLongTimeShow", "WeatherData", weather.data.weather);
+					parent.$('#temperature').html(weather.data.temperature);
+					parent.$('#weather').html(weather.data.weather);
+				})
+			} else {
+				console.log('本地缓存未过期');
+				/* 读取本地缓存向U3D传值 */
+				let weather = JSON.parse(localStorage.getItem('weather'));
+				gameInstance.SendMessage("CanvasLongTimeShow", "TemperatureTimeWeatherData", weather.data.temperature);
+				gameInstance.SendMessage("CanvasLongTimeShow", "WeatherData", weather.data.weather);
+				parent.$('#temperature').html(weather.data.temperature);
+				parent.$('#weather').html(weather.data.weather);
+			}
+			/* 创建定时器整点更新本地缓存 */
+			let hours = new Date().getHours();
+			timer = setInterval(function() {
+				console.log('5分钟传值');
+				if (hours != new Date().getHours()) {
+					/* 前后定时器hours不同请求天气数据并缓存 */
+					console.log('一小时请求天气数据');
+					weatherAjax(ip, function(data) {
+						localStorage.setItem('weather', JSON.stringify(data));
+						/* 读取本地缓存向U3D传值 */
+						let weather = JSON.parse(localStorage.getItem('weather'));
+						gameInstance.SendMessage("CanvasLongTimeShow", "TemperatureTimeWeatherData", weather
+							.data.temperature);
+						gameInstance.SendMessage("CanvasLongTimeShow", "WeatherData", weather.data.weather);
+						parent.$('#temperature').html(weather.data.temperature);
+						parent.$('#weather').html(weather.data.weather);
+					})
+				} else {
+					/* 读取本地缓存向U3D传值 */
+					let weather = JSON.parse(localStorage.getItem('weather'));
+					gameInstance.SendMessage("CanvasLongTimeShow", "TemperatureTimeWeatherData", weather.data
+						.temperature);
+					gameInstance.SendMessage("CanvasLongTimeShow", "WeatherData", weather.data.weather);
+					parent.$('#temperature').html(weather.data.temperature);
+					parent.$('#weather').html(weather.data.weather);
+				}
+				hours != new Date().getHours();
+			}, 5 * 1000 * 60)
+		}
+
+		function StateAssignment(param = '0') {
+			console.log('zhu ran shuo buyongle');
+		}
+
+		function UnityLoaded() {
+			loadWeather();
+		}
+		function EquipmentInformation(str){
+			if(str == '0'){
+				parent.$('.controlPanel').hide();
+				parent.$('.floorBar').hide();
+				parent.$('.return').hide();
+				parent.$('.cruise').hide();
+			} else if(str == '1'){
+				parent.$('.controlPanel').show();
+				parent.$('.floorBar').show();
+				parent.$('.return').show();
+				parent.$('.cruise').show();
+			}
+		}
+		function TransmissionJson(e) {
+			// console.log(e);
+			console.log(JSON.parse(e));
+			parent.A7Project.control(e);
+			// setTimeout(function(){
+			// 	parent.A7Project.deviceData();
+			// },10000)
+		}
+		// 不可点击
+		function ButtonNotClickable(e){
+			if(e == '0'){
+				parent.clickFloor = false;
+			} else {
+				parent.clickFloor = true;
+			}
+		}
+		// 自动巡航
+		function AutomaticCruise(e){
+			if(e == '0'){
+				parent.$('.cruise').removeClass('cruiseOn');
+				parent.EquipmentLevel = true;
+				parent.$('.controlPanel').show();
+			} else {
+				parent.$('.cruise').addClass('cruiseOn');
+				parent.EquipmentLevel = false;
+				parent.$('.controlPanel').hide();
+			}
+		}
+		// 楼层按钮切换样式
+		function CurrentFloor(e){
+			parent.floorNum = e;
+			parent.$(`.floorBar>div[data-floor=${e}]`).addClass('on').siblings('div').removeClass('on');
+		}
+		// 前往面板到达地点后
+		function GotoControlPanel(){
+			parent.GotoControlPanel = true;
+			parent.$('.cruise').css({
+				'cursor':'pointer'
+			})
+			parent.$('.controlPanel').show();
+		}
+		// 记录操作记录
+		function OperationRecord(e){
+			parent.A7Project.OperationRecordX(e);
+		}
+	</script>
+
+</html>

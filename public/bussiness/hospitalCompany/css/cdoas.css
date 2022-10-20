@@ -1,0 +1,980 @@
+html,
+body {
+	height: 100%;
+}
+
+html {
+	background: url(../image/bg.jpg);
+	background-size: 100% 100%;
+}
+
+/* body {
+	background: url(../image/circle.png) center center;
+	background-size: 90% auto;
+	font-size: 16px;
+	color: #A5EAFF!important;
+} */
+body {
+	/* background: url(../image/circle.png) center center no-repeat; */
+	background-size: 43% auto;
+	font-size: 16px;
+	color: #A5EAFF !important;
+}
+.font18 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.red{
+	color: red;
+}
+.green {
+	color: #18D991;
+}
+
+.blue {
+	color: #0A93FF;
+}
+
+.blue2 {
+	color: #00FFFF;
+}
+
+.yellow {
+	color: #FF830A;
+}
+
+.yellow2 {
+	color: #FBEA46;
+}
+
+.hd-title {
+	color: rgba(165, 234, 255, 1);
+
+	z-index: 10;
+	left: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	width: calc(100% - 20px);
+	background: linear-gradient(90deg, rgba(9, 147, 255, 0.3) 0%, rgba(9, 147, 255, 0.01) 100%);
+	line-height: 27px;
+}
+
+.hd-title .title_icon {
+	width: 30px;
+	margin-top: -4px;
+}
+
+
+.l-firstbar {
+	padding: 10px 0;
+	width: 400px;
+	height: 80px;
+	margin-top: -10px;
+}
+
+.l-firstbar .item {
+	width: 50%;
+	display: inline-block;
+	color: #00CBFE;
+	float: left;
+}
+
+.l-firstbar .item img {
+	float: left;
+	margin-left: 20px;
+	vertical-align: middle;
+	margin-top: 6px;
+	margin-right: 7px;
+}
+
+.l-firstbar .item em {
+	font-size: 32px;
+	font-style: normal;
+}
+
+
+
+
+.firstDiv {
+	display: flex;
+    justify-content: space-between;
+    margin-top: -25px;
+    padding: 0 20px;
+    align-items: center;
+
+}
+.firstDiv .leftTitle {
+	width: 35%;
+	color: #00FFFF;
+	display: flex;
+}
+.firstDiv .leftItem {
+	width: 30%;
+	color: #1C86E5;
+	background-image: url(../imageIcu/title_blue_bg.png);
+	padding: 8px;
+    background-size: 100% 100%;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.firstDiv .rightTitle {
+	width: 35%;
+	color: #1C86E5;
+	display: flex;
+}
+
+.firstDiv .itemActive {
+	color: #00FFFF;
+	background-image: url(../imageIcu/title_green_bg.png);
+}
+.firstDiv .text1 {
+	font-size: 14px;
+    margin-left: 10px;
+	margin-bottom: 4px;
+}
+.firstDiv .text2 {
+	font-size: 18px;
+    margin-left: 10px;
+}
+
+.firstDiv .itemTitle {
+	display: flex;
+	align-items: center;
+}
+.firstDiv .itemTitle .text1 {
+	font-size: 14px;
+	margin-left: 10px;
+}
+.firstDiv .itemTitle .text2 {
+	font-size: 22px;
+    margin-left: 10px;
+
+}
+
+.divSpace {
+	width: 100%;
+	height: 70px;
+}
+
+.secondDiv {
+	margin-top: 30px;
+	padding: 0 100px;
+    display: flex;
+    justify-content: center;
+}
+.secondDiv .pipebg {
+    width: 100%;
+}
+.secondDiv .pipeDiv {
+	position: relative;
+	width: 1500px;
+	color: #00FFFF;
+}
+.fs_ok img{
+    position: absolute;
+	width: 55px;
+    height: 55px;
+    top: 37px;
+    left: 180px;
+	
+	animation:turn 2s linear infinite;
+}
+
+.fs_error img{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    right: 153px;
+	bottom: 17px;
+	animation:turn 2s linear infinite;
+}
+
+  /* 
+	turn : 定义的动画名称
+	1s : 动画时间
+	linear : 动画以何种运行轨迹完成一个周期
+	infinite :规定动画应该无限次播放
+   */
+  @keyframes turn{
+	0%{-webkit-transform:rotate(0deg);}
+	25%{-webkit-transform:rotate(90deg);}
+	50%{-webkit-transform:rotate(180deg);}
+	75%{-webkit-transform:rotate(270deg);}
+	100%{-webkit-transform:rotate(360deg);}
+  }
+
+.waterLeft img {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    left: 369px;
+	bottom: 21px;
+	animation: glow 1200ms ease-out infinite alternate;
+}
+
+.waterRight img {
+	position: absolute;
+    width: 150px;
+    height: auto;
+	top: 13px;
+    left: 925px;
+	animation: glow 1200ms ease-out infinite alternate;
+}
+
+@keyframes glow {
+	0% {
+		opacity: 0.1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.tip_1 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+	left: 165px;
+    top: -65px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 54px;
+    height: 60px;
+	min-width: 180px;
+	padding: 0 5px;
+}
+
+.tip_1 img {
+	width: 16px;
+	margin-right: 6px;
+}
+
+.tip_2 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+	width: 130px;
+    height: 52px;
+    line-height: 44px;
+	top: -60px;
+	left: 476px;
+    font-size: 14px;
+}
+
+
+.tip_3 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+	line-height: 44px;
+    font-size: 14px;
+	width: 130px;
+    height: 52px;
+    line-height: 44px;
+	top: -60px;
+	left: 617px;
+	padding: 0 5px;
+}
+
+.tip_4 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	right: 450px;
+    top: -55px;
+    min-width: 146px;
+    height: 50px;
+	line-height: 45px;
+	padding: 0 10px;
+}
+
+.tip_4 img {
+	width: 16px;
+	margin-right: 6px;
+}
+
+.tip_5 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	right: 254px;
+    top: -15px;
+    width: 146px;
+    height: 50px;
+	line-height: 45px;
+	padding: 0 5px;
+}
+
+.tip_6 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	right: 10px;
+    top: -15px;
+    width: 146px;
+    height: 50px;
+	line-height: 45px;
+	padding: 0 5px;
+}
+
+.tip_8 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	top: 200px;
+    left: 190px;
+    line-height: 44px;
+    width: 160px;
+	height: 50px;
+	padding: 0 5px;
+}
+
+.tip_8 img {
+	width: 16px;
+	margin-right: 6px;
+}
+
+.tip_9 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	top: 200px;
+    left: 455px;
+    line-height: 44px;
+    min-width: 130px;
+	height: 50px;
+}
+
+.tip_10 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	top: 200px;
+    right: 424px;
+    line-height: 44px;
+    width: 160px;
+	height: 50px;
+	padding: 0 5px;
+}
+
+.tip_11 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	top: 200px;
+    right: 180px;
+    line-height: 44px;
+    width: 170px;
+	height: 50px;
+}
+
+.tip_12 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+	top: 240px;
+    right: 55px;
+    line-height: 44px;
+    width: 170px;
+	height: 50px;
+}
+
+.tip_13 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_3.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    width: 170px;
+	height: 50px;
+
+	bottom: -57px;
+    left: 460px;
+    line-height: 56px;
+}
+
+.tip_14 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_4.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+	line-height: 45px;
+	bottom: -46px;
+    right: 567px;
+}
+
+.tip_15 {
+	position: absolute;
+    background-image: url(../imageIcu/tip_3.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 44px;
+    width: 170px;
+	height: 50px;
+	right: 358px;
+	line-height: 58px;
+	bottom: -55px;
+}
+
+.hd-con-hei {
+	/* background: #1a336c; */
+	height: calc(100% - 4px);
+}
+
+.hd-innercontent {
+	width: 100%;
+	height: calc(100% - 20px);
+	margin-top: 20px;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.hd-content {
+	display: flex;
+	padding: 12px;
+}
+.hd-item {
+	display: flex;
+	margin-right: 20px;
+}
+
+.hd-item-text {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+	font-size: 14px;
+}
+.hd-item-text .shidu {
+	margin-top: 4px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #FF830A;
+}
+.hd-item-text .shidu span {
+	font-size: 12px;
+}
+
+.hd-item-text .wendu {
+	margin-top: 4px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #1C86E5;
+}
+.hd-item-text .wendu span {
+	font-size: 12px;
+}
+
+.txtMarquee-top {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.txtMarquee-top .hd {
+	overflow: hidden;
+	height: 30px;
+	background: #f4f4f4;
+	padding: 0;
+}
+
+.txtMarquee-top .hd .prev,
+.txtMarquee-top .hd .next {
+	display: block;
+	width: 9px;
+	height: 5px;
+	float: right;
+	margin-right: 5px;
+	margin-top: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	background: url("../images/arrow.png") 0 -100px no-repeat;
+}
+
+.txtMarquee-top .hd .next {
+	background-position: 0 -140px;
+}
+
+.txtMarquee-top .hd .prevStop {
+	background-position: -60px -100px;
+}
+
+.txtMarquee-top .hd .nextStop {
+	background-position: -60px -140px;
+}
+
+.txtMarquee-top .bd {
+	padding: 5px 10px;
+}
+
+.txtMarquee-top .infoList {
+	color: #0ac5f5;
+}
+
+.txtMarquee-top .infoList li {
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	overflow: hidden;
+}
+.txtMarquee-top .infoList li img
+{
+	width:13px;
+}
+.txtMarquee-top .infoList li:hover{
+	background:rgba(255,255,255,0.1);
+}
+.txtMarquee-top .infoList li .status {
+	float: right;
+	margin-left: 10px;
+	width: 30px;
+}
+
+.txtMarquee-top .infoList li .type {
+	float: right;
+	width: 50px;
+}
+
+.txtMarquee-top .infoList li a {
+	color: #0ac5f5;
+}
+
+.red .status,
+.red .type,
+.red a {
+	color: #ff4444 !important;
+}
+
+
+/*Ã¥Ë†â€”Ã¨Â¡Â¨*/
+.equlist-title{
+	height: 21px;
+    text-align: left;
+    padding: 0px 10px;
+}
+.equlist span{
+	display: inline-block;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.equlist .width1{
+	width: calc(25% - 10px);
+	padding-left: 10px;
+}
+.equlist .width2{
+	width: 15%;
+	text-align: center;
+}
+.equlist .width3{
+	width: 33.33%;
+}
+.equlist .width3:nth-child(1){
+	padding-left: 10px;
+	width: calc(33.33% - 10px);
+}
+
+.equlist .width44{
+	width: 44%;
+}
+.red{
+	color: #FF4343;
+}
+.red2{
+	color: #FF4444;
+}
+.bgblue2{
+	background: #0A93FF;
+}
+.green{
+	color: #18D991;
+}
+.blue{
+	color: #0A93FF;
+}
+.yellow{
+	color: #FF830A;
+}
+.bgyellow{
+	background: #FF830A;
+}
+.blue2{
+	color: #00FFFF;
+}
+.yellow2{
+	color: #FCEA45;
+}
+.bgyellow2{
+	background:#FCEA45;
+}
+
+#warnCount {
+	width: 20%;
+	display: flex;
+	align-items: center;
+}
+
+#waterBall {
+	width: 135px;
+	height:135px;
+	background-image: url(../imageIcu/waiyuan.png);
+	background-size: 100% 100%;
+}
+
+.posTipText {
+	position: absolute;
+	font-size: 12px;
+	left: 31px;
+    top: 140px;
+	color: #0ac5f5;
+}
+
+#inOutWaterTemperature {
+	width: 410px;
+	height: 200px;
+}
+.boxCenter {
+	text-align: center;
+}
+.footerSty {
+	position: absolute;
+	bottom: 0px;
+	padding: 10px 30px 0;
+    background: rgb(3, 27, 51, 0.5)
+}
+
+
+/* 县医院页面CSS */
+.icuBox {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+}
+
+.boxLeft {
+	display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: calc(100% - 70px);
+    align-items: center;
+}
+.boxLeft .leftItem {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	color: #1EE4E7;
+	font-size: 14px;
+}
+
+.boxLeft .leftItem .leftItemVal {
+	font-size: 24px;
+}
+
+.boxLeft .lineBox {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	display: flex;
+    justify-content: center;
+}
+.boxLeft .hd-legend {
+    padding-top: 3px;
+    z-index: 1;
+    position: absolute;
+	right: 20px;
+	font-size: 14px;
+}
+.boxLeft .hd-legend em {
+    width: 14px;
+    height: 3px;
+    border-radius: 5px;
+	margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.boxLeft .inOutWaterTemperature {
+	width: 90%;
+    height: 240px;
+	margin: 10px;
+}
+
+.boxLeft .waterLevelBox {
+	width: 80%;
+	margin: 10px;
+	
+    height: 240px;
+    position: relative;
+
+    display: flex;
+}
+
+.boxLeft .waterLevelValue {
+    height: 280px;
+    width: 50px;
+    color: #19d1ff;
+    text-align: center;
+    position: relative;
+    top: 10px;
+	left: 0;
+	font-size: 14px;
+}
+
+.boxLeft #waterLevel {
+    width:320px;
+	height: 270px;
+	position: absolute;
+	left: -10px;
+    top: -18px;
+}
+
+/* .boxLeft #waterLevelBox {
+    width:260px;
+    height: 240px;
+    position: absolute;
+    left: 40px;
+    top: 80px;
+    display: flex;
+}
+
+ */
+
+.boxMiddel {
+	position: relative;
+	width: 60%;
+	height: 100%;
+}
+.boxMiddel .posTip {
+	text-align: center;
+    font-size: 14px;
+	color: #0ACEFF;
+	
+	width: 100%;
+    bottom: 350px;
+    position: absolute;
+}
+.boxMiddel .posTip img {
+	margin-right: 8px;
+	width: 24px;
+}
+
+.boxMiddel .bottomBox {
+	position: absolute;
+	bottom: 80px;
+	width: 100%;
+}
+
+.boxMiddel .bottomBox .itembox {
+	padding-top: 20px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.boxMiddel .bottomBox .middelItem {
+	width: 200px;
+	height: 200px;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxMiddel .bottomBox .middelItem .middelItemTitle{
+	font-size: 14px;
+	margin-bottom: 12px;
+	color: aqua;
+}
+.boxMiddel .bottomBox .middelItem .middelItemContent{
+	width: 150px;
+	height: 150px;
+	display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.boxMiddel .bottomBox .middelItem .middelItemContent .itemVal{
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.boxMiddel .bottomBox .middelItem .middelItemContent .itemUnit{
+    font-size: 16px;
+	font-weight: bold;
+	color: #00FFFF;
+}
+
+.middelWendu {
+	background-image: url(../imageHospital/wendu.png);
+}
+.middelYali {
+	background-image: url(../imageHospital/yali.png);
+}
+.boxRight {
+	display: flex;
+	flex-direction: column;
+	width: 340px;
+	height: 100%;
+}
+
+.rightItemBox {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	height: calc(100% - 105px);
+	margin-top: 14px;
+}
+.boxRight .rightItem {
+	display: flex;
+    align-items: center;
+    background-image: url(../imageHospital/defbg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 280px;
+	height: 130px;
+	color: #A5EAFF;
+	justify-content: center;
+	align-items: center;
+    margin-bottom: 20px;
+}
+.boxRight .rightItemErr {
+    background-image: url(../imageHospital/errbg.png);
+}
+
+.boxRight .rightItem .itemImg {
+	margin-right: 14px;
+}
+.boxRight .rightItem .statusIcon {
+	width: 16px;
+	margin-right: 8px;
+}
+.boxRight .rightItem .itemText_1 {
+	margin-bottom: 10px;
+	
+}
+.boxRight .rightItem .itemText_2 {
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 1800px) {
+	.sildebar {
+		top: 33px;
+	}
+
+	.l-fourthbar li .count {
+		height: 85px;
+		line-height: 85px;
+	}
+
+	.myImageHolder {
+		position: absolute;
+		top: 0;
+		z-index: -1;
+		width: 700px;
+		height: 700px;
+		left: 50%;
+		top: 50%;
+		margin-left: -350px;
+		margin-top: -350px;
+	}
+}
+/* @media screen and (min-height: 995px) { */
+@media screen and (min-height: 900px) {
+	/*按f11但未隐藏导航模式*/
+	.sildebar{
+		height: calc(100% - 40px);
+	}
+	.l-secondbar{
+		height: 300px;
+	}
+	.l-secondbar ul li{
+		padding: 10px 0;
+	}
+	.l-thirdbar {
+		height: 370px;
+	}
+	.commonbar2 ul li{
+		line-height: 65px;
+		height: 65px;
+	}
+	.r-secondbar {
+		height: 375px;
+	}
+	.energyEfficiencybar ul li{
+		 padding-top: 42px;
+	}
+	.commonbar ul li {
+		line-height: 64px;
+		height: 64px;
+	}
+	.commonbar ul li img{
+		margin: 21px 25px 0;
+	}
+	/* .image-bg {
+		width: 110%;	
+		height: 110%;
+	} */
+}
+/* @media screen and (min-height: 1080px) { */
+@media screen and (min-height: 1000px) {
+	/*按f11隐藏导航模式*/
+	.l-firstbar{
+	   margin-top: 30px;
+	}
+	.r-firstbar{
+	   margin-top: 40px;
+	}
+	.r-secondbar{
+	   margin-top: 20px;
+	}
+}

@@ -1,0 +1,336 @@
+.sc-container {
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.lev3title_pub{
+	padding: 0 20px;
+}
+.gridContainer {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(12, 8.3333333%);
+	grid-template-rows: repeat(12, 8.3333333%);
+}
+
+.diagram {
+	grid-column: 1/10;
+	grid-row: 1/10;
+}
+
+.list {
+	grid-column: 1/6;
+	grid-row: 10/13;
+}
+
+.flow {
+	grid-column: 6/10;
+	grid-row: 10/13;
+}
+
+.systom {
+	grid-column: 10/13;
+	grid-row: 1/4;
+}
+
+.device {
+	grid-column: 10/13;
+	grid-row: 4/6;
+}
+
+.tank {
+	grid-column: 10/13;
+	grid-row: 6/10;
+}
+
+.level {
+	grid-column: 10/13;
+	grid-row: 10/13;
+}
+
+.zzt {
+	width: 100%;
+	height: calc(100% - 20px);
+	margin: 10px 0;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.displayFlex {
+	padding: 0 20px;
+	height: calc(100% - 45px);
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.custom {
+	width: 50%;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	color: rgba(165, 234, 255, 1);
+}
+
+.custom>img {
+	width: 48px;
+	height: 48px;
+}
+
+.customText {
+	flex: 1;
+	padding-left: 10px;
+}
+
+.customNum {
+	font-size: 24px;
+}
+
+.customTitle {
+	font-size: 16px;
+}
+
+.deviceMonitor {
+	width: 65px;
+	margin-top: -10px;
+	height: calc(100% - 35px);
+}
+
+.monitor {
+	height: 75px;
+	background-position: 0 center;
+	background-repeat: no-repeat;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.monitorNum {
+	width: 100%;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 30px;
+	text-align: center;
+}
+
+.unit {
+	float: right;
+	color: rgba(165, 234, 255, 1);
+	font-size: 14px;
+	font-weight: 400;
+	height: 24px;
+	line-height: 24px;
+}
+
+.waterTank {
+	width: 100%;
+	height: 93px;
+	position: relative;
+	margin: 10px 0;
+}
+.waterTankImg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 93px;
+}
+.water {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.waterItem {
+	width: 50%;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.waterItem>img {
+	width: 70px;
+	height: 70px;
+}
+
+.waterData {
+	flex: 1;
+	padding-left: 10px;
+}
+
+.waterTitle {
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+	color: rgba(165, 234, 255, 1);
+}
+
+.waterState {
+	font-size: 24px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	color: rgba(72, 211, 150, 1);
+}
+
+.component {
+	padding: 0 20px;
+	height: calc(100% - 25px);
+	position: relative;
+}
+
+.load {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.legend{
+	display: inline-block;
+	height: 3px;
+	width: 15px;
+	margin: 0 5px;
+	border-radius: 3px;
+	vertical-align: middle;
+}
+
+.gDlie_title0,
+.gDlie_title1,
+.gDlie_title2,
+.gDlie_title3,
+.gDlie_title4,
+.gDlie_title5,
+.gDlie_title6,
+.gDlie_title7,
+.gDlie_title8,
+.gDlie_title9,
+.gDlie_title10 {
+	height: 35px;
+	line-height: 35px;
+	background-color: rgba(28, 135, 229, .2);
+	border: 1px solid rgba(5, 10, 16, 1);
+}
+.gDDiv{
+	padding: 10px 0 0;
+}
+.gDlistOut{
+	height: calc(100% - 55px);
+}
+.gDhang_item0,
+.gDhang_item1,
+.gDhang_item2,
+.gDhang_item3,
+.gDhang_item4,
+.gDhang_item5,
+.gDhang_item6,
+.gDhang_item7,
+.gDhang_item8,
+.gDhang_item9,
+.gDhang_item10{
+	height: 35px;
+	line-height: 35px;
+	color: rgba(150, 214, 255, 1);
+}
+.gDlie_title0,
+.gDhang_item0{
+	flex: 2;
+}
+.gDhang0{
+	background-color: rgba(28, 135, 229, .1);
+}
+.jiShu .gDhang0{
+	background-color: transparent;
+}
+.jiShu .gDhang1{
+	background-color: rgba(28, 135, 229, .1);
+}
+.colorRed .gDhang_item0,
+.colorRed .gDhang_item1,
+.colorRed .gDhang_item2,
+.colorRed .gDhang_item3,
+.colorRed .gDhang_item4,
+.colorRed .gDhang_item5{
+	color: #ff4444!important;
+}
+.gDlie_title0,.gDhang_item0{
+	text-align: left;
+	text-indent: 10px;
+}
+.yl{
+	width: 107px;
+	height: 237px;
+	position: relative;
+}
+.ylBox{
+	width: 100%;
+	height: 55%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	overflow: hidden;
+}
+.ylImg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 107px;
+	height: 237px;
+}
+.rain{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.weatherMonitor{
+	width: 170px;
+	display: flex;
+	justify-content: space-between;
+}
+.weatherMonitor>img{
+	width: 30px;
+	height: 60px;
+}
+.weatherItem{
+	flex: 1;
+	padding: 0 0 0 10px;
+}
+.weatherTitle{
+	height: 20px;
+	line-height: 20px;
+	font-size: 18px;
+	color: rgba(0, 203, 254, 1);
+}
+.weatherNum{
+	height: 40px;
+	line-height: 40px;
+	font-size: 32px;
+}
+.weatherUnit{
+	font-size: 16px;
+}
+@media screen and (min-height: 1050px){
+	.systom1{
+		grid-row:2/4 !important;
+		margin-top: -50px;
+	}
+	.device1{
+		grid-row:4/6 !important;
+		margin-top: -20px;
+	}
+	.deviceMonitor{
+		height: auto;
+	}
+	.tank1{
+		grid-row:6/10 !important;
+	}
+	.level1{
+		
+	}
+}

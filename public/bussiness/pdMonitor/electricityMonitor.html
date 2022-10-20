@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/electricityMonitor.css?v='+version+'">');
+			document.write('<link rel="stylesheet" href="./css/load.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader" id="innerheader" data-title="电力数据监测"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md12 height100">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					回路电力监测(近24小时)
+				</div>
+				<div class="padlf20">
+					<div class="transformer" style="display: none;">
+						<!-- <span class="on" data-type="type1">1#低压主进线</span> -->
+						<!-- <span data-type="type2" class="">2#低压主进线</span> -->
+						<!-- <span data-type="type3" class="">三号回路</span>
+						<span data-type="type4" class="">四号回路</span>
+						<span data-type="type5" class="">五号回路</span>
+						<span data-type="type6" class="">六号回路</span> -->
+					</div>
+					<div class="transformer2" style="display: none;">
+						<button class="children on" id="lowVoltageActivePower" data-ids="">有功功率</button>
+						<button class="children" id="lowVoltageReActivePower" data-ids="">无功功率</button>
+						<button class="children" id="lowVoltagePowerFactor" data-ids="">功率因数</button>
+						<button class="children" id="lowVoltageApparentPower" data-ids="">视在功率</button>
+						<button class="children" id="lowVoltageElectricCurrent" data-ids="">电流</button>
+						<button class="children" id="lowVoltageItem" data-ids="">相电压</button>
+						<button class="children" id="lowVoltageLine" data-ids="">线电压</button>
+						<button class="children" id="lowVoltageFrequency" data-ids="">频率</button>
+					</div>
+				</div>
+				<div class="controls">
+					<div class="ckboxdiv" id="ckboxdiv"> 
+<!-- 						<label><input type="checkbox" class="ckbox" value="1" checked="checked"/><span>A相</span></label>
+						<label><input type="checkbox" class="ckbox" value="2" checked="checked"/><span>B相</span></label>
+						<label><input type="checkbox" class="ckbox" value="3" checked="checked"/><span>C相</span></label>
+						<label><input type="checkbox" class="ckbox" value="4" checked="checked"/><span>总有功功率</span></label>
+ -->					</div>
+					<div class="legthdiv">
+						<div class="legend legendPower" id="legendEcharts">
+							<!-- <span class="legendColorGreen"></span>
+							<em>A相有功功率</em>
+							<span class="legendColorLightBlue"></span>
+							<em>B相有功功率</em>
+							<span class="legendColorBlue"></span>
+							<em>C相有功功率</em>
+							<span class="legendColorYellow"></span>
+							<em>总有功功率</em> -->
+						</div>
+					</div>
+				</div>
+				<div class="electricechar padlf20">
+					<div id="electricechar" style="position: relative;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/electricityMonitor.js?v='+version+'"><\/script>');
+</script>

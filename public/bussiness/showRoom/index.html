@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<script>
+		document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+	</script>
+	<link rel="stylesheet" href="../../common/css/public.css" />
+	<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css" />
+	<link rel="stylesheet" href="../../common/css/generalStyle.css" />
+	<link rel="stylesheet" href="../../common/css/liMarquee.css" />
+	<link rel="stylesheet" href="../../../common/css/progress.css" />
+	<link rel="stylesheet" href="../../common/css/SuperSlideList.css">
+	<script>
+		document.write('<link rel="stylesheet" href="../../common/css/listRoll.css?v=' + version + '">');
+		document.write('<link rel="stylesheet" href="./css/showRoom.css?v=' + version + '">');
+	</script>
+</head>
+
+<body class="layui-layout-body">
+	<!-- <div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div> -->
+	<!-- <div class="layui-row sc-container" id="camera-container"></div> -->
+	<div class="pop">场景切换已成功</div>
+	<div id="mainLoading" class="loadingBox"></div>
+	<div class="modePop"></div>
+	<div class="popUps">
+		<div id="concainer">
+			<div><span>灯光1号</span><span>离线</span></div>
+			<div><span>灯光2号</span><span>离线</span></div>
+			<div><span>风机盘管1号</span><span>离线</span></div>
+			<div><span>风机盘管2号</span><span>离线</span></div>
+			<div><span>风机盘管3号</span><span>离线</span></div>
+			<div><span>风机盘管4号</span><span>离线</span></div>
+		</div>
+	</div>
+	<div class="topInfor">
+		<div class="sinceTitle"></div>
+		<div class="deviceInfor">
+			<div class="fault">
+				<div class="faultTitle">历史预警记录:</div>
+				<div class="faultList" id="faultList"></div>
+			</div>
+		</div>
+		<div class="timeAndWeather">
+			<div class="time">
+				<i class="icon" style="background-image: url(image/date.png)"></i>
+				<span id="time">--</span>
+				<em class="timeEm"></em>
+				<!-- <i class="icon" style="background-image: url(image/sun.png)"></i> -->
+				<span id="weather">--</span>
+				<em class="timeEm"></em>
+				<span>供冷季</span>
+			</div>
+			<div class="weather">
+				<div class="outAndIn device">
+					<span class="textColorgray">设备总数</span>
+					<span class="fontweightBold"><em class="fontsize24"><!--<div id="DevCount" class="loadingBox"></div>-->6</em> <em class="fontsize18">个</em></span>
+				</div>
+				<div class="outAndIn outline" style="background-image: url(image/outLineB.png);">
+					<span class="textColorgray">离线设备</span>
+					<span class="fontweightBold"><em class="fontsize24" id="outLine"><div id="outLineDev" class="loadingBox"></div></em> <em class="fontsize18">个</em></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="leftBarOut">
+		<div class="leftBar">
+			<ul>
+				<div class="glass" style="border-right: 2px solid rgba(10, 11, 14, 0.8)">
+					<li>
+						<span class="liTitle">实时室内温度变化<span class="units">(℃)</span></span>
+						<div class="item" id="realTimeIndoorTemperature">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+					</li>
+					<li>
+						<span class="liTitle">实时室内湿度变化<span class="units">(%)</span></span>
+						<div class="item" id="realTimeIndoorhur">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+					</li>
+					<li>
+						<span class="liTitle">实时室内PM2.5变化<span class="units">(μg/m³)</span></span>
+						<div class="item" id="lightChange">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+						<!-- <div class="lightNing">
+		      <span><em class="light backgroundBlue"></em>灯光1</span>
+		      <span><em class="light backGroundLightBlue"></em>灯光2</span>
+		    </div> -->
+					</li>
+					<li style="background-image: url(image/background2.png)">
+						<span class="liTitle">末端面板实时列表</span>
+						<div class="item">
+							<ul class="listTitle">
+								<li class="textColorgray">名称</li>
+								<li class="textColorgray">风速</li>
+								<li class="textColorgray"><span class="SetTemperature">设定温度</span></li>
+								<li class="textColorgray">状态</li>
+							</ul>
+							<ul class="listTitle" id="device1">
+								<li>风机盘管1号</li>
+								<li>--</li>
+								<li>--</li>
+								<li>--</li>
+							</ul>
+							<ul class="listTitle" id="device2">
+								<li>风机盘管2号</li>
+								<li>--</li>
+								<li>--</li>
+								<li>--</li>
+							</ul>
+							<ul class="listTitle" id="device3">
+								<li>风机盘管3号</li>
+								<li>--</li>
+								<li>--</li>
+								<li>--</li>
+							</ul>
+							<ul class="listTitle" id="device4">
+								<li>风机盘管4号</li>
+								<li>--</li>
+								<li>--</li>
+								<li>--</li>
+							</ul>
+							<!-- <div style="height: calc(100% - 30px);position: relative;" id="list">
+					
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+				</div> -->
+						</div>
+					</li>
+				</div>
+			</ul>
+			<ul>
+				<div class="glass" style="border-left: 2px solid rgba(10, 11, 14, 0.8)">
+					<li>
+						<span class="liTitle">近7天室外温度变化<span class="units">(℃)</span></span>
+						<div class="item" id="severDayOutdoorTemperature">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+						<div class="lightNing" style="display: none;">
+							<span><em class="light backgroundBlue"></em>最高气温</span>
+							<span><em class="light backGroundLightBlue"></em>最低气温</span>
+						</div>
+					</li>
+					<li>
+						<span class="liTitle">近7天室内温度变化<span class="units">(℃)</span></span>
+						<div class="item" id="severDayIndoorTemperature">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+					</li>
+					<li style="background-image: url(image/background3.png)">
+						<span class="liTitle">近7天室内人体舒适度分布</span>
+						<div class="item flex">
+							<div class="echarts circle" id="sevenDayDistributed"></div>
+							<div class="echarts">
+								<div class="legend">
+									<span><em class="legendLine backGroundLightBlue"></em>舒&nbsp;&nbsp;&nbsp;&nbsp;适：<em
+											id="comfortable">--</em>%</span>
+									<span><em class="legendLine backgroundGreen"></em>较舒适：<em id="moreComfortable">--</em>%</span>
+									<span><em class="legendLine backgroundBlue"></em>不舒适：<em id="unComfortable">--</em>%</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(image/background1.png)">
+						<span class="liTitle">近7天历史预警记录</span>
+						<div class="item" id="sevenDayRecording">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</div>
+	</div>
+	<div class="rightBar">
+		<!-- <span>场景切换</span> -->
+		<div class="rightItem" style="background-image: url(image/zhG.png)">
+			<!-- <div class="box"></div> -->
+			<span>默认</span>
+		</div>
+		<div class="rightItem" style="background-image: url(image/tyG.png)">
+			<!-- <div class="box"></div> -->
+			<span>会议</span>
+		</div>
+		<div class="rightItem" style="background-image: url(image/ssG.png)">
+			<!-- <div class="box"></div> -->
+			<span>舒适</span>
+		</div>
+		<div class="rightItem" style="background-image: url(image/wcG.png)">
+			<!-- <div class="box"></div> -->
+			<span>外出</span>
+		</div>
+		<div class="rightItem openicon" style="background-image: url(image/zdyB.png)" id="showFullMask">
+			<!-- <div class="box" ></div> -->
+			<span>自定义</span>
+		</div>
+	</div>
+	<div class="bottomBar">
+		<div class="bottomBarTitle">当前人体舒适度</div>
+		<div class="bottomData">
+			<div class="bottomItem" style="flex: 2">
+				<i class="bottomIcon" style="background-image: url(image/pm25.png)"></i>
+				<span>PM2.5：<em id="PM">--</em> μg/m³</span>
+			</div>
+			<div class="bottomItem" style="flex: 2">
+				<i class="bottomIcon" style="background-image: url(./image/shushi.png)" id="shushi_img"></i>
+				<span class="textColorGreen"><em id="comfort">--</em> </span>
+			</div>
+			<div class="bottomItem">
+				<i class="bottomIcon" style="background-image: url(image/indoor.png)"></i>
+				<span>室内温度：<em id="temperature">--</em> ℃</span>
+			</div>
+			<div class="bottomItem">
+				<i class="bottomIcon" style="background-image: url(image/outdoor.png)"></i>
+				<span>室内湿度：<em id="humidity">--</em> %</span>
+			</div>
+			<!-- <div class="bottomItem">
+          <i class="bottomIcon" style="background-image: url(image/CO2.png)"></i>
+          <span>CO<sub>2</sub>：<em>--</em> %</span>
+        </div> -->
+		</div>
+	</div>
+	<div class="leftLine">
+		<!-- <div class="btnIcon">
+			<i class="layui-icon layui-icon-right"></i>
+		</div> -->
+		<i class="layui-icon layui-icon-right"></i>
+	</div>
+	<!-- <div class="btnIcon">
+		<i class="layui-icon layui-icon-right"></i>
+	</div> -->
+	<div class="fullMask">
+		<div class="control">
+			<div class="controlTitle">
+				自定义场景设置
+				<i class="layui-icon layui-icon-close close"></i>
+			</div>
+			<div class="zgTab1" id="zgTab1">
+				<div class="zg-tab-title bottomline">
+					<div class="btn on">风机盘管</div>
+					<div class="btn">灯光</div>
+				</div>
+				<div class="zg-tab-content">
+					<div class="zg-tab-item" style="display: block;">
+						<div class="controlConcainer">
+							<div class="controlLeft flexCol">
+								<div class="devControl" id="F_1" data-id="1" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="name">风机盘管1号:</div>
+									<div class="switch" data-tool="on-off" data-open="0"></div>
+									<em class="timeEm"></em>
+									<div class="model">
+										模式：
+										<div class="tools">
+											<div class="zg-tab" data-tool="img-tab" data-index="3"></div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="temperature">
+										设定温度：
+										<div data-scaleval="18.0" class="toolsScale">
+											<div data-tool="scale" data-type="down" data-val="18.0">-</div>
+											<div class="scaleRes"><span>18.0</span>℃</div>
+											<div data-tool="scale" data-type="up" data-val="18.0">+</div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="speed">
+										风速：
+										<!-- <div class="automatic"></div> -->
+										<div class="zg-tab" data-tool="line-tab" data-items="自动,低,中,高" data-index="4"></div>
+									</div>
+								</div>
+								<div class="devControl" id="F_2" data-id="2" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="name">风机盘管2号:</div>
+									<div class="switch" data-tool="on-off" data-open="0"></div>
+									<em class="timeEm"></em>
+									<div class="model">
+										模式：
+										<div class="tools">
+											<div class="zg-tab" data-tool="img-tab" data-index="3"></div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="temperature">
+										设定温度：
+										<div data-scaleval="18.0" class="toolsScale">
+											<div data-tool="scale" data-type="down" data-val="18.0">-</div>
+											<div class="scaleRes"><span>18.0</span>℃</div>
+											<div data-tool="scale" data-type="up" data-val="18.0">+</div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="speed">
+										风速：
+										<!-- <div class="automatic"></div> -->
+										<div class="zg-tab" data-tool="line-tab" data-items="自动,低,中,高" data-index="4"></div>
+									</div>
+								</div>
+								<div class="devControl" id="F_3" data-id="3" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="name">风机盘管3号:</div>
+									<div class="switch" data-tool="on-off" data-open="0"></div>
+									<em class="timeEm"></em>
+									<div class="model">
+										模式：
+										<div class="tools">
+											<div class="zg-tab" data-tool="img-tab" data-index="3"></div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="temperature">
+										设定温度：
+										<div data-scaleval="18.0" class="toolsScale">
+											<div data-tool="scale" data-type="down" data-val="18.0">-</div>
+											<div class="scaleRes"><span>18.0</span>℃</div>
+											<div data-tool="scale" data-type="up" data-val="18.0">+</div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="speed">
+										风速：
+										<!-- <div class="automatic"></div> -->
+										<!-- <div class="zg-tab" zg-tabtype="multilayer" id="zgTab3"> -->
+
+										<div class="zg-tab" data-tool="line-tab" data-items="自动,低,中,高" data-index="4"></div>
+										<!-- </div> -->
+									</div>
+								</div>
+								<div class="devControl" id="F_4" data-id="4" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="name">风机盘管4号:</div>
+									<div class="switch" data-tool="on-off" data-open="0"></div>
+									<em class="timeEm"></em>
+									<div class="model">
+										模式：
+										<div class="tools">
+											<div class="zg-tab" data-tool="img-tab" data-index="3"></div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="temperature">
+										设定温度：
+										<div data-scaleval="18.0" class="toolsScale">
+											<div data-tool="scale" data-type="down" data-val="18.0">-</div>
+											<div class="scaleRes"><span>18.0</span>℃</div>
+											<div data-tool="scale" data-type="up" data-val="18.0">+</div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="speed">
+										风速：
+										<!-- <div class="automatic"></div> -->
+										<div class="zg-tab" data-tool="line-tab" data-items="自动,低,中,高" data-index="4"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="zg-tab-item">
+						<div class="controlConcainer">
+							<div class="controlRight flexCol">
+								<div class="lightBox" id="L_1" data-id="1" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="lightSwitch">
+										<div class="lightName">灯光1号:</div>
+										<div class="switch" data-tool="on-off" data-open="0"></div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="lightType">
+										模式：
+										<div class="lightmodel">
+											<div class="zg-tab" data-tool="color-tab" data-items="冷光,暖光,冷暖" data-index="1"></div>
+										</div>
+
+									</div>
+									<em class="timeEm"></em>
+									<div class="lightControl">
+										亮度：
+										<!-- <input type="range" id="myRange"> -->
+										<!-- <div class="progress" style="width: 202px;" data-val="22"></div> -->
+										<div class="zg-silder" data-tool="slider" data-count="0" data-disabled="1"></div>
+									</div>
+								</div>
+								<div class="lightBox" id="L_2" data-id="2" data-disable="0" data-url="">
+									<div class="litIcon"></div>
+									<div class="lightSwitch">
+										<div class="lightName">灯光2号:</div>
+										<div class="switch" data-tool="on-off" data-open="0"></div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="lightType">
+										模式：
+										<div class="lightmodel">
+											<div class="zg-tab" data-tool="color-tab" data-items="冷光,暖光,冷暖" data-index="1"></div>
+										</div>
+									</div>
+									<em class="timeEm"></em>
+									<div class="lightControl">
+										亮度：
+										<!-- <div class="progress" style="width: 202px;" data-val="33"></div> -->
+										<div class="zg-silder" data-tool="slider" data-count="0" data-disabled="1"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="controlBtn">
+					<button type="button" class="supplyBtn" id="submitData">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/js/SuperSlideList.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/slideMenuNew.js"></script>
+<script src="../../common/js/progress.js"></script>
+<script src="../../common//js/popUps.js"></script>
+<script type="text/javascript">
+	document.write('<script src="../../common/js/echarsComponent.js?v=' + version + '"><\/script\>');
+	document.write('<script src="js/showRoom.js?v=' + version + '"><\/script\>');
+		// loadingCom.loading()
+</script>
+<script>
+	//弹窗组件初始化
+	let pop = new popUps({
+		selector: '.modePop',
+		offsetLeft: -10,
+		offsetTop: -30,
+		hoverDom: '.modelBtn',
+		fun: function (e) {
+			$('.modePop').html(e.num)
+		}
+	});
+</script>
+
+</html>

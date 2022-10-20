@@ -1,0 +1,22 @@
+天津是武清区人民医院
+	武清人民医院
+		企业总览
+		bussiness/hospitalCompany/index.html?siteId=37
+	人民医院项目
+		项目总览
+		bussiness/hospitalProject/index.html?projectId=23&proname=武清区人民医院项目
+		暖通系统
+
+		外科楼暖通机房
+			站点实时
+				站点概况
+				bussiness/hospitalSurgery/index.html?siteId=37&projectId=23&proname=外科楼暖通机房&showmenu=show
+			暖通系统
+				新风系统
+				bussiness/hospital/cdoas.html?siteId=37&projectId=23&showmenu=show
+				净化系统
+				bussiness/hospital/cdoas2.html?siteId=37&projectId=23&showmenu=show	
+		科教楼暖通机房
+			科教楼
+			科教楼暖通机房
+			bussiness/hospital/index.html?siteId=37&projectId=23

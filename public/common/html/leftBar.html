@@ -1,0 +1,199 @@
+<div class="layui-side-scroll publicborder" style="overflow: hidden;">
+	<img src="./common/image/topleft.png" class="topleft" />
+	<img src="./common/image/topright.png" class="topright" />
+	<img src="./common/image/bottomleft.png" class="bottomleft" />
+	<img src="./common/image/bottomright.png" class="bottomright" />
+	<div class="control-bar">
+		<ul class="control-tab">
+			<li class="on"><i class="layui-icon layui-icon-align-center"></i></li>
+			<li><i class="layui-icon layui-icon-rate"></i></li>
+		</ul>
+		<div class="layui-clear"></div>
+	</div>
+	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+	<ul class="layui-nav layui-nav-tree scrollbar" id="menu" style="height: calc(100% - 40px);overflow-x: hidden;overflow-y: auto;"></ul>
+</div>
+<script type="text/javascript">
+	$(function() {
+		if (window.MENU_COUNT == 1) {
+			return;
+		} else {
+			window.MENU_COUNT = 1;
+		}
+		layui.use("element", function() {
+			var element = layui.element;
+			let obj = JSON.parse(localStorage.getItem("USER_INFO_CACHE"));
+			var mfrsId = obj.mfrsId; //企业id
+			selectLeftTopMenu(mfrsId);
+			$.ajax({
+				url: hdInterface.selectZgMenuListAll,
+				type: "get",
+				data: {
+					mfrsId: mfrsId,
+				},
+				success: function(result) {
+					console.log("=========左侧菜单leftBar===========");
+					console.log(result);
+					if (result.code == 0) {
+						var resdata = result.data || [];
+						var siteMenuArr = []; //以站点为单位的菜单
+						var str = "";
+
+						for (var i = 0; i < resdata.length; i++) {
+							var proitem = resdata[i] || [];
+							var menuChildList = proitem.menuChildList || [];
+							var promenuType = proitem["menuType"] || "";
+							var promenuName = proitem["menuName"] || "";
+							var prourl = proitem["url"] || "";
+							var proprojectId = proitem["projectId"] || "";
+							var titlename=proitem.title||"";//标题名称
+							var iconName = i == 0 ? "icon-company.png" : "icon-project.png";
+							if (promenuType == "1") {//一级菜单
+								str +=
+									`<li class="layui-nav-item">
+											<a data-url="` +prourl +`?showmenu=false&layuiId=wai-`+i+`" data-id="wai-` +i +`" data-title="` +promenuName +`" class="site-demo-active" href="javascript:;" data-type="tabAdd" title="` +promenuName +`"><img src="./common/image/icon2.png" class="nav-icon2">` +promenuName +`
+											</a>
+										</li>`;
+							} else if (promenuType == "0") {//一级目录
+								str +=
+									'<li class="layui-nav-item">' +
+									'<a href="javascript:void(0);"><img src="./common/image/' +iconName +'" class="nav-icon2" />' +proitem.menuName +
+									"</a>" +
+									'<dl class="layui-nav-child">';
+								for (var j = 0; j < menuChildList.length; j++) {
+									var system = menuChildList[j] || "";
+									var menuType = system["menuType"];
+									var titlename=system.title||"";//标题名称
+									var menuFirstUrl = (system.url) || "";
+									var menuFirstName = system.menuName || "";
+									if (j == 0 && i == 0) {
+										// if(menuFirstUrl==""){
+										// 		layui.use('layer', function() {
+										// 			var layer = layui.layer;
+										// 			layer.msg('没有企业菜单，请联系管理员添加!');
+										// 			setTimeout(function(){
+										// 				top.location.href="../../bussiness/login/login.html";
+										// 			},1500);
+										// 		});												
+										// }
+										var dataid = "hdzh-home";
+										if(system.url === '#'){
+											menuFirstUrl = resdata[0]['menuChildList'][0]['menuChildList'][0]['url'];
+										}
+										$("#mainiframe").attr("src", menuFirstUrl);
+										$("#mainiframe-title").html(menuFirstName);
+									} else {
+										var dataid = "project-management" + i+""+j;
+									}
+									if (menuType == "1") {//二级菜单
+									
+										if(menuFirstUrl.indexOf("http")==-1){
+											//外网原样显示，非外网添加"./"
+											menuFirstUrl="./"+menuFirstUrl;
+										}
+										str +=
+											"<dd>" +
+											'<a href="javascript:;" class="site-demo-active" data-url="' +menuFirstUrl +'&layuiId='+dataid+'" data-id="' +dataid +'" data-title="' +menuFirstName +'" data-type="tabAdd" title="' +menuFirstName +'">' +
+											'<img src="./common/image/icon2.png" class="nav-icon1" />' +menuFirstName +
+											'<i class="layui-icon layui-icon-star"></i>' +
+											"</a>" +
+											"</dd>";
+									} else if (menuType == "0") {//二级目录
+										str +=
+											"<dd>" +
+											'<a href="javascript:void(0);" class="navsystem"><img src="./common/image/icon-system.png" class="nav-icon1" />' +
+											system.menuName +
+											"</a>" +
+											'<dl class="layui-nav-child hd-thirdnav">';
+										var site = system.menuChildList || [];
+										for (var k = 0; k < site.length; k++) {
+											// for (var k = 0; k < 1; k++) {
+											var siteitem = site[k] || [];
+											var siteitemName = siteitem.menuName || "";
+											var siteId = siteitem.siteId || 13; //默认光合谷地热机房
+											var proId = siteitem.projectId || 7; //默认光合谷项目
+											var menuLeftId=siteitem.menuLeftId||"";//左侧菜单id
+											var templateId=siteitem.templateId||"";
+											var titlename=siteitem.title||"";//标题名称
+											var siteUrl = (siteitem.url) || "";
+											var menuId = siteitem.menuId || "";
+											var siteMenu = siteitem.menuChildList || []; //菜单
+											var siteMenuObj = {
+												siteId: siteId,
+												siteMenu: siteMenu,
+											};
+											siteMenuArr.push(siteMenuObj);
+											//三级菜单
+											if(templateId==""){
+												//非模板
+												if(siteUrl.indexOf("http")==-1){
+													//外网原样显示，非外网添加"./"和 menuLeftId
+													siteUrl="./"+siteUrl+"&menuLeftId="+menuLeftId;
+												}
+												str +=
+													'<dt data-name="AreaManagement" style="">'+
+													'<a data-url="' +siteUrl +'&layuiId=site-'+k +"" +j +"" +i+'"data-id="site-' +k +"" +j +"" +i +
+													'" data-title="' +siteitemName +'"' +
+													'class="site-demo-active" href="javascript:;" data-type="tabAdd" title="' +siteitemName +'">' +
+													'<img src="./common/image/icon2.png" class="nav-icon1" />' +siteitemName +"</a></dt>";
+												
+											}
+											else{
+												//模板
+												str +=
+													'<dt data-name="AreaManagement" style="">'+
+													'<a data-url="./' +siteUrl +'&menuLeftId='+menuLeftId+'&projectId=' +proId +'&siteId=' +siteId +'&layuiId=site-'+k +"" +j +"" +i+'" data-id="site-' +k +"" +j +"" +i +
+													'" data-title="' +siteitemName +'"' +
+													'class="site-demo-active" href="javascript:;" data-type="tabAdd" title="' +siteitemName +'">' +
+													'<img src="./common/image/icon2.png" class="nav-icon1" />' +siteitemName +"</a></dt>";
+											}
+											// else{
+											// 	//模板
+											// 	str +=
+											// 		'<dt data-name="AreaManagement" style="">'+
+											// 		'<a data-url="./' +siteUrl +"&proId=" +proId +"&projectId=" +proId +"&siteId=" +siteId +"&proname=" +proitem.menuName +"&sitename=" +siteitemName +"&menuId=" +menuId +'&showmenu=show" data-id="site-' +k +"" +j +"" +i +
+											// 		'" data-title="' +siteitemName +'"' +
+											// 		'class="site-demo-active" href="javascript:;" data-type="tabAdd" title="' +siteitemName +'">' +
+											// 		'<img src="./common/image/icon2.png" class="nav-icon1" />' +siteitemName +"</a></dt>";
+											// }
+											
+										}
+										str += "</dl>" + "</dd>";
+									}
+								}
+
+								str += "</dl>" + "</li>";
+							}
+						}
+						localStorage.setItem("siteMenuArr", JSON.stringify(siteMenuArr));
+						$("#menu").append(str);
+						element.init();
+					} else if (result.code == 403) {
+						alert("权限不足");
+						location.href = "../../bussiness/login/login.html";
+					}
+				},
+			});
+		});
+		//判断企业总览菜单是否显示,如果没有,直接踢到登录页
+		function selectLeftTopMenu(mfrsId){
+			/* $.ajax({
+				url:hdInterface.selectZgMenuLeftNormalIndexByMfrsId,
+				type:"get",
+				data:{mfrsId: mfrsId},
+				success:function(res){
+					if(res.data!=1){
+						layui.use('layer', function() {
+									var layer = layui.layer;
+									layer.msg('没有企业菜单，请联系管理员添加!');
+									setTimeout(function(){
+										top.location.href="../../bussiness/login/login.html";
+									},1500);
+								});	
+					}
+				}
+			}) */
+		}
+		
+	});
+</script>

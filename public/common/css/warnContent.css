@@ -1,0 +1,470 @@
+.alarmMask {
+	width: 110px;
+	height: 110px;
+	position: absolute;
+	left: 73%;
+	top: 58px;
+	z-index: 1100;
+	/* cursor: pointer; */
+	overflow: hidden;
+	background-color: rgba(3, 27, 51, .3);
+	user-select: none;
+}
+
+.ballBg {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	/* background-image: url(../image/circleBgRed.png); */
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+
+.ballOut {
+	height: 110px;
+	width: 110px;
+	position: absolute;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	/* background-image: url(../image/circleOutRed.png); */
+	background-size: 100% 100%;
+	animation: turnRight linear 6s infinite;
+}
+
+.ballIn {
+	height: 90px;
+	width: 90px;
+	position: absolute;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	/* background-image: url(../image/circleInRed.png); */
+	background-size: 100% 100%;
+	/* animation: turnLeft linear 2s infinite; */
+	transform: translate(-50%, -50%);
+}
+
+@keyframes turnRight {
+	from {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+
+	to {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+}
+
+@keyframes turnLeft {
+	from {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	to {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+@keyframes turnOpacity {
+	0 {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+.warnIcon {
+	width: 60px;
+	height: 55px;
+	padding: 5px 0 0;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	/* background-image: url(/common/image/warnCircleRed.png); */
+	background-size: 100% 100%;
+	text-align: center;
+	animation: turnOpacity linear 2s infinite;
+}
+
+.warnTotal {
+	width: 100%;
+	font-size: 14px;
+	font-weight: 400;
+	color: #fff;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	position: absolute;
+	top: 31px;
+}
+.warnContainer {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+}
+
+.warnContent {
+	width: 1430px;
+	height: 560px;
+	padding: 70px 20px 0;
+	background-color: rgba(3, 27, 51, 1);
+	border: 1px solid rgba(255, 68, 68, 1);
+}
+
+.warnTitle {
+	width: 219px;
+	height: 52px;
+	line-height: 52px;
+	background-image: url(/common/image/warnBg.png);
+	background-size: 100% 100%;
+	position: absolute;
+	left: -1px;
+	top: -12px;
+	text-indent: 75px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.warnTitle>img {
+	width: 35px;
+	height: 31px;
+	position: absolute;
+	left: 25px;
+	top: 10px;
+}
+
+.sound {
+	width: 126px;
+	height: 40px;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 10px;
+	right: 105px;
+	cursor: pointer;
+}
+
+.colseContent {
+	width: 38px;
+	line-height: 38px;
+	font-size: 38px;
+	font-weight: bold;
+	color: rgba(255, 76, 76, 1);
+	text-align: center;
+	position: absolute;
+	right: 15px;
+	top: 12px;
+	cursor: pointer;
+}
+
+.mainBody {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+
+.listContent {
+	/* width: 1060px; */
+	flex: 1;
+	height: 500px;
+	border-bottom: 1px solid rgba(255, 68, 68, .5);
+	position: relative;
+	overflow-y: auto;
+}
+
+.solution {
+	width: 340px;
+	height: 460px;
+	padding: 20px 0;
+	margin-left: 30px;
+	border: 1px solid rgba(255, 68, 68,.5);
+	display: flex;
+	flex-direction: column;
+}
+.solutionTitle{
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+	font-weight: bold;
+	color: #fff;
+}
+.solutionContent{
+	flex: 1;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 16px;
+	font-weight: 400;
+	color: #fff;
+	line-height: 36px;
+	padding-top: 10px;
+}
+.solutionContent>p{
+	line-height: 20px;
+	font-size: 14px;
+	padding: 0 20px;
+	letter-spacing: 0.5px;
+	text-indent: 15px;
+	color: #ddd;
+	word-break: break-all;
+}
+.solutionContent .solutionIndex{
+	font-weight: bolder;
+}
+.triangleIcon {
+	width: 13px;
+	height: 22px;
+	position: absolute;
+	right: 343px;
+	top: 30px;
+	transform: translate(0,-50%);
+	background-image: url(/common/image/triangle.png);
+	background-size: 100% 100%;
+	transition: all ease .5s;
+}
+#_LIST_ALARM .SSRowItem0 {
+	font-size: 16px;
+	height: auto;
+	line-height: 24px;
+	color: #fff;
+}
+
+#_LIST_ALARM li{
+	align-items: center;
+	height: 60px;
+}
+#_LIST_ALARM .SSRowItem{
+	line-height: 20px;
+}
+#_LIST_ALARM li:nth-child(odd){
+	background-color: rgba(31, 163, 255, 0.1);
+}
+
+#_LIST_ALARM .SSRowItem0{
+	flex:2;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 900;
+	color: #677e94;
+	text-indent: 10px;
+}
+#_LIST_ALARM .SSRowItem2,
+#_LIST_ALARM .SSRowItem4,
+#_LIST_ALARM .SSRowItem5{
+	flex:4;
+	text-align: center;
+}
+#_LIST_ALARM .SSRowItem1{
+	flex: 4;
+	text-align: left;
+}
+#_LIST_ALARM .SSRowItem3{
+	flex:6;
+	text-align: left;
+}
+
+#_LIST_ALARM .BG{
+	background-color: rgba(255, 76, 76, 0.3)!important;
+}
+#_LIST_ALARM>ul>li{
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#_LIST_ALARM img{
+	vertical-align: middle;
+}
+#_LIST_ALARM .warnItem0{
+	flex:1.5;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 900;
+	color: #677e94;
+	text-indent: 10px;
+}
+#_LIST_ALARM .warnItem2,
+#_LIST_ALARM .warnItem4,
+#_LIST_ALARM .warnItem5{
+	flex:4;
+	text-align: center;
+}
+#_LIST_ALARM .warnItem1{
+	flex: 3.5;
+	text-align: left;
+}
+#_LIST_ALARM .warnItem3{
+	flex:8;
+	text-align: left;
+}
+#_LIST_ALARM .nodata{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width: 250px;
+	height: 160px;
+}
+.selectInquire{
+	position: absolute;
+	left: 270px;
+	top: 18px;
+	width: 660px;
+	display: flex;
+	justify-content: space-around;
+}
+.selectInput{
+	display: inline-block;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	background-color: rgba(3, 27, 51, 1);
+	border: 1px solid rgba(255, 68, 68,.5);
+	border-radius: 3px;
+	position: relative;
+	cursor: pointer;
+}
+.selectInput>span{
+	display: inline-block;
+	width: calc(100% - 40px);
+	margin:0 5px 0 10px;
+	height: 30px;
+	line-height: 30px;
+}
+.selectInput>img{
+	position: absolute;
+	right: 10px;
+	top:8px;
+}
+.selectBox{
+	/* max-height: 120px; */
+	min-width: 200px;
+	padding: 10px 0;
+	position: absolute;
+	left: 0;
+	top: 30px;
+	background-color: rgba(3, 27, 51, 1);
+	border: 1px solid rgba(255, 68, 68,.5);
+	border-radius: 3px;
+	z-index: 1;
+	display: none;
+}
+.selectList{
+	/* height: 100%; */
+	max-height: 120px;
+	overflow-y: auto;
+}
+.selectList li{
+	padding: 0 10px;
+	color: #7da0c1;
+}
+.selectList .selectOn{
+	color: #fff;
+}
+.selectList li:hover{
+	background-color: rgba(31, 163, 255, 0.1);
+}
+.inquire{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	outline: none;
+	background-color: rgba(87,15,1,1);
+	border: 1px solid rgba(255, 68, 68,.5);
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 3px;
+	color: #fff;
+}
+.reset{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	outline: none;
+	background-color: rgba(3, 27, 51, 1);
+	border: 1px solid rgba(255, 68, 68,.5);
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 3px;
+	color: #fff;
+}
+.pageBtn{
+	width: 1060px;
+	position: absolute;
+	left: 0px;
+	bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.btnList{
+	/* width: 40px; */
+	/* padding: 10px; */
+	max-height: 90px;
+	position: absolute;
+	bottom: 30px;
+	right: 18px;
+	overflow-y: auto;
+	background-color: rgba(3, 27, 51, 1);
+	border: 1px solid rgba(255, 68, 68,.5);
+	display: none;
+}
+.btnList li{
+	min-width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+	/* background-color: rgba(255, 68, 68,.2); */
+	/* border: 1px solid rgba(255, 68, 68,.8); */
+	/* margin: 0 3px; */
+}
+.btnList li:hover{
+	background-color: rgba(31, 163, 255, 0.2);
+}
+.prevBtn, .nextBtn{
+	width: 30px;
+	height: 30px;
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+.btnList .btnOn{
+	background-color: rgba(31, 163, 255, 0.2);
+	/* font-weight: bolder; */
+}
+.jumpTo{
+	height: 30px;
+	/* width: 120px; */
+	line-height: 30px;
+	position: relative;
+	margin: 0 5px;
+}
+.jumpTo>em{
+	height: 28px;
+	width: 40px;
+	line-height: 28px;
+	display: inline-block;
+	border: 1px solid rgba(255, 68, 68,.8);
+	text-align: center;
+}
+.load{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}

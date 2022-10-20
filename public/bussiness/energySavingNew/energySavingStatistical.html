@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>华德智慧能源管理系统</title>
+	<link rel="stylesheet" href="../../common/css/public.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+	<link rel="stylesheet" href="../../common/css/generalStyle.css">
+	<script>
+		document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+	</script>
+	<script>
+		document.write('<link rel="stylesheet" href="./css/energySavingStatistical.css?v='+version+'"/>');
+	</script>
+</head>
+
+<body class="layui-layout-body">
+	<div class="part-header" id="partheader"></div>
+	<!-- <div class="part-header">
+		<span class="navbtn floatleft" id="hidenavbarBtn">站内导航&nbsp;&gt;</span>
+		<div class="control_btn2" id="energy-day-control">
+			<span class="on" data-type="month">近30天</span>
+			<span data-type="year">近一年</span>
+		</div>
+	</div> -->
+	<div class="control_btn2" id="energy-day-control">
+		<span class="on" data-type="month">近30天</span>
+		<span data-type="year">近一年</span>
+	</div>
+	<!-- <div class="innerheader" id="innerheader" data-title="节能统计" style="display: none;"></div> --><!--暂时不能删除，删除后站内导航按钮不能显示-->
+	<!-- 近一月 -->
+	<div class="layui-row sc-container2 month" style="position: absolute;top: 34px; opacity: 1;z-index: 1;" data-type="month">
+		<!-- <div class="top">
+			<div class="top_Y">
+				近12个月
+			</div>
+			<div class="top_M">
+				近30天
+			</div>
+		</div> -->
+		<div class="widthleft height100">
+			<div class="layui-col-md12 hd-hei2 pad10 enermatop">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					能耗总计	
+				</div>
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					能耗总计
+				</div> -->
+				<img src="./image/baseline.png" class="baseline">
+				<div class="statis1 posrelative" id="energy-total-cover">
+					<ul class="statis1_ul">
+						<li style="margin-left: 0;">
+							<div class="posi50 colorYellor">
+								<img src="image/dian11.png" >
+								<span class="fontsize14">耗电量</span>
+								<span class="fontsize30" id="electric">--</span>
+								<span class="fontsize14">kW·h</span>
+							</div>
+						</li>
+						<!-- <li>
+							<div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/dian2.png" >
+								</div>
+								<div class="">电能耗(kW·h)</div>
+								<span class="statis1_ul_span textColor1" id="electric">--</span>
+								
+							</div>
+							
+						</li> -->
+						<li>
+							<div class="posi50 colorGreen">
+								<img src="image/shui11.png">
+								<span class="fontsize14">耗水量</span>
+								<span class="fontsize30" id="water">--</span>
+								<span class="fontsize14">m³</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/water1.png" >									
+								</div>
+								<span class="">水能耗(m³)</span>
+								<span class="statis1_ul_span" id="water">--</span>
+							</div> -->
+							
+						</li>
+						<li>
+							<div class="posi50 colorOrgan">
+								<img src="image/tianranqi11.png" >
+								<span class="fontsize14">耗气量</span>
+								<span class="fontsize30" id="gas">--</span>
+								<span class="fontsize14">Nm³</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/tianranqi.png" >
+								</div>
+								<span class="">燃气能耗(m³)</span>
+								<span class="statis1_ul_span" id="gas">--</span>
+							</div> -->
+							
+						</li>
+						<li>
+							<div class="posi50">
+								<img src="image/lengre11.png" >
+								<span class="fontsize14">耗冷（热）量</span>
+								<span class="fontsize30" id="energy">--</span>
+								<span class="fontsize14">GJ</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/lengre.png" >
+								</div>
+								<span class="">冷热总能耗(cal)</span>
+								<span class="statis1_ul_span" id="energy">--</span>
+							</div> -->
+							
+						</li>
+						
+					</ul>
+
+					<div class="tabel" id="ul-statistics" style="position: relative;padding: 0 20px;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg" style="top: 50%;">
+						</div>
+						<!-- <div class="statis1-title">
+							<span class="width1"> 日期</span>
+							<span class="width1"> 室外温度℃</span>
+							<span class="width1"> 室外湿度%</span>
+							<span class="width1"> 电消耗kW·h</span>
+							<span class="width1"> 水消耗m³</span>
+							<span class="width1"> 冷热总能耗cal</span>
+							<span class="width1"> 流量m³</span>
+						</div>
+						<div class="txtMarquee-top">
+							<div class="bd">
+								<ul class="infoList statis1-cont" id="ul-statistics"> -->
+									<!-- 能耗统计列表 -->
+								<!-- </ul>
+							</div>
+						</div> -->
+					</div>
+
+					<!-- <img src="./image/baseline.png" class="baseline baseline-bottom" /> -->
+				</div>
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					能耗均值
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					能耗日均值
+				</div>
+				<ul class="statis2">
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="image/wendu.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">室外平均温度</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgTemperature">--</em>℃</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">平均温度(℃)</span>
+							<span class="statis2_text_span1" id="avgTemperature">--</span>
+						</div> -->
+					</li>
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="image/shidu.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">室外平均相对湿度</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgHumidity">--</em>%</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">平均湿度(%)</span>
+							<span class="statis2_text_span1" id="avgHumidity">--</span>
+						</div> -->
+					</li>
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="image/dian1.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">平均耗电量</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgElectric">--</em>kW·h</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">电能耗(kW·h)</span>
+							<span class="statis2_text_span1" id="avgElectric">--</span>
+						</div> -->
+					</li>
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="./image/water2.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">平均耗水量</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgWater">--</em>m³</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">水能耗(m³)</span>
+							<span class="statis2_text_span1" id="avgWater">--</span>
+						</div> -->
+					</li>
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="image/tianranqi1.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">平均耗气量</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgGas">--</em>Nm³</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">燃气能耗(m³)</span>
+							<span class="statis2_text_span1" id="avgGas">--</span>
+						</div> -->
+					</li>
+					<li>
+						<div class="statis2_img">
+							<div class="posi50">
+								<img src="image/lengre1.png" >
+							</div>
+						</div>
+						<div class="statis2_text">
+							<div class="posi50">
+								<span class="fontsize18">平均耗冷（热）量</span>
+								<span><em class="colorSkyBlue fontsize30" id="avgEnergy">--</em>GJ</span>
+							</div>
+						</div>
+						<!-- <div class="statis2_text">
+							<span class="statis2_text_span2">冷热总能耗(cal)</span>
+							<span class="statis2_text_span1" id="avgEnergy">--</span>
+						</div> -->
+					</li>
+					
+				</ul>
+				
+			</div>
+		</div>
+		<div class="widthcenter height100">
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-equelect-cover">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					设备耗电排行
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					设备耗电排行	
+					<div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+						单位：kW·h
+					</div>
+					<!-- <span class="fr righttext">单位：kW·h</span> -->
+				</div>
+				<div class="en-echars" id="main_top" style="padding-top:0;">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="iconimg">
+					</div>
+				</div>
+				<!-- <div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div> -->
+				<!-- <div class="echars-units" style="left: 20px;top: 35px;">kW·h</div> -->
+				<!-- <div id="main4" class="en-echars"></div> -->
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-30-elect-cover">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					耗电量趋势
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					耗电量趋势	
+					<!-- <span class="fr righttext">单位：kW·h</span> -->
+				</div>
+				<div class="statis3" id="main1" >
+					<!-- <img src="../../common/image/nodata.png" class="imagePo"> -->
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="iconimg">
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-day-ele-cover">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					机房COP统计 
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					机房COP统计	
+				</div>
+				<div id="main3" class="en-echars">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+				</div>
+				<!-- <span class="main3-ytitle">耗电量kW·h</span> -->
+			</div>
+		</div>
+		<div class="widthright height100">
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-30-tem-cover">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					室外温度趋势
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					室外温度趋势	
+					<!-- <span class="fr righttext">单位：℃</span> -->
+				</div>
+				
+				<div id="main2" class="en-echars">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+				</div>
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-cop-cover">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					实际能耗统计
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					实际能耗统计
+					<!-- <span class="fr righttext">单位：标准煤kgce</span> -->
+				</div>
+				<div id="main4" class="en-echars">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+				</div>
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 enermatop">
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					节能率和节费率趋势
+				</div> -->
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					节能率和节费率趋势
+				</div>
+				
+				<div class="hd-legend" style="right: 20px;padding-top: 5px;">
+					<!-- <em class="bgyellow2"></em>
+					<span class="colorWh">平均温度</span> -->
+					<em style="background-color: #00FFFF;"></em>
+					<span class="colorWh">节费率</span>
+					<em style="background-color: #168FFF;"></em>
+					<span class="colorWh">节能率</span>
+				</div>
+				<div class="statis4" id="main5" style="position: relative;">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					<!-- <img src="./image/tiaotiao/tiaotiao_00000.png" class="statis4_img" id="waringlightright" /> -->
+					<!-- <video id="warnLight" src="./image/bottombar.mp4" muted="true" loop="true" autoplay="true" class="video" width="560px" height="560px"></video> -->
+					<!-- <video id="warnLight" src="./image/bottombar.mp4" muted="true" loop="true" autoplay="true" class="video" width="95%" style="bottom: 5px;left:2%"></video> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 近一年 -->
+	<div class="layui-row sc-container2 year opacitynone" style="position: absolute;top: 34px; opacity: 0;z-index: -1;" data-type="year">
+		
+		<div class="widthleft height100">
+			<div class="layui-col-md12 hd-hei2 pad10 enermatop">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					能耗总计	
+				</div>
+				<!-- <div class="hd-title">
+					<img src="./image/title_icon.png" class="title_icon">
+					能耗总计
+				</div> -->
+				<img src="./image/baseline.png" class="baseline">
+				<div class="statis1 posrelative" id="energy-total-cover">
+					<ul class="statis1_ul">
+						<li style="margin-left: 0;">
+							<div class="posi50 colorYellor">
+								<img src="image/dian11.png" >
+								<span class="fontsize14">耗电量</span>
+								<span class="fontsize30" id="electric1">--</span>
+								<span class="fontsize14">kW·h</span>
+							</div>
+						</li>
+						<!-- <li>
+							<div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/dian2.png" >
+								</div>
+								<div class="">电能耗(kW·h)</div>
+								<span class="statis1_ul_span textColor1" id="electric">--</span>
+								
+							</div>
+							
+						</li> -->
+						<li>
+							<div class="posi50 colorGreen">
+								<img src="image/shui11.png">
+								<span class="fontsize14">耗水量</span>
+								<span class="fontsize30" id="water1">--</span>
+								<span class="fontsize14">m³</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/water1.png" >									
+								</div>
+								<span class="">水能耗(m³)</span>
+								<span class="statis1_ul_span" id="water">--</span>
+							</div> -->
+							
+						</li>
+						<li>
+							<div class="posi50 colorOrgan">
+								<img src="image/tianranqi11.png" >
+								<span class="fontsize14">耗气量</span>
+								<span class="fontsize30" id="gas1">--</span>
+								<span class="fontsize14">Nm³</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/tianranqi.png" >
+								</div>
+								<span class="">燃气能耗(m³)</span>
+								<span class="statis1_ul_span" id="gas">--</span>
+							</div> -->
+							
+						</li>
+						<li>
+							<div class="posi50">
+								<img src="image/lengre11.png" >
+								<span class="fontsize14">耗冷（热）量</span>
+								<span class="fontsize30" id="energy1">--</span>
+								<span class="fontsize14">GJ</span>
+							</div>
+							<!-- <div class="statis1_img_bg">
+								<div class="statis1_li_img">
+									<img src="image/lengre.png" >
+								</div>
+								<span class="">冷热总能耗(cal)</span>
+								<span class="statis1_ul_span" id="energy">--</span>
+							</div> -->
+							
+						</li>
+						
+					</ul>
+	
+					<div class="tabel" id="ul-statistics1" style="position: relative;padding: 0 20px;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg" style="top: 50%;">
+						</div>
+						<!-- <div class="statis1-title">
+							<span class="width1"> 日期</span>
+							<span class="width1"> 室外温度℃</span>
+							<span class="width1"> 室外湿度%</span>
+							<span class="width1"> 电消耗kW·h</span>
+							<span class="width1"> 水消耗m³</span>
+							<span class="width1"> 冷热总能耗cal</span>
+							<span class="width1"> 流量m³</span>
+						</div>
+						<div class="txtMarquee-top">
+							<div class="bd">
+								<ul class="infoList statis1-cont" id="ul-statistics"> -->
+									<!-- 能耗统计列表 -->
+								<!-- </ul>
+							</div>
+						</div> -->
+					</div>
+	
+					<!-- <img src="./image/baseline.png" class="baseline baseline-bottom" /> -->
+				</div>
+			</div>
+			<div class="layui-col-md12 hd-hei pad10 posrelative enermatop">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						能耗均值
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						能耗月均值
+					</div>
+					<ul class="statis2">
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="image/wendu.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">室外平均温度</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgTemperature1">--</em>℃</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">平均温度(℃)</span>
+								<span class="statis2_text_span1" id="avgTemperature">--</span>
+							</div> -->
+						</li>
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="image/shidu.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">室外平均相对湿度</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgHumidity1">--</em>%</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">平均湿度(%)</span>
+								<span class="statis2_text_span1" id="avgHumidity">--</span>
+							</div> -->
+						</li>
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="image/dian1.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">平均耗电量</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgElectric1">--</em>kW·h</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">电能耗(kW·h)</span>
+								<span class="statis2_text_span1" id="avgElectric">--</span>
+							</div> -->
+						</li>
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="./image/water2.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">平均耗水量</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgWater1">--</em>m³</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">水能耗(m³)</span>
+								<span class="statis2_text_span1" id="avgWater">--</span>
+							</div> -->
+						</li>
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="image/tianranqi1.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">平均耗气量</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgGas1">--</em>Nm³</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">燃气能耗(m³)</span>
+								<span class="statis2_text_span1" id="avgGas">--</span>
+							</div> -->
+						</li>
+						<li>
+							<div class="statis2_img">
+								<div class="posi50">
+									<img src="image/lengre1.png" >
+								</div>
+							</div>
+							<div class="statis2_text">
+								<div class="posi50">
+									<span class="fontsize18">平均耗冷（热）量</span>
+									<span><em class="colorSkyBlue fontsize30" id="avgEnergy1">--</em>GJ</span>
+								</div>
+							</div>
+							<!-- <div class="statis2_text">
+								<span class="statis2_text_span2">冷热总能耗(cal)</span>
+								<span class="statis2_text_span1" id="avgEnergy">--</span>
+							</div> -->
+						</li>
+						
+					</ul>
+					
+				</div>
+			
+		</div>
+		<div class="widthcenter height100">
+				<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-equelect-cover">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						设备耗电排行
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备耗电排行	
+						<div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+							单位：kW·h
+						</div>
+						<!-- <span class="fr righttext">单位：kW·h</span> -->
+					</div>
+					<div class="en-echars" id="main_top1" style="padding-top:0;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+					<!-- <div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div> -->
+					<!-- <div class="echars-units" style="left: 20px;top: 35px;">kW·h</div> -->
+					<!-- <div id="main4" class="en-echars"></div> -->
+				</div>
+				<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-30-elect-cover">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						耗电量趋势
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						耗电量趋势	
+						<!-- <span class="fr righttext">单位：kW·h</span> -->
+					</div>
+					<div class="statis3" id="main11" >
+						<!-- <img src="../../common/image/nodata.png" class="imagePo"> -->
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-day-ele-cover">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						机房COP统计 
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						机房COP统计	
+					</div>
+					<div id="main31" class="en-echars">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+					<!-- <span class="main3-ytitle">耗电量kW·h</span> -->
+				</div>
+			</div>
+		<div class="widthright height100">
+				<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-30-tem-cover">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						室外温度趋势
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						室外温度趋势	
+						<!-- <span class="fr righttext">单位：℃</span> -->
+					</div>
+					
+					<div id="main21" class="en-echars">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="layui-col-md12 hd-hei pad10 posrelative enermatop" id="ener-cop-cover">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						实际能耗统计
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实际能耗统计
+						<!-- <span class="fr righttext">单位：标准煤kgce</span> -->
+					</div>
+					<div id="main41" class="en-echars">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="layui-col-md12 hd-hei pad10 enermatop">
+					<!-- <div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon">
+						节能率和节费率趋势
+					</div> -->
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						节能率和节费率趋势
+					</div>
+					
+					<div class="hd-legend" style="right: 20px;">
+						<!-- <em class="bgyellow2"></em>
+						<span class="colorWh">平均温度</span> -->
+						<em style="background-color: #00FFFF;"></em>
+						<span class="colorWh">节费率</span>
+						<em style="background-color: #168FFF;"></em>
+						<span class="colorWh">节能率</span>
+					</div>
+					<div class="statis4" id="main51" style="position: relative;">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						<!-- <img src="./image/tiaotiao/tiaotiao_00000.png" class="statis4_img" id="waringlightright" /> -->
+						<!-- <video id="warnLight" src="./image/bottombar.mp4" muted="true" loop="true" autoplay="true" class="video" width="560px" height="560px"></video> -->
+						<!-- <video id="warnLight" src="./image/bottombar.mp4" muted="true" loop="true" autoplay="true" class="video" width="95%" style="bottom: 5px;left:2%"></video> -->
+					</div>
+				</div>
+			</div>
+		
+	</div>
+	
+	
+</body>
+
+</html>
+<!-- <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/loadPng.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/listRoll.js"></script>
+<script type="text/javascript">
+	document.write('<script src="./js/energySavingStatistical.js?v='+version+'"><\/script>');
+</script>

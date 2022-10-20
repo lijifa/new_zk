@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>HuaDeGuangHeGu</title>
+		<script>
+			document.write('<script src="../../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				/* background: #444; */
+			}
+
+			#gameContainer {
+				width: 100vw;
+				height: 100vh;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.logo {
+				display: block;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.progress {
+				margin: 1.5em;
+				border: 1px solid #02a7fe;
+				width: 30vw;
+				display: none;
+				position: absolute;
+				bottom: 1em;
+				left: 50%;
+				margin-left: -15vw;
+			}
+
+			.progress .full {
+				margin: 2px;
+				background: #02a7ce;
+				height: 0.1em;
+				transform-origin: top left;
+			}
+
+			#loader {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.spinner,
+			.spinner:after {
+				border-radius: 50%;
+				width: 5em;
+				height: 5em;
+			}
+
+			.spinner {
+				margin: 10px;
+				font-size: 10px;
+				position: relative;
+				text-indent: -9999em;
+				border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-left: 1.1em solid #ffffff;
+				transform: translateZ(0);
+				animation: spinner-spin 1.1s infinite linear;
+			}
+
+			@keyframes spinner-spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui">
+	</head>
+
+	<body onload="Reset()" onresize="Reset()" ,scroll=no, style="overflow:hidden">
+		<div id="gameContainer" style="width: 100%; height: 100%;margin:auto"></div>
+		<div id="loader">
+			<img class="logo" src="logo.png">
+			<div class="spinner"></div>
+			<div class="progress">
+				<div class="full"></div>
+			</div>
+		</div>
+
+		<div id="#pointer" style="cursor:pointer"></div>
+		<div id="#default" style="cursor:default"></div>
+		<button Type="button" onclick="JsToUnity()">WebToUnity</button>
+	</body>
+
+	<!-- <script src="Build/UnityLoader.js"></script> -->
+	<script src="../../../common/lib/jquery-3.2.1.js"></script>
+	<script>
+		document.write('<script src="Build/UnityLoader.js?v=' + version + '"><\/script>')
+		document.write('<script src="../../../common/js/u3dTools.js?v=' + version + '"><\/script>');
+		// document.write('<script src="../../../common/js/utils.js?v=' + version + '"><\/script>');
+	</script>
+	<script>
+		var u3dObj = new U3DTools('gameContainer', {
+			"jsonPath": "Build/FireControl.json",
+			"completeCallback": completeCallback
+		})
+		var gameInstance = u3dObj.createUnity();
+		// 回调函数
+		function completeCallback(gameInstance) {
+			// document.oncontextmenu = function () {
+			// 	event.returnValue = false;
+			// }
+			var objName = parent.layuiId;
+			//刷新
+			window.onunload = function() {
+				// top.unregisterListener(objName); //销毁
+			}
+			//标签切换
+			// top.registerListener(objName, function(e) {
+			// 	Reset();
+			// }); //注册
+			parent.fireLive.u3dinit(gameInstance);
+			// Reset();
+		}
+
+		function UnityLazyLoadAssetsComplete() {
+			gameInstance.SendMessage("LoadedPrefab", "CamerMovement", "15017,0")
+			// parent.fireLive.u3dinit(gameInstance);
+			parent.fireLive.createMask();
+			let _fire_list = JSON.parse(localStorage.getItem('_fire_list'));
+			Object.keys(_fire_list).forEach((objitem, objindex) => {
+				_fire_list[objitem].forEach((item, index) => {
+					Object.keys(item).forEach((e, i, a) => {
+						if (e == 'name') {
+							item[e] = item[e].length > 5 ? item[e].substring(0, 5) + '...' : item[e];
+						} else if (e == 'time') {
+							item[e] = item[e].length > 5 ? item[e].substring(5) : item[e];
+						} else if (e == 'site') {
+							item[e] = item[e].length > 7 ? item[e].substring(0, 7) + '...' : item[e];
+						}
+					})
+				})
+			})
+			gameInstance.SendMessage("RecvJsMessageObject", "GetEvent", "15005," + JSON.stringify(_fire_list))
+			let lastTime = {
+				data: [{
+						"name": '手提式磷酸铵盐干粉灭火器',
+						"time": parent.getIntervalDate(1, 0),
+						"site": '二层商业A177'
+					},
+					{
+						"name": '手提式磷酸铵盐干粉灭火器',
+						"time": parent.getIntervalDate(1, 0),
+						"site": '二层商业A402'
+					},
+					{
+						"name": '手提式磷酸铵盐干粉灭火器',
+						"time": parent.getIntervalDate(1, 0),
+						"site": '二层商业A198'
+					},
+					{
+						"name": '手提式磷酸铵盐干粉灭火器',
+						"time": parent.getIntervalDate(1, 0),
+						"site": '二层商业A255'
+					},
+					{
+						"name": '应急照明灯',
+						"time": parent.getIntervalDate(1, 0, false),
+						"site": '塔楼B座4层楼道'
+					},
+					{
+						"name": '应急照明灯',
+						"time": parent.getIntervalDate(1, 0, false),
+						"site": '塔楼A座5层楼道'
+					},
+					{
+						"name": '应急照明灯',
+						"time": parent.getIntervalDate(1, 0, false),
+						"site": '塔楼B座4层楼道'
+					},
+					{
+						"name": '应急照明灯',
+						"time": parent.getIntervalDate(1, 0, false),
+						"site": '塔楼A座4层楼道'
+					},
+					{
+						"name": '应急照明灯',
+						"time": parent.getIntervalDate(1, 0, false),
+						"site": '塔楼B座5层楼道'
+					},
+					// {
+					// 	"name": '火灾报警控制器(联动型)',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层消防中控室'
+					// },
+					// {
+					// 	"name": '消防控制室图形显示装置',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层消防中控室'
+					// },
+					// {
+					// 	"name": '火灾声光报警器',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层B605室楼道'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A503'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A504'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A603'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A604'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A513'
+					// },
+					// {
+					// 	"name": '消火栓按钮',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层A614'
+					// },
+					// {
+					// 	"name": '输入模块',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层消防中控室'
+					// },
+					// {
+					// 	"name": '输入模块',
+					// 	"time": parent.getIntervalDate(73, 0),
+					// 	"site": '一层消防中控室'
+					// },
+					// {
+					// 	"name": '湿式报警阀',
+					// 	"time": parent.getIntervalDate(71, 0),
+					// 	"site": '负一层消防报警阀室'
+					// },
+				]
+			}
+			// lastTime.data.forEach((item,index,arr) => {
+			// 	item['name'] = item['name'].length > 5 ? item['name'].substring(0, 5) + '...' : item['name'];
+			// 	// item['time'] = item['time'].length > 5 ? item['time'].substring(5) : item['time'];
+			// 	item['site'] = item['site'].length > 7 ? item['site'].substring(0, 7) + '...' : item['site'];
+			// })
+			gameInstance.SendMessage("RecvJsMessageObject", "GetEvent", "15013," + JSON.stringify(lastTime))
+			let fault = {
+				data: [
+					{
+						"plate": "水流指示",
+						"address": "商业3层A617号",
+						"faulttime": parent.changeTimeDate(6) + " 15:30:19",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业1层A603号",
+						"faulttime": parent.changeTimeDate(5) + " 09:20:16",
+					},
+					{
+						"plate": "信号阀",
+						"address": "商业2层A605号",
+						"faulttime": parent.changeTimeDate(4) + " 09:35:60",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业1层A605号",
+						"faulttime": parent.changeTimeDate(4) + " 20:19:20",
+					},
+					{
+						"plate": "信号阀",
+						"address": "商业3层A511号",
+						"faulttime": parent.changeTimeDate(3) + " 05:34:51",
+					},
+					{
+						"plate": "信号阀",
+						"address": "商业3层A604号",
+						"faulttime": parent.changeTimeDate(3) + " 14:49:21",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业2层A513号",
+						"faulttime": parent.changeTimeDate(2) + " 02:50:10",
+					},
+					{
+						"plate": "水流指示",
+						"address": "商业3层A609号",
+						"faulttime": parent.changeTimeDate(2) + " 03:05:50",
+					},
+					{
+						"plate": "信号阀",
+						"address": "商业1层A615号",
+						"faulttime": parent.changeTimeDate(2) + " 05:10:09",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业2层A506号",
+						"faulttime": parent.changeTimeDate(2) + " 12:09:05",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业2层A525号",
+						"faulttime": parent.changeTimeDate(2) + " 18:50:16",
+					},
+					{
+						"plate": "消火栓按钮",
+						"address": "商业2层A523号",
+						"faulttime": parent.changeTimeDate(1) + " 17:03:37",
+					},
+					{
+						"plate": "水流指示",
+						"address": "商业2层A509号",
+						"faulttime": parent.changeTimeDate(0) + " 07:17:23",
+					},
+				]
+			}
+			fault.data.forEach((item,index,arr) => {
+				item['plate'] = item['plate'].length > 5 ? item['plate'].substring(0, 5) + '...' : item['plate'];
+				item['faulttime'] = item['faulttime'].length > 5 ? item['faulttime'].substring(5) : item['faulttime'];
+				item['address'] = item['address'].length > 7 ? item['address'].substring(0, 7) + '...' : item['address'];
+			})
+			gameInstance.SendMessage("RecvJsMessageObject", "GetEvent", "15015," + JSON.stringify(fault))
+		}
+
+		function MouseCoordinates(e) {
+			parent.fireLive.popU3D(e,gameInstance);
+		}
+		// 控制设置U3d触控
+		function UnityStart() {
+			console.log('UnityStart');
+			if (window.matchMedia("(any-pointer: coarse)").matches) {
+				console.log('触摸屏');
+				gameInstance.SendMessage("RecvJsMessageObject", 'GetEvent', '15000' + ', ');
+			} else {
+				console.log('非触摸屏');
+			}
+			Reset();
+		}
+	</script>
+
+</html>

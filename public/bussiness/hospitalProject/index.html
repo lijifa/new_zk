@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>华德智慧能源管理系统</title>
+    <link rel="stylesheet" href="../../common/css/public.css" />
+    <link rel="stylesheet" href="../../common/css/animated.css" />
+    <link rel="stylesheet" href="./css/project.css" />
+  </head>
+
+  <body class="layui-layout-body">
+    <div
+      class="innerheader"
+      id="innerheader"
+      data-title="天津市武清人民医院"
+    ></div>
+    <img src="./image/project_pic.jpg" class="image-bg" />
+    <div class="bgloc">
+      <div class="locText">天津市武清区雍阳西道100号</div>
+    </div>
+    <div class="layui-row sc-container">
+      <div class="layui-col-md9 height100 pad10">
+        <div class="layui-col-md12 height100 project-left">
+          <!-- <img src="./image/banner.png" class="banner"> -->
+          <!-- <video src="./image/bg.mp4" muted="true" loop="true" autoplay="true" class="video bgvideo" ></video> -->
+          <!-- <img src="./image/map.gif" class="map"> -->
+          <!-- <img src="./image/map-title.png" class="map-title">					 -->
+          <div class="topcount">
+            <div class="title">项目产值</div>
+            <div>
+              <span class="count" id="sumMoney">--</span><span>（元）</span>
+            </div>
+          </div>
+          <div class="project-details">
+            <div class="title" id="siteName1">--</div>
+            <ul>
+              <li>
+                <span class="rolling-over-animated duration1">所属系统</span>
+                <span class="rolling-over-animated duration1" id="systemName1"
+                  >--</span
+                >
+              </li>
+              <li>
+                <span class="rolling-over-animated duration2">设备数量</span>
+                <span class="rolling-over-animated duration2"
+                  ><em id="equcount1">--</em>个</span
+                >
+              </li>
+              <li>
+                <span class="rolling-over-animated duration3">站点状态</span>
+                <span class="rolling-over-animated duration3" id="status1"
+                  >--</span
+                >
+              </li>
+              <li>
+                <span class="rolling-over-animated duration4">当日总能耗</span>
+                <span class="rolling-over-animated duration4"
+                  ><em id="energySumAll1">--</em>标准煤</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3 height100 pad10">
+        <div class="layui-col-md12 hd-hei3">
+          <div class="hd-title">
+            <img src="./image/title_icon.png" class="title_icon" />
+            项目介绍
+          </div>
+          <div class="r1-cont">
+            <span id="pro-type"
+              ><em id="projectTypeName">--</em><br />项目类型</span
+            >
+            <span id="pro-area"
+              ><em id="projectArea">--</em>万㎡<br />建筑面积</span
+            >
+            <span id="cool-area"
+              ><em class="coolingHeatingArea">--</em>万㎡<br />供冷面积</span
+            >
+            <span id="hot-area"
+              ><em class="coolingHeatingArea">--</em>万㎡<br />供热面积</span
+            >
+          </div>
+        </div>
+        <div class="layui-col-md12 hd-hei3">
+          <div class="hd-title">
+            <img src="./image/title_icon.png" class="title_icon" />
+            <!-- 光合谷站点 -->
+            机房数据
+          </div>
+          <ul class="r4-cont" id="sites">
+            <div class="img-load"></div>
+            <!-- <li>
+							<img src="./image/icon_normal.png" id="siteimg">
+							<div class="title">光合谷地热井机房</div>
+							<div class="system">暖通系统</div>
+						</li>
+						<li>
+							<img src="./image/icon_normal.png">
+							<div class="title">光合谷消防机房</div>
+							<div class="system">消防系统</div>
+						</li> -->
+          </ul>
+        </div>
+        <div class="layui-col-md12 hd-hei3" style="height: 206px">
+          <div class="hd-title">
+            <img src="./image/title_icon.png" class="title_icon" />
+            能源形式
+          </div>
+          <div class="jn">
+            <div>
+              <img src="./image/jn_1.png" />
+              <span>供冷：由水冷式冷水机组供应</span>
+            </div>
+            <div>
+              <img src="./image/jn_2.png" />
+              <span
+                >供热：热源由武清医院锅炉房提供，换热系统位于外科楼能源站</span
+              >
+            </div>
+            <div>
+              <img src="./image/jn_3.png" />
+              <span>末端：风机盘管+新风系统</span>
+            </div>
+          </div>
+        </div>
+        <div class="layui-col-md12 hd-hei3">
+          <div class="hd-title">
+            <img src="./image/title_icon.png" class="title_icon" />
+            人员架构
+          </div>
+          <div class="r3-cont">
+            <span class="leader"><em>2</em>人<br />组长</span>
+            <span class="runworker"><em>5</em>人<br />运行工</span>
+            <span class="guyworker"><em>12</em>人<br />维修工</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script
+  type="text/javascript"
+  src="../../common/lib/jquery.SuperSlide.2.1.3.js"
+></script>
+<script src="../../common/lib/config.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/EZUIKit-JavaScript/ezuikit.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="./js/project.js"></script>

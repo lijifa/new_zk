@@ -1,0 +1,323 @@
+.sc-container2 {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 35px);
+	display: grid;
+	grid-template-columns: repeat(12, 8.3333333%);
+	grid-template-rows: repeat(12, 8.3333333%);
+}
+
+.opacitynone {
+	opacity: 0;
+	z-index: -1;
+}
+
+.control_btn {
+	margin-top: 4px;
+	color: #A5EAFF;
+	font-weight: 100;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.control_btn2 {
+	margin-top: 4px;
+}
+
+.control_btn2 {
+	float: right;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.control_btn2 span {
+	background: transparent;
+	width: 160px;
+	height: 28px;
+	display: inline-block;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+	padding-left: 3px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 15px;
+	color: #A5EAFF;
+}
+
+.control_btn2 span.on {
+	color: #00FFFF;
+	background: #0C3056;
+}
+
+.device {
+	grid-column: 1/4;
+	grid-row: 1/5;
+}
+
+.fault {
+	grid-column: 4/7;
+	grid-row: 1/5
+}
+
+.warn {
+	grid-column: 7/10;
+	grid-row: 1/5;
+}
+
+.alarm {
+	grid-column: 10/13;
+	grid-row: 1/5;
+}
+
+.warnTime {
+	grid-column: 7/10;
+	grid-row: 5/9;
+}
+
+.alarmTime {
+	grid-column: 10/13;
+	grid-row: 5/9;
+}
+
+.faultList {
+	grid-column: 1/7;
+	grid-row: 5/13;
+}
+
+.deviceList {
+	grid-column: 7/13;
+	grid-row: 9/13;
+}
+
+.displayFlex {
+	height: calc(100% - 45px);
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.component {
+	flex: 1;
+	height: 100%;
+	position: relative;
+}
+
+.posi50 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: fit-content;
+	text-align: center;
+}
+
+.textNum {
+	color: rgba(0, 255, 255, 1);
+	font-size: 48px;
+	font-weight: bolder;
+}
+
+.textTitle {
+	font-size: 18px;
+	color: rgba(150, 214, 255, 1);
+}
+
+.textUnit {
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(150, 214, 255, 1);
+}
+
+.column {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.legendBox {
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px;
+}
+
+.box {
+	width: 16px;
+	height: 16px;
+	border-radius: 3px;
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+
+.legendTitle {
+	flex: 1;
+	padding: 0 5px;
+	color: rgba(150, 214, 255, 1);
+	display: inline-block;
+}
+
+.legendNum {
+	width: 40px;
+	padding: 0 10px 0 0;
+	display: inline-block;
+	text-align: right;
+}
+
+.load {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.gDDiv {
+	padding: 0;
+}
+
+.gDlistOut {
+	height: calc(100% - 35px);
+}
+.gDlie_title0, .gDhang_item0{
+	flex: 2;
+	text-align: left;
+	text-indent: 20px;
+}
+#monthFaultList .gDlie_title0,
+#monthFaultList .gDlie_title1,
+#monthFaultList .gDlie_title2,
+#monthFaultList .gDlie_title3,
+#monthFaultList .gDlie_title4,
+#yearFaultList .gDlie_title0,
+#yearFaultList .gDlie_title1,
+#yearFaultList .gDlie_title2,
+#yearFaultList .gDlie_title3,
+#yearFaultList .gDlie_title4{
+	height: 33px;
+	line-height: 33px;
+	border: 1px solid rgba(37, 248, 255, 0.5);
+}
+#monthFaultList .gDhang_item0,
+#monthFaultList .gDhang_item1,
+#monthFaultList .gDhang_item2,
+#monthFaultList .gDhang_item3,
+#monthFaultList .gDhang_item4,
+#yearFaultList .gDhang_item0,
+#yearFaultList .gDhang_item1,
+#yearFaultList .gDhang_item2,
+#yearFaultList .gDhang_item3,
+#yearFaultList .gDhang_item4{
+	height: 35px;
+	line-height: 35px;
+	color: rgba(150, 214, 255, 1);
+}
+.textHover{
+	background-color: transparent;
+}
+#monthFaultList li:nth-child(odd) .gDhang_item0,
+#monthFaultList li:nth-child(odd) .gDhang_item2,
+#monthFaultList li:nth-child(odd) .gDhang_item4,
+#yearFaultList li:nth-child(odd) .gDhang_item0,
+#yearFaultList li:nth-child(odd) .gDhang_item2,
+#yearFaultList li:nth-child(odd) .gDhang_item4{
+	background-color: rgba(37, 248, 255, .2);
+}
+#monthFaultList li:nth-child(odd) .gDhang_item1,
+#monthFaultList li:nth-child(odd) .gDhang_item3,
+#yearFaultList li:nth-child(odd) .gDhang_item1,
+#yearFaultList li:nth-child(odd) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .1);
+}
+#monthFaultList .jiShu li:nth-child(even) .gDhang_item0,
+#monthFaultList .jiShu li:nth-child(even) .gDhang_item2,
+#monthFaultList .jiShu li:nth-child(even) .gDhang_item4,
+#yearFaultList .jiShu li:nth-child(even) .gDhang_item0,
+#yearFaultList .jiShu li:nth-child(even) .gDhang_item2,
+#yearFaultList .jiShu li:nth-child(even) .gDhang_item4{
+	background-color: rgba(37, 248, 255, .2);
+}
+#monthFaultList .jiShu li:nth-child(even) .gDhang_item1,
+#monthFaultList .jiShu li:nth-child(even) .gDhang_item3,
+#yearFaultList .jiShu li:nth-child(even) .gDhang_item1,
+#yearFaultList .jiShu li:nth-child(even) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .1);
+}
+#monthFaultList .jiShu li:nth-child(odd) .gDhang_item0,
+#monthFaultList .jiShu li:nth-child(odd) .gDhang_item2,
+#monthFaultList .jiShu li:nth-child(odd) .gDhang_item4,
+#yearFaultList .jiShu li:nth-child(odd) .gDhang_item0,
+#yearFaultList .jiShu li:nth-child(odd) .gDhang_item2,
+#yearFaultList .jiShu li:nth-child(odd) .gDhang_item4{
+	background-color: transparent;
+}
+#monthFaultList .jiShu li:nth-child(odd) .gDhang_item1,
+#monthFaultList .jiShu li:nth-child(odd) .gDhang_item3,
+#yearFaultList .jiShu li:nth-child(odd) .gDhang_item1,
+#yearFaultList .jiShu li:nth-child(odd) .gDhang_item3{
+	background-color: transparent;
+}
+#monthDeviceList .gDlie_title0,
+#monthDeviceList .gDlie_title1,
+#monthDeviceList .gDlie_title2,
+#monthDeviceList .gDlie_title3,
+#monthDeviceList .gDlie_title4,
+#yearDeviceList .gDlie_title0,
+#yearDeviceList .gDlie_title1,
+#yearDeviceList .gDlie_title2,
+#yearDeviceList .gDlie_title3,
+#yearDeviceList .gDlie_title4{
+	height: 35px;
+	line-height: 35px;
+	background-color: rgba(28, 135, 229, 0.2);
+	border:1px solid rgba(5,14,23, .5);
+}
+#monthDeviceList .gDhang_item0,
+#monthDeviceList .gDhang_item1,
+#monthDeviceList .gDhang_item2,
+#monthDeviceList .gDhang_item3,
+#monthDeviceList .gDhang_item4,
+#yearDeviceList .gDhang_item0,
+#yearDeviceList .gDhang_item1,
+#yearDeviceList .gDhang_item2,
+#yearDeviceList .gDhang_item3,
+#yearDeviceList .gDhang_item4{
+	height: 35px;
+	line-height: 35px;
+	color: rgba(150, 214, 255, 1);
+}
+#monthDeviceList li:nth-child(odd),
+#yearDeviceList li:nth-child(odd){
+	background-color: rgba(28, 135, 229, .1);
+}
+#monthDeviceList .jiShu li:nth-child(even),
+#yearDeviceList .jiShu li:nth-child(even){
+	background-color: rgba(28, 135, 229, .1);
+}
+#monthDeviceList .jiShu li:nth-child(odd),
+#yearDeviceList .jiShu li:nth-child(odd){
+	background-color: transparent;
+}
+.RankTitleItem1, .RankContentItem1{
+	flex: 2.5;
+}
+.RankLine{
+	height: 10px;
+	margin-top: -5px;
+	background-image: url(../image/hengtiao.png);
+}
+.unit{
+	height: 24px;
+	line-height: 24px;
+	float: right;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(165, 234, 255, 1);
+}

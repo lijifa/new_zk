@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/conDiagram.css?v='+version+'">');
+			document.write('<link rel="stylesheet" href="./css/load.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader" id="innerheader" data-title="站点导航"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md8 height100">
+				<div class="height70" id="zttFull" style="border: 2px solid #09233A;">
+					<div class="ztt" style="height: calc(100% - 30px);position: relative;">
+						<div id="ztt_dl">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="width: 80px;height: 80px;"></div>
+						</div>
+					</div>
+					<img src="/common/image/operationTips.png" class="operationTips">
+					<img src="/common/image/openFull.png" class="zztfullBtn">
+				</div>
+				<div class="height30">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						电路状态
+					</div>
+					<div id="list">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md4 height100" style="margin-top: -10px;">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">配电室监测</span>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					用能检测
+				</div>
+				<ul class="equlist eq70">
+					<li>
+						<span>日用电量</span>
+						<span class="fontsize24" id="electricityDay">0</span>
+						<span>kW·h</span>
+					</li>
+					<li>
+						<span>当前负荷</span>
+						<span class="fontsize24" id="load">--</span>
+						<span>kW</span>
+					</li>
+					<li>
+						<span>最大需量</span>
+						<span class="fontsize24" id="maxCapacity">--</span>
+						<span>kW</span>
+					</li>
+					<li style="margin: 0 0 10px  0;">
+						<span>变压器容量</span>
+						<span class="fontsize24" id="transformerCapacity">--</span>
+						<span>kVA</span>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					配电室总电力监测
+					<div class="btnParent" id="energyTransformer">
+						<!-- <div class="btn on" data-id="1#">1#变压器</div> -->
+						<!-- <div class="btn" data-id="2#">2#变压器</div> -->
+					</div>
+				</div>
+				<ul class="equlist eqHeight">
+					<li>
+						<div class="dashBoard" id="apparentPower"></div>
+						<div class="point"></div>
+						<span class="textCenter">总视在功率</span>
+					</li>
+					<li>
+						<div class="dashBoard" id="loadRate"></div>
+						<div class="point"></div>
+						<span class="textCenter">负荷率</span>
+					</li>
+					<li>
+						<div class="dashBoard" id="totalPower"></div>
+						<div class="point"></div>
+						<span class="textCenter">频率</span>
+					</li>
+				</ul>
+				<ul class="equlist eqHeight">
+					<li>
+						<div class="dashBoard" id="usefulPower"></div>
+						<div class="point"></div>
+						<span class="textCenter">有功功率</span>
+					</li>
+					<li>
+						<div class="dashBoard" id="unUsefulPower"></div>
+						<div class="point"></div>
+						<span class="textCenter">无功功率</span>
+					</li>
+					<li>
+						<div class="dashBoard" id="powerFactor"></div>
+						<div class="point"></div>
+						<span class="textCenter">功率因数</span>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					低压主进线三相电压趋势图
+					<div class="btnParent" id="volBtn"></div>
+				</div>
+				<div class="lev3title_pub" id="legendLable" style="height: 20px;padding: 0 20px;">
+					<!-- <span class="legend_pub fr"><em class="icon_line green1_legend_pub legendColorLightGreen">
+					</em><em class="font">C相电压</em></span>
+					<span class="legend_pub fr"><em class="icon_line green1_legend_pub legendColorDeepBlue">
+					</em><em class="font">B相电压</em></span>
+					<span class="legend_pub fr"><em class="icon_line green1_legend_pub legendColorLightBlue">
+					</em><em class="font">A相电压</em></span> -->
+				</div>
+				<div class="ABC_U">
+					<div id="threeVol">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg" style="top: 50%;">
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					低压主进线三相电流趋势图
+					<div class="btnParent" id="curBtn">
+						<!-- <div class="btn on" data-id="0">1#变压器</div> -->
+						<!-- <div class="btn" data-id="1">2#变压器</div> -->
+					</div>
+				</div>
+				<div class="lev3title_pub" id="legendLableCur" style="height: 20px;padding: 0 20px;"></div>
+				<!-- <ul class="equlist monitorIcon device">
+					<li id="temperature" data-id="temperature">
+						<div class="iconImg">
+							<img src="image/wenduBlue.png" >
+						</div>
+						<span>环境温度</span>
+						<span><em>--</em></span>
+					</li>
+					<li id="smokeSensation" data-id="smokeSensation">
+						<div class="iconImg">
+							<img src="image/yanganBlue.png" >
+						</div>
+						<span>烟感监测</span>
+						<span><em>--</em></span>
+					</li>
+					<li id="accessControl" data-id="accessControl">
+						<div class="iconImg">
+							<img src="image/menjinBlue.png" >
+						</div>
+						<span>门禁监测</span>
+						<span><em>--</em></span>
+					</li>
+				</ul> -->
+				<!-- <ul class="equlist monitorIcon device" style="margin-top: 10px;">
+					<li id="humidity" data-id="humidity">
+						<div class="iconImg">
+							<img src="image/shiduBlue.png" >
+						</div>
+						<span>环境湿度</span>
+						<span><em>--</em></span>
+					</li>
+					<li id="waterImmersion" data-id="waterImmersion">
+						<div class="iconImg">
+							<img src="image/shuijinBlue.png" >
+						</div>
+						<span>水浸监测</span>
+						<span><em>--</em></span>
+					</li>
+					<li id="flame" data-id="flame">
+						<div class="iconImg">
+							<img src="image/minghuoBlue.png" >
+						</div>
+						<span>明火监测</span>
+						<span><em>--</em></span>
+					</li>
+				</ul> -->
+				<div class="ABC_I" id="ABC_I">
+					<div id="threeCur">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg" style="top: 50%;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pop_fault" id="fault">
+			<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+		</div>
+	</body>
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="/common/js/screenfull.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/go.js"></script>
+<script src="/draw/largeScreen/common/js/diagramTool.js"></script>
+<script src="../../common/js/drag-detail.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/conDiagram.js?v='+version+'"><\/script>');
+</script>

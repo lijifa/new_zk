@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8" />
+		<title>HuaDeGuangHeGu</title>
+		<script>
+			document.write('<script src="../../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				/* background: #444; */
+			}
+
+			#gameContainer {
+				width: 100vw;
+				height: 100vh;
+				background: transparent !important;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.logo {
+				display: block;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.progress {
+				margin: 1.5em;
+				border: 1px solid #02a7fe;
+				width: 30vw;
+				display: none;
+				/* display: block!important; */
+				position: absolute;
+				bottom: 100px;
+				left: 50%;
+				margin-left: -15vw;
+			}
+
+			.progress .full {
+				margin: 2px;
+				background: #02a7ce;
+				height: 0.1em;
+				transform-origin: top left;
+			}
+
+			#loader {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.spinner,
+			.spinner:after {
+				border-radius: 50%;
+				width: 5em;
+				height: 5em;
+			}
+
+			.spinner {
+				margin: 10px;
+				font-size: 10px;
+				position: relative;
+				text-indent: -9999em;
+				border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-left: 1.1em solid #ffffff;
+				transform: translateZ(0);
+				animation: spinner-spin 1.1s infinite linear;
+			}
+
+			@keyframes spinner-spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			@media screen and (orientation: landscape) and (min-width: 480px) and (max-width: 995px) {
+				.progress {
+					bottom: 10%;
+				}
+			}
+		</style>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui">
+	</head>
+
+	<body onload="Reset()" onresize="Reset()" ,scroll=no, style="width: 100%; height: 100%;overflow:hidden">
+		<div id="gameContainer" style="width: 100%; height: 100%;margin:auto"></div>
+		<div id="loader">
+			<img class="logo" src="logo.png" />
+			<div class="spinner"></div>
+			<div class="progress">
+				<div class="full"></div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../common/lib/jquery-3.2.1.js"></script>
+	<script>
+		document.write('<script src="Build/UnityLoader.js?v=' + version + '"><\/script>')
+		document.write('<script src="../../../common/js/u3dTools.js?v=' + version + '"><\/script>');
+	</script>
+	<script>
+		var u3dObj = new U3DTools('gameContainer', {
+			"jsonPath": "Build/JiShuiXiTong.json",
+			"completeCallback": completeCallback
+		})
+		var gameInstance = u3dObj.createUnity();
+		// 回调函数
+		function completeCallback(gameInstance) {
+			Reset();
+		}
+
+		//双击摄像头时候,根据当前状态控制显示和隐藏,并移动到相应位置
+		function showVideo(str) {
+			top.window.showhdSquareVideo(str.split(',')[0]);
+		}
+		//关闭摄像头,清空打开的id
+		function closeVideo() {
+			top.window.closehdSquareVideo();
+			parent.cameraShowId = "";
+		}
+
+		function canmerHide() {
+			top.window.canmerHide();
+		}
+
+		function canShowCameraPositionById(str) {
+			if (parent.cameraShowId != "") {
+				top.window.showVideo(str.split(',')[0]);
+			}
+		}
+
+		function JsToUnity() {}
+		// 加载资源
+		function FinishedLoading() {
+			console.log('场景加载完成');
+			parent.hdSquare.u3dinit(gameInstance);
+		}
+		// 控制设置U3d触控
+		function UnityStart(){
+			console.log('UnityStart');
+			if(window.matchMedia("(any-pointer: coarse)").matches) {
+				console.log('触摸屏');
+				gameInstance.SendMessage("RecvJsMessageObject", 'GetEvent', '15000' + ', ');
+			} else {
+				console.log('非触摸屏');
+			}
+			Reset();
+		}
+		function PanelAniton(){
+			parent.$('.btn').eq(0).prop('disabled',false);
+		}
+		function SingleDevice(){
+			parent.$('.btn').eq(0).removeClass('btnOn btnYellow0').addClass('btnBlue0').attr('data-flag','0');
+		}
+	</script>
+</html>

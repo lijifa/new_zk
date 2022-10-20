@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>华德智慧能源管理系统</title>
+    <link rel="stylesheet" href="/common/css/animated.css" />
+    <link rel="stylesheet" href="/common/css/public.css" />
+    <link rel="stylesheet" href="/common/css/generalStyle.css" />
+    <link rel="stylesheet" href="/common/lib/Animate/animate.min.css" />
+    <link rel="stylesheet" href="/common/css/liMarquee.css" />
+    <link rel="stylesheet" href="/common/css/listRoll.css" />
+    <script type="text/javascript">
+      document.write(
+        '<script language="javascript" src="/common/lib/config.js?r=' +
+          Math.random() +
+          '"><\/script\>'
+      );
+    </script>
+    <script>
+      document.write(
+        '<link rel="stylesheet" href="./css/hdU3D.css?v=' + version + '">'
+      );
+    </script>
+  </head>
+
+  <body class="layui-layout-body">
+    <div
+      class="innerheader"
+      id="innerheader"
+      data-title="校园能源监测项目总览"
+    ></div>
+    <img src="/common/image/beiing130.jpg" class="image-bg" />
+    <div class="layui-row sc-container" id="container">
+      <div class="projectInfo">
+        <div class="projectInfoItem projectAddress">
+          <span><em id="address">--</em></span>
+        </div>
+        <div class="projectInfoItem projectType">
+          <span><em id="projectTypeName">--</em></span>
+        </div>
+        <div class="projectInfoItem projectArea">
+          <span><em id="constructionArea">--</em>万㎡建筑面积</span>
+        </div>
+      </div>
+      <!-- <div class="left-Bar mobile_none">
+			<div class="btn-bar">
+				<img src="/common/image/icon_img5.png" />
+				<div class="title">
+					<span id="provinceName" style="display: none;"></span>
+					<span id="address">天津市北辰区</span>
+				</div>
+				<div id="provinceNamedetails">项目位置</div>
+			</div>
+			<div class="btn-bar">
+				<img src="/common/image/icon_img6.png" />
+				<div class="title" id="projectTypeName">学校</div>
+				<div>项目类型</div>
+			</div>
+			<div class="btn-bar">
+				<img src="/common/image/icon_img7.png" />
+				<div class="title"><em id="constructionArea">10万</em>㎡</div>
+				<div>占地面积</div>
+			</div>
+		</div> -->
+      <div class="bottombar layui-col-md12 mobile_none">
+        <div class="bottomside height100 paddingR5">
+          <div class="frosted-glass">
+            <div class="lev3title_pub">
+              <img
+                src="/common/image/titleGather/title-icon3.png"
+                class="title_icon"
+              />
+              <span id="moneryEnergyTitle"> <span>项目耗电统计</span> </span>
+            </div>
+            <div
+              style="display: flex; flex-direction: row; padding: 0 10px 0 0"
+            >
+              <div class="flex">
+                <div class="img">
+                  <div class="posi50">
+                    <span>今年耗电量</span>
+                    <em class="fontsize28" id="eleEnergyCurrentYear">--</em>
+                    <span id="eleEnergyCurrentYearTit">kW·h</span>
+                  </div>
+                </div>
+                <div class="energyYear">
+                  <img src="image/电.png" class="iconSize" />
+                  <div class="energyYear_title">当月耗电量</div>
+                  <div class="num fontsize28">
+                    <em id="eleEnergyCurrentMonth">--</em>
+                  </div>
+                  <div class="unit">kW·h</div>
+                </div>
+                <div class="energyYear">
+                  <img src="image/电1.png" class="iconSize" />
+                  <div class="energyYear_title">当日耗电量</div>
+                  <div class="num fontsize28">
+                    <em id="eleEnergyCurrentDay">--</em>
+                  </div>
+                  <div class="unit">kW·h</div>
+                </div>
+              </div>
+              <!-- <div class="flex"> -->
+              <!-- <div class="img">
+                  <div class="posi50">
+                    <span>今年水能耗</span>
+                    <em class="fontsize28" id="waterEnergyCurrentYear">--万</em>
+                    <span>m³</span>
+                  </div>
+                </div> -->
+              <!-- <div class="energyYear">
+                  <img src="image/water.png" class="iconSize" />
+                  <div class="energyYear_title">今日水能耗</div>
+                  <div class="num fontsize28">
+                    <em id="waterEnergyCurrentDay">--</em>
+                  </div>
+                  <div class="unit">m³</div>
+                </div> -->
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="bottomCenter height100 paddingR5">
+          <div class="frosted-glass">
+            <div class="lev3title_pub">
+              <img
+                src="/common/image/titleGather/title-icon3.png"
+                class="title_icon"
+              />
+              项目耗水统计
+            </div>
+            <div class="flex">
+              <div class="img">
+                <div class="posi50">
+                  <span>今年耗水量</span>
+                  <em class="fontsize28" id="waterEnergyCurrentYear">--</em>
+                  <span id="waterEnergyCurrentYearTit">m³</span>
+                </div>
+              </div>
+              <div class="energyYear1">
+                <img src="image/电.png" class="iconSize" />
+                <div class="energyYear_title">当月耗水量</div>
+                <div class="num fontsize28">
+                  <em id="waterEnergyCurrentMonth">--</em>
+                </div>
+                <div class="unit">m³</div>
+              </div>
+              <div class="energyYear1">
+                <img src="image/water.png" class="iconSize" />
+                <div class="energyYear_title">当日耗水量</div>
+                <div class="num fontsize28">
+                  <em id="waterEnergyCurrentDay">--</em>
+                </div>
+                <div class="unit">m³</div>
+              </div>
+              <!-- <div class="energyYear">
+                <img src="image/lights.png" class="iconSize" />
+                <div class="energyYear_title">光伏发电量</div>
+                <div class="num fontsize28"><em id="dayElectric">600</em></div>
+                <div class="unit">kW·h</div>
+              </div>
+              <div class="energyYear">
+                <img src="image/wind.png" class="iconSize" />
+                <div class="energyYear_title">垂直式发电量</div>
+                <div class="num fontsize28"><em id="dayElectric">85</em></div>
+                <div class="unit">kW·h</div>
+              </div>
+              <div class="energyYear">
+                <img src="image/fan.png" class="iconSize" />
+                <div class="energyYear_title">水平式发电量</div>
+                <div class="num fontsize28"><em id="dayElectric">66</em></div>
+                <div class="unit">kW·h</div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="bottomside height100 hd-hei3 paddingR5">
+          <div class="frosted-glass">
+            <div class="lev3title_pub">
+              <img
+                src="/common/image/titleGather/title-icon3.png"
+                class="title_icon"
+              />
+              井盖实时检测
+            </div>
+            <div class="cardContent">
+              <!-- <div class="liveItem">
+                <img
+                  src="./image/hole_offline.png"
+                  class="liveItemIcon0"
+                  alt=""
+                />
+                <p class="liveItemText0">--</p>
+              </div>
+              <div class="liveItem">
+                <img
+                  src="./image/hole_offline.png"
+                  class="liveItemIcon1"
+                  alt=""
+                />
+                <p class="liveItemText1">--</p>
+              </div>
+              <div class="liveItem">
+                <img
+                  src="./image/hole_offline.png"
+                  class="liveItemIcon2"
+                  alt=""
+                />
+                <p class="liveItemText2">--</p>
+              </div>
+              <div class="liveItem">
+                <img
+                  src="./image/hole_offline.png"
+                  class="liveItemIcon3"
+                  alt=""
+                />
+                <p class="liveItemText3">--</p>
+              </div>
+              <div class="liveItem">
+                <img
+                  src="./image/hole_offline.png"
+                  class="liveItemIcon4"
+                  alt=""
+                />
+                <p class="liveItemText4">--</p>
+              </div>
+              <div class="liveItem">
+                <img src="./image/管道 拷贝.png" class="liveItemIcon5" alt="" />
+                <p class="liveItemText5">--</p>
+              </div>
+              <div class="liveItem">
+                <img src="./image/管道 拷贝.png" class="liveItemIcon6" alt="" />
+                <p class="liveItemText6">--</p>
+              </div>
+              <div class="liveItem">
+                <img src="./image/管道 拷贝.png" class="liveItemIcon7" alt="" />
+                <p class="liveItemText7">--</p>
+              </div>
+              <div class="liveItem">
+                <img src="./image/管道 拷贝.png" class="liveItemIcon8" alt="" />
+                <p class="liveItemText8">--</p>
+              </div>
+              <div class="liveItem">
+                <img src="./image/管道 拷贝.png" class="liveItemIcon9" alt="" />
+                <p class="liveItemText9">--</p>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttomIcon" id="buttomIcon">
+        <i class="layui-icon layui-icon-down"></i>
+      </div>
+      <div class="pop_fault" id="fault">
+        <div style="height: 100%; position: relative" id="listStatu">
+          <div class="hd-loadmask">
+            <img
+              src="/common/image/load.gif"
+              class="iconimg"
+              style="top: 50%"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="pop_fault" id="fireList">
+        <div style="height: 100%; position: relative" id="senconStatu">
+          <div class="hd-loadmask">
+            <img
+              src="/common/image/load.gif"
+              class="iconimg"
+              style="top: 50%"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="/common/lib/jquery-3.2.1.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/lib/echarts.min.js"></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/echarsComponent.js"></script>
+<script src="/common/lib/echarts-liq.js"></script>
+<script src="/common/lib/jquery.liMarquee.js"></script>
+<script src="/common/js/slideMenuNew.js"></script>
+<script src="/common/js/popUps.js"></script>
+<script src="/common/js/listRollNew.js"></script>
+<script src="/common/js/waterTank.js"></script>
+<script type="text/javascript">
+  document.write('<script src="js/hdU3D.js?v=' + version + '"><\/script\>');
+  document.write('<script src="./js/index.js?v=' + version + '"><\/script>');
+</script>

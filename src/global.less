@@ -1,0 +1,90 @@
+// 全局样式
+body{
+  width: 100% !important; 
+}
+.textColor{
+    color: red;
+}
+// 设置菜单款式
+.ant-menu,.ant-menu-sub,.ant-menu-inline{
+    color: white;
+    background-color: rgb(5, 6, 8) !important;
+  }
+// 去掉右边框
+.ant-menu-inline .ant-menu-item::after {
+    border: 2px solid #0aceff;
+    margin: 0;
+  }
+  .ant-menu-item-selected::after{
+    border-color: transparent !important;
+    background-color: transparent !important;
+  }
+// 去掉菜单外边框(在组件中去除了)
+// .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+//     border-right: none;
+// }
+.ant-menu-submenu-title{
+    color: white !important;
+  }
+// 设置 a 链接款式
+.ant-menu-item a {
+    color: white !important;
+  }
+
+.ant-menu-item a:hover {
+    color: #0aceff !important;
+}
+// 下拉箭头款式
+.ant-menu-submenu-arrow {
+    color: white !important;
+}
+// 设置子菜单款式
+.ant-menu-submenu-active {
+  background-color: #081939 !important;
+  color: #0aceff !important;
+}
+// 选中菜单状态
+.ant-menu-item-selected {
+    background-color: #081939 !important;
+    color: #0aceff !important;
+  }
+
+// 设置子菜单开展款式
+.ant-menu-submenu > .ant-menu {
+    color: white;
+  }
+// 设置未选中菜单项鼠标滑过款式
+.ant-menu-item-active {
+    background-color: #081939 !important;
+    color: #0aceff !important;
+  }
+
+.ant-input-affix-wrapper {
+  border: 1px solid rgba(3, 168, 254, 1) !important;
+  border-radius: 4px !important;
+  background-color: transparent !important;
+
+  .ant-input {
+    background-color: transparent;
+    color: #FFF;
+
+    &::placeholder {
+      color: #0FF;         // placeholder的颜色样式
+    }
+  }
+}
+
+// 缓存页面内容样式
+.ka-wrapper {
+  height: 100%;
+}
+
+.ka-content {
+  height: 100%;
+}
+
+// input:-internal-autofill-previewed,
+// input:-internal-autofill-selected {
+//     -webkit-text-fill-color: #807c7c;
+//     transition: background-color 5000s ease-out 0.5s;
+// }

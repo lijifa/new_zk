@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="content-type" content="no-cache, must-revalidate" />
+		<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../../../common/css/public.css">
+		<!-- <link rel="stylesheet" href="./css/security.css"> -->
+		<link rel="stylesheet" type="text/css" href="../../../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="../../../../common/css/generalStyle.css">
+		<script>
+			document.write('<script src="../../../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script type="text/javascript">
+			document.write('<link rel="stylesheet" href="./css/securityStatistical.css?v='+version+'"/>');
+		</script>
+	</head>
+
+	<body class="layui-layout-body">		
+		<div class="part-header" id="partheader"></div>
+		<!-- <div class="innerheader" id="innerheader" data-title="安全统计" style="display: none;"></div> --><!--暂时不能删除，删除后站内导航按钮不能显示-->
+		<div class="control_btn control_btn2" id="energy-day-control">
+			<span class="on" data-type="month">近30天</span>
+			<span data-type="year">近一年</span>
+		</div>
+		<!---------近1月开始-------->
+		<div class="layui-row sc-container2 month">
+			<div class="layui-col-md6 height100 posrelative">
+				<!-- <div class="backgroundGray"> -->
+				<div class="hei33 layui-col-md12 backgroundGray hd-hei posrelative" id="waring-statis-cover">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警实时统计
+						<span class="legend_pub fr"><em class="icon blue2_legend_pub lineIcon"></em><em class="font">已恢复</em></span>
+						<span class="legend_pub fr"><em class="icon yellow1_legend_pub lineIcon"></em><em class="font">预警</em></span>
+					</div>
+					<div class="pad10top hei10060">
+						<div class="echars main1" id="monthmain1" >
+							<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="hei33 layui-col-md6 backgroundGray hd-hei">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警统计前5名
+					</div>
+					<div class="statis4 posrelative" id="monthsec-waring-cover">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<table id="monthwarnRuleTop5">
+							<tr class="title"><td>排名</td><td>预警规则</td><td>次数</td></tr>
+							
+						</table>
+					</div>
+					
+				</div>
+				<div class="hei33 layui-col-md6 backgroundGray hd-hei">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警统计后5名
+					</div>
+					<div class="statis4 posrelative" id="monthsec-waring-cover2">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<table id="monthwarnRuleLast5">
+							<tr class="title"><td>排名</td><td>预警规则</td><td>次数</td></tr>
+							<!-- <tr class="content"><td>Last1</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last2</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last3</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last4</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last5</td><td>冷冻供水温度过高</td><td>21</td></tr> -->
+						</table>
+					</div>
+					
+				</div>
+				<!-- </div> -->
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei" id="signalFailure">
+					<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						报警类型分布图
+					</div>
+					<div class="main2">
+						<div class="main2_img">
+							<div class="main2-type" id="monthtype"></div>
+							<div class="main2-circle">
+								<div class="position50">
+									<span class="main2-num" id="monthrulesnum">--</span>
+									<span class="main2-rule" id="monthrules">报警规则</span>
+								</div>
+							</div>
+							<div class="legend_circle">
+								<span><em class="legend_circle_fang bgBlue"></em>设备故障 <em id="monthDev" class="colorWh">--</em>条</span>
+								<span><em class="legend_circle_fang bgGreen"></em>离线报警 <em id="monthLix" class="colorWh">--</em>条</span>
+								<span><em class="legend_circle_fang bgSky"></em>规则报警 <em id="monthXin" class="colorWh">--</em>条</span>
+							</div>
+							<!-- <div class="div_rules" id="rules1">
+								<div class="title">评分规则：</div>
+								<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br/> 最低分为 0 分，无负数的分数。</div>
+							</div> -->
+						</div>
+						<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					</div>
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei">
+					<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备故障排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+						<!-- <span class="legend_pub fr"><em class="icon_line red1_legend_pub"></em><em class="font">设备故障</em></span> -->
+						<!-- <span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em class="font">系统预警</em></span> -->
+					</div>
+					<div id="monthAlarmRank1" class="main3">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6 height100 posrelative">
+				<div class="hei66w49l1 layui-col-md6 backgroundGray hd-hei2">
+					<div class="layui-col-md12" id="meanRepairTime" style="height: 50%;">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							平均预警修复时间
+							<!-- <div class="control_btn">
+								单位：min
+							</div> -->
+							<!-- <span class="legend_pub fr"><em class="icon_line red1_legend_pub"></em><em class="font">设备故障</em></span> -->
+							<!-- <span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em class="font">系统预警</em></span> -->
+						</div>
+						<div class="pad10top hei10060">
+							<div id="monthmain3" class="height100">
+								<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="layui-col-md12 height50" id="waringHistory">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							系统预警历史记录
+						</div>
+						<div id="monthwaringHistoryList" class="waringHistoryList"></div>
+					</div> -->
+					<div class="layui-col-md12 height50" id="equltFaultHistory">
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							平均报警修复时间
+							<!-- <div class="control_btn">
+								单位：min
+							</div> -->
+						</div>
+						<div class="pad10top hei10060" style="padding-bottom: 0;">
+							<div id="monthmain5" class="height100">
+								<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+						<!-- <div class="layui-col-md5 device">
+							<div class="device-detail">
+								<i class="device-img"></i>
+								<span class="device-title">设备台数</span>
+								<span class="device-all" id="monthdevicenum">--</span>
+							</div>
+						</div>
+						<div class="layui-col-md5 device-list" id="monthdevice">
+							<div class="hd-loadmask">
+								<img src="../../../../common/image/load.gif" class="iconimg">
+							</div>
+						</div> -->
+						<!-- <div id="monthequltFaultHistoryList" class="equltFaultHistoryList"></div> -->
+					</div>
+					
+				</div>
+				<div  class="hei66w49l1 layui-col-md6 backgroundGray hd-hei2 posrelative" id="equ-detail-cover">
+					<!-- <img src="./image/statistical/leftborder.png" class="leftborder"> -->
+					<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备历史运行统计
+					</div>
+					<div class="statis1 deviceRunList" id="monthdeviceRunList" >
+					<!-- <div class="statis1-title">
+						<span class="width1"> 设备名称</span>
+						<span class="width1"> 设备类型</span>
+						<span class="width1"> 运行时长(h)</span>
+						<span class="width1"> 总故障次数</span>
+					</div>
+					<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					<div class="txtMarquee-top">
+						<div class="bd">
+							<ul class="infoList statis1-cont" id="deviceRunList"> 
+								 <li>  
+									<span class="width1"> 离心制冷机一号</span>
+									<span class="width1"> 离心制冷机</span>
+									<span class="width1"> 9823</span>									
+									<span class="width1"> 825</span>
+								</li>						
+							
+							 </ul>
+						</div>
+					</div> -->
+					</div>
+					
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei posrelative" id="equfaulttop5">
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						规则报警排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+					</div>
+					<div id="monthAlarmRank2" class="main4">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei posrelative" id="maintain-equipment">
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						离线报警排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+					</div>
+					<div id="monthAlarmRank3" class="main4">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+					<!-- <div class="maintain-con">
+						<img src="./image/statistical/icon_1.png" />
+						<div>已超维修日期设备数量</div>
+						<div class="count"><span id="monthcount">--</span>台</div>
+					</div> -->
+				</div>
+			</div>
+			
+		</div>
+		<!---------近1月结束-------->
+		<!---------近1年开始-------->
+		<div class="layui-row sc-container2 year opacitynone">
+			<div class="layui-col-md6 height100 posrelative">
+				<!-- <div class="backgroundGray"> -->
+				<div class="hei33 layui-col-md12 backgroundGray hd-hei posrelative" id="waring-statis-cover">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警实时统计
+						<span class="legend_pub fr"><em class="icon blue2_legend_pub lineIcon"></em><em class="font">已恢复</em></span>
+						<span class="legend_pub fr"><em class="icon yellow1_legend_pub lineIcon"></em><em class="font">预警</em></span>
+					</div>
+					<div class="pad10top hei10060">
+						<div class="echars main1" id="yearmain1" >
+							<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="hei33 layui-col-md6 backgroundGray hd-hei">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警统计前5名
+					</div>
+					<div class="statis4 posrelative" id="yearsec-waring-cover">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<table id="yearwarnRuleTop5">
+							<tr class="title"><td>排名</td><td>预警规则</td><td>次数</td></tr>
+							
+						</table>
+					</div>
+					
+				</div>
+				<div class="hei33 layui-col-md6 backgroundGray hd-hei">
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						预警统计后5名
+					</div>
+					<div class="statis4 posrelative" id="yearsec-waring-cover2">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<table id="yearwarnRuleLast5">
+							<tr class="title"><td>排名</td><td>预警规则</td><td>次数</td></tr>
+							<!-- <tr class="content"><td>Last1</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last2</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last3</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last4</td><td>冷冻供水温度过高</td><td>21</td></tr>
+							<tr class="content"><td>Last5</td><td>冷冻供水温度过高</td><td>21</td></tr> -->
+						</table>
+					</div>
+					
+				</div>
+				<!-- </div> -->
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei" id="signalFailure">
+					<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						报警类型分布图
+					</div>
+					<div class="main2">
+						<div class="main2_img">
+							<div class="main2-type" id="yeartype"></div>
+							<div class="main2-circle">
+								<div class="position50">
+									<span class="main2-num" id="yearrulesnum">--</span>
+									<span class="main2-rule" id="yearrules">报警规则</span>
+								</div>
+							</div>
+							<div class="legend_circle">
+								<span><em class="legend_circle_fang bgBlue"></em>设备故障 <em id="yearDev" class="colorWh">--</em>条</span>
+								<span><em class="legend_circle_fang bgGreen"></em>离线报警 <em id="yearLix" class="colorWh">--</em>条</span>
+								<span><em class="legend_circle_fang bgSky"></em>规则报警 <em id="yearXin" class="colorWh">--</em>条</span>
+							</div>
+							<!-- <div class="div_rules" id="rules2">
+								<div class="title">评分规则：</div>
+								<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br/> 最低分为 0 分，无负数的分数。</div>
+							</div> -->
+						</div>
+						<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					</div>
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei">
+					<!-- <div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div> -->
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备故障排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+						<!-- <span class="legend_pub fr"><em class="icon_line red1_legend_pub"></em><em class="font">设备故障</em></span> -->
+						<!-- <span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em class="font">系统预警</em></span> -->
+					</div>
+					<div id="yearAlarmRank1" class="main3">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6 height100 posrelative">
+				<div class="hei66w49l1 layui-col-md6 backgroundGray hd-hei2">
+					<div class="layui-col-md12" id="meanRepairTime" style="height: 50%;">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							平均预警修复时间
+							<!-- <div class="control_btn">
+								单位：min
+							</div> -->
+							<!-- <span class="legend_pub fr"><em class="icon_line red1_legend_pub"></em><em class="font">设备故障</em></span> -->
+							<!-- <span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em class="font">系统预警</em></span> -->
+						</div>
+						<div class="pad10top hei10060">
+							<div id="yearmain3" class="height100">
+								<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="layui-col-md12 height50" id="waringHistory">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							系统预警历史记录
+						</div>
+						<div id="yearwaringHistoryList" class="waringHistoryList"></div>
+					</div> -->
+					<div class="layui-col-md12 height50" id="equltFaultHistory">
+						<div class="lev3title_pub">
+							<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							平均报警修复时间
+							<!-- <div class="control_btn">
+								单位：min
+							</div> -->
+						</div>
+						<div class="pad10top hei10060" style="padding-bottom: 0;">
+							<div id="yearmain5" class="height100">
+								<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+						<!-- <div class="layui-col-md5 device">
+							<div class="device-detail">
+								<i class="device-img"></i>
+								<span class="device-title">设备台数</span>
+								<span class="device-all" id="yeardevicenum">--</span>
+							</div>
+						</div>
+						<div class="layui-col-md5 device-list" id="yeardevice">
+							<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+						</div> -->
+						<!-- <div id="yearequltFaultHistoryList" class="equltFaultHistoryList"></div> -->
+					</div>
+					
+				</div>
+				<div  class="hei66w49l1 layui-col-md6 backgroundGray hd-hei2 posrelative" id="equ-detail-cover">
+					<!-- <img src="./image/statistical/leftborder.png" class="leftborder"> -->
+					<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					<div class="lev3title_pub">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备历史运行统计
+					</div>
+					<div class="statis1 deviceRunList" id="yeardeviceRunList" >
+					<!-- <div class="statis1-title">
+						<span class="width1"> 设备名称</span>
+						<span class="width1"> 设备类型</span>
+						<span class="width1"> 运行时长(h)</span>
+						<span class="width1"> 总故障次数</span>
+					</div>
+					<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					<div class="txtMarquee-top">
+						<div class="bd">
+							<ul class="infoList statis1-cont" id="deviceRunList"> 
+								 <li>  
+									<span class="width1"> 离心制冷机一号</span>
+									<span class="width1"> 离心制冷机</span>
+									<span class="width1"> 9823</span>									
+									<span class="width1"> 825</span>
+								</li>						
+							
+							 </ul>
+						</div>
+					</div> -->
+					</div>
+					
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei posrelative" id="equfaulttop5">
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						规则报警排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+					</div>
+					<div id="yearAlarmRank2" class="main4">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="hei33top1 layui-col-md6 backgroundGray hd-hei posrelative" id="maintain-equipment">
+					<div class="lev3title_pub" style="padding-bottom: 0;">
+						<img src="../../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						离线报警排行
+						<!-- <div class="control_btn">
+							单位：次
+						</div> -->
+					</div>
+					<div id="yearAlarmRank3" class="main3">
+						<div class="hd-loadmask"><img src="../../../../common/image/load.gif" class="iconimg"></div>
+					</div>
+					<!-- <div class="maintain-con">
+						<img src="./image/statistical/icon_1.png" />
+						<div>已超维修日期设备数量</div>
+						<div class="count"><span id="yearcount">--</span>台</div>
+					</div> -->
+				</div>
+			</div>
+			
+		</div>
+		<!--------近1年结束--------->
+	</body>
+</html>
+<script src="../../../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../../../common/js/hdTools.js"></script>
+<script src="../../../../common/js/public.js"></script>
+<script src="../../../../common/js/loadPng.js"></script>
+<script src="../../../../common/lib/layui/layui.js"></script>
+<script src="../../../../common/lib/echarts.min.js"></script>
+<script src="../../../../common/js/utils.js"></script>
+<script src="../../../../common/lib/echarts-liq.js"></script>
+<script src="../../../../common/js/echarsComponent.js"></script>
+<script src="../../../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../../../common/js/listRoll.js"></script>
+<script>
+	document.write('<script src="./js/securityStatistical.js?v='+version+'"><\/script>');
+</script>
+

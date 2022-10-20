@@ -1,0 +1,251 @@
+html,
+body {
+	height: 100%;
+	position: relative;
+	overflow: auto;
+}
+html {
+	background: url(../../../common/image/bghei.jpg);
+	background-size: 100% 100%;
+}
+.sc-container{
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.height66{
+	height: 67%;
+}
+.height33{
+	height: 33%;
+}
+.height100{
+	height: 100%;
+}
+.deviceStatistics{
+	padding: 0 20px;
+	height: 150px;
+	display: flex;
+	justify-content: space-between;
+}
+.deviceStatistics li{
+	flex: 1;
+	margin: 0 10px;
+	border: 1px solid rgba(19, 55, 85, 1);
+	position: relative;
+}
+.deviceStatistics li span {
+	width: 120px;
+	font-size: 18px;
+	display: block;
+	margin-left: 80px;
+	margin-top: 3px;
+}
+.deviceStatistics li img {
+	position: absolute;
+}
+.main1{
+	width: 100%;
+	height: calc(100% - 45px);
+	position: relative;
+}
+.main2{
+	border: 1px solid #133755;
+	margin: 0 20px;
+	height: calc(100% - 2px);
+	position: relative;
+	padding: 0 20px;
+}
+.main3{
+	border: 1px solid #133755;
+	margin-left: 20px;
+	margin-right: 20px;
+	height: calc(33% - 7px);
+	position: relative;
+}
+.main4{
+	height: calc(100% - 45px);
+	position: relative;
+	padding: 0 20px;
+}
+.deviceMonitor{
+	padding: 10px;
+	height: calc(100% - 20px);
+}
+.nodata{
+	width: 150px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.posi50{
+	width: 100%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	line-height: 30px;
+	color: #A5EAFF;
+}
+.legend{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	color: #A5EAFF;
+	/* padding: 0 20px; */
+}
+.legend li{
+	width: 50%;
+	padding: 10px 0;
+}
+.liEm{
+	width: 16px;
+	height: 16px;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-left: 30px;
+}
+.liSpan{
+	width: 120px;
+	display: inline-block;
+}
+.num{
+	width: 20px;
+	color: #fff;
+	display: inline-block;
+}
+.title{
+	width: auto;
+	/* height: 160px; */
+}
+.distSpan{
+	display: block;
+	text-align: center;
+}
+.devSpan{
+	display: block;
+	font-size: 18px;
+	padding-left: 10px;
+}
+.fontsize20{
+	font-size: 20px;
+}
+.fontsize24{
+	font-size: 24px;
+}
+.fontsize30{
+	font-size: 30px;
+}
+.fontsize36{
+	font-size: 36px;
+}
+.fontsize48{
+	font-size: 48px;
+}
+.total{
+	border-left: 3px solid #00FFFF;
+	height: 20px;
+	line-height: 20px;
+	font-size: 20px;
+	padding: 0 0 0 10px;
+	font-family: 'PingFang-SC-Medium';
+	margin: 10px 0;
+}
+.total_num{
+	display: block;
+	/* text-align: center; */
+	font-size: 16px;
+}
+.borderEm{
+	height: 1px;
+	background-color: #133755;
+	margin: 10px 0 20px;
+	display: block;
+}
+.textColorLightBlue{
+	color: #00FFFF;
+}
+.textColorGreen{
+	color: #48D396;
+}
+#deviceDetail .gDitem{
+	line-height: 30px;
+	background-color: rgba(24, 193, 255, .15);
+}
+.gDlie_title0,
+.gDlie_title1,
+.gDlie_title2,
+.gDlie_title3,
+.gDlie_title4,
+.gDlie_title5,
+.gDlie_title6,
+.gDlie_title7,
+.gDlie_title8,
+.gDlie_title9,
+.gDlie_title10{
+	text-align: left;
+	text-indent: 30px;
+}
+#deviceDetail .gDhang0,#deviceDetail .gDhang1{
+	line-height: 30px;
+	color: #A5EAFF;
+}
+#deviceDetail .gDDiv{
+	padding: 0 20px;
+	height: 100%;
+}
+#deviceDetail .gDlistOut{
+	height: calc(100% - 55px);
+}
+.gDhang_item0,
+.gDhang_item1,
+.gDhang_item2,
+.gDhang_item3,
+.gDhang_item4,
+.gDhang_item5,
+.gDhang_item6,
+.gDhang_item7,
+.gDhang_item8,
+.gDhang_item9,
+.gDhang_item10{
+	border: 1px solid #133755;
+	text-align: left;
+	text-indent: 30px;
+}
+.textHover{
+	background-color: transparent;
+}
+.main4 table{
+	width: 100%;
+	text-align: center;
+}
+.tableTitle{
+	background: rgba(24, 193, 255, 0.15);
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #0C3056;
+}
+.tableItem{
+	background: url(../image/stat_bg4.png) no-repeat center bottom;
+	background-size: 100% auto;
+	font-size: 14px;
+	color: #96D6FF;
+	line-height: 35px;
+}
+@media only screen and (max-width: 1800px) {
+}
+@media screen and (min-height: 900px) {
+	/*按f11但未隐藏导航模式*/
+	.tableItem{
+		line-height: 40px;
+	}
+}
+@media screen and (min-height: 1080px) {
+	/*按f11隐藏导航模式*/
+	.tableItem{
+		line-height: 50px;
+	}
+}

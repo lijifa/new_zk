@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<!-- <meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/pumpRoom.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div>
+		<div class="layui-row sc-container" id="camera-container">
+			<div class="camera camera1 cameraMove" data-flag="false"  id="camera10">
+				<i class="layui-icon layui-icon-close cameraclose"></i> 
+				<div id="camerID" style="width: 580px; height: 350px"></div>
+			</div>
+			<div class="backBtn"></div>
+			<div class="btnCenter" style="display: none; width: 450px;justify-content: space-around;">
+				<button class="btn btnBlue0" data-type="ShowHiddentPanel" data-flag="0">设备信息</button>
+				<button class="btn btnBlue1" data-type="ShowHiddentName" data-flag="0">设备名称</button>
+				<!-- <button class="btn btnOn btnYellow2" data-type="ShowHiddentJianKong" data-flag="1">视频监测</button> -->
+				<!-- <button class="btn btnBlue3" data-type="15016">安防监测</button> -->
+			</div>
+		</div>
+	</body>
+
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/TcPlayer-2.3.3.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/slideMenuNew.js"></script>
+<script type="text/javascript">
+	document.write('<script src="js/pumpRoom.js?v='+version+'"><\/script\>');
+</script>

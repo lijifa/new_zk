@@ -1,0 +1,140 @@
+.gDkong{
+	 width: 100%;
+	 min-height: 200px;
+	 max-height: 100vh;
+	 /* background-color: #000000; */
+	 position: relative;
+ }
+ .imgKong{
+	 width: 150px;
+	 height: 100px;
+	 background-image: url(../image/nodata.png);
+	 background-position: center;
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 /* background-color: #000000; */
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%,-50%);
+ }
+ .gDDiv{
+	 padding: 0 0 0 10px;
+	 height: 100%;
+ }
+ .gunDong{
+	 display: flex;
+ }
+.gDitem{
+	 flex: 1;
+	 width: 100%;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 white-space: nowrap;
+ }
+ .gDlie_title0,
+ .gDlie_title1,
+ .gDlie_title2,
+ .gDlie_title3,
+ .gDlie_title4,
+ .gDlie_title5,
+ .gDlie_title6,
+ .gDlie_title7,
+ .gDlie_title8,
+ .gDlie_title9,
+ .gDlie_title10{
+	 flex: 1;
+	 text-align: center;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 white-space: nowrap;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 white-space: nowrap;
+	 color: rgba(255,255,255,1);
+	/* display: flex;
+	 align-items: center;
+	 justify-content: center; */
+ }
+ .gDlistOut{
+	 width: 100%;
+	 min-height: 100px;
+	 display: flex;
+ }
+ .gDlistIn{
+	 width: 100%;
+ }
+ .gDhang0,
+ .gDhang1,
+ .gDhang2,
+ .gDhang3,
+ .gDhang4,
+ .gDhang5,
+ .gDhang6,
+ .gDhang7,
+ .gDhang8,
+ .gDhang9,
+ .gDhang10{
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 color: #0ac5f5;
+ }
+ .gDhang_item0,
+ .gDhang_item1,
+ .gDhang_item2,
+ .gDhang_item3,
+ .gDhang_item4,
+ .gDhang_item5,
+ .gDhang_item6,
+ .gDhang_item7,
+ .gDhang_item8,
+ .gDhang_item9,
+ .gDhang_item10{
+	 flex: 1;
+	 text-align: center;
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 white-space: nowrap;
+	 display: inline-block;
+	/* align-items: center;
+	 justify-content: center; */
+ }
+ /* 状态标志 */
+ .gDimg{
+	 /* flex: 1; */
+	 /* display: flex; */
+	 /* align-items: center; */
+	 /* justify-content: center; */
+	 vertical-align: middle;
+	 display: inline-block;
+ }
+ .gDtext{
+	 /* flex: 1; */
+	 /* display: flex; */
+	 /* align-items: center; */
+	 /* justify-content: center; */
+	 /* width: 50%; */
+	 text-align: center;
+	 display: inline-block;
+	 /* float: left; */
+ }
+.textHover{
+	background: rgba(255,255,255,0.1);
+}
+.tempWrap{
+	width: 100%;
+}
+.textRed{
+	color: #FF4343;
+}
+/* test 间隔样式 */
+/* .gDhang0 .gDhang_item2{
+	background-color: #eeeeee;
+}
+.gDhang1 .gDhang_item2{
+	background-color: #eeeeee;
+} */

@@ -1,0 +1,92 @@
+html, body{
+	height: 100%;
+}
+body{
+	color: #A5EAFF!important;
+}
+
+.videotitle{
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	transform: translate(-50%,0);
+	width: 600px;
+	height: 65px;
+	text-align: center;
+	color: #A5EAFF;
+	z-index: 1;
+	background-image: url(../../../common/image/dabiaoti1.png);
+	background-size: 100% 100%;
+}
+.videotitle .tit{
+	line-height: 30px;
+}
+.videotitle .cont{
+	font-size: 20px;
+	padding-top: 10px;
+	color: #00ffff;
+}
+.videoCover{
+	width: 300px;
+	padding-left: 15px;
+    height: 47px;
+	line-height: 47px;
+    background: #3D3D3D;
+    position: absolute;
+    top: 0;
+    left: 0;
+	color: #fff;
+}
+.camera{
+	left: 1400px;
+	top: 280px;
+}
+.btn{
+	width: 120px;
+	height: 120px;
+	background-size: 100% 100%;
+	cursor: pointer;
+	position: absolute;
+	left: 60px;
+	bottom: 70px;
+}
+.stateBg{
+	width: 160px;
+	height: 40px;
+	position: absolute;
+	left: 40px;
+	bottom: 70px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	background-size: 100% 100%;
+	background-image: url(/common/image/stopBg.png);
+	text-align: center;
+}
+.stateBd{
+	width: 160px;
+	height: 40px;
+	position: absolute;
+	left: 40px;
+	bottom: 20px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	background-size: 100% 100%;
+	background-image: url(/common/image/stopBg.png);
+	text-align: center;
+}
+@media screen and (min-height: 995px) {
+}
+@media screen and (min-height: 1080px) {
+}
+
+/* 竖屏 */
+
+@media screen and (orientation: portrait) and (max-width: 720px) {
+}
+
+/* 横屏 */
+
+@media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 998px) {
+}

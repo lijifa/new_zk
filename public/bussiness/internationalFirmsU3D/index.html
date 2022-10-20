@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<!-- <meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="/common/css/errorAlert.css">
+		<link rel="stylesheet" href="/common/css/camera.css">
+		<script>
+			document.write('<script src="../../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/internationalFirmsU3D.css?v='+version+'"/>');
+		</script>
+	</head>
+	<script>
+		// window.onerror = function(){
+		// 	 return true;
+		// }
+	</script>
+	<body class="layui-layout-body">		
+		<div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div>
+		<!-- <div class="videotitle mobile_videotitle">
+			<div class="cont">华德智慧能源持续运营中</div>
+		</div> -->
+		<div class="layui-row sc-container" id="camera-containerIF">
+			<!-- <div class="camera camera1 cameraMove" data-flag="false"  id="camera1">
+				<i class="layui-icon layui-icon-close cameraclose"></i> 
+				<div id="camerID1" style="width: 580px; height: 350px"></div>
+			</div> -->
+			<!-- <button class="btn_shouqi" id="btn_shouqi_leftbar" data-status="show">收起</button> -->
+			<!-- <button class="btn_shouqi" id="btn_shouqi_rightbar" data-status="show">收起</button> -->
+			<!-- <div class="div_rules">
+				<div class="title">评分规则：</div>
+				<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br/> 最低分为 0 分，无负数的分数。</div>
+			</div> -->
+			<!-- <div class="pop_fault" id="pop_fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+			</div> -->
+			<!-- <div class="waringfaultlist" id=""> 
+				<div id="waringfaultlist"></div>
+			</div> -->
+			<!-- <div class="leftbar sildebar scrollbar">	
+				<div class="lev1title_pub">
+					<span class="titfont">机房安全</span>
+					<div class="line"></div>
+					<img src="./image/icon_wen.png" class="btn_rules"/>					
+				</div>
+				<div class="compre_sort clear">
+					<span class="span1 yellow1_pub"> 
+						<video src="../../common/image/video/yellow.mp4" class="video" muted="true" loop="true" autoplay="true" width="80px" height="80px"></video><br/>
+						<span>当前预警(<em id="realWarnRuleCount">--</em>)</span>
+					</span>
+					<div class="cont">
+						<video src="./image/pingfen.mp4" class="video" muted="true" loop="true" autoplay="true" width="130px" style="position: absolute; z-index: -1;left: 90px;"></video>
+						<span id="safetyScore" class="score">--</span>
+						安全综合评分
+					</div>
+					<span class="span2 red1_pub">
+						<video src="../../common/image/video/red.mp4" class="video" muted="true" loop="true" autoplay="true" width="80px" height="80px"></video><br/>
+						<span>当前报警(<em id="realAlarmCount">--</em>)</span>
+					</span>
+				</div>
+				<div class="lev2title_pub"><span class="yellow1_pub">系统预警平均修复时间</span></div>
+				<ul class="equpro">
+					<li><span><em id="currentDay">--</em>min</span>当日</li>
+					<li><span><em id="currentMonth">--</em>min</span>当月</li>
+					<li><span><em id="lastMonth">--</em>min</span>上月</li>
+				</ul>
+				<div class="lev2title_pub"><span class="red1_pub">设备报警平均修复时间</span></div>	
+				<ul class="equpro">
+					<li><span><em id="EqucurrentDay">--</em>min</span>当日</li>
+					<li><span><em id="EqucurrentMonth">--</em>min</span>当月</li>
+					<li><span><em id="EqulastMonth">--</em>min</span>上月</li>
+				</ul>			
+				<div class="lev2title_pub">信号状态</div>
+				<ul class="equpro marbot2">
+					<li><span><em id="signalcount">--</em></span>信号总数</li>
+					<li><span><em id="signaloffline">--</em></span>离线信号</li>
+					<li><span><em class="red1_pub" id="signalfault">--</em></span>故障信号</li>
+					
+				</ul>
+				<div class="lev1title_pub">
+					<span class="titfont">监控覆盖</span>
+					<div class="line"></div>
+				</div>
+				<div class="control clear">
+					<div id="controlCount" class="controlCount">100%</div>
+					<div class="tips_font">监控覆盖率</div>
+					<div class="control_chars fl" id="control_chars"></div>
+					<div class="fr control_sm">
+						<span class="legend_pub"><em class="icon blue1_legend_pub"></em><em class="font">影像监控</em></span><br/>
+						<span class="legend_pub"><em class="icon blue2_legend_pub"></em><em class="font">系统监控</em></span><br/>
+						<span class="legend_pub"><em class="icon green1_legend_pub"></em><em class="font">设备监控</em></span>
+					</div>
+					<div class="clear">
+						<ul class="evaluation">
+							<li class="lose">
+								<img src="./image/control_icon2.png" />
+								消防设施：<b>缺失</b>
+							</li>
+							<li>
+								<img src="./image/control_icon1.png" />							
+								消防设施：<b>健全</b>
+							</li>						
+						</ul>
+					</div>
+				</div>
+				
+			</div> -->
+			<!-- <div class="rightbar sildebar scrollbar">
+				<div class="lev1title_pub">
+					<span class="titfont">能耗分析</span>
+					<div class="line"></div>
+				</div>
+				<div class="lev2title_pub"><span>当日能耗费用（元）</span></div>
+				<ul class="equpro">
+					<li class="wid50_pub"><span><em id="dayenergyCost">--</em></span>当日能耗费用</li>
+					<li class="wid50_pub"><span><em id="daycostQuota">--</em></span>当日费用计划</li>
+				</ul>
+				<div class="lev2title_pub"><span>当月能耗费用（元）</span></div>
+				<ul class="equpro">
+					<li class="wid50_pub"><span><em id="monthenergyCost">--</em></span>当月能耗费用</li>
+					<li class="wid50_pub"><span><em id="monthcostQuota">--</em></span>当月费用计划</li>
+				</ul>
+				<ul class="energyfx">
+					<li>
+						<div class="lev2title">当日水电气总能耗</div>
+						<div class="energyfx-con">
+							<span id="energyStaticsallSum">--</span>
+							标准煤(kgce)
+						</div>
+					</li>
+					<li>
+						<div class="lev2title">当日冷热总能耗</div>
+						<div class="energyfx-con">
+							<span id="energyStaticsenergy">--</span>
+							卡(cal)
+						</div>
+					</li>
+				</ul>
+				<div class="lev2title_pub clear">
+					<span>当日供回水温度</span>
+					<span class="legend_pub fr"><em class="icon_line green1_legend_pub"></em><em class="font">回水</em></span>
+					<span class="legend_pub fr"><em class="icon_line blue1_legend_pub"></em><em class="font">供水</em></span>
+					<span class="legend_pub fr"><em class="icon_line yellow1_legend_pub"></em><em class="font">室外</em></span>
+				</div>
+				<div id="temp_echars"  class="selectInsideTemperatureCurve">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+				</div>
+				<div class="lev2title_pub clear">
+					<span>当日机房COP</span>
+					<span class="legend_pub fr">
+						<em class="icon_line blue1_legend_pub"></em><em class="font">COP</em>
+						<em class="icon_line red3_legend_pub"></em><em class="font">标准值</em>
+					</span>
+				</div>
+				<div id="cop_echars" class="realSystemCop">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+				</div>
+			</div> -->
+			<!-- <div class="humidityTemp">
+				<div class="l-firstbar">
+					<div class="item">
+						<img src="../../../common/image/humidity.gif" /><br />
+						室外温度<br />
+						<span class="yellow1_pub"><em id="temperature">--</em>℃</span>
+					</div>
+					<div class="item">
+						<img src="../../../common/image/temperature.gif" /><br />
+						室外湿度<br />
+						<span><em id="humidity">--</em>%</span>
+					</div>
+				</div>
+			</div> -->
+		</div>
+
+	</body>
+
+</html>
+<link rel="stylesheet" href="../../common/lib/swiper-5.2.0/package/css/swiper.min.css">
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/TcPlayer-2.3.3.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="../../common/lib/EZUIKit-JavaScript/ezuikit.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRoll.js"></script>
+<script src="/common/js/errorAlert.js"></script>
+<script src="/common/js/camera.js"></script>
+<script>
+	document.write('<script src="./js/internationalFirmsU3D.js?v='+version+'"><\/script>');
+</script>

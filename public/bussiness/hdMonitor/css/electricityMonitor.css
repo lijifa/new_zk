@@ -1,0 +1,123 @@
+html,
+body {
+	height: 100%;
+
+}
+
+body {
+	color: #fff;
+}
+.sc-container{
+	height: calc(100% - 70px);
+	padding-top: 70px;
+	width: 100%;
+}
+.transformer{
+	width: 100%;
+	/* padding: 0 20px; */
+	border-bottom: 1px solid #0387D7;
+}
+.transformer button{
+	display: inline-block;
+	width: 120px;
+	padding: 5px 0;
+	background-color: #16263B;
+	color: #C3E8FF;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 5px;
+	outline: none;
+	border: 1px solid #16263B;
+}
+.transformer .on{
+	/* background-color: #0C3056; */
+	color: #00FFFF;
+	border: 1px solid #00FFFF;
+}
+.transformer2{
+	width: 100%;
+	padding-top: 20px;
+}
+.transformer2 button{
+	display: inline-block;
+	width: 110px;
+	padding: 3px 0;
+	background-color: #16263B;
+	color: #C3E8FF;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 5px;
+	outline: none;
+	border: 1px solid #16263B;
+}
+.transformer2 .on{
+	/* background-color: #0C3056; */
+	color: #00FFFF;
+	border: 1px solid #00FFFF;
+}
+.controls{
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px;
+}
+.legend{
+	/* width: calc(100% - 40px);
+	line-height: 30px;
+	text-align: right;
+	padding: 0 20px;
+	position: absolute; */
+	color: #A5EAFF;
+}
+.echarts_con{
+	height: calc(100% - 30px);
+	position: absolute;
+	top: 30px;
+	width: calc(100% - 2px);
+}
+.legend span{
+	display: inline-block;
+	width: 15px;
+	height: 3px;
+	border-radius: 3px;
+	vertical-align: middle;
+}
+.legendColorLightBlue{
+	background-color: #00FFFF;
+}
+.legendColorBlue{
+	background-color:#1683FF;
+}
+.legendColorYellow{
+	background-color: #FBE945;
+}
+.legendColorGreen{
+	background-color: #48D396;
+}
+.ckboxdiv{
+	color: #A5EAFF;
+}
+.ckboxdiv input{
+	margin-right: 2px;
+	vertical-align: middle;
+}
+.ckboxdiv span{
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.electricechar{
+	height: calc(100% - 185px);
+	box-sizing: border-box;
+}
+.height100{
+	height: 100%;
+}
+#electricechar{
+	height: 100%;
+}
+.position50{
+	width: 100%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}

@@ -1,0 +1,347 @@
+html,
+body {
+	height: 100%;
+
+}
+body {
+	color: #fff;
+	/* background: url(../image/bg.png) no-repeat; */
+	/* background: url(../image/bg.jpg) no-repeat; */
+}
+.hd-con-hei {
+	height: calc(100% - 30px);
+	margin-top: 10px;
+}
+.hd-innercontent {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.backgroundGray {
+	padding: 0 10px;
+}
+.hd-title {
+	border-left: 5px solid #168FFF;
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	width: calc(100% - 25px);
+	line-height: 20px;
+	height: 20px;
+	overflow: hidden;
+}
+.hd-title span{
+	color: #A5EAFF;
+	font-weight: 400;
+	font-size: 14px;
+}
+.hd-title .title_icon {
+	width: 30px;
+	margin-top: -4px;
+}
+.textcenter {
+	text-align: center;
+}
+.red .status,
+.red .type,
+.red a {
+	color: #ff4444 !important;
+}
+.yjtongji #main,
+.yjtongji #drj_main,
+.yjtongji #mainCOP {
+	width: 100%;
+	height: 100%;
+}
+.yjtongji .left {
+	width: 150px;
+	float: left;
+}
+.yjtongji .left .title {
+	font-size: 14px;
+	text-align: left;
+	padding-top: 21%;
+}
+.yjtongji .left .title span {
+	font-size: 28px;
+	display: block;
+	padding-top: 5px;
+}
+.yjtongji .right {
+	width: calc(100% - 150px);
+	float: left;
+	height: 100%;
+	margin-top: 5px;
+}
+.middle-top {
+	height: 73%;
+}
+.middle-bottom {
+	height: 27%;
+}
+.colorWh {
+	color: #A5EAFF;
+}
+.backgroundLightGray {
+}
+.ene {
+	width: 100%;
+	height: 40%;
+	display: flex;
+	justify-content: space-around;
+}
+.eneItem {
+	flex: 1;
+}
+.eneItemImg {
+	width: 50px;
+	float: left;
+	padding-left: 10px;
+}
+.eneItemText {
+	float: left;
+	width: calc(100% - 70px);
+	padding-left: 10px;
+}
+.eneItem img {
+	margin-top: 5px;
+}
+.marginTop {
+	margin-top: 5px;
+}
+.eneItem span {
+	color: #A5EAFF;
+	display: block;
+	font-size: 14px;
+}
+.temperToday img {
+	float: left;
+}
+.temperToday .title {
+	padding: 5px 0;
+}
+.sc-container {
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.widthAndMargin {
+	width: 33%;
+	height: calc(100% - 20px);
+	margin: 0 0 0 1%;
+}
+.hiddenTroubleEchars {
+	height: 100%;
+}
+.watermonitoring{
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	flex-wrap: wrap;
+	height: 100%;
+	color: #A5EAFF;
+	font-size: 16px;
+}
+.watermonitoring .left{
+	width: 160px;
+	height: 170px;
+	background: url(../image/autowaterspray/img1.png);
+	background-size: 100% 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.watermonitoring .left .count{
+	font-size: 36px;
+	margin-top: 10px;
+}
+.watermonitoring .right{
+	height: 170px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	flex: 1;
+	padding-left: 10px;
+}
+.colblue{
+	color: #00FFFF;
+}
+.watermonitoring .right .item{
+	padding: 25px 20px;
+	background: url(../image/autowaterspray/img2.png);
+	background-size: 100% 100%;
+}
+.watermonitoring .right .item .count{
+	font-size: 20px;
+	margin: 0 5px;
+}
+
+.watertest{
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	flex-wrap: wrap;
+	height: 100%;
+	color: #A5EAFF;
+	font-size: 16px;
+}
+.watertest .left{
+	width: 160px;
+	height: 170px;
+	text-align: center;
+}
+.watertest .left .leftfont{
+	padding-top: 20px;
+	width: 122px;
+	margin: 0 auto;
+	
+}
+.watertest .left .leftfont .count{
+	color: #fff;
+	font-weight: bold;
+}
+.watertest .right{
+	height: 170px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	flex: 1;
+	padding-left: 10px;
+}
+.watertest .right .item{
+	padding: 15px 0;
+	border-bottom: 1px solid #37557B;
+}
+.watertest .right .item:last-child{
+	border-bottom: 0;
+}
+.watertest .right .item .count{
+	color: #fff;
+	font-weight: bold;
+}
+.watertest .right .item .type{
+	font-weight: bold;
+	font-size: 20px;
+	color: #00FFFF;
+	display: block;
+	padding-top: 5px;
+}
+.waringtype{
+	display: flex;
+    justify-content: space-between;
+    align-content: space-around;
+    flex-wrap: wrap;
+    height: 100%;
+    color: #A5EAFF;
+    font-size: 16px;
+}
+.waringtype .left{
+	width: 140px;
+	height: 110px;
+	text-align: center;
+	position: relative;
+}
+.waringtype .left .waringtypechars{
+	width: 100%;
+	height: 100%;	
+}
+.waringtype .left .fonts{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: 50%;
+	left: 0;
+	transform: translate(0,-50%);
+}
+.waringtype .right{
+	height: 110px;
+	width: 140px;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	flex: 1;
+	padding-left: 10px;
+}
+.waringtype .right .count{
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+	margin: 0 5px;
+	font-style: normal;
+}
+.lefttoptitle{    
+	position: absolute;
+    top: -15px;
+    left: 20px;
+}
+.lefttopimg{
+	max-width: 95%;
+	height: 100%;
+	margin-top: 15px;
+	display: block;
+	margin: 0 auto;
+}
+.rightcount{
+	font-size: 22px;
+	margin-right: 5px;
+}
+.red{
+	color: #FF4444!important;
+}
+.yellow{
+	color: #FFB72C!important;;
+}
+.pop{
+	width: 350px;
+	height: 130px;
+	position: absolute;
+	display: none;
+	padding: 10px 30px 10px 10px;
+	background-image: url(../../../common/image/faultRight.png);
+	background-size: 100% 100%;
+}
+/*自定义动画类----顺时针旋转（使用这个动画的时候才设置动画执行时间）*/
+@-webkit-keyframes changeright {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+/*自定义动画类----逆时针旋转（使用这个动画的时候才设置动画执行时间）*/
+@-webkit-keyframes changeleft {
+
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+
+	50% {
+		-webkit-transform: rotate(-180deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(-360deg);
+	}
+}
+@media only screen and (min-width: 1800px) {
+}
+@media screen and (min-height: 980px) {
+	.eneItem img {
+		margin-top: 20px;
+	}
+	.marginTop {
+		margin-top: 15px;
+	}
+}
+@media screen and (min-height: 1080px) {
+	.eneItem img {
+		margin-top: 25px;
+	}
+	.marginTop {
+		margin-top: 20px;
+	}
+}

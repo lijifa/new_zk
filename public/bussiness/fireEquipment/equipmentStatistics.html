@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/animated.css">
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/equimentStatistics.css"/> -->
+		<script type="text/javascript">
+			document.write('<script language="javascript" src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/equipmentStatistics.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="../../../common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="设备统计"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md12 height66">
+				<div class="layui-col-md6 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备寿命临期统计（近30天）
+					</div>
+					<ul class="deviceStatistics">
+						<li style="margin-left: 0;">
+							<div class="posi50" style="width: auto;">
+								<img src="image/red.png">
+								<span>待维修设备</span>
+								<span style="color: #FF4444;"><em class="fontsize30" id="expiredDdevice">--</em>
+									台</span>
+							</div>
+						</li>
+						<li>
+							<div class="posi50" style="width: auto;">
+								<img src="image/yellow.png">
+								<span>临期设备</span>
+								<span style="color: #FFB72C;"><em class="fontsize30" id="provisionalEquipment">--</em>
+									台</span>
+							</div>
+						</li>
+						<li style="margin-right: 0;">
+							<div class="posi50" style="width: auto;">
+								<img src="image/blue.png">
+								<span>更换设备</span>
+								<span><em class="fontsize30" id="replacementDevice">--</em> 台</span>
+							</div>
+						</li>
+					</ul>
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备故障统计（近30天）
+						<!-- <div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+						单位：次
+					</div> -->
+						<!-- <span class="legend_pub fr">
+						<em class="icon lineIcon" style="background-color:#00FFFF"></em>
+						<em class="font" style="color:#00FFFF">低谷电量</em>
+					</span> -->
+					</div>
+					<div class="main1" id="faultStatistics" style="height: calc(100% - 230px);">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="layui-col-md4 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备故障系统分布（近30天）
+					</div>
+					<div class="main1">
+						<div class="main2">
+							<div class="layui-col-md6 height66">
+								<div class="layui-col-md12 height100" id="faultDistributed"></div>
+								<div class="posi50 title">
+									<span class="distSpan fontsize20"><em class="fontsize48 textColorLightBlue"
+											id="total">--</em> 条</span>
+									<span class="distSpan fontsize20">故障总数</span>
+								</div>
+							</div>
+							<div class="layui-col-md6 height66">
+								<div class="posi50" style="width: auto;">
+									<div class="total">已恢复数量</div>
+									<span class="total_num"><em class="fontsize36 textColorLightBlue"
+											id="restorations">--</em> 条</span>
+									<em class="borderEm"></em>
+									<div class="total">恢复率</div>
+									<span class="total_num"><em class="fontsize36 textColorLightBlue"
+											id="restorationsLV">--</em> %</span>
+								</div>
+							</div>
+							<div class="layui-col-md12 height33">
+								<!-- <div class="posi50"> -->
+								<ul class="legend">
+									<li><em class="liEm" style="background-color: #168FFF;"></em><span
+											class="liSpan">火灾自动报警系统</span><em class="num" id="fire">--</em> 次</li>
+									<li><em class="liEm" style="background-color: #48D396;"></em><span
+											class="liSpan">消防给水监控系统</span><em class="num" id="fireFighting">--</em> 次
+									</li>
+									<li><em class="liEm" style="background-color: #00FFFF;"></em><span
+											class="liSpan">自动喷水灭火系统</span><em class="num" id="sprayWater">--</em> 次</li>
+									<li><em class="liEm" style="background-color: #6B95DE;"></em><span
+											class="liSpan">消火栓监控系统</span><em class="num" id="fireHydrant">--</em> 次</li>
+									<li><em class="liEm" style="background-color: #FCAA6E;"></em><span
+											class="liSpan">防火分区监控系统</span><em class="num" id="firePrevention">*-</em> 次
+									</li>
+									<li><em class="liEm" style="background-color: #E8D36F;"></em><span
+											class="liSpan">智能应急疏散系统</span><em class="num"
+											id="smergencyEvacuation">--</em> 次</li>
+								</ul>
+								<!-- </div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md2 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备监测（近30天）
+					</div>
+					<div class="main1">
+						<div class="main3">
+							<div class="layui-col-md6 height100">
+								<div class="deviceMonitor" id="deviceMonitor1"></div>
+								<div class="posi50 title">
+									<span class="distSpan textColorLightBlue"><em class="fontsize36"
+											id="per1">--</em>%</span>
+								</div>
+							</div>
+							<div class="layui-col-md6 height100">
+								<div class="posi50">
+									<span class="devSpan">设备完好率</span>
+									<span class="devSpan fontsize30"><em id="device1">--</em></span>
+									<span class="devSpan">/<em id="total1">--</em></span>
+								</div>
+							</div>
+							<!-- <div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div> -->
+						</div>
+						<div class="main3" style="margin-top: 10px;">
+							<div class="layui-col-md6 height100">
+								<div class="deviceMonitor" id="deviceMonitor2"></div>
+								<div class="posi50 title">
+									<span class="distSpan textColorLightBlue"><em class="fontsize36"
+											id="per2">--</em>%</span>
+								</div>
+							</div>
+							<div class="layui-col-md6 height100">
+								<div class="posi50">
+									<span class="devSpan">设备在线率</span>
+									<span class="devSpan fontsize30"><em id="device2">--</em></span>
+									<span class="devSpan">/<em id="total2">--</em></span>
+								</div>
+							</div>
+						</div>
+						<div class="main3" style="margin-top: 10px;">
+							<div class="layui-col-md6 height100">
+								<div class="deviceMonitor" id="deviceMonitor3"></div>
+								<div class="posi50 title">
+									<span class="distSpan textColorLightBlue"><em class="fontsize36"
+											id="per3">--</em>%</span>
+								</div>
+							</div>
+							<div class="layui-col-md6 height100">
+								<div class="posi50">
+									<span class="devSpan">故障误报率</span>
+									<span class="devSpan fontsize30"><em id="device3">--</em></span>
+									<span class="devSpan">/<em id="total3">--</em></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md12 height33">
+				<div class="layui-col-md3 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						系统报警前5名（近30天）
+					</div>
+					<div class="main4">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						<table id="faultTop">
+							<tr class="tableTitle">
+								<td>排名</td>
+								<td>报警位置</td>
+								<td>次数</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="layui-col-md3 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						故障设备前5名（近30天）
+					</div>
+					<div class="main4">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						<table id="deviceTop">
+							<tr class="tableTitle">
+								<td>排名</td>
+								<td>故障设备</td>
+								<td>次数</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="layui-col-md3 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						消防隐患原因前5名（近30天）
+						<!-- <div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+						单位：次
+					</div> -->
+					</div>
+					<div class="main4" id="fireFight">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="layui-col-md3 height100">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备故障恢复时间统计（近30天）
+						<!-- <div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+						单位：次
+					</div> -->
+					</div>
+					<div class="main4" id="recoverTime">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<!-- <div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				临期设备详情
+			</div> -->
+				<!-- <div class="main1" id="deviceDetail">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+			</div> -->
+			</div>
+		</div>
+	</body>
+
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<!-- <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<!-- <script src="../../common/lib/wodry-master/dist/jquery-1.9.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script> -->
+<!-- <script src="../../common/lib/countadd.js"></script> -->
+<!-- <script src="../../common/lib/tagcloud.js"></script> -->
+<!-- <script src="http://www.jq22.com/jquery/jquery-ui-1.10.2.js"></script> -->
+<!-- <script type="text/javascript" src="../../common/lib/wodry-master/dist/jquery.fullPage.js"></script> -->
+<!-- <script src="../../common/lib/wodry-master/dist/bootstrap.min.js"></script> -->
+<!-- <script src="../../common/lib/wodry-master/dist/wodry.min.js"></script> -->
+<!-- <script src="../../common/js/loadPng.js"></script> -->
+
+<!-- <script src="../../common/js/public.js"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="../../common/js/public.js?r=' + Math.random() + '"><\/script>');
+</script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<!-- <script src="js/equimentStatistics.js"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="js/equipmentStatistics.js?v=' + version + '"><\/script>');
+</script>

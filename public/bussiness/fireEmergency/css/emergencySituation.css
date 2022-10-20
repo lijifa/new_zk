@@ -1,0 +1,187 @@
+html,
+body {
+	height: 100%;
+	position: relative;
+	overflow: auto;
+}
+html {
+	background: url(../../../common/image/bghei.jpg);
+	background-size: 100% 100%;
+}
+.sc-container{
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.hei-sc{
+	height: calc(100% - 5px);
+	padding: 10px;
+	color: #A5EAFF;
+}
+.height100{
+	height: 100%;
+}
+.padding10{
+	height: calc(100% - 4px);
+	border: 2px solid #0C3056;
+}
+.titleBar{
+	width: 500px;
+	margin: 10px auto;
+	margin-bottom: 0;
+}
+.lev1title_pub{
+	line-height: 30px;
+	height: 30px;
+}
+.bgTil{
+	background: url(../../../common/image/title_blue.png);
+	background-size: 100% 100%;
+	text-align: center;
+}
+.system{
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px 0;
+}
+.system li{
+	flex: 1;
+	height: 100%;
+	position: relative;
+}
+.posi50{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.posi50 span{
+	display: block;
+	font-size: 16px;
+}
+.icon{
+	width: 120px;
+	height: 50px;
+	padding: 0 0 0 55px;
+	position: relative;
+}
+.iconBack{
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	top: 2px;
+	left: 0px;
+	/* transform: translate(0,-50%); */
+	/* background-image: url(../image/dian1.png); */
+	background-size: 100% 100%;
+}
+.iconBack1{
+	width: 41px;
+	height: 48px;
+}
+.icon1{
+	width: 120px;
+}
+.img{
+	height: calc(100% - 370px);
+	max-height: 480px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 20px 20px;
+}
+.deviceLi{
+	height: 220px;
+}
+.fontsize24{
+	font-size: 24px!important;
+}
+.fontsize16{
+	font-size: 16px!important;
+}
+.main1{
+	height: calc(100% - 40px);
+	position: relative;
+	padding: 0 10px 0 0;
+}
+.nodata{
+	width: 150px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.gDDiv{
+	padding: 0;
+	height: 100%;
+}
+.gDitem{
+	line-height: 30px;
+}
+.gDlistOut{
+	height: calc(100% - 40px);
+	line-height: 30px;
+}
+.gDlie_title0,
+.gDlie_title1,
+.gDlie_title2,
+.gDlie_title3,
+.gDlie_title4,
+.gDlie_title5,
+.gDlie_title6,
+.gDlie_title7,
+.gDlie_title8,
+.gDlie_title9,
+.gDlie_title10{
+	/* text-align: left; */
+	/* text-indent: 10px; */
+	border: 1px solid #000;
+	background-color: rgba(28, 135, 229, .2);
+}
+.gDhang_item0,
+.gDhang_item1,
+.gDhang_item2,
+.gDhang_item3,
+.gDhang_item4,
+.gDhang_item5,
+.gDhang_item6,
+.gDhang_item7,
+.gDhang_item8,
+.gDhang_item9,
+.gDhang_item10{
+	color: #A5EAFF;
+	/* text-align: left; */
+	/* text-indent: 10px; */
+}
+.textHover{
+	background-color: transparent;
+}
+.gDlistOut li:nth-child(even){
+	background-color: rgba(28, 135, 229, .1);
+}
+.gDlistOut li:nth-child(odd){
+	background-color: transparent;
+}
+.gDlistOut .jiShu li:nth-child(odd){
+	background-color: rgba(28, 135, 229, .1);
+}
+.gDlistOut .jiShu li:nth-child(even){
+	background-color: transparent;
+}
+@media only screen and (max-width: 1800px) {
+}
+@media screen and (min-height: 900px) {
+	/*按f11但未隐藏导航模式*/
+}
+@media screen and (min-height: 1050px) {
+	/*按f11隐藏导航模式*/
+	.titleBar{
+		margin-top: 20px;
+		margin-bottom: 40px;
+	}
+	.img{
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<!-- <link rel="stylesheet" href="./css/videoMonitoring.css"> -->
+		<script type="text/javascript">
+			document.write('<script language="javascript" src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/videoMonitoring.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="../../../common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="视频监控"></div>
+		<div class="layui-row sc-container">
+			<div class="mask"></div>
+			<div class="cameraMove">
+				<i class="layui-icon layui-icon-close cameraclose"></i> 
+				<div id="id_test_video" style="height: 100px;"></div>
+			</div>
+			<div class="lev3title_pub">
+				<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+				<span id="moneryEnergyTitle">监控详情</span>
+				<div class="btnParent">
+					<div class="btn on" data-id="0">监控列表</div>
+					<div class="btn" data-id="1">平面展示</div>
+				</div>
+			</div>
+			<ul class="padlf20 tab-content" id="tabContent">
+				<li>
+					<div class="list" id="transformerMonitor">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</li>
+				<li style="display: none;">
+					<div class="transformer2">
+						<button data-index="0">地下一层</button>
+						<button data-index="1" class="on">一层平面图</button>
+						<button data-index="2">二层平面图</button>
+						<button data-index="3">三层平面图</button>
+						<button data-index="4">四层平面图</button>
+						<button data-index="5">五层平面图</button>
+						<button data-index="6">六层平面图</button>
+						<button data-index="7">七层平面图</button>
+						<button data-index="8">八层平面图</button>
+						<button data-index="9">九层平面图</button>
+						<button data-index="10">十层平面图</button>
+						<button data-index="11">十一层平面图</button>
+					</div>
+					<div class="floor floor0" id="floor0">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor0.png" class="img_big" />
+								<img src="image/videoyellow.png" class="video video1"
+									data-videourl="http://hls.open.ys7.com/openlive/022d5b4c54cb41d09fff77ab729566d9.m3u8" />
+								<img src="image/videoyellow.png" class="video video2"
+									data-videourl="http://hls01open.ys7.com/openlive/4f04bd17f05849239d62239caec9d1de.m3u8" />
+							</div>
+							<span class="textPosi">华德广场地下一层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+
+					</div>
+					<div class="floor floor1" id="floor1" style="display: block;">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor1.png" class="img_big" />
+								<img src="image/videoyellow.png" class="video video1"
+									data-videourl="http://hls01open.ys7.com/openlive/4f04bd17f05849239d62239caec9d1de.m3u8" />
+								<img src="image/videoyellow.png" class="video video2"
+									data-videourl="http://hls01open.ys7.com/openlive/79730c87fc7d431eab224e48ef9bb9fc.m3u8" />
+							</div>
+							<span class="textPosi">华德广场一层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+
+					</div>
+					<div class="floor floor2" id="floor2">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor2.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场二层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor3" id="floor3">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor3.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场三层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor4" id="floor4">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor4.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场四层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor5" id="floor5">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场五层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor6" id="floor6">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场六层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor7" id="floor7">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场七层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor8" id="floor8">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场八层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor9" id="floor9">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场九层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor10" id="floor10">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场十层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+					<div class="floor floor11" id="floor11">
+						<div class="floorinit">
+							<div class="floor_img posrelative">
+								<img src="image/floor5.png" class="img_big" />
+							</div>
+							<span class="textPosi">华德广场十一层平面图</span>
+							<img src="image/floor1_small.png" class="img_small" />
+						</div>
+					</div>
+
+				</li>
+
+			</ul>
+
+		</div>
+		
+	</body>
+
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<!-- <script src="../../common/js/public.js"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="../../common/js/public.js?r=' + Math.random() + '"><\/script>');
+</script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/js/utils.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRoll.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="./js/TcPlayer-2.3.3.js" charset="utf-8"></script>
+<!-- <script src="https://cloudcache.tencent-cloud.com/open/qcloud/video/vcplayer/TcPlayer-2.3.3.js" charset="utf-8"></script> -->
+<script type="text/javascript">
+	document.write('<script language="javascript" src="js/videoMonitoring.js?v=' + version + '"><\/script>');
+</script>

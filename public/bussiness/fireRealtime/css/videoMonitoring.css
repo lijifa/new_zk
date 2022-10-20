@@ -1,0 +1,218 @@
+.sc-container{
+	user-select: none;
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.mask{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.2);
+	display: none;
+	position: absolute;
+	z-index: 2;
+}
+.cameraclose{
+	position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    background: #403f3f;
+    text-align: center;
+	z-index: -111;
+	display: none;
+	z-index: 2;
+}
+.cameraMove{
+	width: 580px;
+	height: 350px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 2;
+}
+.btnParent{
+	float: right;
+	overflow: hidden;
+}
+.btnParent .btn{
+	width: 120px;
+	float: left;
+	font-size: 14px;
+	color: #A5EAFF;
+	text-align: center;
+	line-height: 28px;
+	font-weight: 400;
+	margin-left: 10px;
+	background-color: #16263B;
+	cursor: pointer;
+	border: 1px solid #16263B;
+}
+.btnParent .on{
+	color: #00FFFF;
+	background-color: #0C3056;
+	border: 1px solid #00FFFF;
+}
+.tab-content{
+	padding-top: 10px;
+	height: calc(100% - 100px);
+}
+.tab-content li{
+	height: 100%;
+}
+.transformer2{
+	width: 100%;
+	/* padding-top: 20px; */
+}
+.transformer2 button{
+	display: inline-block;
+	width: 110px;
+	padding: 3px 0;
+	background-color: #16263B;
+	color: #C3E8FF;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 5px;
+	outline: none;
+	border: 1px solid #16263B;
+}
+.transformer2 .on{	
+	background: #0C3056;
+	color: #00FFFF;
+	/* border: 1px solid #00FFFF; */
+}
+.floor{
+	height: calc(100% - 20px);
+	position: relative;
+	display: none;
+}
+.floorinit{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.floor_img{
+	width: 1350px;
+}
+.floor_img .img_big{
+	width: 100%;
+}
+.img_small{
+	position: absolute;
+	right: 0;
+	bottom: 5px;
+	height: 120px;
+}
+.floor .video{
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
+}
+.floor0 .video1{
+	left: 36%;
+    top: 10%;
+}
+.floor0 .video2{
+	left: 43%;
+    top: 13%;
+}
+.floor1 .video1{
+	right: 9%;
+	top: 0;
+}
+.floor1 .video2{
+	right: 1%;
+    bottom: 24%;
+}
+.layui-layer{
+	background-color: transparent!important;
+	
+}
+
+
+.list{
+	height: calc(100% - 50px);
+	position: relative;
+}
+#transformerMonitor>.gDDiv, #switchMonitor>.gDDiv{
+	padding: 0;
+	height: 100%;
+}
+ .gDlie_title0, .gDlie_title1, .gDlie_title2, .gDlie_title3, .gDlie_title4, .gDlie_title5{
+	line-height: 28px;	
+	background: rgba(24, 193, 255, 0.15);
+	/* border: 1px solid #00FFFF; */
+	border-right: 1px solid #133755;
+}
+.gDhang_item0, .gDhang_item1,.gDhang_item2, .gDhang_item3,.gDhang_item4,.gDhang_item5{
+	line-height: 36px;
+	color: #c3e8ff;
+}
+.gDlistIn {
+    border-left: 1px solid #133755;
+    box-sizing: border-box;
+}
+.gDlistOut{
+	height: calc(100% - 30px);
+}
+.gDtext img{
+	width: 16px;
+	height: 16px;
+}
+.gDDiv li{
+	border-bottom: 1px solid #133755;
+}
+.gDDiv li>div{
+	border-right: 1px solid #133755;
+}
+.gDitem{
+	border-top: 1px solid #133755;
+    border-left: 1px solid #133755;
+	border-bottom: 1px solid #133755;
+}
+/* .gDDiv li:nth-child(odd){
+	background-color: rgba(37, 248, 255, .1);
+} */
+/* .gDDiv li:nth-child(odd) .gDhang_item1, .gDDiv li:nth-child(odd) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .2);
+} */
+.gDDiv .jiShu li:nth-child(even){
+	background-color: rgba(37, 248, 255, .1);
+}
+.gDDiv .jiShu li:nth-child(odd){
+	background-color: transparent;
+}
+.gDDiv .jiShu li:nth-child(even) .gDhang_item1,.gDDiv .jiShu li:nth-child(even) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .2);
+}
+.gDDiv .jiShu li:nth-child(odd) .gDhang_item1,.gDDiv .jiShu li:nth-child(odd) .gDhang_item3{
+	background-color: transparent;
+}
+.gDtext img{
+	cursor: pointer;
+}
+.textHover{
+	background-color: rgba(24, 193, 255, .1);
+}
+.textPosi{
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #00FFFF;
+	font-size: 18px;
+}
+@media screen and (min-height: 1050px) {
+	.floor_img {
+		width: 1650px;
+	}
+}
+

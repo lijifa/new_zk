@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css" />
+		<link rel="stylesheet" href="../../common/css/animated.css" />
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<script type="text/javascript">
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script type="text/javascript">
+			document.write('<link rel="stylesheet" href="./css/project.css?v='+version+'">')
+		</script>
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="innerheader mobile_title" id="innerheader" data-title="项目驾驶舱"></div>
+		<img src="../../common/image/beiing130.jpg" class="image-bg" />
+		<div class="videotitle mobile_videotitle">
+			<!-- <div class="tit">运行策略</div> -->
+			<div class="cont">华德智慧能源持续运营中</div>
+			<!-- <img src="./image/title_video_point.png" class="point"/> -->
+		</div>
+		<div class="layui-row sc-container" id="container">
+			<!-- <img src="./image/2dbg.png" style="width: 100%;height: 100%;" /> -->
+			<div class="projectInfo">
+				<div class="projectInfoItem projectAddress">
+					<span><em id="address">--</em></span>
+				</div>
+				<div class="projectInfoItem projectType">
+					<span><em id="projectTypeName">--</em></span>
+				</div>
+				<div class="projectInfoItem projectArea">
+					<span><em id="constructionArea">--</em>万㎡建筑面积</span>
+				</div>
+			</div>
+			<!-- <div class="left-Bar mobile_none">
+				<div class="btn-bar">
+					<img src="./image/icon_img5.png" />					
+					<div class="title">
+						<span id="provinceName">--</span>
+						<span id="address">--</span>
+					</div>
+					<div class="hide" id="provinceNamedetails">项目位置</div>
+				</div>
+				<div class="btn-bar">
+					<img src="./image/icon_img6.png" />
+					<div class="title" id="projectTypeName">--</div>
+					<div>项目类型</div>
+				</div>
+				<div class="btn-bar">
+					<img src="./image/icon_img7.png" />
+					<div class="title"><em id="constructionArea">--</em>万㎡</div>
+					<div>建筑面积</div>
+				</div>
+			</div> -->
+			<div class="bottombar mobile_none">
+				<div class="layui-col-md5 height100 paddingR5">
+					<div class="frosted-glass">
+						<div class="lev3title_pub">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							<span id="moneryEnergyTitle">费用统计</span>
+							<div class="control_btn">
+									<span class="on" data-type="monery11">费用</span>
+									<span class="" data-type="energy11">能耗</span>
+							</div>
+						</div>	
+						<div class="layui-col-md3 height100 energy-comp heightCal">
+							<div class="monery11">
+								<div class="energy-comp-per">
+									<div class="instructions"><span class="nowYear">--</span>年节费率</div>
+									<em id="energySectionFeeRateCurrentYear">--</em>%
+								</div>
+							</div>
+							<div class="hide energy11">
+								<div class="energy-comp-per">
+									<div class="instructions"><span class="nowYear">--</span>年节能率</div>
+									<em id="everySavingRateCurrentYear">--</em>%
+								</div>
+							</div>
+						</div>
+						<div class="layui-col-md9 height100 heightCal">
+							<ul class="energy_statis">
+								<div class="monery11">
+									<li>
+										<img src="./image/icon_img1.png" />
+										<div class="title">去年能耗费用</div>
+										<div class="cont"><span id="energyCostLastYear">--</span>万元</div>
+									</li>
+									<li>
+										<img src="./image/icon_img2.png" />
+										<div class="title">今年能耗费用计划</div>
+										<div class="cont"><span id="energyCostIndicatorsCurrentYear">--</span>万元</div>
+									</li>
+									
+									<li>
+										<img src="./image/icon_img4.png" />
+										<div class="title">今年能耗费用</div>
+										<div class="cont"><span id="energyCostCurrentYear">--</span>万元</div>
+									</li>
+								</div>
+								<div class="hide energy11">
+									<li>
+										<img src="./image/icon_img1.png" />
+										<div class="title">去年能耗总量</div>
+										<div class="cont"><span id="energyLastYear">--</span>标准煤(tce)</div>
+									</li>
+									<li>
+										<img src="./image/icon_img2.png" />
+										<div class="title">今年能耗指标</div>
+										<div class="cont"><span id="energyIndicatorsCurrentYear">--</span>标准煤(tce)</div>
+									</li>
+									
+									<li>
+										<img src="./image/icon_img4.png" />
+										<div class="title">今年能耗总量</div>
+										<div class="cont"><span id="energyCurrentYear">--</span>标准煤(tce)</div>
+									</li>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md4 height100 paddingR5">
+					<div class="frosted-glass">
+						<div class="lev3title_pub">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							运营成本分析
+						</div>
+						<div class="layui-col-md5 operating2">
+							<!-- <video src="./image/yunying.mp4" muted="true" loop="true" autoplay="true" class="video"></video>
+							<div class="operating-money">
+								<em>90</em>万
+							</div>
+							<div class="operating-instructions">维修费用下降</div> -->
+							<div class="energy-comp-per">
+								<div class="instructions">设备维修费用</div>
+								<em>70</em>万元
+							</div>
+						</div>
+						
+						<div class="layui-col-md7">
+							<div class="operating operating-mal">
+								<span class="fl">传统模式：</span>
+								<span class="fr"><em>25</em>人</span>
+							</div>
+							<img src="./image/person1.png" class="operating-mal" />
+							<div class="operating operating-mal">
+								<span class="fl">华德智慧：</span>
+								<span class="fr"><em>6</em>人</span>
+							</div>
+							<img src="./image/person2.png" class="operating-mal" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-col-md3 height100 hd-hei3 paddingR5">
+					<div class="frosted-glass">
+					  <div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						项目设备说明
+					  </div>
+					  <div class="equip_shuoming">
+						  <div>
+							  <img src="./image/xue1.png"> 供冷：<span>由水源热泵机组+单冷机组供应 </span>
+						  </div>
+						   <div>
+							  <img src="./image/taiyang1.png"> 供热：<span>由水源热泵机组+锅炉(调峰)供应</span>
+						  </div>
+						   <div>
+							  <img src="./image/fenshan1.png"> 末端：<span>由风机盘管+新风系统组成</span>
+						  </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="buttomIcon" id="buttomIcon">
+				<i class="layui-icon layui-icon-down"></i>
+			</div>
+		</div>
+		<div class="switch-page bg1" id="switchpagebtn"></div>
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/config.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/slideMenuNew.js"></script>
+<script>
+	// document.write('<script src="./js/project.js?v='+version+'"><\/script>');
+	document.write('<script src="./js/progectU3D.js?v='+version+'"><\/script>');
+</script>

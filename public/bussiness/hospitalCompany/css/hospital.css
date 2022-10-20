@@ -1,0 +1,466 @@
+html,
+body {
+	height: 100%;
+}
+
+html {
+	background: url(../image/bg.jpg);
+	background-size: 100% 100%;
+}
+
+/* body {
+	background: url(../image/circle.png) center center;
+	background-size: 90% auto;
+	font-size: 16px;
+	color: #A5EAFF!important;
+} */
+body {
+	/* background: url(../image/circle.png) center center no-repeat; */
+	background-size: 43% auto;
+	font-size: 16px;
+	color: #A5EAFF !important;
+}
+.red{
+	color: red;
+}
+.green {
+	color: #18D991;
+}
+
+.blue {
+	color: #0A93FF;
+}
+
+.blue2 {
+	color: #00FFFF;
+}
+
+.yellow {
+	color: #FF830A;
+}
+
+.yellow2 {
+	color: #FBEA46;
+}
+
+.hd-title {
+	color: rgba(165, 234, 255, 1);
+
+	z-index: 10;
+	left: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	width: calc(100% - 20px);
+	background: linear-gradient(90deg, rgba(9, 147, 255, 0.3) 0%, rgba(9, 147, 255, 0.01) 100%);
+	line-height: 27px;
+}
+
+.hd-title .title_icon {
+	width: 30px;
+	margin-top: -4px;
+}
+
+.sildebar {
+	position: absolute;
+	top: 30px;
+	/* width: 500px; */
+	height: calc(100% - 110px);
+	/* background:rgba(2,12,76,0.6); */
+	/* border-radius: 5px; */
+	/* border:1px solid #4f7bac; */
+}
+
+.leftbar {
+	left: 10px;
+	/* width: 30%; */
+	z-index: 1;
+}
+
+.rightbar {
+	right: 10px;
+	/* width: 30%; */
+	z-index: 1;
+	width: 600px;
+}
+
+/* 县医院页面CSS */
+.icuBox {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+}
+
+.boxLeft {
+	display: flex;
+    flex-direction: column;
+    width: 340px;
+	height: 90%;
+    justify-content: space-around;
+    padding: 0 14px;
+}
+
+.boxLeft .itemBox {
+	width: 100%;
+    min-height: 200px;
+    font-size: 14px;
+    line-height: 24px;
+}
+.leftImg_1 {
+	text-align: center;
+	margin-top: 10px;
+}
+.leftImg_1 img{
+	width: 270px;
+}
+.leftImg_2 {
+	/* margin-top: 10px; */
+	display: flex;
+	justify-content: space-around;
+}
+.leftImg_2 .leftIcon img{
+	width: 80px;
+	/* margin-right:20px; */
+}
+.leftImg_3 {
+	display: flex;
+	justify-content: space-around;
+	/* margin-top: 10px; */
+}
+.leftImg_3 .leftIcon img{
+	width: 80px;
+	/* margin-right:20px; */
+}
+.leftImg_4 {
+	text-align: center;
+	/* margin-top: 10px; */
+}
+.leftImg_4 img{
+	width: 270px;
+}
+
+
+
+.boxLeft .leftItem {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	color: #1EE4E7;
+	font-size: 14px;
+}
+
+.boxLeft .leftItem .leftItemVal {
+	font-size: 24px;
+}
+
+.boxLeft .lineBox {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	display: flex;
+    justify-content: center;
+}
+.boxLeft .hd-legend {
+    padding-top: 3px;
+    z-index: 1;
+    position: absolute;
+	right: 20px;
+	top: 5px;
+	font-size: 14px;
+}
+.boxLeft .hd-legend em {
+    width: 14px;
+    height: 3px;
+    border-radius: 5px;
+	margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.boxLeft .inOutWaterTemperature {
+	width: 90%;
+    height: 240px;
+	margin: 30px 10px 10px;
+}
+
+#inOutWaterTemperature {
+	width: 410px;
+	height: 200px;
+}
+.boxCenter {
+	text-align: center;
+}
+.boxLeft .waterLevelBox {
+	width: 80%;
+	margin: 10px;
+	
+    height: 240px;
+    position: relative;
+
+    display: flex;
+}
+
+.boxLeft .waterLevelValue {
+    height: 280px;
+    width: 50px;
+    color: #19d1ff;
+    text-align: center;
+    position: relative;
+    top: 10px;
+	left: 0;
+	font-size: 14px;
+}
+
+.boxLeft #waterLevel {
+    width:320px;
+	height: 270px;
+	position: absolute;
+	left: -10px;
+    top: -18px;
+}
+
+.boxMiddel {
+	position: relative;
+	width: 60%;
+	height: 100%;
+}
+
+.boxRight {
+	display: flex;
+	flex-direction: column;
+	width: 340px;
+	height: 90%;
+    justify-content: space-around;
+}
+.tagcloud { position: relative; margin-top:40px; }
+.tagcloud a{ position: absolute;  top: 0; left: 0;  display: block; /* padding: 10px 10px; */
+ width: 40px;
+ height: 40px;
+ padding: 25px;
+ text-align: center;
+ color: #fff;  /* border: 1px solid #e6e7e8; */ border-radius: 100%; /* background-color: #f2f4f8; */
+ text-decoration: none; white-space: nowrap;
+ /* -o-box-shadow: 6px 4px 8px 0 rgba(151,142,136,.34);
+  -ms-box-shadow: 6px 4px 8px 0 rgba(151,142,136,.34);
+  -moz-box-shadow: 6px 4px 8px 0 rgba(151,142,136,.34);
+  -webkit-box-shadow: 6px 4px 8px 0 rgba(151,142,136,.34);
+  box-shadow: 6px 4px 8px 0 rgba(151,142,136,.34);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Shadow(Strength=4,Direction=135, Color='#000000')";/*兼容ie7/8*/
+  /*filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=125, Strength=9); */
+  /*strength是阴影大小，direction是阴影方位，单位为度，可以为负数，color是阴影颜色 （尽量使用数字）使用IE滤镜实现盒子阴影的盒子必须是行元素或以行元素显示（block或inline-block;）*/
+}
+.boxRight .font1{color: #00FFFF!important;font-size: 14px!important;}
+.boxRight .font2{color: #0ACDFF!important;font-size: 24px!important;}
+.boxRight .font3{color: #FF830A!important;font-size: 20px!important;}
+.boxRight .font4{color: #f5ef2e!important;font-size: 22px!important;}
+.boxRight .font5{color: #47D395!important;font-size: 18px!important;}
+.boxRight .font6{color: #47D395!important;font-size: 16px!important;}
+.boxRight .font7{color: #0ACDFF!important;font-size: 12px!important;}
+
+.boxRight .itemBox {
+	width: 100%;
+    min-height: 200px;
+    color: #1EE4E7;
+    font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 20px;
+}
+
+.boxRight .itemBox .tagcloudBox {
+	width: 300px;
+	height: 200px;
+	background: url(../imageCompany/com-tagrge.png) no-repeat center center;
+	background-size: 260px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.r3-cont{
+	background: url(../imageCompany/r-sanjiao.png) no-repeat center top;
+    height: 170px;
+    background-size: 100% 100%;
+    width: 360px;
+	margin: 0 auto;
+	position: relative;
+}
+.countBox{
+	width: 100%;
+	height: 43px;
+	text-align: center;
+	background-image: url(../imageCompany/zongrenshu.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	margin: 14px 0;
+	line-height: 40px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.r3-cont span{
+	position: absolute;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	display: block;
+	
+}
+.r3-cont .leader{
+	top: 30%;
+    left: 13%;
+    color: #050C13;
+    width: 21%;
+}
+.r3-cont .runworker{
+	top: 30%;
+    left: 35%;
+    width: 25%;
+}
+.r3-cont .guyworker{
+    top: 30%;
+    right: 16%;
+    width: 25%;
+}
+
+.rightDevBox {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 14px;
+}
+.boxRight .itemBox .devItem {
+	width: 150px;
+	height: 80px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1EE4E7;
+    font-size: 16px;
+	background-image: url(../imageCompany/r-shebeikuang.png);
+	background-size: 100% 100%;
+	text-align: center;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.rightItemBox {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	height: calc(100% - 105px);
+	margin-top: 14px;
+}
+.boxRight .rightItem {
+	display: flex;
+    align-items: center;
+    background-image: url(../imageHospital/defbg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 280px;
+	height: 130px;
+	color: #A5EAFF;
+	justify-content: center;
+	align-items: center;
+    margin-bottom: 20px;
+}
+.boxRight .rightItemErr {
+    background-image: url(../imageHospital/errbg.png);
+}
+.boxRight .rightItemOff {
+    background-image: url(../imageHospital/offline.png);
+}
+
+.boxRight .rightItem .itemImg {
+	margin-right: 14px;
+}
+.boxRight .rightItem .statusIcon {
+	width: 16px;
+	margin-right: 8px;
+}
+.boxRight .rightItem .itemText_1 {
+	margin-bottom: 10px;
+	width: 112px;
+	
+}
+.boxRight .rightItem .itemText_2 {
+	font-size: 14px;
+}
+@media only screen and (max-width: 1800px) {
+	.sildebar {
+		top: 33px;
+	}
+
+	.l-fourthbar li .count {
+		height: 85px;
+		line-height: 85px;
+	}
+
+	.myImageHolder {
+		position: absolute;
+		top: 0;
+		z-index: -1;
+		width: 700px;
+		height: 700px;
+		left: 50%;
+		top: 50%;
+		margin-left: -350px;
+		margin-top: -350px;
+	}
+}
+/* @media screen and (min-height: 995px) { */
+@media screen and (min-height: 900px) {
+	/*按f11但未隐藏导航模式*/
+	.sildebar{
+		height: calc(100% - 40px);
+	}
+	.l-secondbar{
+		height: 300px;
+	}
+	.l-secondbar ul li{
+		padding: 10px 0;
+	}
+	.l-thirdbar {
+		height: 370px;
+	}
+	.commonbar2 ul li{
+		line-height: 65px;
+		height: 65px;
+	}
+	.r-secondbar {
+		height: 375px;
+	}
+	.energyEfficiencybar ul li{
+		 padding-top: 42px;
+	}
+	.commonbar ul li {
+		line-height: 64px;
+		height: 64px;
+	}
+	.commonbar ul li img{
+		margin: 21px 25px 0;
+	}
+	/* .image-bg {
+		width: 110%;	
+		height: 110%;
+	} */
+}
+/* @media screen and (min-height: 1080px) { */
+@media screen and (min-height: 1000px) {
+	/*按f11隐藏导航模式*/
+	.l-firstbar{
+	   margin-top: 30px;
+	}
+	.r-firstbar{
+	   margin-top: 40px;
+	}
+	.r-secondbar{
+	   margin-top: 20px;
+	}
+}
+#title-project{
+	display: none;
+}
+#title-site{
+	display: none;
+}

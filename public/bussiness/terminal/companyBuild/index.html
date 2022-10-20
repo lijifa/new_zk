@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Huade_2018.3.6f1</title>
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				/* background: #444; */
+			}
+
+			#gameContainer {
+				width: 100vw;
+				height: 100vh;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.logo {
+				display: block;
+				width: 100vw;
+				height: 100vh;
+				/* max-width: 80vw;
+				max-height: 60vh; */
+			}
+
+			.progress {
+				margin: 1.5em;
+				border: 1px solid #02a7fe;
+				width: 30vw;
+				display: none;
+				position: absolute;
+				bottom: 1em;
+				left: 50%;
+				margin-left: -15vw;
+			}
+
+			.progress .full {
+				margin: 2px;
+				background: #02a7ce;
+				height: 0.1em;
+				transform-origin: top left;
+			}
+
+			#loader {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.spinner,
+			.spinner:after {
+				border-radius: 50%;
+				width: 5em;
+				height: 5em;
+			}
+
+			.spinner {
+				margin: 10px;
+				font-size: 10px;
+				position: relative;
+				text-indent: -9999em;
+				border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-left: 1.1em solid #ffffff;
+				transform: translateZ(0);
+				animation: spinner-spin 1.1s infinite linear;
+			}
+
+			@keyframes spinner-spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+
+	<body style="overflow: hidden;">
+		<div id="gameContainer"></div>
+		<div id="loader">
+			<img class="logo" src="logo.png">
+			<div class="spinner"></div>
+			<div class="progress">
+				<div class="full"></div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../common/lib/jquery-3.2.1.js"></script>
+	<script src="Build/UnityLoader.js"></script>
+	<script src="../../../common/js/u3dTools.js"></script>
+	<script>
+		var u3dObj = new U3DTools('gameContainer', {
+			"jsonPath":"Build/Build.json",
+			"completeCallback": completeCallback,
+			"doneTime": 2000
+		})
+    	var gameInstance = u3dObj.createUnity()
+		// 回调函数
+		function completeCallback(gameInstance){
+			parent.terminal.u3dinit(gameInstance);
+			console.log("商务区末端回调")
+			// var objName = 'site-002';
+			// var objName = sessionStorage.layuiId;
+			var objName =parent.layuiId;
+			window.onunload = function(){
+				// top.unregisterListener(objName);//销毁
+			}
+			 gameInstance.SendMessage("CameraMgr", "SetU3dPageId", objName);
+			// top.registerListener(objName, function(e){
+			// 	console.log("来自商务区末端页面"+e)
+			// 	gameInstance.SendMessage("CameraMgr", "ControlU3DCamera", e);
+			// });//注册
+		}
+		// function Log(str) {
+		// 	console.log(str)
+		// }
+		// var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Build.json", {
+		// 	onProgress: UnityProgress
+		// });
+		// var canvas;
+
+		// function UnityProgress(gameInstance, progress) {
+		// 	if (!gameInstance.Module) {
+		// 		return;
+		// 	}
+		// 	const loader = document.querySelector("#loader");
+		// 	if (!gameInstance.progress) {
+		// 		const progress = document.querySelector("#loader .progress");
+		// 		progress.style.display = "block";
+		// 		gameInstance.progress = progress.querySelector(".full");
+		// 		loader.querySelector(".spinner").style.display = "none";
+		// 		canvas = document.getElementById("#canvas");
+		// 	}
+
+		// 	gameInstance.progress.style.transform = `scaleX(${progress})`;
+		// 	if (progress === 1 && !gameInstance.removeTimeout) {
+		// 		gameInstance.removeTimeout = setTimeout(function() {
+		// 			loader.style.display = "none";
+		// 			parent.terminal.u3dinit(gameInstance);
+		// 		}, 2000);
+		// 	}
+
+		// }
+		// /*鼠标变小手开始*/
+		// var pointerDiv = document.getElementById("#pointer");
+		// var defaultDiv = document.getElementById("#default");
+		// //修改鼠标指针为手型
+		// function ChangeMouse2Pointer(arg0) {
+		// 	if (canvas) {
+		// 		canvas.style.cursor = pointerDiv.style.cursor;
+		// 	}
+		// }
+		// //修改鼠标指针为默认
+		// function ChangeMouse2Default(arg0) {
+		// 	if (canvas) {
+		// 		canvas.style.cursor = defaultDiv.style.cursor;
+		// 	}
+		// }
+		// /*鼠标变小手结束*/
+		//楼层切换,floor代表楼层 u3d对应的楼名称
+		function enterFloor(floor) {
+			// top.window.enterFloor(floor);
+			parent.terminal.enterFloor(floor);
+		}
+	</script>
+
+</html>

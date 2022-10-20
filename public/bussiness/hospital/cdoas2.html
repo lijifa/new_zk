@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="/common/css/generalStyle.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" href="../../common/css/listRoll.css" />
+		<link rel="stylesheet" href="/common/css/rank.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/cdoas2.css?v=' + version + '"/>');
+		</script>
+	</head>
+
+	<body class="layui-layout-body">
+		<img src="../../common/image/bghei.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="净化系统驾驶舱" style="min-height: 70px;"></div>
+		</div>
+		<div class="firstDiv">
+			<div class="leftTitle">
+				<div class="leftItem itemActive">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU1</div>
+				</div>
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU2</div>
+				</div>
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU3</div>
+				</div>
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU4</div>
+				</div>
+			</div>
+
+			<div class="rightTitle">
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU5</div>
+				</div>
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU6</div>
+				</div>
+				<div class="leftItem">
+					<div class="text1">净化系统演示图</div>
+					<div class="text2">AHU7</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="divSpace"></div>
+		<div class="secondDiv">
+			<div class="pipeDiv">
+				<div class="tip_1" style="min-width: 160px;top: -90px;left: 48px;">
+					<div>回风温度：<span id="temperatureText" style="color: rgba(255, 131, 10, 1);">--</span> <em>℃</em></div>
+					<div>回风湿度：<span id="humidityText" style="color: rgba(77, 152, 255, 1);">--</span> <em>%</em></div>
+				</div>
+				<div class="tip_2" style="min-width: 120px;right: 540px;top: 80px;">
+					电加热：--
+				</div>
+				<div class="tip_3" style="min-width: 120px;right: 390px;top: 80px;">
+					加湿器：--
+				</div>
+				<!-- <div class="tip_4" style="min-width: 150px;right: 960px;top: 370px;">
+					初效过滤器：<img src="./imageIcu/statusStart.png" />运行
+				</div> -->
+				<div class="tip_5" style="min-width: 150px;right: 880px;top: 80px;">
+					初/中效过滤器：--
+				</div>
+				<!-- <div class="tip_6" style="min-width: 120px;right: 700px;top: 370px;">
+					表冷器：<img src="./imageIcu/statusStart.png" />运行
+				</div> -->
+				<div class="tip_7" style="min-width: 120px;right: 230px;top: 370px;">
+					风机：--
+				</div>
+				<img class="pipebg" src="./imageIcu/purify1.png" />
+				<div class="fs_ok" style="top: 240px;right: 316px;"></div>
+			</div>
+		</div>
+
+		<div class="divSpace"></div>
+		<div class="layui-col-md12 footerSty">
+			<div class="layui-col-md3 height100">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					系统实时状态
+				</div>
+				<div class="container flexRow">
+					<div class="flexItem" style="width: 50%;">
+						<img src="image/fgw.png">
+						<div style="padding-left: 10px;">
+							<div class="customTitle">
+								回风温度
+							</div>
+							<div class="customNum" id="temp">
+								--
+							</div>
+							<div class="customUnit">
+								℃
+							</div>
+						</div>
+					</div>
+					<div class="flexItem" style="width: 50%;">
+						<img src="image/fgs.png">
+						<div style="padding-left: 10px;">
+							<div class="customTitle">
+								回风湿度
+							</div>
+							<div class="customNum" id="hum">
+								--
+							</div>
+							<div class="customUnit">
+								%
+							</div>
+						</div>
+					</div>
+					<div class="flexItem">
+						<img src="image/sf.png">
+						<div style="padding-left: 10px;">
+							<div class="customTitle">
+								送风机
+							</div>
+							<div class="customUnit" id="state1">
+								--
+							</div>
+						</div>
+					</div>
+					<div class="flexItem">
+						<img src="image/jiashi.png">
+						<div style="padding-left: 10px;">
+							<div class="customTitle">
+								加湿器
+							</div>
+							<div class="customUnit" id="state2">
+								--
+							</div>
+						</div>
+					</div>
+					<div class="flexItem">
+						<img src="image/jr.png">
+						<div style="padding-left: 10px;">
+							<div class="customTitle">
+								电加热
+							</div>
+							<div class="customUnit" id="state3">
+								--
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 height100">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日实时温度
+					<div class="legend">
+						<em style="background-color: #3BD5FC;"></em><span style="color: #3BD5FC;">室外温度</span>
+					</div>
+				</div>
+				<div class="container" id="temperature">
+					<img src="/common/image/load.gif" class="load">
+				</div>
+			</div>
+			<div class="layui-col-md3 height100">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					近30天报警类型分布
+				</div>
+				<div class="container flexRow">
+					<div class="height100" style="flex: 1;position: relative;">
+						<div id="alarmType" class="height100"></div>
+						<div class="posi50">
+							<div style="font-size: 28px;" id="countNum">0</div>
+							<div>报警总数</div>
+						</div>
+					</div>
+					<div class="height100" style="flex: 1;position: relative;" id="errorHtml">
+						<div class="posi50">
+							<div class="flexRow">
+								<em class="legendBox" style="background-color: #624BD3;"></em><span
+									class="legendName">送风机故障</span><span class="legendNum">0</span><em
+									class="legendUnit">次</em>
+							</div>
+							<div class="flexRow">
+								<em class="legendBox" style="background-color: #0084FF;"></em><span
+									class="legendName">电再热过热</span><span class="legendNum">0</span><em
+									class="legendUnit">次</em>
+							</div>
+							<div class="flexRow">
+								<em class="legendBox" style="background-color: #00D8EB;"></em><span
+									class="legendName">防冻报警</span><span class="legendNum">0</span><em
+									class="legendUnit">次</em>
+							</div>
+							<div class="flexRow">
+								<em class="legendBox" style="background-color: #00F1AB;"></em><span
+									class="legendName">过滤阻塞报警</span><span class="legendNum">0</span><em
+									class="legendUnit">次</em>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 height100">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					近30天报警恢复时间排行
+					<span class="unit">单位：min</span>
+				</div>
+				<div class="container" id="alarmTime" style="height: calc(100% - 55px);">
+					<img src="/common/image/load.gif" class="load">
+				</div>
+			</div>
+		</div>
+		<div id="box1" class="loadingBox"></div>
+	</body>
+	<script src="../../common/lib/wodry-master/dist/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+	<script src="../../common/js/public.js"></script>
+	<script src="../../common/lib/layui/layui.js"></script>
+	<script src="../../common/lib/echarts.min.js"></script>
+	<script src="../../common/lib/countadd.js"></script>
+	<script src="../../common/lib/tagcloud.js"></script>
+	<script src="../../common/js/loadPng.js"></script>
+	<script src="../../common/js/utils.js"></script>
+	<script src="../../../common/js/echarsComponent.js"></script>
+	<script src="../../common/lib/jquery.liMarquee.js"></script>
+	<script src="../../common/js/listRollNew.js"></script>
+	<script src="/common/js/rank.js"></script>
+	<script>
+		document.write('<script language="javascript" src="../../common/js/myTools.js?v=' + version + '"><\/script\>');
+		document.write('<script language="javascript" src="js/cdoas2.js?v=' + version + '"><\/script\>');
+	</script>
+</html>

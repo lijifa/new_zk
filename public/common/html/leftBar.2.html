@@ -1,0 +1,426 @@
+<div class="layui-side-scroll publicborder">
+	<img src="./common/image/topleft.png" class="topleft" />
+	<img src="./common/image/topright.png" class="topright" />
+	<img src="./common/image/bottomleft.png" class="bottomleft" />
+	<img src="./common/image/bottomright.png" class="bottomright" />
+	<div class="control-bar">
+		<ul class="control-tab">
+			<li class="on"><i class="layui-icon layui-icon-align-center"></i></li>
+			<li><i class="layui-icon layui-icon-rate"></i></li>
+		</ul>
+		<!-- <i class="layui-icon layui-icon-search"></i> -->
+		<div class="layui-clear"></div>
+	</div>
+	<!-- <div class="search-bar">
+		<input type="text" class="searchinput" />
+		<i class="layui-icon layui-icon-close"></i>
+	</div>
+	<div class="search-cover">
+		<ul class="layui-nav layui-nav-tree">
+			<li class="layui-nav-item">
+				<a data-url="./bussiness/demo/index.map.html" data-id="company-home" data-title="国际企业社区项目"
+					class="site-demo-active" href="javascript:;" data-type="tabAdd" title="公司首页">国际企业社区项目<i
+						class="layui-icon layui-icon-star"></i> </a>
+			</li>
+		</ul>
+	</div> -->
+	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+	<ul class="layui-nav layui-nav-tree" id="menu">
+		<!-- <li class="layui-nav-item">
+			<a href="javascript:void(0);"><span class="zhanwei"></span>华德智慧</a>
+			<dl class="layui-nav-child">
+				<dd>
+					<a href="javascript:;" class="site-demo-active" data-url="./bussiness/company/index.html"
+						data-id="hdzh-home" data-title="企业总览" data-type="tabAdd" title="企业总览">
+						<img src="./common/image/icon2.png" class="nav-icon1" />
+						企业总览<i class="layui-icon layui-icon-star"></i>
+					</a>
+				</dd>
+			</dl>
+		</li> -->
+		<!-- <li class="layui-nav-item">
+			<a href="javascript:void(0);"><span class="zhanwei"></span>光合谷项目</a>
+			<dl class="layui-nav-child">
+				<dd>
+					<a href="javascript:;" class="site-demo-active" data-url="./bussiness/project/index.html"
+						data-id="project-management" data-title="项目总览" data-type="tabAdd" title="项目总览">
+						<img src="./common/image/icon2.png" class="nav-icon1" />
+						项目总览<i class="layui-icon layui-icon-star"></i>
+					</a>
+				</dd>
+				<dd>
+					<a href="javascript:void(0);"><span class="zhanwei"></span>暖通系统</a>
+					<dl class="layui-nav-child hd-thirdnav">
+						<dt data-name="AreaManagement" style="">
+							<a data-url="./bussiness/monitoring/index.html" data-id="site-1" data-title="光合谷站"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="光合谷站">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								光合谷站
+							</a>
+							<a data-url="./bussiness/monitoring/index.html" data-id="site-2" data-title="国际社区站"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="国际社区站">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								国际社区站
+							</a>
+
+						</dt>
+					</dl>
+				</dd>
+
+			</dl>
+		</li> -->
+
+		<!-- <li class="layui-nav-item">
+			<a href="javascript:void(0);"><span class="zhanwei"></span>光合谷站</a>
+			<dl class="layui-nav-child">
+				<dd>
+					<a href="javascript:;" class="site-demo-active" data-url="./bussiness/monitoring/index.html"
+						data-id="site-management" data-title="站点驾驶舱" data-type="tabAdd" title="站点驾驶舱">
+						<img src="./common/image/icon2.png" class="nav-icon1" />
+						站点驾驶舱<i class="layui-icon layui-icon-star"></i>
+					</a>
+				</dd>
+				<dd>
+					<a href="javascript:void(0);"><span class="zhanwei"></span>实时运行</a>
+					<dl class="layui-nav-child ">
+						<dt data-name="AreaManagement" style="">
+							<a data-url="./bussiness/404/404.html" data-id="yunxing-shishi" data-title="运行实时监控"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="运行实时监控">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								运行实时监控
+							</a>
+						<dd class="padl20">
+							<a href="javascript:void(0);"><span class="zhanwei"></span>运行驾驶舱</a>
+							<dl class="layui-nav-child ">
+								<dt data-name="AreaManagement" style="">
+									<a data-url="./bussiness/screennew/project-index.html" data-id="jiankong-sy"
+										data-title="水源系统监控" class="site-demo-active" href="javascript:;"
+										data-type="tabAdd" title="水源系统监控">
+										<img src="./common/image/icon2.png" class="nav-icon1" />
+										水源系统监控
+									</a>
+									<a data-url="./bussiness/screennew/project-index-dl.html" data-id="jiankong-dl"
+										data-title="单冷系统监控" class="site-demo-active" href="javascript:;"
+										data-type="tabAdd" title="单冷系统监控">
+										<img src="./common/image/icon2.png" class="nav-icon1" />
+										单冷系统监控
+									</a>
+									<a data-url="./bussiness/screennew/project-index-gl.html" data-id="jiankong-gl"
+										data-title="锅炉系统监控" class="site-demo-active" href="javascript:;"
+										data-type="tabAdd" title="锅炉系统监控">
+										<img src="./common/image/icon2.png" class="nav-icon1" />
+										锅炉系统监控
+									</a>
+								</dt>
+							</dl>
+
+						</dd>
+
+						</dt>
+					</dl>
+
+				</dd>
+				<dd>
+					<a href="javascript:void(0);"><span class="zhanwei"></span>安全</a>
+					<dl class="layui-nav-child hd-thirdnav">
+						<dt data-name="AreaManagement" style="">
+							<a data-url="./bussiness/security/index.html" data-id="anquan-1" data-title="安全驾驶舱"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="安全驾驶舱">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								安全驾驶舱
+							</a>
+							<a data-url="./bussiness/404/404.html" data-id="anquan-2" data-title="安全统计"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="安全统计">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								安全统计
+							</a>
+						</dt>
+					</dl>
+				</dd>
+				<dd>
+					<a href="javascript:void(0);"><span class="zhanwei"></span>节能</a>
+					<dl class="layui-nav-child hd-thirdnav">
+						<dt data-name="AreaManagement" style="">
+							<a data-url="./bussiness/energySaving/index.html" data-id="jn-1" data-title="节能驾驶舱"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="节能驾驶舱">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								节能驾驶舱
+							</a>
+							<a data-url="./bussiness/404/404.html" data-id="jn-2" data-title="节能统计"
+								class="site-demo-active" href="javascript:;" data-type="tabAdd" title="节能统计">
+								<img src="./common/image/icon2.png" class="nav-icon1" />
+								节能统计
+							</a>
+						</dt>
+					</dl>
+				</dd>
+			</dl>
+		</li>
+	 --></ul>
+</div>
+<script type="text/javascript">
+	$(function(){
+		if(window.MENU_COUNT==1){
+			return;
+		}else{
+			window.MENU_COUNT=1;
+		}
+		layui.use('element', function () {
+			var element = layui.element;
+			 let obj = JSON.parse(localStorage.getItem("USER_INFO_CACHE"));
+			 var mfrsId=obj.mfrsId||15;//企业id
+				$.ajax({
+						// url: baseurl + "/wisdom/menu/selectZgMenuListAll",
+						url:hdInterface.selectZgMenuListAll,
+				 		type: "get",
+						data:{
+							"mfrsId":mfrsId
+						},
+						success: function (result) {
+							console.log("=========左侧菜单===========");
+							console.log(result);
+							if(result.code==0){
+								var resdata=result.data||[];
+								var siteMenuArr=[];//以站点为单位的菜单								
+								var str='';								
+							
+								for (var i = 0; i < resdata.length; i++) {
+									var proitem=resdata[i]||[];
+									var menuChildList=proitem.menuChildList||[];
+									menuChildList=menuChildList[0]||[];
+									var dataid=i==0?"hdzh-home":("project-management"+i);
+									var iconName=i==0?"icon-company.png":"icon-project.png";
+									str+='<li class="layui-nav-item">'+
+										'<a href="javascript:void(0);"><img src="./common/image/'+iconName+'" class="nav-icon2" />'+proitem.menuName+'</a>'+
+										'<dl class="layui-nav-child">'+
+											'<dd>'+
+												'<a href="javascript:;" class="site-demo-active" data-url="./'+(menuChildList.url||"")+'?projectId='+menuChildList.projectId+'&proname='+menuChildList.menuName+'"'+
+													'data-id="'+dataid+'" data-title="'+menuChildList.menuName+'" data-type="tabAdd" title="'+menuChildList.menuName+'">'+
+													'<img src="./common/image/icon2.png" class="nav-icon1" />'+
+													menuChildList.menuName+'<i class="layui-icon layui-icon-star"></i>'+
+												'</a>'+
+											'</dd>';
+											var menuChildList=proitem.menuChildList||[];
+											for (var j = 1; j < menuChildList.length; j++) {
+												var system=menuChildList[j];
+												str+='<dd>'+
+													'<a href="javascript:void(0);" class="navsystem"><img src="./common/image/icon-system.png" class="nav-icon1" />'+system.menuName+'</a>'+
+													'<dl class="layui-nav-child hd-thirdnav">';
+														// '<dt data-name="AreaManagement" style="">';
+															var site=system.menuChildList||[];																
+															for (var k = 0; k < site.length; k++) {
+															// for (var k = 0; k < 1; k++) {
+																var siteitem=site[k]||[];
+																var siteitemName=siteitem.menuName||'';
+																var siteId=siteitem.siteId||13;
+																var siteUrl=siteitem.url||'';
+																var menuId=siteitem.menuId||'';
+																var siteMenu=siteitem.menuChildList||[];//菜单
+																var siteMenuObj={
+																	"siteId":siteId,
+																	"siteMenu":siteMenu
+																}
+																siteMenuArr.push(siteMenuObj);																
+																str+='<dt data-name="AreaManagement" style=""><a data-url="./'+siteUrl+'?siteId='+siteId+'&proname='+proitem.menuName+'&sitename='+siteitemName+'&menuId='+menuId+'&showmenu=show" data-id="site-'+k+'" data-title="'+siteitemName+'"'+
+																		'class="site-demo-active" href="javascript:;" data-type="tabAdd" title="'+siteitemName+'">'+
+																		'<img src="./common/image/icon2.png" class="nav-icon1" />'+
+																		siteitemName+
+																		'</a></dt>';
+															}
+														// str+='</dt>'+
+													str+='</dl>'+
+												'</dd>';
+
+											}
+
+										str+='</dl>'+
+									'</li>';
+								}								
+								localStorage.setItem("siteMenuArr",JSON.stringify(siteMenuArr));								
+								$("#menu").html(str);
+								element.init();
+							}
+							else if(result.code==403) {
+								alert("权限不足")
+								location.href = "../../bussiness/login/login.html";
+							}
+						}});
+
+		})
+	});
+</script>
+<script type="text/javascript">
+
+// 	LOGIN_SUCCESS(function () {
+// 		if (window.MENU_COUNT == 1) {
+// 			return;
+// 		} else {
+// 			// 避免重复加载菜单
+// 			window.MENU_COUNT = 1;
+// 		}
+// 		layui.use('element', function () {
+// 			var element = layui.element;
+// 			$.ajax({
+// 				url: baseurl + "common/selectMenu",
+// 				type: "post",
+// 				data: {
+// 					'mfrsId': window['USER_INFO_CACHE']['mfrsId']
+// 				},
+// 				success: function (result) {
+// 					if (result['code'] !== 0) {
+// 						console.error("加载菜单异常， ", result['msg']);
+// 						return;
+// 					}
+// 					$.each(unionData(result['data']), function () {
+// 						function item(arr, that) {
+// 							var item = '';
+// 							$.each(arr, function (i) {
+// 								if (i === 0) {
+// 									item += `<dd>
+// 										<a href="javascript:;" class="site-demo-active" data-url="./bussiness/project/index.html?projectId=${that.projectId}&siteId=${this.siteId}"
+// 											data-id="${that.projectId}project-management" data-title="项目驾驶舱" data-type="tabAdd" title="项目驾驶舱">
+// 										<img src="./common/image/icon2.png" class="nav-icon1" />
+// 										项目驾驶舱<i class="layui-icon layui-icon-star"></i>
+// 										</a>
+// 									</dd>`;
+// 								}
+// 								if (this.siteId !== 13) {
+// 									item += `<dd>
+// 									<a href="javascript:void(0);"><span class="zhanwei"></span>${this.siteName}</a>
+// 									<dl class="layui-nav-child"></dl>
+// 									</dd>`;
+// 									return;
+// 								}
+// 								item += `<dd>
+// 								<a href="javascript:void(0);"><span class="zhanwei"></span>${this.siteName}</a>
+// 								<dl class="layui-nav-child">
+// 									<dd>
+// 										<a href="javascript:;" class="site-demo-active" data-url="./bussiness/monitoring/index.html?siteId=${this.siteId}"
+// 											data-id="${this.siteId}site-management" data-title="站点驾驶舱" data-type="tabAdd" title="站点驾驶舱">
+// 											<img src="./common/image/icon2.png" class="nav-icon1" />
+// 											站点驾驶舱<i class="layui-icon layui-icon-star"></i>
+// 										</a>
+// 									</dd>
+// 									<dd>
+// 										<a href="javascript:void(0);"><span class="zhanwei"></span>实时运行</a>
+// 										<dl class="layui-nav-child ">
+// 											<dt data-name="AreaManagement" style="">
+// 												<a data-url="./bussiness/realTimeMonitoring/index.html?siteId=${this.siteId}" data-id="${this.siteId}yunxing-shishi" data-title="运行实时监控"
+// 													class="site-demo-active" href="javascript:;" data-type="tabAdd" title="运行实时监控">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													运行实时监控
+// 												</a>
+// 												<a data-url="./bussiness/screennew/project-index.html?siteId=${this.siteId}" data-id="${this.siteId}jiankong-sy"
+// 													data-title="水源系统监控" class="site-demo-active" href="javascript:;"
+// 													data-type="tabAdd" title="水源系统监控">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													水源系统监控
+// 												</a>
+// 												<a data-url="./bussiness/screennew/project-index-dl.html?siteId=${this.siteId}" data-id="${this.siteId}jiankong-dl"
+// 													data-title="单冷系统监控" class="site-demo-active" href="javascript:;"
+// 													data-type="tabAdd" title="单冷系统监控">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													单冷系统监控
+// 												</a>
+// 												<a data-url="./bussiness/screennew/project-index-gl.html?siteId=${this.siteId}" data-id="${this.siteId}jiankong-gl"
+// 													data-title="锅炉系统监控" class="site-demo-active" href="javascript:;"
+// 													data-type="tabAdd" title="锅炉系统监控">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													锅炉系统监控
+// 												</a>
+// 											</dt>
+// 										</dl>
+//
+// 									</dd>
+// 									<dd>
+// 										<a href="javascript:void(0);"><span class="zhanwei"></span>安全</a>
+// 										<dl class="layui-nav-child hd-thirdnav">
+// 											<dt data-name="AreaManagement" style="">
+// 												<a data-url="./bussiness/security/index.html?siteId=${this.siteId}" data-id="${this.siteId}anquan-1" data-title="安全驾驶舱"
+// 													class="site-demo-active" href="javascript:;" data-type="tabAdd" title="安全驾驶舱">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													安全驾驶舱
+// 												</a>
+// 												<a data-url="./bussiness/security/securityStatistical.html?siteId=${this.siteId}" data-id="${this.siteId}anquan-2" data-title="安全统计"
+// 													class="site-demo-active" href="javascript:;" data-type="tabAdd" title="安全统计">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													安全统计
+// 												</a>
+// 											</dt>
+// 										</dl>
+// 									</dd>
+// 									<dd>
+// 										<a href="javascript:void(0);"><span class="zhanwei"></span>节能</a>
+// 										<dl class="layui-nav-child hd-thirdnav">
+// 											<dt data-name="AreaManagement" style="">
+// 												<a data-url="./bussiness/energySaving/index.html?siteId=${this.siteId}" data-id="${this.siteId}jn-1" data-title="节能驾驶舱"
+// 													class="site-demo-active" href="javascript:;" data-type="tabAdd" title="节能驾驶舱">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													节能驾驶舱
+// 												</a>
+// 												<a data-url="./bussiness/energySaving/energySavingStatistical.html?siteId=${this.siteId}" data-id="${this.siteId}jn-2" data-title="节能统计"
+// 													class="site-demo-active" href="javascript:;" data-type="tabAdd" title="节能统计">
+// 													<img src="./common/image/icon2.png" class="nav-icon1" />
+// 													节能统计
+// 												</a>
+// 											</dt>
+// 										</dl>
+// 									</dd>
+// 								</dl>
+// 														</dd>`;
+// 							})
+//
+// 							return item;
+// 						}
+// 						$("#menu").append(
+// 							`<li class="layui-nav-item">
+// 							<a href="javascript:void(0);"><span class="zhanwei"></span>${this.projectName}</a>
+// 							<dl class="layui-nav-child">
+// 								${item(this.child,this)}
+// 							</dl>
+// 						</li>`
+// 						);
+// 					});
+// 					element.init();
+// 				}
+// 			})
+//
+// 			function unionData(data) {
+// 				var menuData = {};
+// 				$.each(data, function () {
+// 					var child = {},
+// 						_object = menuData[this['projectId']];
+// 					if (_object && _object['child']) {
+// 						child = _object['child'];
+// 					} else {
+// 						child = {};
+// 					}
+// 					child[this['siteId']] = {
+// 						'siteId': this['siteId'],
+// 						'siteName': this['siteName']
+// 					};
+// 					menuData[this['projectId']] = {
+// 						'projectId': this['projectId'],
+// 						'projectName': this['projectName'],
+// 						'child': child
+// 					};
+// 				});
+// 				var _returnObject = [];
+// 				$.each(Object.keys(menuData), function () {
+// 					var _child = [];
+// 					var _menu = menuData[this];
+// 					var _dataChild = _menu['child'];
+// 					$.each(Object.keys(_dataChild), function () {
+// 						_child.push(_dataChild[this]);
+// 					});
+// 					_menu['child'] = _child;
+// 					_returnObject.push(_menu);
+// 				})
+// 				return _returnObject;
+// 			}
+//
+// 			$("#menu li").eq(0).find('dl a').data('url',
+// 				`./bussiness/company/company-index.html?mfrsId=${window['USER_INFO_CACHE']['mfrsId']}`);
+// 		})
+// 	})
+</script>

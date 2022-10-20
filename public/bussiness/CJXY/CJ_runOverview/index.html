@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>华德智慧能源管理系统</title>
+    <link rel="stylesheet" href="/common/css/animated.css" />
+    <link rel="stylesheet" href="/common/css/public.css" />
+    <link rel="stylesheet" href="/common/css/generalStyle.css" />
+    <link rel="stylesheet" href="/common/lib/Animate/animate.min.css" />
+    <link rel="stylesheet" href="/common/css/liMarquee.css" />
+    <link rel="stylesheet" href="/common/css/listRoll.css" />
+    <script type="text/javascript">
+      document.write(
+        '<script language="javascript" src="/common/lib/config.js?r=' +
+          Math.random() +
+          '"><\/script\>'
+      );
+    </script>
+    <script>
+      document.write(
+        '<link rel="stylesheet" href="./css/index.css?v=' + version + '">'
+      );
+    </script>
+  </head>
+
+  <body class="layui-layout-body">
+    <div class="innerheader" id="innerheader" data-title="项目总览"></div>
+    <img src="/common/image/beiing130.jpg" class="image-bg" />
+    <!-- <div class="layui-row sc-container" id="container"></div> -->
+    <div class="logo">
+      <img src="./image/mainImg.png" alt="" />
+    </div>
+    <div class="sidebar scrollbar">
+      <!-- 当日主教学楼耗电排行开始 -->
+      <div class="todayElecRank">
+        <div class="lev3title_pub">
+          <img
+            src="/common/image/titleGather/title-icon3.png"
+            class="title_icon"
+          />
+          <span id="moneryEnergyTitle">当日主教学楼耗电排行</span>
+        </div>
+        <div class="todayElecRankBox">
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_1.png" />
+            <div class="electRankItemText">
+              <span id="deviceName0">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy0">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_2.png" />
+            <div class="electRankItemText">
+              <span id="deviceName1">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy1">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_3.png" />
+            <div class="electRankItemText">
+              <span id="deviceName2">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy2">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_4.png" />
+            <div class="electRankItemText">
+              <span id="deviceName3">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy3">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_5.png" />
+            <div class="electRankItemText">
+              <span id="deviceName4">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy4">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_6.png" />
+            <div class="electRankItemText">
+              <span id="deviceName5">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy5">--</em> kW·h</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/no_7.png" />
+            <div class="electRankItemText">
+              <span id="deviceName6">--</span>
+              <span
+                ><em class="todayelecText" id="eleEnergy6">--</em> kW·h</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 当日主教学楼耗电排行结束 -->
+
+      <!-- 当月主教学楼能耗检测开始 -->
+      <div class="monthEnergyWatch">
+        <div class="lev3title_pub">
+          <img
+            src="/common/image/titleGather/title-icon3.png"
+            class="title_icon"
+          />
+          <span id="moneryEnergyTitle">当月主教学楼能耗监测</span>
+        </div>
+        <div class="control_btn">
+          <span class="on" data-type="monery11">耗电量</span>
+          <span class="" data-type="energy11">耗水量</span>
+        </div>
+        <div id="leftChart" class="monthEnergyWatch_chart"></div>
+        <div
+          id="leftChart2"
+          class="monthEnergyWatch_chart"
+          style="opacity: 0; margin-top: -130%"
+        ></div>
+      </div>
+      <!-- 当月主教学楼能耗监测结束 -->
+    </div>
+    <div class="sidebar rightBar scrollbar">
+      <!-- 暖气供水情况监测开始 -->
+      <div class="waterWatch">
+        <div class="lev3title_pub">
+          <img
+            src="/common/image/titleGather/title-icon3.png"
+            class="title_icon"
+          />
+          <span id="moneryEnergyTitle">暖气情况监测</span>
+        </div>
+        <div class="waterWatchCon">
+          <div class="waterWatchConItem">
+            <div class="itemIcon"></div>
+            <div class="waterWatchConItemText">
+              <div class="title1 blueText bold">供水温度</div>
+              <div class="title1 goldText">
+                <em class="font32" id="waterSupplyTemperature">--</em>℃
+              </div>
+            </div>
+          </div>
+          <div class="waterWatchConItem">
+            <div class="itemIcon2"></div>
+            <div class="waterWatchConItemText">
+              <div class="title1 blueText bold">回水压力</div>
+              <div class="title1 greenText">
+                <em class="font32" id="returnWaterPressure">--</em>bar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 暖气供水情况监测结束 -->
+
+      <!-- 室内温度监测开始 -->
+      <div class="roomTempWatch">
+        <div class="tempDetail" onclick="goDetail()" style="color: #aff7ff">
+          温度详情 >>
+        </div>
+        <div class="lev3title_pub">
+          <img
+            src="/common/image/titleGather/title-icon3.png"
+            class="title_icon"
+          />
+          <span id="moneryEnergyTitle">室内温度监测</span>
+        </div>
+        <div class="roomTempWatchCon">
+          <div class="roomTempWatchItem">
+            <div class="roomTempWatchItemSon">
+              <img src="./image/building.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold">1 f</div>
+                <div class="font18 blueshinyText top10">当前楼层</div>
+              </div>
+            </div>
+            <div class="roomTempWatchItemSon2">
+              <img src="./image/temperature.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold" id="refeValue1">
+                  --&nbsp;℃
+                </div>
+                <div class="font18 blueshinyText top10">室内温度</div>
+              </div>
+            </div>
+          </div>
+          <div class="roomTempWatchItem">
+            <div class="roomTempWatchItemSon">
+              <img src="./image/building.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold">7 f</div>
+                <div class="font18 blueshinyText top10">当前楼层</div>
+              </div>
+            </div>
+            <div class="roomTempWatchItemSon2">
+              <img src="./image/temperature.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold" id="refeValue2">
+                  --&nbsp;℃
+                </div>
+                <div class="font18 blueshinyText top10">室内温度</div>
+              </div>
+            </div>
+          </div>
+          <div class="roomTempWatchItem">
+            <div class="roomTempWatchItemSon">
+              <img src="./image/building.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold">9 f</div>
+                <div class="font18 blueshinyText top10">当前楼层</div>
+              </div>
+            </div>
+            <div class="roomTempWatchItemSon2">
+              <img src="./image/temperature.png" alt="" />
+              <div class="ItemSonTextCon">
+                <div class="font18 blueshinyText bold" id="refeValue3">
+                  --&nbsp;℃
+                </div>
+                <div class="font18 blueshinyText top10">室内温度</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 室内温度监测结束 -->
+
+      <!-- 当日室内外温度监测开始 -->
+      <div class="todayTempWatch">
+        <div class="lev3title_pub">
+          <img
+            src="/common/image/titleGather/title-icon3.png"
+            class="title_icon"
+          />
+          <span id="moneryEnergyTitle">当日室内外温度监测</span>
+          <div class="legend">
+            <em style="background-color: #f4e446"></em>
+            <span style="color: #aff7ff">室外温度</span>
+            <em style="background-color: #0a94ff"></em>
+            <span style="color: #aff7ff">室内平均温度</span>
+          </div>
+        </div>
+        <div id="todayTempWatchChart" class="todayTempWatchCon"></div>
+      </div>
+      <!-- 当日室内外温度监测结束 -->
+    </div>
+
+    <!-- 顶部的三个菜单开始 -->
+    <div class="topThreeBox">
+      <div class="topThreeItem">
+        <img src="./image/dian11.png" alt="" />
+        <div class="topThreeItemText">
+          <div class="font16 blueText centerText">当日耗电量（kW·h）</div>
+          <div class="font30 top10 yahei bold" id="eleEnergyCurrentDay">--</div>
+        </div>
+      </div>
+      <div class="topThreeItem">
+        <img src="./image/shui1.png" alt="" />
+        <div class="topThreeItemText">
+          <div class="font16 blueText centerText">当日耗水量（m³）</div>
+          <div class="font30 top10 yahei bold" id="waterEnergyCurrentDay">
+            --
+          </div>
+        </div>
+      </div>
+      <div class="topThreeItem">
+        <img src="./image/lengre11.png" alt="" />
+        <div class="topThreeItemText">
+          <div class="font16 blueText centerText">实时暖气流量（m³/h）</div>
+          <div class="font30 top10 yahei bold" id="realTimeFlow">--</div>
+        </div>
+      </div>
+    </div>
+    <!-- 顶部的三个菜单结束 -->
+  </body>
+</html>
+
+<script src="/common/lib/jquery-3.2.1.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/lib/echarts.min.js"></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/echarsComponent.js"></script>
+<script src="/common/lib/echarts-liq.js"></script>
+<script type="text/javascript">
+  document.write('<script src="js/index.js?v=' + version + '"><\/script\>');
+</script>

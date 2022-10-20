@@ -1,0 +1,209 @@
+/*通用标题*/
+.lev1title_pub {
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 40px;
+		height: 40px;
+		padding: 0 15px;
+		position: relative;
+		color: #fff;
+		clear: both;
+		background-color: #084F90;
+	}
+
+	.lev1title_pub .titfont {
+		width: 100%;
+		display: block;
+		/* border-bottom: 1px solid rgba(165, 234, 255, 0.5); */
+	}
+
+	.lev1title_pub .line {
+		width: 100px;
+		border-bottom: 1px solid rgba(165, 234, 255, 0.5);
+		position: absolute;
+		bottom: 0;
+	}
+
+	.lev2title_pub {
+		background: url(../image/titleGather/title-icon2.png) no-repeat;
+		font-size: 14px;
+		padding-left: 32px;
+		line-height: 27px;
+		margin: 15px 0;
+	}
+	
+
+	/* .lev3title_pub {
+		color: rgba(165, 234, 255, 1);
+		z-index: 10;
+		left: 10px;
+		font-weight: bold;
+		font-size: 18px;
+		width: calc(100% - 20px);
+		background: linear-gradient(90deg, rgba(9, 147, 255, 0.3) 0%, rgba(9, 147, 255, 0.01) 100%);
+		line-height: 27px;
+	}
+
+	.lev3title_pub .title_icon {
+		width: 30px;
+		margin-top: -4px;
+	} */
+	.lev3title_pub{
+		padding: 10px 20px;
+		font-size: 18px;
+		color: #fff;
+		font-weight: bold;
+	}
+	.lev3title_pub .title_icon{
+		width: 4px;
+		height: 20px;
+		margin-top: -4px;
+	}
+	.lev4title_pub{
+		height: 31px;
+		line-height: 27px;
+		background: url(../image/titleGather/title_bg.png) no-repeat;
+		background-size: 100% 100%;
+		color: #00FFFF;
+		font-size: 18px;
+		font-weight: bold;
+		padding-left: 10px;
+		margin-bottom: 6px;
+	}
+	.lev5title_pub {
+		background: url(../../../common/image/title_blue.png);
+		background-size: 100% 100%;
+		text-align: center;
+		font-weight: bold;
+		font-size: 22px;
+		/* width: 450px; */
+		height: 30px;
+		line-height: 30px;
+		padding-left: 10px;
+		box-sizing: border-box;
+		color: #fff;
+	}
+	
+/*可切换按钮*/	
+.control_btn{
+	float: right;
+	font-weight: bold;
+	font-size: 14px;
+}
+.control_btn span{
+	background: url(../image/controlbtn/btn_bg1.png) no-repeat;
+	width: 74px;
+	height: 28px;
+	/* background-size: contain; */
+	display: inline-block;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+	padding-left: 3px;
+}
+.control_btn span.on{
+	color: #00FFFF;
+	background: url(../image/controlbtn/btn_bg2.png) no-repeat;
+}
+	
+	
+/*图例*/
+.legend_div{
+	padding: 0 20px;
+	z-index: 1;
+    position: relative;
+}
+.legend_div2{
+	padding: 0 20px;
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.legend_pub{
+	color: #A5EAFF;
+	margin-left: 3px;
+}
+.legend_pub .icon{
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;	
+	/* background: linear-gradient(90deg, #FF986F 0%, #FFB72C 100%); */
+	display: inline-block;
+	vertical-align: middle;
+}
+.legend_pub .icon_line{
+	border-radius: 1px;
+	width: 12px;
+	height: 4px;	
+	/* background: linear-gradient(90deg, #FF986F 0%, #FFB72C 100%); */
+	display: inline-block;
+	vertical-align: middle;
+}
+.legend_pub .font{
+	vertical-align: middle;
+	margin-left: 3px;
+	font-size: 14px;
+	font-weight: normal;
+}	
+/*常用颜色*/
+
+/*文字颜色*/
+.green1_pub{
+	color: #48D396;
+}	
+.yellow1_pub{
+	color: #FFB72C;
+}
+.yellow2_pub{
+	color: #FCEA45;
+}
+.yellow3_pub{
+	color: #FF830A;
+}
+.red1_pub{
+	color: #FF4444;
+}
+.blue1_pub{
+	color: #A5EAFF;
+}
+.blue2_pub{
+	color:#00FFFF
+}
+.blue3_pub{
+	color: #1683FF;
+}
+.blue4_pub{
+	color: #00CBFE;
+}
+.white1_pub{
+	color: #fff;
+}
+/*背景颜色*/
+	.yellow1_legend_pub{
+		background: linear-gradient(90deg, rgba(255, 183, 44, 1) 0%, rgba(255, 183, 44, 0.8) 100%); 
+	}
+	.blue1_legend_pub{
+		background: linear-gradient(0deg, rgba(22, 131, 255, 1) 0%, rgba(22, 131, 255, 0.8) 100%);
+	}
+	.blue2_legend_pub{
+		background: linear-gradient(0deg, rgba(0, 255, 255, 1) 0%, rgba(0, 255, 255, 0.8) 100%);
+	}
+	.green1_legend_pub{
+		background: linear-gradient(0deg, rgba(72, 211, 150, 1) 0%, rgba(72, 211, 150, 0.8) 100%);
+	}
+	.red1_legend_pub{
+		background: linear-gradient(0deg, rgba(255, 68, 68, 1) 0%, rgba(255, 68, 68, 0.8) 100%);
+	}
+	.red2_legend_pub{
+		background: linear-gradient(0deg, rgba(83, 48, 42, 1) 0%, rgba(83, 48, 42, 0.8) 100%);
+	}
+	.red3_legend_pub{
+		background: linear-gradient(0deg, rgba(153, 68, 39, 1) 0%, rgba(153, 68, 39, 0.8) 100%);
+	}
+/*宽度*/
+.wid33_pub{
+	width: 33%;
+}
+.wid50_pub{
+	width: 50%!important;
+}

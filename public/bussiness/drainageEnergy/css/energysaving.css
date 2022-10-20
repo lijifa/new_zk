@@ -1,0 +1,279 @@
+.sc-container{
+	height: calc(100% - 70px);
+	padding-top: 70px;
+}
+.bartitle{
+	font-weight: bold;
+    font-size: 22px;
+    width: 450px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+	color: #fff;
+	margin: 20px 0 0;
+}
+.font30{
+	font-size: 30px;
+	margin-left: 20px;
+}
+.centerbar {
+	width: 800px;
+	height: 600px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	margin-left: -400px;
+	margin-top: -450px;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+}
+.centerbar .title {
+	font-size: 42px;
+	margin-top: 250px;
+}
+
+.centerbar .count {
+	font-size: 140px;
+}
+
+.centerbar .equcount {
+	font-size: 28px;
+    font-weight: normal;
+}
+
+.centerbar .equcount span {
+	font-size: 38px;
+	margin: 0 5px;
+}
+.centerbar .equcount .line{
+	margin: 0 10px;
+	vertical-align:10%;
+	color: #00FFFF;
+}
+.turnlengji{
+	position: absolute;
+    top: -50px;
+	left: -50px;
+}
+#warnLight{
+	width: 900px;
+	height: 900px;
+}
+.bgTil{
+	background: url(../../../common/image/title_blue.png);
+	background-size: 100% 100%;
+	text-align: center;
+}
+.leftbar{
+	width: 450px;
+	height: calc(100% - 70px);
+	position: absolute;
+	left: 0;
+	top: 70px;
+}
+.rightbar{
+	width: 450px;
+	height: calc(100% - 70px);
+	position: absolute;
+	right: 0;
+	top: 70px;
+}
+.efficiency{
+	padding: 0 20px;
+	height: 180px;
+	position: relative;
+}
+.efficiency>ul{
+	display: flex;
+	justify-content: space-around;
+}
+.efficiency>ul>li{
+	width: 130px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: rgba(165, 234, 255, 1);
+	display: inline-block;
+	background-color: rgba(22, 38, 59, 1);
+	cursor: pointer;
+}
+.efficiency .on{
+	color: rgba(0, 255, 255, 1);
+	background-color: rgba(12, 48, 86, 1);
+}
+.efficiencyBox{
+	position: absolute;
+	left: 20px;
+	top: 40px;
+	width: calc(100% - 40px);
+	height: 90px;
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.efficiencyImg{
+	width:95px;
+	height: 100%;
+}
+.efficiencyImg>img{
+	width: 95px;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.efficiencyTitle{
+	font-size: 18px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+}
+.efficiencyItem{
+	flex: 1;
+	height: 100%;
+	padding-left: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 18px;
+	color: rgba(165, 234, 255, 1);
+}
+.efficiencyBottom{
+	width: calc(100% - 40px);
+	height: 50px;
+	background-image: url(../image/bottom.png);
+	background-size: 100% 100%;
+	position: absolute;
+	left: 20px;
+	bottom: 0px;
+}
+.subOption{
+	height: 65px;
+	border-bottom: 1px solid rgba(54, 153, 255, .3);
+	margin: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: rgba(165, 234, 255, 1);
+	font-size: 18px;
+}
+.subOption>img{
+	width: 60px;
+	height: 40px;
+}
+.subOptionTitle{
+	width: 100px;
+	padding-left: 20px;
+}
+.subOptionNum{
+	/* width: 100px; */
+	flex: 1;
+	padding-right: 10px;
+	text-align: right;
+}
+.subOptionUnit{
+	width: 70px;
+	text-align: left;
+}
+.energyChange{
+	width: 560px;
+	height: calc(100% - 570px);
+	position: relative;
+}
+.energyChange>ul{
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.energyChange>ul>li{
+	width: 170px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: rgba(165, 234, 255, 1);
+	display: inline-block;
+	background-color: rgba(22, 38, 59, 1);
+	cursor: pointer;
+}
+.energyChange .on{
+	color: rgba(0, 255, 255, 1);
+	background-color: rgba(12, 48, 86, 1);
+}
+.compontent{
+	width: calc(100% - 40px);
+	padding: 0 20px;
+	height: calc(100% - 40px);
+	margin-top: 10px;
+	position: absolute;
+	top: 30px;
+	left: 0px;
+}
+.load{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.unit{
+	height: 24px;
+	line-height: 24px;
+	float: right;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(165, 234, 255, 1);
+}
+.cost{
+	padding: 10px 30px;
+	display: flex;
+	justify-content: space-between;
+}
+.cost>img{
+	width: 48px;
+	height: 48px;
+}
+.costItem{
+	flex: 1;
+	padding: 0 0 0 20px;
+	color: rgba(165, 234, 255, 1);
+}
+.costNum{
+	height: 30px;
+	line-height: 30px;
+	font-size: 24px;
+}
+.costTitle{
+	height: 18px;
+	line-height: 18px;
+	font-size: 16px;
+}
+.energyCost{
+	padding: 0 20px;
+	height: 20%;
+	position: relative;
+}
+.waterCost{
+	width: 560px;
+	height: calc(80% - 340px);
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+}
+.waterEcharts{
+	padding: 0 20px;
+	height: calc(100% - 45px);
+	position: relative;
+}
+@media screen and (min-height:1050px) {
+	#warnLight{
+		width: 1100px;
+		height: 1050px;
+	}
+	.turnlengji{
+		top: -100px;
+		left: -145px;
+	}
+}

@@ -1,0 +1,227 @@
+.control_btn2 {
+	margin-top: 4px;
+}
+
+.control_btn2 {
+	float: right;
+	font-weight: bold;
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.control_btn2 span {
+	width: 160px;
+	height: 28px;
+	display: inline-block;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+	padding-left: 3px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 15px;
+	color: #A5EAFF;
+}
+
+.control_btn2 span.on {
+	color: #00FFFF;
+	background: #0C3056;
+}
+
+.sc-container2 {
+	position: absolute;
+	top: 35px;
+	width: 100%;
+	height: calc(100% - 35px);
+	display: grid;
+	grid-template-columns: repeat(12, 8.3333333%);
+	grid-template-rows: repeat(12, 8.3333333%);
+}
+
+.custom {
+	grid-column: 1/6;
+	grid-row: 1/4;
+}
+
+.list {
+	grid-column: 1/6;
+	grid-row: 4/9;
+}
+
+.cost {
+	grid-column: 1/6;
+	grid-row: 9/13;
+}
+
+.electricity {
+	grid-column: 6/9;
+	grid-row: 1/5;
+}
+
+.water {
+	grid-column: 6/9;
+	grid-row: 5/9;
+}
+
+.reclaimed {
+	grid-column: 6/9;
+	grid-row: 9/13;
+}
+
+.electricityTrend {
+	grid-column: 9/13;
+	grid-row: 1/5;
+}
+
+.waterTrend {
+	grid-column: 9/13;
+	grid-row: 5/9;
+}
+
+.reclaimedTrend {
+	grid-column: 9/13;
+	grid-row: 9/13;
+}
+
+.load {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.content {
+	width: calc(100% - 40px);
+	height: calc(100% - 45px);
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.contentItem {
+	width: calc(30% - 10px);
+	height: 50px;
+	background-image: url(../image/kuang.png);
+	background-size: 100% 100%;
+	padding: 15px 15px;
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.contentItem>img {
+	width: 50px;
+	height: 50px;
+}
+
+.contentText {
+	flex: 1;
+	padding: 0 0 0 10px;
+	color: rgba(165, 234, 255, 1);
+}
+
+.contentTitle {
+	font-size: 16px;
+	height: 20px;
+	line-height: 20px;
+}
+
+.contentNum {
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.unit {
+	float: right;
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(165, 234, 255, 1);
+}
+
+.unit>em {
+	height: 3px;
+	width: 15px;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 5px;
+}
+.gDDiv{
+	padding: 0;
+}
+.gDlie_title0,
+.gDlie_title1,
+.gDlie_title2,
+.gDlie_title3,
+.gDlie_title4,
+.gDlie_title5,
+.gDlie_title6,
+.gDlie_title7,
+.gDlie_title8,
+.gDlie_title9,
+.gDlie_title10 {
+	height: 33px;
+	line-height: 33px;
+	border: 1px solid rgba(37, 248, 255, .5);
+}
+
+.gDlistOut {
+	height: calc(100% - 35px);
+}
+
+.gDhang_item0,
+.gDhang_item1,
+.gDhang_item2,
+.gDhang_item3,
+.gDhang_item4,
+.gDhang_item5,
+.gDhang_item6,
+.gDhang_item7,
+.gDhang_item8,
+.gDhang_item9,
+.gDhang_item10{
+	height: 35px;
+	line-height: 35px;
+	color: rgba(220, 241, 255, 1);
+}
+.textHover{
+	background-color: transparent;
+}
+.gDlistOut li:nth-child(odd) .gDhang_item0,
+.gDlistOut li:nth-child(odd) .gDhang_item2{
+	background-color: rgba(37, 248, 255, .3);
+}
+.gDlistOut li:nth-child(odd) .gDhang_item1,
+.gDlistOut li:nth-child(odd) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .1);
+}
+.gDlistOut .jiShu li:nth-child(even) .gDhang_item0,
+.gDlistOut .jiShu li:nth-child(even) .gDhang_item2{
+	background-color: rgba(37, 248, 255, .3);
+}
+.gDlistOut .jiShu li:nth-child(even) .gDhang_item1,
+.gDlistOut .jiShu li:nth-child(even) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .1);
+}
+.gDlistOut .jiShu li:nth-child(odd) .gDhang_item0,
+.gDlistOut .jiShu li:nth-child(odd) .gDhang_item2{
+	background-color: transparent;
+}
+.gDlistOut .jiShu li:nth-child(odd) .gDhang_item1,
+.gDlistOut .jiShu li:nth-child(odd) .gDhang_item3{
+	background-color: transparent;
+}
+.RankLine{
+	background-image: url(../image/hengtiao.png);
+}
+.RankRight{
+	color: rgba(72, 211, 150, 1);
+}

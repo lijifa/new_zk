@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <title>EZOPEN播放协议</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .hint {
+      font-size: 14px;
+      line-height: 3em;
+      color: gray;
+    }
+
+    #url {
+      width: 100%;
+    }
+
+    .btn-container {
+      margin: 10px;
+    }
+
+    #myPlayer {
+      max-width: 600px;
+      width: 100%;
+    }
+  </style>
+  <script src="../ezuikit.js"></script>
+  <script src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+    
+  <video 
+    id="myPlayer"
+    autoplay
+    src="http://hls01open.ys7.com/openlive/4f04bd17f05849239d62239caec9d1de.hd.m3u8"
+    controls
+    playsInline 
+    webkit-playsinline
+  >
+  
+  </video>
+
+  <script>
+	  var player = new EZUIKit.EZUIPlayer('myPlayer');    
+  </script>
+</body>
+
+</html>

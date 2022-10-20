@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<script type="text/javascript">
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/project-index.css?v='+version+'"/>');
+			document.write('<link rel="stylesheet" href="./css/load.css?v='+version+'"/>');
+		</script>
+	</head>
+
+	<body class="layui-layout-body">
+	<!-- 	<div class="container">
+	        <div class="warning">
+	        </div>
+    	</div> -->
+		<div class="innerheader" id="innerheader" data-title="单冷系统监控"></div>
+		
+
+		<div class="layui-row sc-container">
+			<div class="layui-col-md9 height100">
+				<div class="layui-row hd-hei2 middle-top">
+					<div class="layui-col-md12 height100" style="padding: 10px 0;">
+						<div class="layui-col-md12 height100" id="zttFull" style="border: 2px solid #09233A;">
+							<div class="ztt ztt_dl">
+								<div id="ztt_dl" style="height: 100%;">
+									<div class="hd-loadmask"><img src="/common/image/load.gif" class="iconimg" style="width: 80px;height: 80px;"></div>
+								</div>
+							</div>
+							<img src="/common/image/operationTips.png" class="operationTips">
+							<img src="/common/image/openFull.png" class="zztfullBtn">
+						</div>
+					</div>
+				</div>
+				<div class="layui-row hd-hei middle-bottom" style="display: flex;">
+					<div class="height100 backgroundGray widthAndMargin">
+					<div class="height100">
+						<div class="hd-title">
+							供冷系统设备状态
+							<div class="waringlight">
+							</div>
+						</div>
+						<div class="hd-con-hei publicborder" style="margin-top: 10px;height: calc(100% - 40px);">
+							<div class="hd-innercontent textcenter lightbg equlist sblist" id="equipmentstatuscover" style="position: relative;">
+								<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+							</div>			
+						</div>
+					</div>
+					</div>
+					<div class="height100 backgroundGray widthAndMargin">
+					<div class="height100">
+						<div class="hd-title">
+							供冷系统差值监测
+						</div>
+						<div class="hd-con-hei publicborder">
+							<div class="hd-innercontent textcenter jfsqzt">
+								<div class="height100 colorWh">
+									<div class="layui-col-md12 height100 pad10" style="position: relative;">
+										<ul class="postUl posiTop">
+											<li>
+												<i class="icon_yl"></i>
+												<div class="position50">
+													<span class="differenceText2">系统压差</span>
+													<span class="differenceNum2">
+														<span id="SystemDifference" class="colorBlue">--</span>
+														<span class="differenceUnit">bar</span>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="position50">
+													<span class="differenceText2">供水压力</span>
+													<span class="differenceNum2">
+														<span id="supplyWaterDif" class="colorBlue">--</span>
+														<span class="differenceUnit">bar</span>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="position50">
+													<span class="differenceText2">回水压力</span>
+													<span class="differenceNum2">
+														<span id="returnWaterDif" class="colorBlue">--</span>
+														<span class="differenceUnit">bar</span>
+													</span>
+												</div>
+											</li>
+										</ul>
+										<ul class="postUl posiBottom">
+											<li>
+												<i class="icon_wd"></i>
+												<div class="position50">
+													<span class="differenceText2">供回水温差</span>
+													<span class="differenceNum2">
+														<span id="supplyAndReturn" class="colorGreen">--</span>
+														<span class="differenceUnit">℃</span>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="position50">
+													<span class="differenceText2">供水温度</span>
+													<span class="differenceNum2">
+														<span id="waterSupply" class="colorGreen">--</span>
+														<span class="differenceUnit">℃</span>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="position50">
+													<span class="differenceText2">回水温度</span>
+													<span class="differenceNum2">
+														<span id="returnWater" class="colorGreen">--</span>
+														<span class="differenceUnit">℃</span>
+													</span>
+												</div>
+											</li>
+										</ul>
+										<div class="line_bor" style="left: 34%;"></div>
+										<div class="line_bor" style="left: 65%;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 height100 backgroundGray">
+				<div class="height100">
+				<div class="layui-col-md12 height100">
+					<div class="layui-col-md12" style="height: 25%;">
+						<div class="hd-title">
+							当日机房能耗
+						</div>
+						<div class="hd-con-hei publicborder">
+							<div class="hd-innercontent">
+								<div class="ene">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/dian1.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">
+											<span class="marginTop">耗电量</span>
+											<span style="font-size: 22px;" id="electricEnergy">--</span>
+											<span>kW·h</span>
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/shui1.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">
+											<span class="marginTop">耗水量</span>
+											<span style="font-size: 22px;" id="waterEnergy">--</span>
+											<span>m³</span>
+										</div>
+									</div>
+								</div>
+								<div class="ene" style="margin-top: 10px;">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/lengre1.png">
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">
+											<span class="marginTop">耗冷（热）量</span>
+											<span style="font-size: 22px;" id="energyConsumption">--</span>
+											<span>GJ</span>
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/liuliang1.png">
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">
+											<span class="marginTop">系统平均流量</span>
+											<span style="font-size: 22px;" id="flow">--</span>
+											<span >m³/h</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md12" style="height: 15%;">
+						<div class="hd-title">
+							当日温 / 湿度
+						</div>
+						<div class="hd-con-hei publicborder">
+							<div class="temperToday">
+								<div class="temperText">
+									<div class="position50" style="padding-left: 10px;text-align: left;">
+										<img src="./image/wendu1.png" >
+										<div class="title">室外平均温度：</div>
+										<span class="temperNum" id="temperatureTody">--</span>
+										<span>℃</span>
+									</div>
+								</div>
+								<div class="temperText">
+									<div class="position50" style="padding-left: 10px;text-align: left;">
+										<img src="./image/shidu.png" >
+										<div class="title">室外相对湿度平均值：</div>
+										<span class="temperNum" id="humidityTody">--</span>
+										<span>%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md12 height33">
+						<div class="hd-title">
+							当日供回水温度
+						</div>
+						<div class="hd-legend">
+							<em class="bgyellow2" style="background-color: #168FFF;"></em>
+							<span class="colorWh">室外</span>
+							<em class="bgblue2" style="background-color: #00FFFF;"></em>
+							<span class="colorWh">供水</span>
+							<em class="bggreen2" style="background-color: #FF830A;"></em>
+							<span class="colorWh">回水</span>
+						</div>
+						<div class="hd-con-hei publicborder yjtongji" id="ldtemperature">
+							<div class="hd-innercontent textcenter yjtongji">
+								<div id="main">
+									<div class="hd-loadmask">
+										<img src="../../common/image/load.gif" class="iconimg">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md12 height33">
+						<div class="hd-title">
+							<!-- <img src="./image/title_icon.png" class="title_icon" /> -->
+							当日系统COP
+						</div>
+						<div class="hd-legend">
+							<em class="bgpink"></em>
+							<span class="colorWh">标准值</span>
+							<em class="bgblue2"></em>
+							<span class="colorWh">COP</span>
+						</div>
+						<div class="hd-con-hei publicborder yjtongji" id="COPtemperature">
+							<div class="hd-innercontent textcenter yjtongji">
+								<div class="hd-loadmask">
+									<img src="../../common/image/load.gif" class="iconimg">
+								</div>
+								<!-- <div class="UnitCop">
+									时
+								</div> -->
+								<!-- <div class="left">
+									<div class="title yellow2">今日预警次数统计<span>25</span></div> 
+									<div class="title red2">今日报警次数统计<span>25</span></div>  
+								</div>
+								<div class="right" id="main">
+									
+								</div>
+							 -->
+								<!-- <div class="echars-units">℃</div> -->
+								<div id="mainCOP">
+									
+								</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<!-- <script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script> -->
+<script src="../../common/lib/jquery.SuperSlide.3.0.alpha.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="/common/js/screenfull.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/go.js"></script>
+<script src="/draw/largeScreen/common/js/diagramTool.js"></script>
+<script src="../../common/js/drag-detail.js"></script>
+<script type="text/javascript">
+	document.write('<script src="./js/project-index-dl.js?v='+version+'"><\/script>');
+</script>

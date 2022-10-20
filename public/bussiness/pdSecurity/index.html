@@ -1,0 +1,188 @@
+<!-- <!DOCTYPE html> -->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>华德智慧能源管理系统</title>
+	<link rel="stylesheet" href="../../common/css/public.css">
+	<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+	<script>
+		document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+	</script>
+	<script>
+		document.write('<link rel="stylesheet" href="./css/security.css?v=' + version + '">');
+	</script>
+
+	<style>
+		.top_list li{
+			padding: 0 0 10px;
+		}
+		.list_name{
+			width: 66%;
+			word-break: break-word;
+		}
+	</style>
+</head>
+
+<body class="layui-layout-body">
+	<img src="../../common/image/beiing130.jpg" class="image-bg">
+	<div class="innerheader" id="innerheader" data-title="安全驾驶舱"></div>
+	<img src="./image/zuoche.png" class="leftbg" />
+	<img src="./image/youche.png" class="rightbg" />
+	<div class="layui-row sc-container">
+		<div class="leftbar">
+			<div class="bar-cont " style="left: 10px;top: 0;">
+				<div class=" marginbottom">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						<span id="moneryEnergyTitle">近30天报警平均修复时间</span>
+					</div>
+					<div class="cont1" id="repairtime" style="position: relative;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div>
+				<div class=" marginTop" style="height: 285px;">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						<span id="moneryEnergyTitle">近30天报警前5名</span>
+						<div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+							单位：次
+						</div>
+					</div>
+					<div class="en-echars" id="main_top1" style="padding-top:0;">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alarm-rate">
+				<div class="circle_tips"><span style="color:#FFB72C;" id="circleWaringText"></span><br />近30天报警次数</div>
+				<video src="./image/zuoce_x264.mp4" muted="true" loop="true" autoplay="true" class="video" width="300px"
+					height="300px" oncanplaythrough=""></video>
+				<div id="main7" class="ratechars"></div>
+			</div>
+		</div>
+		<div class="rightbar">
+			<div class="bar-cont fr">
+				<div class="">
+					<div class="lev3title_pub" style="padding: 10px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						<span id="moneryEnergyTitle">安防监测</span>
+					</div>
+					<div class="cont4">
+						<div class="righttitle">当前安防报警数：<span id="num1">--</span>个</div>
+						<div class="rightlabel">
+							<div class="item" data-id="accessControl">
+								<div class="status" id="accessControl">--</div>
+								<div class="types">门禁</div>
+							</div>
+							<div class="item" data-id="warmFeeling">
+								<div class="status" id="warmFeeling">--</div>
+								<div class="types">温感</div>
+							</div>
+							<div class="item" data-id="flame">
+								<div class="status" id="flame">--</div>
+								<div class="types">明火</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="" style="margin-top: 80px;">
+					<div class="lev3title_pub" style="padding: 10px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						<span id="moneryEnergyTitle">电气安全监测</span>
+					</div>
+					<div class="cont5">
+						<div class="righttitle">当前设备报警数：<span id="num2">--</span>个</div>
+						<div class="rightlabel">
+							<div class="item" data-id="transformerTemperature">
+								<div class="status" id="transformerTemperature">--</div>
+								<div class="types">变压器温度</div>
+							</div>
+							<div class="item" data-id="cableTemperature">
+								<div class="status" id="cableTemperature">--</div>
+								<div class="types">线缆温度</div>
+							</div>
+							<div class="item" data-id="electricLeakage">
+								<div class="status" id="electricLeakage">--</div>
+								<div class="types">漏电</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="integrity-rate">
+				<div class="circle_tips"><span id="circleFaultText"></span><br />当日报警次数</div>
+				<video src="./image/youce_x264.mp4" muted="true" loop="true" autoplay="true" class="video" width="300px"
+					height="300px"></video>
+				<div id="main8" class="ratechars"></div>
+			</div>
+		</div>
+		<div class="centercircle">
+			<ul class="centercircle_top">
+				<li>平台安全运行时间<br /><span class="labelCount green1_pub" id="safetyDays">--</span>天</li>
+				<li>机柜总数<br /><span class="labelCount green1_pub" id="deviceCount">--</span>个</li>
+				<li>监测点总数<br /><span class="labelCount blue2_pub" id="plcCount">--</span>个</li>
+				<li>已处理报警<br /><span class="labelCount blue2_pub" id="recoveryCount">--</span>个</li>
+
+			</ul>
+			<video id="warnLight" src="#" muted="true" loop="true" autoplay="true" class="video" width="560px"
+				height="560px"></video>
+			<div class="center-message" id="centervideo">
+				<div class="hd-loadmask">
+					<img src="../../common/image/load.gif" class="iconimg">
+				</div>
+				<div class="bak"></div>
+				<div id="safetyScore"></div>
+				<div></div>
+				<div class="pingFen" id="control_btn">
+					评分规则
+					<div class="div_rules">
+						<div class="title">评分规则：</div>
+						<div> 100 分为满分，一次报警减 5 分。<br /> 最低分为 0 分，无负数的分数。</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottomList">
+			<div class="bottomList-left">
+				<!-- <div class="bottomList-title">当前预警详情：</div> -->
+				<!-- <div class="warnList colorWarnYellow" id="warnList"></div> -->
+				<div class="warnList" id="transformerMonitor">
+
+				</div>
+			</div>
+			<!-- <div class="bottomList-middle">
+				
+			</div>
+			<div class="bottomList-right">
+				<div class="bottomList-title">当前报警详情：</div>
+				<div class="warnList colorWarnRed" id="faultList"></div>
+			</div> -->
+
+		</div>
+	</div>
+	<div class="pop_fault" id="fault">
+		<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+	</div>
+</body>
+
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/security.js?v=' + version + '"><\/script>');
+</script>

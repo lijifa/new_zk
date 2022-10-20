@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/monitor.css?v='+version+'">');
+			document.write('<link rel="stylesheet" href="./css/load.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader" id="innerheader" data-title="重点设备监测"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md12 height70" style="position: relative;">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					变压器监测
+				</div>
+				<!-- <div class="transformer"></div> -->
+				<!-- 变压器1号 -->
+				<div class="table" id="table" style="position: relative;">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+				</div>
+				<!-- 功率·温度按钮 -->
+				<!-- <div class="power_temperature" style="height: 31px;">
+					<button class="on" data-type="0" style="display: none;">变压器温度</button>
+					<button data-type="1" style="display: none;">变压器功率</button>
+					<em style="display: none;">--</em>
+				</div> -->
+				<!-- 1号变压器图表 -->
+				<div class="power_temperature_echarts">
+					<div class="layui-col-md6" style="height: 100%;position: relative;">
+						<div class="lev3title_pub">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							变压器功率<div class="legend legendPower1"></div>
+						</div>
+						<!-- 功率 -->
+						<div class="echarts_con temperature"  id="echarts1">
+							<div style="position: relative;height: 100%;">
+								<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md6" style="height: 100%;position: relative;">
+						<div class="lev3title_pub" style="padding: 10px 0;">
+							<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+							变压器温度<div class="legend legendPower2"></div>
+						</div>
+						<!-- 温度 -->
+						<div class="echarts_con temperature" id="echarts2" style="padding: 0 20px 0 0;width: calc(100% - 20px);">
+							<div style="position: relative;height: 100%;">
+								<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md12 height30 flex">
+				<div style="margin: 0 20px 0 0;">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						重点设备状态监测
+					</div>
+					<div class="list" id="transformerMonitor">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div>
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						回路开关状态监测
+					</div>
+					<div class="list" id="switchMonitor">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/deviceMonitor.js?v='+version+'"><\/script>');
+</script>

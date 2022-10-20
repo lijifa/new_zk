@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>华德智慧能源管理系统</title>
+	<link rel="stylesheet" href="../../common/css/public.css">
+	<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+	<script>
+		document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+	</script>
+	<script type="text/javascript">
+		document.write('<link rel="stylesheet" href="./css/security.css?v='+version+'"/>');
+	</script>
+</head>
+
+<body class="layui-layout-body">
+	<img src="../../common/image/beiing130.jpg" class="image-bg">
+	<div class="innerheader" id="innerheader" data-title="安全驾驶舱"></div>
+	<img src="./image/zuoche.png" class="leftbg" />
+	<img src="./image/youche.png" class="rightbg" />
+	<div class="layui-row sc-container">
+		<div class="leftbar">
+			<div class="bar-cont " style="left: 10px;top: 0;">
+			<div class="backgroundGray">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">监测覆盖内容</span>
+					<!-- <div class="control_btn" id="control_btn" style="text-decoration: underline;">
+						评分规则
+					</div> -->
+				</div>
+				<!-- <div class="pub-title" style="margin-top: 30px;">
+					监测覆盖内容
+				</div> -->
+				<div class="cont1">
+					<ul class="mon-cover" style="overflow: hidden;">
+						<li>
+							<img src="image/yingxiang.png">
+							<span>影像<br/>监控</span>
+						</li>
+						<li>
+							<img src="image/yujing.png">
+							<span>系统<br/>监控</span>
+						</li>
+						<li>
+							<img src="image/guzhang.png">
+							<span>设备<br/>监控</span>
+						</li>
+						<li>
+							<img src="image/xiaofang.png">
+							<span>消防<br/>设施</span>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+				<!-- <div class="cont3">
+					<div class="cont3-title1">冷冻供回水温差</div>
+					<div class="cont3-pro">冷冻供回水温差标准值为：<br /><span>5</span>℃</div>
+					<div class="cont3-title2">冷冻供回水压差</div>
+					<div class="cont3-pro">冷冻供回水压差标准值为：<br /><span>20</span>bar</div>
+				</div> -->
+			<div class="backgroundGray marginTop">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">冷冻供回水监测</span>
+				</div>
+				<ul class="equpro">
+					<li>
+						<div class="position50">
+							<span>供回水温差(℃)</span>
+							<span class="fontsize24" id="temper_data">--</span>
+							<span>标准值：5</span>
+						</div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>供回水压差(bar)</span>
+							<span class="fontsize24" id="pressure_data">--</span>
+							<span>标准值：1.5</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="backgroundGray marginTop" style="height: 285px;">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当月预警次数排名</span>
+					<div class="control_btn" style="font-weight: 100;color: #A5EAFF;">
+						单位：次
+					</div>
+				</div>
+				<div class="en-echars" id="main_top1" style="padding-top:0;">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="iconimg">
+					</div>
+				</div>
+				
+			</div>
+				<!-- <div class="pub-title martop3">
+					当月预警次数排名
+				</div> -->
+				<!-- <div class="cont2">
+					<div id="main2">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div> -->
+			</div>
+			<div class="alarm-rate">
+				<div class="circle_tips"><span style="color:#FFB72C;" id="circleWaringText"></span><br/>当前系统预警</div>
+				<video src="./image/zuoce_x264.mp4" muted="true" loop="true" autoplay="true" class="video" width="300px"
+					height="300px" oncanplaythrough=""></video>
+				<div id="main7" class="ratechars"></div>
+			</div>
+			<!-- <div class="temperature">
+				<div id="temper_spw" style="width: 100%;height: 100%;"></div>
+				<div class="temperature-data">
+					<div class="temperature-difference" id="temper_data">--</div>
+					<div class="difference-unit">bar</div>
+				</div>
+			</div>
+			<div class="pressure">
+				<div id="press_spw" style="width: 100%;height: 100%;"></div>
+				<div class="pressure-data">
+					<div class="pressure-difference" id="pressure_data">--</div>
+					<div class="difference-unit">℃</div>
+				</div>
+			</div> -->
+				<!-- <div id="press_spw"></div> -->
+		</div>
+		<div class="rightbar">
+			<div class="bar-cont fr">
+			<div class="backgroundGray">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当月设备故障排名</span>
+				</div>
+				<div class="cont4" style="position: relative;">
+					<ul class="cont4-ul">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</ul>
+					<!-- <img src="./image/echar_tl.png" class="tl_img" /> -->
+					<!-- <div class="echars-units" style="top: 85px;left: 14px;">台</div> -->
+				
+					<!-- <div id="main3"></div> -->
+				</div>
+			</div>
+				<!-- <div class="pub-title martop1">
+					当月故障设备排行
+				</div> -->
+			<div class="backgroundGray" style="margin-top: 80px;">
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">急需保养设备排名</span>
+					<!-- <div class="control_btn"  style="font-weight: 100;color: #A5EAFF;">
+						单位：h
+					</div> -->
+				</div>
+				<div class="cont5">
+					<div class="echarts-legend">
+						<ul class="echarts-legend">
+							<li>
+								<span class="echarts-legend-icon background1"></span>
+								<span class="echarts-legend-name colorEchartsLegend">运行时长</span>
+							</li>
+							<li>
+								<span class="echarts-legend-icon background2"></span>
+								<span class="echarts-legend-name colorEchartsLegend">剩余保养时间</span>
+							</li>
+						</ul>
+					</div>
+					<!-- <div class="echars-units" style="top: 42px;left: 14px;">小时</div> -->
+					<div id="main4">
+						<div class="hd-loadmask">
+							<img src="../../common/image/load.gif" class="iconimg">
+						</div>
+					</div>
+				</div>
+			</div>
+				<!-- <div class="posrelative">
+					<div class="pub-title">
+						设备剩余寿命排行
+					</div>
+					<img src="image/jinggaojianggao.png" class="jinggaojinggao" id="jinggao">
+				</div> -->
+			</div>
+			<div class="integrity-rate">
+				<div class="circle_tips"><span id="circleFaultText"></span><br/>当前系统报警</div>
+				<video src="./image/youce_x264.mp4" muted="true" loop="true" autoplay="true" class="video" width="300px"
+					height="300px"></video>
+				<div id="main8" class="ratechars"></div>
+			</div>
+		</div>
+		<div class="centercircle">
+			<!-- <div class="centercircle_text">
+				<span class="centercircle_text_span">安全运行</span>
+				<div class="centercircle_title">平台安全运行
+					<span style="font-size: 36px;" id="sec-Date">--</span>
+				天</div>
+				<div class="centercircle_dian"></div>
+			</div> -->
+			<ul class="centercircle_top">
+				<li>平台安全运行时间<br/><span class="labelCount green1_pub" id="sec-Date">--</span>天</li>
+				<li>当月阻止事故次数<br/><span class="labelCount yellow1_pub" id="sec-Recovery">--</span>次</li>
+				<li>平均延长设备使用寿命<br/><span class="labelCount blue2_pub" id="sec-Use">--</span>年</li>
+				
+			</ul>
+			<video id="warnLight" src="#" muted="true" loop="true" autoplay="true" class="video"
+				width="560px" height="560px"></video>
+			<div class="center-message" id="centervideo">
+				<div class="hd-loadmask">
+					<img src="../../common/image/load.gif" class="iconimg">
+				</div>
+				<div class="bak"></div>
+				<div id="safetyScore"></div>
+				<div></div>
+				<div class="pingFen" id="control_btn">
+					评分规则
+					<div class="div_rules">
+						<div class="title">评分规则：</div>
+						<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br/> 最低分为 0 分，无负数的分数。</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottomList">
+			<div class="bottomList-left">
+				<div class="bottomList-title">当前预警详情：</div>
+				<div class="warnList colorWarnYellow" id="warnList"></div>
+			</div>
+			<!-- <div class="bottomList-middle">
+				
+			</div> -->
+			<div class="bottomList-right">
+				<div class="bottomList-title">当前报警详情：</div>
+				<div class="warnList colorWarnRed" id="faultList"></div>
+			</div>
+			<!-- <div class="left-list">
+				<div class="backTh" id="backTh1">
+					<div class="col1">预警原因</div>
+					<div class="col2">预警最后时间</div>
+				</div>
+				<div class="txtMarquee-top" id="warnList"> -->
+					<!-- <div class="bd">
+						<ul class="infoList" id="warnList"> -->
+							<!-- <li>
+								<span class="col1">11</span>
+								<span class="col2">22</span>
+							</li> -->
+						<!-- </ul> -->
+					<!-- </div> -->
+				<!-- </div> -->
+<!--				<div class="warnBack">-->
+<!--					<div class="warnMessage">今日站点未发生预警持续安全运行中...</div>-->
+<!--				</div>-->
+			<!-- </div>
+			<div class="right-list" style="margin-left: 49px">
+				<div class="backTh" id="backTh2">
+					<div class="col1">设备名称</div>
+					<div class="col2">故障最后时间</div>
+				</div>
+				<div class="txtMarquee-top" id="faultList"> -->
+					<!-- <div class="bd">
+						<ul class="infoList" > -->
+							<!-- <li>
+								<span class="col1">11</span>
+								<span class="col2">22</span>
+							</li> -->
+						<!-- </ul>
+					</div> -->
+				<!-- </div> -->
+<!--				<div class="faultBack">-->
+<!--					<div class="faultMessage">今日站点未发生预警持续安全运行中...</div>-->
+<!--				</div>-->
+			<!-- </div> -->
+		</div>
+	</div>
+	<!-- <div class="tipList"></div> -->
+
+</body>
+
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/hdTools.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/loadPng.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/hdTools.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/echarts-liq.js"></script>
+<!-- <script src="../../common/lib/echarts-liquidfill.js"></script> -->
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/security.js?v='+version+'"><\/script>');
+</script>

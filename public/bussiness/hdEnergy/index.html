@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="content-type" content="no-cache, must-revalidate" />
+		<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/index.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="part-header" id="partheader"></div>
+		<!---------近1月开始-------->
+		<div class="layui-row sc-container2">
+			<div class="layui-col-md6 height100">
+				<div class="height33 layui-col-md12" id="waring-statis-cover">
+					<div class="lev3title_pub" id="monthUse">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						用电时段统计(近30天)
+						<span class="legend_pub fr">
+							<em class="icon lineIcon" style="background-color:#0078FF"></em>
+							<em class="font" style="color:#0078FF">低谷电量</em>
+						</span>
+						<span class="legend_pub fr">
+							<em class="icon lineIcon" style="background-color:#2CEEFF"></em>
+							<em class="font" style="color:#2CEEFF">平段电量</em>
+						</span>
+						<span class="legend_pub fr">
+							<em class="icon lineIcon" style="background-color:#FFF831"></em>
+							<em class="font" style="color:#FFF831">高峰电量</em>
+						</span>
+					</div>
+					<div class="main4" style="height: calc(100% - 45px);">
+						<div class="echars main1" id="electricityUsing" >
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="height33 layui-col-md12">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						分时段电费统计(近30天)
+					</div>
+					<div class="padVer20">
+						<ul class="eqTitle">
+							<li style="flex: 1.5;">用电电量(kW·h)</li>
+							<li>电单价与平段相比(%)</li>
+							<li>用电电费(元)</li>
+							<li>电费占比(%)</li>
+						</ul>
+						<ul class="eqConcainer">
+							<li style="flex: 1.5;">
+								<img src="image/dianYellow.png" >
+								<span>高峰累计电量: <em id="hightSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>上浮<em>43.3</em></span>
+							</li>
+							<li>
+								<span><em id="higtCostSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>高峰占比: <em id="highProportion">--</em></span>
+							</li>
+						</ul>
+						<ul class="eqConcainer">
+							<li style="flex: 1.5;">
+								<img src="image/dianLight.png" >
+								<span>平段累计电量: <em id="flatSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>同 <em> </em></span>
+							</li>
+							<li>
+								<span><em id="flatCostSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>平段占比: <em id="flatProportion">--</em></span>
+							</li>
+						</ul>
+						<ul class="eqConcainer">
+							<li style="flex: 1.5;">
+								<img src="image/energyBlue.png" >
+								<span>低谷累计电量: <em id="lowEbbSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>下降<em>40.9</em></span>
+							</li>
+							<li>
+								<span><em id="lowEbbCostSum" style="width: 80px;">--</em></span>
+							</li>
+							<li>
+								<span>低谷占比: <em id="lowEbbProportion">--</em></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="height33 layui-col-md6" id="signalFailure">
+					<div class="lev3title_pub" id="main1Legend">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						变压器无功功率
+						<div class="legend"></div>
+					</div>
+					<div id="main1" class="main4" style="height: calc(100% - 45px);">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="height33 layui-col-md6">
+					<div class="lev3title_pub" id="main2Legend">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						功率因数曲线
+						<div class="legend"></div>
+					</div>
+					<div id="main2" class="main4" style="height: calc(100% - 45px);">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6 height100  ">
+				<div class="height66 layui-col-md6" id="equ-detail-cover">
+					<div class="lev3title_pub" style="padding: 10px 0;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						当月用能统计
+					</div>
+					<div class="deviceRunList" id="deviceRunList" >
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+					<div class="totalEnergy" id="dnjc" style="display: none;">
+						<div id="totalText">--</div>
+						<div id="totalEnergy">--</div>
+						<div id="totalBill">--</div>
+					</div>
+				</div>
+				<div class="height66 layui-col-md6">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						分系统用电概览
+					</div>
+					<div class="better" id="better">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+				<div class="height33 layui-col-md6" id="equfaulttop5" style="position: relative;">
+					<div class="lev3title_pub" style="padding: 10px 0;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						最大负荷趋势图
+						<div class="legend"></div>
+					</div>
+					<div class="main2">
+						<div class="main2_img" id="circle">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="height33 layui-col-md6" id="maintain-equipment">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						电流总谐波畸变率
+						<div class="changeBtn"></div>
+					</div>
+					<div style="height: 20px;position: relative;">
+						<div class="legendMax"></div>
+					</div>
+					<div id="main3" class="main4">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!---------近1月结束-------->
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script>
+	document.write('<script src="./js/index.js?v='+version+'"><\/script>');
+</script>
+

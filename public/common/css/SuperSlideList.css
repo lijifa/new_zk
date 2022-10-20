@@ -1,0 +1,39 @@
+.SuperSlide {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 14px;
+	line-height: 30px;
+}
+.SSTitle{
+	display: flex;
+}
+.SuperSlideColumn{
+	flex-direction: column;
+}
+.SuperSlideRow{
+	flex-direction: row;
+}
+.SSTitleItem{
+	flex: 1;
+}
+.SSContainer{
+	flex: 1;
+}
+.SSInfoList{}
+.SSRow{
+	display: flex;
+	justify-content: space-between;
+	/* align-items: center; */
+}
+.SSRowItem{
+	flex: 1;
+}
+.SSImg{
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}

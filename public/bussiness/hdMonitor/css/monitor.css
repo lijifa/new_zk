@@ -1,0 +1,211 @@
+html,
+body {
+	height: 100%;
+
+}
+body {
+	color: #fff;
+}
+.sc-container{
+	height: calc(100% - 70px);
+	padding-top: 70px;
+	width: 100%;
+}
+.height70{
+	height: 70%;
+}
+.height30{
+	height: 30%;
+}
+.transformer{
+	width: 100%;
+	padding: 0 20px;
+	height: 30px;
+}
+.transformer button{
+	display: inline-block;
+	width: 200px;
+	padding: 5px 0;
+	background-color: #16263B;
+	color: #C3E8FF;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	border: 0;
+	border: 1px solid #16263B;
+}
+.transformer .on{
+	background-color: #0C3056;
+	color: #00FFFF;
+	border: 1px solid #00FFFF;
+}
+.table{
+	width: calc(100% - 40px);
+	height: 164px;
+	padding: 10px 20px;
+}
+.table table{
+	width: 100%;
+	text-align: center;
+	color: #c3e8ff;
+	border: 1px solid #133755;
+}
+.table th{
+	width: 16.6667%;
+	padding: 10px 0;
+	background: rgba(24, 193, 255, 0.15);
+}
+.table td{
+	width: 16.6667%;
+	padding: 10px 0;
+}
+.power_temperature{
+	width: calc(100% - 82px);
+	padding: 0 20px;
+	background: rgba(24, 193, 255, 0.15);
+	margin: 0 20px;
+	border: 1px solid #0C3056;
+	position: relative;
+}
+.power_temperature button{
+	display: inline-block;
+	width: 100px;
+	/* border: 1px solid #244F7D; */
+	/* background: rgba(24, 193, 255, 0.15); */
+	background-color: transparent;
+	color: #C3E8FF;
+	text-align: center;
+	padding: 5px 0;
+	cursor: pointer;
+	outline: none;
+	border: 1px solid #16263B;
+}
+.power_temperature em{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.power_temperature .on{
+	/* border: 1px solid #0E7DA5; */
+	background: #0C3056;
+	color: #00FFFF;
+	border: 1px solid #00FFFF;
+}
+.power_temperature_echarts{
+	height: calc(100% - 230px);
+	/* border: 1px solid #0C3056; */
+	/* margin: 0 20px; */
+	position: relative;
+	color: #A5EAFF;
+	opacity: 1;
+	z-index: 1;
+	position: absolute;
+	top: 230px;
+	width: 100%;
+}
+.legend{
+	/* width: calc(100% - 40px); */
+	/* line-height: 30px; */
+	/* text-align: right; */
+	/* padding: 0 20px; */
+	position: absolute;
+	top: 15px;
+	right: 30px;
+	font-size: 12px;
+	font-weight: 400;
+}
+.echarts_con{
+	height: calc(100% - 45px);
+	position: absolute;
+	top: 45px;
+	padding: 0 20px;
+	width: calc(100% - 40px);
+}
+.legend span{
+	display: inline-block;
+	width: 15px;
+	height: 3px;
+	border-radius: 3px;
+	vertical-align: middle;
+}
+.legendColorLightBlue{
+	background-color: #00FFFF;
+}
+.legendColorBlue{
+	background-color:#1683FF;
+}
+.legendColorYellow{
+	background-color: #FBE945;
+}
+.flex{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+.flex>div{
+	flex: 1;
+}
+.flex .lev3title_pub{
+	padding: 10px 0;
+}
+.list{
+	height: calc(100% - 50px);
+	position: relative;
+}
+#transformerMonitor>.gDDiv, #switchMonitor>.gDDiv{
+	padding: 0;
+	height: 100%;
+}
+.gDlie_title0, .gDlie_title1, .gDlie_title2, .gDlie_title3, .gDlie_title4{
+	line-height: 28px;
+	border: 1px solid #00FFFF;
+}
+.gDhang_item0, .gDhang_item1,.gDhang_item2, .gDhang_item3,.gDhang_item4{
+	line-height: 36px;
+	color: #c3e8ff;
+}
+.gDlistOut{
+	height: calc(100% - 30px);
+}
+.gDtext img{
+	width: 16px;
+	height: 16px;
+}
+.gDDiv li:nth-child(odd){
+	background-color: rgba(37, 248, 255, .1);
+}
+.gDDiv li:nth-child(odd) .gDhang_item1, .gDDiv li:nth-child(odd) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .2);
+}
+.gDDiv .jiShu li:nth-child(even){
+	background-color: rgba(37, 248, 255, .1);
+}
+.gDDiv .jiShu li:nth-child(odd){
+	background-color: transparent;
+}
+.gDDiv .jiShu li:nth-child(even) .gDhang_item1,.gDDiv .jiShu li:nth-child(even) .gDhang_item3{
+	background-color: rgba(37, 248, 255, .2);
+}
+.gDDiv .jiShu li:nth-child(odd) .gDhang_item1,.gDDiv .jiShu li:nth-child(odd) .gDhang_item3{
+	background-color: transparent;
+}
+.textHover{
+	background-color: transparent;
+}
+.posimg{
+	width: 150px;
+	height: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+@media only screen and (min-width: 1800px) {
+}
+@media screen and (min-height: 980px) {
+	/*按f11但未隐藏导航模式*/
+}
+@media screen and (min-height: 1080px) {
+	/*按f11隐藏导航模式*/
+}

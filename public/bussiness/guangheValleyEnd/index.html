@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" type="text/css" href="./css/GuangheValleyEnd.css" />
+		<script>
+			document.write('<script src="../../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="../../common/image/bghei.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader"></div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md12">
+				<div class="moduanU3d" style="width: 100%;height: 100vh;"></div>
+			</div>
+
+			<div class="leftNav" style="transform: translateX(-420px);">
+				<div class="navBg leftNavBg"></div>
+				<div class="leftBtn"></div>
+				<div class="nav scrollbar">
+					<div class="lev3title_pub leftNavItem" style="transform: translateX(-420px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						末端监测设备统计
+					</div>
+					<div class="total leftNavItem" style="transform: translateX(-420px);">
+						<div class="deviceVideoImg">
+							<video class="deviceVideo video" src="image/deviceMonitor.mp4" loop="loop" muted="muted"
+								autoplay="autoplay"></video>
+						</div>
+						<div class="deviceBox">
+							<div class="deviceItem">
+								<span class="deviceTitle">末端传感器总数</span>
+								<span class="deviceNum deviceTotal0" id="totalNumberSensorsTheEndOf">--</span>
+								<em>台</em>
+							</div>
+							<div class="deviceItem">
+								<span class="deviceTitle">离线数</span>
+								<span class="deviceNum deviceTotal1" id="offlineForSeveral">--</span> <em>台</em>
+							</div>
+							<div class="underLine"></div>
+						</div>
+					</div>
+					<div class="deviceType leftNavItem" style="transform: translateX(-420px);">
+						<div class="deviceFlex">
+							<img src="image/wendu.png" class="deviceImg">
+							<div>
+								<span class="deviceNum deviceTotal2" id="indoorTemperatureSensor">--</span> <em>台</em>
+								<span class="deviceTitle">室内温度传感器</span>
+							</div>
+						</div>
+						<div class="deviceFlex" style="width: 45%;">
+							<img src="image/reliang.png" class="deviceImg">
+							<div>
+								<span class="deviceNum deviceTotal3" id="heatMeterNumber">--</span> <em>台</em>
+								<span class="deviceTitle">热量表</span>
+							</div>
+						</div>
+						<div class="deviceFlex">
+							<img src="image/shidu.png" class="deviceImg">
+							<div>
+								<span class="deviceNum deviceTotal4" id="temperatureSensorNumber">--</span> <em>台</em>
+								<span class="deviceTitle">温度传感器</span>
+							</div>
+						</div>
+						<div class="deviceFlex" style="width: 45%;">
+							<img src="image/yali.png" class="deviceImg">
+							<div>
+								<span class="deviceNum deviceTotal5" id="pressureSensorNumber">--</span> <em>台</em>
+								<span class="deviceTitle">压力传感器</span>
+							</div>
+						</div>
+					</div>
+					<div class="lev3title_pub leftNavItem" style="transform: translateX(-420px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						机房能源流向图
+					</div>
+					<div class="flowDirection leftNavItem" style="transform: translateX(-420px);">
+						<video class="flowVideo video" src="image/flow.mp4" loop="loop" muted="muted"
+							autoplay="autoplay"></video>
+					</div>
+				</div>
+			</div>
+			<ul class="changeScenes changeScenesNav" style="transform: translateX(1600px);">
+				<li class="scenseItem on" data-builder="0" data-clickFlag="1">
+					<img src="image/by.png" class="builderImg">
+					<div class="builderText">
+						<span class="builderName">泊雅苑</span>
+						<span class="builderDesc">光合谷供热居民小区</span>
+					</div>
+				</li>
+				<li class="scenseItem" data-builder="1" data-clickFlag="1">
+					<img src="image/jd.png" class="builderImg">
+					<div class="builderText">
+						<span class="builderName">温泉度假酒店</span>
+						<span class="builderDesc">供冷供热酒店建筑</span>
+					</div>
+				</li>
+				<li class="scenseItem" data-builder="2" data-clickFlag="1">
+					<img src="image/hs.png" class="builderImg">
+					<div class="builderText">
+						<span class="builderName">泊心堂</span>
+						<span class="builderDesc">供冷供热场馆</span>
+					</div>
+				</li>
+				<li class="scenseItem" data-builder="3" data-clickFlag="1">
+					<img src="image/lf.png" class="builderImg">
+					<div class="builderText">
+						<span class="builderName">售楼中心</span>
+						<span class="builderDesc">供冷供热场馆</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="terminal terminalNav" style="transform: translateY(180px);">
+				<li class="terminalItem" style="flex: 2;">
+					<div class="terminalType">近端</div>
+					<div class="terminalLeft">
+						<span class="terminalTitle">1号楼供/回水温度：</span>
+						<span class="terminalNum"><em id="floorIn1">--</em>/<em id="floorOut1">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+					<div class="terminalRight">
+						<span class="terminalTitle">2号楼供/回水温度：</span>
+						<span class="terminalNum"><em id="floorIn2">--</em>/<em id="floorOut2">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+				</li>
+				<li class="terminalItem" style="flex: 1;">
+					<div class="terminalType">中端</div>
+					<div class="terminalLeft" style="width: 100%;">
+						<span class="terminalTitle">8号楼供/回水温度：</span>
+						<span class="terminalNum"><em id="floorIn8">--</em>/<em id="floorOut8">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+				</li>
+				<li class="terminalItem" style="flex: 2;">
+					<div class="terminalType">远端</div>
+					<div class="terminalLeft">
+						<span class="terminalTitle">4号楼供/回水温度：</span>
+						<span class="terminalNum"><em id="floorIn4">--</em>/<em id="floorOut4">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+					<div class="terminalRight">
+						<span class="terminalTitle">14号楼供/回水温度：</span>
+						<span class="terminalNum"><em id="floorIn14">--</em>/<em id="floorOut14">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+				</li>
+				<li class="terminalItem" style="flex: 1;">
+					<div class="terminalType">泵房</div>
+					<div class="terminalLeft" style="width: 100%;">
+						<span class="terminalTitle">泵房供/回水温度：</span>
+						<span class="terminalNum"><em id="bengfangIn">--</em>/<em id="bengfangOut">--</em></span>
+						<em class="terminalUnit">℃</em>
+					</div>
+				</li>
+			</ul>
+			<!-- 泊雅苑 -->
+			<div class="rightNav rigthNav0" style="transform: translateX(400px);">
+				<div class="navBg rightNavBg0"></div>
+				<div class="rightBtn rightBtnTemp0"></div>
+				<div class="nav scrollbar">
+					<div class="lev3title_pub rightNavItem0" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						建筑基本信息
+					</div>
+					<div class="builderInfo rightNavItem0"
+						style="transform: translateX(400px);background-image: url(image/builderInfo1.png);">
+						建筑主要用途：居民小区
+					</div>
+					<div class="builderInfo rightNavItem0"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑面积：8.87万㎡
+					</div>
+					<div class="builderInfo rightNavItem0"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑结构：钢筋混凝土建筑
+					</div>
+					<div class="lev3title_pub rightNavItem0" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时热量监测
+					</div>
+					<div class="hotTotal rightNavItem0" style="transform: translateX(400px);">
+						<div class="hotMidding">
+							<img src="image/hot.png" class="hotImg">
+							<div class="hotText">
+								<span class="hotTitle">机房泊雅苑支路热量值：</span>
+								<span class="hotNum" id="hotAll">--</span>
+								<em class="hotUnit">kW</em>
+							</div>
+						</div>
+						<div class="hotLine"></div>
+					</div>
+					<div class="terminalHot rightNavItem0" style="transform: translateX(400px);">
+						<div class="terminalHotType">
+							近<br />端
+						</div>
+						<div class="hotTypeLeft">
+							<span class="hotTypeTitle">1号楼热量(kW)：</span>
+							<span class="hotTypeNum" id="hot1">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+						<div class="hotTypeRight">
+							<span class="hotTypeTitle">2号楼热量(kW)：</span>
+							<span class="hotTypeNum" id="hot2">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+					</div>
+					<div class="terminalHot rightNavItem0" style="transform: translateX(400px);">
+						<div class="terminalHotType">
+							中<br />端
+						</div>
+						<div class="hotTypeRight">
+							<span class="hotTypeTitle">8号楼热量(kW)：</span>
+							<span class="hotTypeNum" id="hot8">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+						<div class="terminalHotType">
+							泵<br />房
+						</div>
+						<div class="hotTypeRight">
+							<span class="hotTypeTitle">泵房热量(kW)：</span>
+							<span class="hotTypeNum" id="bengfangHot">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+					</div>
+					<div class="terminalHot rightNavItem0" style="transform: translateX(400px);">
+						<div class="terminalHotType">
+							远<br />端
+						</div>
+						<div class="hotTypeLeft">
+							<span class="hotTypeTitle">4号楼热量(kW)：</span>
+							<span class="hotTypeNum" id="hot4">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+						<div class="hotTypeLeft">
+							<span class="hotTypeTitle">14号楼热量(kW)：</span>
+							<span class="hotTypeNum" id="hot14">--</span>
+							<!-- <em class="hotTypeUnit">kW</em> -->
+						</div>
+					</div>
+					<div class="lev3title_pub rightNavItem0" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						近30天泊雅苑每日热量
+					</div>
+					<div class="echartsBox rightNavItem0" style="transform: translateX(400px);">
+						<div class="echartsContainer" id="dateHotLine">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 温泉度假酒店 -->
+			<div class="rightNav rightNav1" style="transform: translateX(400px);">
+				<div class="navBg rightNavBg1"></div>
+				<div class="rightBtn rightBtnTemp1"></div>
+				<div class="nav scrollbar">
+					<div class="lev3title_pub rightNavItem1" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						建筑基本信息
+					</div>
+					<div class="builderInfo rightNavItem1"
+						style="transform: translateX(400px);background-image: url(image/builderInfo1.png);">
+						建筑主要用途：度假酒店
+					</div>
+					<div class="builderInfo rightNavItem1"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑面积：5万㎡
+					</div>
+					<div class="builderInfo rightNavItem1"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑结构：钢筋混凝土建筑
+					</div>
+					<div class="lev3title_pub rightNavItem1" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时热量监测
+					</div>
+					<div class="hotTotal rightNavItem1" style="transform: translateX(400px);">
+						<!-- <div class="hotMidding"> -->
+						<!-- <img src="image/hot.png" class="hotImg"> -->
+						<div class="hotText" style="width: 46%;left: 20px;">
+							<span class="hotTitle">酒店内热量值：</span>
+							<span class="hotNum" id="hotelHotTotal">--</span>
+							<em class="hotUnit">kW</em>
+						</div>
+						<div class="hotText" style="width: 46%;left: auto;right: 5px;">
+							<span class="hotTitle">机房酒店分支热量值：</span>
+							<span class="hotNum" id="hotelHot">--</span>
+							<em class="hotUnit">kW</em>
+						</div>
+						<!-- </div> -->
+						<div class="hotLine"></div>
+					</div>
+					<div class="terminalHot rightNavItem1" style="transform: translateX(400px);">
+						<div class="hotTypeLeft">
+							<span class="hotTypeTitle">热损耗值：</span>
+							<span class="hotTypeNum" id="heatLossValue">--</span>
+							<em class="hotTypeUnit">kW</em>
+						</div>
+						<div class="hotTypeRight">
+							<span class="hotTypeTitle">热损耗占比：</span>
+							<span class="hotTypeNum" id="heatLossRatio">--</span>
+							<em class="hotTypeUnit">%</em>
+						</div>
+					</div>
+					<div class="lev3title_pub rightNavItem1" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时温度监测
+						<div class="legend">
+							<em class="legendLine" style="background-color: rgba(0, 255, 255, 1);"></em>
+							<span class="legendText">室内温度</span>
+							<em class="legendLine" style="background-color: rgba(22, 143, 255, 1);"></em>
+							<span class="legendText">室外温度</span>
+						</div>
+					</div>
+					<div class="deviceType rightNavItem1" style="transform: translateX(400px);">
+						<div class="deviceFlex">
+							<img src="image/indoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum" id="hotelTemperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室内温度</span>
+							</div>
+						</div>
+						<div class="deviceFlex" style="width: 50%;">
+							<img src="image/outdoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum temperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室外温度</span>
+							</div>
+						</div>
+					</div>
+					<div class="echartsBox rightNavItem1" style="transform: translateX(400px);">
+						<div class="echartsContainer" id="roomTemperature1">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 泊心堂 -->
+			<div class="rightNav rightNav2" style="transform: translateX(400px);">
+				<div class="navBg rightNavBg2"></div>
+				<div class="rightBtn rightBtnTemp2"></div>
+				<div class="nav scrollbar">
+					<div class="lev3title_pub rightNavItem2" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						建筑基本信息
+					</div>
+					<div class="builderInfo rightNavItem2"
+						style="transform: translateX(400px);background-image: url(image/builderInfo1.png);">
+						建筑主要用途：商务会议
+					</div>
+					<div class="builderInfo rightNavItem2"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑面积：0.2万㎡
+					</div>
+					<div class="builderInfo rightNavItem2"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑结构：钢筋混凝土建筑
+					</div>
+					<div class="lev3title_pub rightNavItem2" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时热量监测
+					</div>
+					<div class="hotMoniter rightNavItem2" style="transform: translateX(400px);">
+						<div class="hotMoniterImg"></div>
+						<div class="hotMoniterText">
+							机房泊心堂支路热量值
+						</div>
+						<div class="hotMoniterNum">
+							<span id="boxintang">--</span>
+							<em class="hotMoniterUnit">kW</em>
+						</div>
+						<div class="hotLine"></div>
+					</div>
+					<div class="lev3title_pub rightNavItem2" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时温度监测
+						<div class="legend">
+							<em class="legendLine" style="background-color: rgba(0, 255, 255, 1);"></em>
+							<span class="legendText">室内温度</span>
+							<em class="legendLine" style="background-color: rgba(22, 143, 255, 1);"></em>
+							<span class="legendText">室外温度</span>
+						</div>
+					</div>
+					<div class="deviceType rightNavItem2" style="transform: translateX(400px);">
+						<div class="deviceFlex">
+							<img src="image/indoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum" id="boxinTemperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室内温度</span>
+							</div>
+						</div>
+						<div class="deviceFlex" style="width: 50%;">
+							<img src="image/outdoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum temperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室外温度</span>
+							</div>
+						</div>
+					</div>
+					<div class="echartsBox rightNavItem2" style="transform: translateX(400px);">
+						<div class="echartsContainer" id="roomTemperature2">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 售楼中心 -->
+			<div class="rightNav rightNav3" style="transform: translateX(400px);">
+				<div class="navBg rightNavBg3"></div>
+				<div class="rightBtn rightBtnTemp3"></div>
+				<div class="nav scrollbar">
+					<div class="lev3title_pub rightNavItem3" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						建筑基本信息
+					</div>
+					<div class="builderInfo rightNavItem3"
+						style="transform: translateX(400px);background-image: url(image/builderInfo1.png);">
+						建筑主要用途：办公
+					</div>
+					<div class="builderInfo rightNavItem3"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑面积：0.4万㎡
+					</div>
+					<div class="builderInfo rightNavItem3"
+						style="transform: translateX(400px);background-image: url(image/builderInfo2.png);">
+						建筑结构：钢筋混凝土建筑
+					</div>
+					<div class="lev3title_pub rightNavItem3" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时热量监测
+					</div>
+					<div class="hotTotal rightNavItem3" style="transform: translateX(400px);">
+						<!-- <div class="hotMidding"> -->
+						<!-- <img src="image/hot.png" class="hotImg"> -->
+						<div class="hotText" style="width: 46%;left: 20px;">
+							<span class="hotTitle">售楼中心总管热量：</span>
+							<span class="hotNum" id="salesCenter1">--</span>
+							<em class="hotUnit">kW</em>
+						</div>
+						<div class="hotText" style="width: 46%;left: auto;right: 5px;">
+							<span class="hotTitle">机房售楼中心热量：</span>
+							<span class="hotNum" id="salesCenter2">--</span>
+							<em class="hotUnit">kW</em>
+						</div>
+						<!-- </div> -->
+						<div class="hotLine"></div>
+					</div>
+					<div class="terminalHot rightNavItem3" style="transform: translateX(400px);">
+						<div class="hotTypeLeft">
+							<span class="hotTypeTitle">热损耗值：</span>
+							<span class="hotTypeNum" id="salesCenter">--</span>
+							<em class="hotTypeUnit">kW</em>
+						</div>
+						<div class="hotTypeRight">
+							<span class="hotTypeTitle">热损占比：</span>
+							<span class="hotTypeNum" id="hotheatLossValue">--</span>
+							<em class="hotTypeUnit">%</em>
+						</div>
+					</div>
+					<div class="lev3title_pub rightNavItem3" style="transform: translateX(400px);">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						实时温度监测
+						<div class="legend">
+							<em class="legendLine" style="background-color: rgba(0, 255, 255, 1);"></em>
+							<span class="legendText">室内温度</span>
+							<em class="legendLine" style="background-color: rgba(22, 143, 255, 1);"></em>
+							<span class="legendText">室外温度</span>
+						</div>
+					</div>
+					<div class="deviceType rightNavItem3" style="transform: translateX(400px);">
+						<div class="deviceFlex">
+							<img src="image/indoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum" id="salesCenterTemperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室内温度</span>
+							</div>
+						</div>
+						<div class="deviceFlex" style="width: 50%;">
+							<img src="image/outdoor.png" style="width: 48px;" class="deviceImg">
+							<div>
+								<span class="deviceNum temperature">--</span> <em>℃</em>
+								<span class="deviceTitle">室外温度</span>
+							</div>
+						</div>
+					</div>
+					<div class="echartsBox rightNavItem3" style="transform: translateX(400px);">
+						<div class="echartsContainer" id="roomTemperature3">
+							<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/lib/anime.min.js"></script>
+<script src="../../common/js/animeCom.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script>
+	document.write('<script src="js/guangheValleyEnd.js?v=' + version + '"><\/script>');
+</script>

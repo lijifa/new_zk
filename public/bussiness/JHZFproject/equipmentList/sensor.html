@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="/common/css/public.css">
+		<link rel="stylesheet" href="/common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="/common/css/page.css"/>
+		<script type="text/javascript">
+			document.write('<script language="javascript" src="/common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/sensor.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="/common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="视频监控"></div>
+		<div class="layui-row sc-container">
+			<div class="mask"></div>
+			<div class="cameraMove">
+				<i class="layui-icon layui-icon-close cameraclose"></i> 
+				<div id="id_test_video" style="height: 100px;"></div>
+			</div>
+			<div class="lev3title_pub" style="padding: 0 20px;">
+				<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+				<span id="moneryEnergyTitle">传感器详情</span>
+			</div>
+			<ul class="btnContainer">
+				<li class="on" data-type=''>全部</li>
+				<li data-type='194'>温度传感器</li>
+				<li data-type='197'>压力传感器</li>
+				<li data-type='202'>流量表</li>
+				<li data-type='203'>热量表</li>
+				<div class="filter">
+					<input autocomplete="off" type="" name="" id="filterInput" value="" placeholder="输入传感器名称搜索"/>
+					<button type="button" class="search">搜索</button>
+					<button type="button" class="reset">重置</button>
+				</div>
+			</ul>
+			<div class="transformerMonitor scrollbar" id="device">
+				<img src="/common/image/load.gif" class="load">
+			</div>
+			<div class="page" id="page"></div>
+		</div>
+	</body>
+</html>
+<script src="/common/lib/jquery-3.2.1.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/page.js"></script>
+<script type="text/javascript">
+	document.write('<script language="javascript" src="js/sensor.js?v=' + version + '"><\/script>');
+</script>

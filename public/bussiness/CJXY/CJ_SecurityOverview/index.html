@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>华德智慧能源管理系统</title>
+    <link rel="stylesheet" href="/common/css/public.css" />
+    <link rel="stylesheet" href="/common/css/generalStyle.css" />
+    <link rel="stylesheet" href="/common/css/SuperSlideList.css" />
+    <script>
+      document.write(
+        '<script src="/common/lib/config.js?time=' +
+          new Date().getTime() +
+          '"><\/script>'
+      );
+    </script>
+    <script type="text/javascript">
+      document.write(
+        '<link rel="stylesheet" href="./css/security.css?v=' + version + '"/>'
+      );
+    </script>
+  </head>
+
+  <body class="layui-layout-body">
+    <img src="/common/image/beiing130.jpg" class="image-bg" />
+    <div class="innerheader" id="innerheader" data-title="安全驾驶舱"></div>
+    <img src="./image/zuoche.png" class="leftbg" />
+    <img src="./image/youche.png" class="rightbg" />
+    <div class="layui-row sc-container">
+      <div class="leftbar">
+        <div class="bar-cont todayCoastWaterBox">
+          <div class="lev3title_pub">
+            <img
+              src="/common/image/titleGather/title-icon3.png"
+              class="title_icon"
+            />
+            实时主教学楼暖气监测
+          </div>
+          <div class="bottomBlueImg">
+            <div class="watchItem">
+              <img src="./image/water.png" alt="" />
+              <div>
+                <p>
+                  <span class="watchItemTitle" id="realTimeFlow">--</span>m³/h
+                </p>
+                <p class="watchItemText">暖气流量</p>
+              </div>
+            </div>
+          </div>
+          <div class="bottomBlueImg">
+            <div
+              style="
+                width: 100%;
+                padding: 0 25px 0 25px;
+                display: flex;
+                justify-content: space-between;
+              "
+            >
+              <div class="watchItem">
+                <img
+                  class="mr"
+                  src="./image/temperature.png"
+                  style="width: 29px; height: 49px"
+                  alt=""
+                />
+                <div>
+                  <p>
+                    <span class="watchItemTitle" id="waterSupplyTemperature"
+                      >--</span
+                    >℃
+                  </p>
+                  <p class="watchItemText">暖气供水温度</p>
+                </div>
+              </div>
+              <div class="watchItem">
+                <img
+                  class="mr"
+                  src="./image/waterP.png"
+                  style="width: 32px; height: 51px"
+                  alt=""
+                />
+                <div>
+                  <p>
+                    <span class="watchItemTitle" id="returnWaterPressure"
+                      >--</span
+                    >bar
+                  </p>
+                  <p class="watchItemText">暖气回水压力</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="leftTableBox">
+          <div class="lev3title_pub">
+            <img
+              src="/common/image/titleGather/title-icon3.png"
+              class="title_icon"
+            />
+            实时暖气回水温度监测
+          </div>
+          <div id="leftTable" class="leftBottom"></div>
+        </div>
+        <div class="alarm-rate">
+          <div class="circle_tips TextColor">
+            <span class="font20 bold TextColor" id="circleWaringText1">--</span
+            >次<br />当前离线报警
+          </div>
+          <video
+            src="./image/zuoce_x264.mp4"
+            muted="true"
+            loop="true"
+            autoplay="true"
+            class="video"
+            width="300px"
+            height="300px"
+            oncanplaythrough=""
+          ></video>
+          <div id="main7" class="ratechars"></div>
+        </div>
+      </div>
+      <div class="rightbar">
+        <div class="todayCoastWaterBox fr">
+          <div class="lev3title_pub">
+            <img
+              src="/common/image/titleGather/title-icon3.png"
+              class="title_icon"
+            />
+            当日校园用水监测
+          </div>
+          <div class="todayCoastWater blueshinyText">
+            <em id="currentDayWaterCost">--</em>
+            <span class="waterWatchUnit">m³</span>
+          </div>
+        </div>
+        <div class="bar-cont fr">
+          <div class="lev3title_pub" style="padding: 0">
+            <img
+              src="/common/image/titleGather/title-icon3.png"
+              class="title_icon"
+            />
+            当月系统报警排名
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/No1.png" />
+            <div class="electRankItemText">
+              <span id="reason0">--</span>
+              <span class="mr20"
+                ><em class="todayelecText font24" id="times0">--</em> 次</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/No2.png" />
+            <div class="electRankItemText">
+              <span id="reason1">--</span>
+              <span class="mr20"
+                ><em class="todayelecText" id="times1">--</em> 次</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/No3.png" />
+            <div class="electRankItemText">
+              <span id="reason2">--</span>
+              <span class="mr20"
+                ><em class="todayelecText" id="times2">--</em> 次</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/No4.png" />
+            <div class="electRankItemText">
+              <span id="reason3">--</span>
+              <span class="mr20"
+                ><em class="todayelecText" id="times3">--</em> 次</span
+              >
+            </div>
+          </div>
+          <div class="elecRankItem">
+            <img src="./image/rankImg/No5.png" />
+            <div class="electRankItemText">
+              <span id="reason4">--</span>
+              <span class="mr20"
+                ><em class="todayelecText" id="times4">--</em> 次</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="integrity-rate">
+          <div class="circle_tips TextColor2">
+            <span class="font20 bold TextColor2" id="circleFaultText2">--</span
+            >次<br />当前井盖报警
+          </div>
+          <video
+            src="./image/youce_x264.mp4"
+            muted="true"
+            loop="true"
+            autoplay="true"
+            class="video"
+            width="300px"
+            height="300px"
+          ></video>
+          <div id="main8" class="ratechars"></div>
+        </div>
+      </div>
+      <div class="centercircle">
+        <ul class="centercircle_top">
+          <li>
+            平台安全运行时间<br /><span
+              class="labelCount green1_pub"
+              id="sec-Date"
+              >--</span
+            >天
+          </li>
+          <li>
+            当月阻止事故次数<br /><span
+              class="labelCount yellow1_pub"
+              id="sec-Recovery"
+              >--</span
+            >次
+          </li>
+          <li>
+            累计发出报警次数<br /><span class="labelCount redText" id="sec-Use"
+              >--</span
+            >次
+          </li>
+        </ul>
+        <video
+          src="./image/中间圆_x264.mp4"
+          id="warnLight"
+          src="#"
+          muted="true"
+          loop="true"
+          autoplay="true"
+          class="video"
+          width="560px"
+          height="560px"
+        ></video>
+        <div class="center-message" id="centervideo">
+          <div class="bak"></div>
+          <div id="safetyScore" class="safetyScore"></div>
+          <div style="color: #48d396" class="safetyScore"></div>
+          <div class="pingFen" id="control_btn">
+            评分规则
+            <div class="div_rules">
+              <div class="title">评分规则：</div>
+              <div>
+                100 分为满分，一次报警减 10 分。<br />
+                最低分为 0 分，无负数的分数。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottomList">
+        <div class="bottomList-right">
+          <!-- <div class="bottomList-title">当前报警详情：</div> -->
+          <div class="warnList colorWarnRed" id="faultList"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="/common/lib/jquery-3.2.1.js"></script>
+<script
+  type="text/javascript"
+  src="/common/lib/jquery.SuperSlide.2.1.3.js"
+></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/hdTools.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/js/loadPng.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/lib/echarts.min.js"></script>
+<script src="/common/js/hdTools.js"></script>
+<script src="/common/js/echarsComponent.js"></script>
+<script src="/common/lib/echarts-liq.js"></script>
+<script src="/common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="/common/js/SuperSlideList.js"></script>
+<script>
+  document.write('<script src="./js/security.js?v=' + version + '"><\/script>');
+</script>

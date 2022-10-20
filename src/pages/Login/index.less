@@ -1,0 +1,137 @@
+.layoutBg {
+  background: url('@/assets/Login/login_bg.jpg') no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100wh;
+}
+.headerBox {
+  width: 100%;
+  height: 60px;
+  padding-left:10px;
+  padding-right:20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(32, 37, 48, .6);
+  img {
+    height: 60px;
+  }
+  .other {
+    height: 36px;
+    line-height: 36px;
+    width: 80px;
+    border-radius: 18px;
+    font-family: PingFang-SC-Medium, sans-serif;
+    color: #FEFFFF;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.contentBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .leftBox {
+    flex:1;
+    height: 600px;
+    video {
+      mix-blend-mode: screen;
+      object-fit: contain;
+      z-index: -1;
+      display: inline-block;
+      vertical-align: baseline;
+    } 
+  }
+  .rightBox {
+    flex:1;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .loginBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 520px;
+      height: 450px;
+      background: url('@/assets/Login/login_box.png') no-repeat;
+      background-size: 100% 100%;
+      vertical-align: middle;
+      .loginTitle {
+        color: white;
+        font-size: 24px;
+        font-family: 'PingFang-SC-Bold';
+        margin-bottom: 20px;
+      }
+      .loginForm {
+        max-width: 380px;
+        .formInput {
+          height: 48px;
+          font-size: 16px;
+        }
+      }
+      .rememberPwdBox {
+        display: flex;
+        align-items: center;
+        justify-self: start;
+        color: #1FD0E3;
+        margin-bottom: 30px;
+      }
+      .loginIcon {
+        font-size: large;
+        margin-right: 6px;
+        color: #1FD0E3;
+      }
+      :global(.ant-input-password-icon.anticon ){
+        color:  #1FD0E3 !important;
+
+      }
+      :global(.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper){
+        border-color: red !important;
+      }
+
+      .loginFormButton {
+        width: 100%;
+        height: 46px;
+        border-radius: 4px;
+        outline: #36C6EA;
+        font-size: 18px;
+        background: #024982;
+        border: 1px solid #024982;
+        margin-bottom: 10px;
+        // cursor: not-allowed !important;
+      }
+      .loginFormButtonTrue{
+        width: 100%;
+        height: 46px;
+        border-radius: 4px;
+        outline: #36C6EA;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 1);
+        background: #0a94ff;
+        border: 1px solid #0a94ff;
+        margin-bottom: 10px;
+      }
+      .loginFormButtonTrue:hover {
+        background: #36C6EA;
+        opacity: 0.5;
+    }
+    }
+  }
+}
+.footerBox{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #1B1B1B;
+  font-size: 14px;
+  font-family: PingFang-SC-Medium, sans-serif;
+  font-weight: 500;
+  color: #d1caca83;
+}

@@ -1,0 +1,74 @@
+.companyListBox {
+  display: flex;
+  width: 520px;
+  height: 650px;
+  padding: 14px;
+  background: url('@/assets/Login/login_box_1.png') no-repeat;
+  background-size: 100% 100%;
+  flex-direction: column;
+  align-items: center;
+
+  .contentTitle {
+    color: #FFF;
+		font-size: 24px;
+    height: 60px;
+    text-align: center;
+  }
+
+  .companyContent {
+    width: 450px;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .companyItem {
+    height: 50px;
+    line-height: 50px;
+    background: url('@/assets/Login/companyBg.png') no-repeat;
+    background-size: 100% 100%;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    color: #0FF;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .companyCheck {
+    background: url('@/assets/Login/companyCheck.png') no-repeat;
+    background-size: 100% 100%;
+    color: #FFF;
+    font-weight: bold;
+  }
+
+  .companyBtn {
+    position: absolute;
+    bottom: 40px;
+  }
+
+  .sureBtn {
+    width: 225px;
+    height: 50px;
+    margin-right: 20px;
+    color: #FFF;
+    border: 0;
+    font-size: 18px;
+    background-color: #268CFF;
+  }
+
+  .closeBtn {
+    width: 225px;
+    height: 50px;
+    color: #FFF;
+    border: 0;
+    font-size: 18px;
+    background-color: rgb(2, 73, 130);
+  }
+}
+
+:global {
+  .ant-modal-content {
+      background-color: transparent;
+  }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="/common/css/animated.css">
+		<link rel="stylesheet" href="/common/css/public.css">
+		<link rel="stylesheet" href="/common/css/generalStyle.css">
+		<link rel="stylesheet" href="/common/lib/Animate/animate.min.css">
+		<script>
+			document.write('<script src="/common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/index.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<img src="/common/image/beiing130.jpg" class="image-bg">
+		<div class="innerheader" id="innerheader" data-title="节能驾驶舱"></div>
+		<div class="layui-row sc-container">
+			<div class="leftBar">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					环境监测
+				</div>
+				<div class="TNT">
+					<div class="weatherInfo">
+						<img src="./image/temperature.png"/>
+						<div style="margin-left: 20px;">
+							<span class="infoTitle">室外温度</span>
+							<span class="infoNum colorYellow" style="width: 100px;"><em id="temperature">--</em> ℃</span>
+						</div>
+					</div>
+					<div class="weatherInfo">
+						<img src="./image/humidity.png"/>
+						<div style="margin-left: 20px;">
+							<span class="infoTitle">室外湿度</span>
+							<span class="infoNum colorGreen"><em id="humidity">--</em> %</span>
+						</div>
+					</div>
+				</div>
+				<div class="TNT">
+					<!-- <div class="weatherInfo">
+						<img src="./image/temperature.png"/>
+						<div style="margin-left: 20px;">
+							<span class="infoTitle">当前风向</span>
+							<span class="infoNum colorYellow"><em>东南</em></span>
+						</div>
+					</div> -->
+					<div class="weatherInfo"  style="margin-left: 7px;">
+						<img src="./image/wind_speed.png"/>
+						<div style="margin-left: 20px;">
+							<span class="infoTitle">瞬时风速</span>
+							<span class="infoNum colorGreen" style="width:300px"><em id="windPower">--m/s</em></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					节能降碳<span class="standard">计算标准>></span>
+				</div>
+				<div class="energyBg">
+					<div class="energy">
+						<img src="image/mei.png">
+						<div class="energyText">
+							<div class="energyTitle">月累计节约标准煤</div>
+							<span><em class="colorGreen bold" id="MonMei">--</em> kgce</span>
+						</div>
+					</div>
+				</div>
+				<div class="energyBg">
+					<div class="energy">
+						<img src="image/co2.png">
+						<div class="energyText">
+							<div class="energyTitle"  style="width: 200px;">月累计减少排放CO<span style="vertical-align: sub;font-size: 12px;">2<span></div>
+							<span><em class="colorGreen bold" id="MonCo2">--</em> kg</span>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					实时风机功率统计
+					<div class="legend">
+						<em style="background-color: #F4E446;"></em>
+						<span>水平式</span>
+						<em style="background-color: #0A94FF;"></em>
+						<span>垂直式</span>
+					</div>
+				</div>
+				<div class="AUEchartsLeft">
+					<div class="echarts" id="echarts1">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+
+
+
+
+				<!-- <div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日负载功率
+				</div>
+				<div class="powerToday">
+					<div class="echarts" id="echarts">
+						<img src="/common/image/load.gif">
+					</div>
+				</div> -->
+			</div>
+
+
+
+			
+			<div class="btnCenter">
+				<button class="btn btnOn btnYellow1" data-type="1">水平式风机</button>
+				<button class="btn btnOn btnBlue2" data-type="2">垂直式风机</button>
+			</div>
+
+
+
+
+			<div class="rightBar">
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					发电量统计
+				</div>
+				<div class="floorBg">
+					<div class="power">
+						<div class="powerText">
+							<span><em class="colorBlue bold"  id="SdayEle">--</em> kW·h</span>
+							<div class="powerTitle">水平式日发电量</div>
+						</div>
+						<div class="powerText">
+							<span><em class="colorBlue bold" id="SMonEle">--</em> kW·h</span>
+							<div class="powerTitle">水平式月发电量</div>
+						</div>
+					</div>
+				</div>
+				<div class="floorBg">
+					<div class="power">
+						<div class="powerText">
+							<span><em class="colorYellow bold"  id="CdayEle">--</em> kW·h</span>
+							<div class="powerTitle">垂直式日发电量</div>
+						</div>
+						<div class="powerText">
+							<span><em class="colorYellow bold" id="CMonEle">--</em> kW·h</span>
+							<div class="powerTitle">垂直式月发电量</div>
+						</div>
+					</div>
+				</div>
+				<div class="floorBg">
+					<div class="power">
+						<div class="powerText">
+							<span><em class="colorWhite bold">正常</em></span>
+							<div class="powerTitle">水平式状态</div>
+						</div>
+						<div class="powerText">
+							<span><em class="colorWhite bold">正常</em></span>
+							<div class="powerTitle">垂直式状态</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日实时输出电压V
+					<div class="legend">
+						<em style="background-color: #F4E446;"></em>
+						<span>水平式</span>
+						<em style="background-color: #0A94FF;"></em>
+						<span>垂直式</span>
+					</div>
+				</div>
+				<div class="AUEcharts">
+					<div class="echarts" id="echarts3">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="/common/image/titleGather/title-icon3.png" class="title_icon">
+					当日实时输出电流A
+					<div class="legend">
+						<em style="background-color: #F4E446;"></em>
+						<span>水平式</span>
+						<em style="background-color: #0A94FF;"></em>
+						<span>垂直式</span>
+					</div>
+				</div>
+				<div class="AUEcharts">
+					<div class="echarts" id="echarts2">
+						<img src="/common/image/load.gif">
+					</div>
+				</div>
+			</div>
+			<div class="videoBox">
+				<video class="video videoOne" src="image/windPower.mp4" style="opacity: 1;" muted loop autoplay></video>
+				<video class="video videoTwo" src="image/windPower2.mp4" style="opacity: 0;" muted loop autoplay></video>
+			</div>
+				
+		
+			<div class="tipInfo">
+				<span>发电量=功率*时间 </span>
+				<span>该光伏发电板额定功率3kW，</span>
+				<span style="margin-bottom: 15px;">当前发电量为监测值的历史累计值。</span>
+				<span>标准煤=电量*0.1229</span>
+				<span style="margin-bottom: 15px;">根据国家发改委提供数据估算。</span>
+				<span>排放CO<em style="vertical-align: sub;font-size: 12px;">2</em>量=电量*0.9288</span>
+				<span>0.9288为华北地区2014年CO<em style="vertical-align: sub;font-size: 12px;">2</em>减排因子。</span>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="/common/lib/wodry-master/dist/jquery-1.9.1.min.js"></script>
+<script src="/common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="/common/js/public.js"></script>
+<script src="/common/lib/layui/layui.js"></script>
+<script src="/common/lib/echarts.min.js"></script>
+<script src="/common/lib/countadd.js"></script>
+<script src="/common/lib/tagcloud.js"></script>
+<script src="/common/js/loadPng.js"></script>
+<script src="/common/lib/anime.min.js"></script>
+<script src="/common/js/utils.js"></script>
+<script src="/common/js/echarsComponent.js"></script>
+<script>
+	document.write('<script src="js/index.js?v=' + version + '"><\/script>');
+</script>

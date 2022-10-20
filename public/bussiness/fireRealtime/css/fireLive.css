@@ -1,0 +1,223 @@
+.videotitle{
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	transform: translate(-50%,0);
+	width: 600px;
+	height: 65px;
+	text-align: center;
+	color: #A5EAFF;
+	z-index: 1;
+	/* background: url(../image/title_video.png); */
+	background-image: url(../../../common/image/dabiaoti1.png);
+	background-size: 100% 100%;
+}
+.videotitle .tit{
+	line-height: 30px;
+}
+.videotitle .cont{
+	font-size: 20px;
+	padding-top: 10px;
+	color: #00ffff;
+}
+.fireAlarm{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+.show{
+	width: 100%;
+	height: 110%;
+	position: position;
+}
+.hide{
+	width: 15px;
+	height: 20px;
+	background-image: url(../image/fire.png);
+	background-size: 100% 100%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	cursor: pointer;
+}
+.topAlarm{
+	width: 100%;
+	height: 100px;
+	background-image: url(../image/topAlarm.png);
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0;
+	opacity: 1;
+	transition: opacity ease 1s;
+}
+.bottomAlarm{
+	width: 100%;
+	height: 100px;
+	background-image: url(../image/bottomAlarm.png);
+	background-size: 100% 100%;
+	position: absolute;
+	bottom: 0;
+	opacity: 1;
+	transition: opacity ease 1s;
+}
+.middleAlarm{
+	width: 553px;
+	height: 206px;
+	position: absolute;
+	top: 42%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.background{
+	width: 342px;
+	height: 30px;
+	padding: 88px 20px 93px 191px;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	background-image: url(../image/background.png);
+	background-size: 100% 100%;
+}
+.out{
+	width: 206px;
+	height: 206px;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	background-image: url(../image/icon2.png);
+	background-size: 100% 100%;
+	animation: turnLeft 10s linear infinite;
+}
+.in{
+	width: 206px;
+	height: 206px;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	background-image: url(../image/icon1.png);
+	background-size: 100% 100%;
+	animation: turnRight 6s linear infinite;
+}
+@keyframes turnLeft{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+@keyframes turnRight{
+	from{transform: rotate(360deg);}
+	to{transform: rotate(0deg);}
+}
+.textAlarm{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bolder;
+	color: #FFF000;
+}
+.shutUp{
+	width: 146px;
+	height: 46px;
+	position: absolute;
+	top: 140px;
+	left: 285px;
+	background-image: url(../image/shutUp.png);
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+.alarmNum{
+	position: absolute;
+	top: 10px;
+	left: 71.5%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	color: #48D396;
+	z-index: 2;
+}
+.faultList{
+	width: 480px;
+	height: 200px;
+	position: absolute;
+	/* left: 0; */
+	/* top: 0; */
+	/* display: none; */
+	background-image: url(../../../common/image/faultTopMiddle.png);
+	background-size: 100% 100%;
+	/* z-index: 1; */
+	opacity:0;
+	padding: 30px 20px 20px;
+}
+.listImg{
+	width: 50px;
+	height: 24px;
+}
+#list .gDDiv{
+	padding: 0;
+}
+#list .gDlistOut{
+	height: 100%;
+}
+#list .gDhang_item0,#list .gDhang_item1,#list .gDhang_item2,
+#list .gDhang_item3,#list .gDhang_item4,#list .gDhang_item5,
+#list .gDhang_item6,#list .gDhang_item7,#list .gDhang_item8,
+#list .gDhang_item9,#list .gDhang_item10{
+	line-height: 40px;
+	height: 40px;
+	font-size: 14px;
+}
+#list .gDhang_item1,#list .gDhang_item2{
+	flex: 3;
+	color: #fff;
+	text-align: left;
+	text-indent: 10px;
+}
+#list .btn1{
+	color: #FCEA45;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#list .btn2{
+	color: #48D396;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.box{
+	height: 20px;
+	display: inline-block;
+	background-color: #FF4444;
+	vertical-align: middle;
+}
+.textColorRed{
+	color: #FF4444;
+}
+.U3Dpop{
+	width: 350px;
+	height: 140px;
+	padding: 10px 10px 25px;
+	position: absolute;
+	display: none;
+	opacity: 0.9;
+	z-index: 1;
+	background-image: url(../../../common/image/faultBottomMiddle.png);
+	background-size: 100% 100%;
+}
+#faultItem .gDDiv{
+	padding: 0;
+}
+#faultItem .gDlistOut{
+	height: 100%;
+}
+#faultItem .gDhang_item0,#faultItem .gDhang_item1,#faultItem .gDhang_item2{
+	color: #ff4444;
+	line-height: 30px;
+	text-align: left;
+	text-indent: 10px;
+}
+#faultItem .gDhang_item1,#faultItem .gDhang_item2{
+	flex: 1.5;
+}

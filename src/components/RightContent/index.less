@@ -1,0 +1,64 @@
+@import (reference) '~antd/es/style/themes/index';
+
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+
+.menu {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    min-width: 160px;
+  }
+}
+
+.SelectCompany {
+  width: 280px;
+  background-color: #2C303B;
+
+  li:hover {
+    background-color: #43495a;
+  }
+
+  li {
+    span {
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      padding: 5px 20px;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  float: right;
+  height: 45px;
+  margin-left: auto;
+  overflow: hidden;
+  div{
+    user-select: none;
+  }
+  .action {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    > span {
+      vertical-align: middle;
+    }
+    &:hover {
+      background: @pro-header-hover-bg;
+    }
+    &:global(.opened) {
+      background: @pro-header-hover-bg;
+    }
+  }
+  .vlineColor {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+

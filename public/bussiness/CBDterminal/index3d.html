@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="pragma" content="no-cache">	
+		<!-- <meta http-equiv="cache-control" content="no-cache"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/index.css?v='+version+'"/>');
+		</script>
+	</head>
+
+	<body class="layui-layout-body" id="iframe-body">
+		<div class="innerheader" id="innerheader" data-title="商务区空调末端监控"></div>
+		<!-- <div class="videotitle mobile_videotitle">
+			<div class="cont">华德智慧能源持续运营中</div>
+		</div> -->
+		<div class="layui-row sc-container">
+			<div class="btnLeft" id="btnLeft">
+				<i class="layui-icon layui-icon-left"></i>
+			</div>
+			<div class="btnRight" id="btnRight">
+				<i class="layui-icon layui-icon-right"></i>
+			</div>
+			<div class="leftbar sildebar scrollbar">
+				<div class="introduction">
+					<img src="./image/build.png" class="build"/>
+					<div class="con">
+						<span class="title">项目园区</span>
+						<span id="projectPark"></span>
+					</div>
+					<div class="con">
+						<span class="title">楼宇信息</span>
+						<span id="buildingInfor"></span>
+					</div>
+				</div>
+				<div class="lev1title_pub">
+					<span class="titfont">设备控制</span>
+				</div>
+				<ul class="control-list scrollbar" id="controlState">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="dataImg">
+					</div>
+				</ul>
+				<div class="lev1title_pub">
+					<span class="titfont">室内空气质量</span>
+				</div>
+				<div class="evaluation posrelative">
+					<img src="./image/circle1.png" class="circle1 ">
+					<img src="./image/circle2.png" class="circle2">
+					<div class="status">优</div>
+					<div class="details">室内空气质量</div>
+				</div>
+			</div>
+			<div class="rightbar sildebar scrollbar">
+				<div class="lev1title_pub">
+					<span class="titfont">当日温度</span>
+				</div>
+				<div class="humidityTemp">
+					<div class="l-firstbar">
+						<div class="item">
+							<img src="../../../common/image/humidity.gif" style="mix-blend-mode: screen;"><br>
+							室外温度<br>
+							<span class="yellow1_pub"><em id="temperature">--</em>℃</span>
+						</div>
+						<div class="item">
+							<img src="../../../common/image/temperature.gif" style="mix-blend-mode: screen;"><br>
+							室外湿度<br>
+							<span class="green1_pub"><em id="humidity">--</em>%</span>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">设备数量</span>
+					<div class="control_btn">
+						单位：台
+					</div>
+				</div>
+				<!-- <div class="lev2title_pub" style="color: #7ECEF4;">设备数量</div> -->
+				<ul class="equpro">
+					<li class=""><span><em id="dayenergyCost">--</em></span>设备总数</li>
+					<li class="" style="margin-left: 10px;"><span><em class="red1_pub" id="daycostQuota">--</em></span>离线设备</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">设备列表</span>
+					<!-- <div class="control_btn">
+						单位：℃
+					</div> -->
+				</div>
+				<!-- <div class="lev2title_pub" style="color: #7ECEF4;">设备列表</div> -->
+				<div class="equipmentlist" id="equipmentlist">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="dataImg">
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">各温控器温度</span>
+					<div class="control_btn">
+						单位：℃
+					</div>
+				</div>
+				<!-- <div class="lev2title_pub" style="color: #7ECEF4;">各温控器温度</div> -->
+				<div class="temperature" id="main1">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="dataImg">
+					</div>
+				</div>
+			</div>
+			<div class="switch-page bg2" id="switchpagebtn"></div>
+			<span class="return-back" style="cursor: pointer;" id="return-back">刷新</span>
+			<div class="floorbtn" id="floorbtn">
+				<span>4F</span>
+				<span>3F</span>
+				<span>2F</span>
+				<span>1F</span>
+			</div>
+			
+		</div>
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<!-- <script src="../../common/lib/tagcloud.js"></script> -->
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRoll.js"></script>
+<script src="../../common/js/slideMenuNew.js"></script>
+<script>
+	document.write('<script src="./js/indexPublic.js?v='+version+'"><\/script>');
+	document.write('<script src="./js/index3d.js?v='+version+'"><\/script>');
+</script>
+

@@ -1,0 +1,183 @@
+<div class="layui-side-scroll publicborder">
+	<img src="./common/image/topleft.png" class="topleft" />
+	<img src="./common/image/topright.png" class="topright" />
+	<img src="./common/image/bottomleft.png" class="bottomleft" />
+	<img src="./common/image/bottomright.png" class="bottomright" />
+	<div class="control-bar">
+		<ul class="control-tab">
+			<li class="on"><i class="layui-icon layui-icon-align-center"></i></li>
+			<li><i class="layui-icon layui-icon-rate"></i></li>
+		</ul>
+		<div class="layui-clear"></div>
+	</div>
+	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+	<ul class="layui-nav layui-nav-tree" id="menu"></ul>
+</div>
+<script type="text/javascript">
+	$(function() {
+		if (window.MENU_COUNT == 1) {
+			return;
+		} else {
+			window.MENU_COUNT = 1;
+		}
+		layui.use("element", function() {
+			var element = layui.element;
+			let obj = JSON.parse(localStorage.getItem("USER_INFO_CACHE"));
+			var mfrsId = obj.mfrsId || 15; //企业id
+			$.ajax({
+				url: hdInterface.selectZgMenuListAll,
+				type: "get",
+				data: {
+					mfrsId: mfrsId,
+				},
+				success: function(result) {
+					console.log("=========左侧菜单===========");
+					console.log(result);
+					if (result.code == 0) {
+						var resdata = result.data || [];
+						var siteMenuArr = []; //以站点为单位的菜单
+						var str = "";
+
+						for (var i = 0; i < resdata.length; i++) {
+							var proitem = resdata[i] || [];
+							var menuChildList = proitem.menuChildList || [];
+							var promenuType = proitem["menuType"] || "";
+							var promenuName = proitem["menuName"] || "";
+							var prourl = proitem["url"] || "";
+							var proprojectId = proitem["projectId"] || "";
+							var iconName = i == 0 ? "icon-company.png" : "icon-project.png";
+							if (promenuType == "1") {
+								str +=
+									`<li class="layui-nav-item">
+											<a data-url="` +
+									prourl +
+									`?showmenu=false" data-id="wai-` +
+									i +
+									`" data-title="` +
+									promenuName +
+									`" class="site-demo-active" href="javascript:;" data-type="tabAdd" title="` +
+									promenuName +
+									`">
+												<img src="./common/image/icon2.png" class="nav-icon2">` +
+									promenuName +
+									`
+											</a>
+										</li>`;
+							} else if (promenuType == "0") {
+								// }
+
+								str +=
+									'<li class="layui-nav-item">' +
+									'<a href="javascript:void(0);"><img src="./common/image/' +
+									iconName +
+									'" class="nav-icon2" />' +
+									proitem.menuName +
+									"</a>" +
+									'<dl class="layui-nav-child">';
+								for (var j = 0; j < menuChildList.length; j++) {
+									var system = menuChildList[j] || "";
+									var menuType = system["menuType"];
+									var menuFirstUrl = system.url || "";
+									var menuFirstName = system.menuName || "";
+									if (j == 0 && i == 0) {
+										var dataid = "hdzh-home";
+
+										// console.log("======iframe=======");
+										// console.log($("iframe"));
+										$("#mainiframe").attr("src", menuFirstUrl);
+										$("#mainiframe-title").html(menuFirstName);
+										// var iconName="icon-company.png";
+									} else {
+										var dataid = "project-management" + i;
+										// var iconName="icon-project.png";
+									}
+
+									if (menuType == "1") {
+										str +=
+											"<dd>" +
+											'<a href="javascript:;" class="site-demo-active" data-url="./' +
+											(system.url || "") +
+											'" data-id="' +
+											dataid +
+											'" data-title="' +
+											system.menuName +
+											'" data-type="tabAdd" title="' +
+											system.menuName +
+											'">' +
+											'<img src="./common/image/icon2.png" class="nav-icon1" />' +
+											system.menuName +
+											'<i class="layui-icon layui-icon-star"></i>' +
+											"</a>" +
+											"</dd>";
+									} else if (menuType == "0") {
+										str +=
+											"<dd>" +
+											'<a href="javascript:void(0);" class="navsystem"><img src="./common/image/icon-system.png" class="nav-icon1" />' +
+											system.menuName +
+											"</a>" +
+											'<dl class="layui-nav-child hd-thirdnav">';
+										var site = system.menuChildList || [];
+										for (var k = 0; k < site.length; k++) {
+											// for (var k = 0; k < 1; k++) {
+											var siteitem = site[k] || [];
+											var siteitemName = siteitem.menuName || "";
+											var siteId = siteitem.siteId || 13; //默认光合谷地热机房
+											var proId = siteitem.projectId || 7; //默认光合谷项目
+											var siteUrl = siteitem.url || "";
+											var menuId = siteitem.menuId || "";
+											var siteMenu = siteitem.menuChildList || []; //菜单
+											var siteMenuObj = {
+												siteId: siteId,
+												siteMenu: siteMenu,
+											};
+											siteMenuArr.push(siteMenuObj);
+											str +=
+												'<dt data-name="AreaManagement" style=""><a data-url="./' +
+												siteUrl +
+												"?proId=" +
+												proId +
+												"&projectId=" +
+												proId +
+												"&siteId=" +
+												siteId +
+												"&proname=" +
+												proitem.menuName +
+												"&sitename=" +
+												siteitemName +
+												"&menuId=" +
+												menuId +
+												'&showmenu=show" data-id="site-' +
+												k +
+												"" +
+												j +
+												"" +
+												i +
+												'" data-title="' +
+												siteitemName +
+												'"' +
+												'class="site-demo-active" href="javascript:;" data-type="tabAdd" title="' +
+												siteitemName +
+												'">' +
+												'<img src="./common/image/icon2.png" class="nav-icon1" />' +
+												siteitemName +
+												"</a></dt>";
+										}
+										str += "</dl>" + "</dd>";
+									}
+								}
+
+								str += "</dl>" + "</li>";
+							}
+						}
+						localStorage.setItem("siteMenuArr", JSON.stringify(siteMenuArr));
+						$("#menu").append(str);
+						element.init();
+					} else if (result.code == 403) {
+						alert("权限不足");
+						location.href = "../../bussiness/login/login.html";
+					}
+				},
+			});
+		});
+	});
+</script>

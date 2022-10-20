@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="pragma" content="no-cache">	
+		<!-- <meta http-equiv="cache-control" content="no-cache"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+
+	<body class="layui-layout-body" id="iframe-body">
+		<!--ajax遮罩层-->
+		<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg"></div>
+		<!-- <img src="../../common/image/bghei.jpg" class="image-bg"> -->
+		<!-- <div class="innerheader" id="innerheader" data-title="商务区空调末端监控"></div> -->
+		
+		<!-- <button Type="button" onclick="SelectScene()" style="width: 100px;
+    height: 100px;
+    z-index: 11111;
+    position: absolute;
+    top: 0;
+    left: 0;">WebToUnity</button>
+		 <script src="./companyBuild/Build/UnityLoader.js"></script>
+		<script>
+		    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/MainBuilding.json");
+		    //发送消息给unity。
+		    function SendUnityMessage(funcname, data) {
+		        window.alert("SceneControl"+"  "+funcname + "  " + data);
+		        // console.log(funcname + data);
+		        gameInstance.SendMessage("SceneControl", funcname, data);
+		        window.focus();
+		    }
+		    //JS发送消息给Unity
+		    function SelectScene() {
+		        SendUnityMessage("SelectScene", "MainBuilding");
+		    }
+		</script> --> 
+		
+		<div class="layui-row sc-container">
+			<!-- <iframe src="./companyBuild/index.html" id="u3diframe" frameborder="0" style="width: 100%; height: 100%;overflow: hidden;"></iframe> -->
+			<!--顶部控制按钮-->
+			<div class="terminal-top">
+				<div class="l-title">
+					<img src="./image/icon_circle.png" class="icon-circle">
+					<img src="./image/icon_circle2.png" class="icon-circle2">
+					<span>商务区项目</span>
+					<span class="fontsize18">空调末端分布图</span>
+				</div>
+				<ul class="switch-div" id="switch-div">
+					<!--按钮位置-->
+				</ul>
+				<div class="l-firstbar">
+					<div class="item">
+						<img src="./image/humidity.gif"><br>
+						室外温度<br>
+						<span class="yellow"><em id="temperature">--</em>℃</span>
+					</div>
+					<div class="item">
+						<img src="./image/temperature.gif"><br>
+						室外湿度<br>
+						<span class="green"><em id="humidity">--</em>%</span>
+					</div>
+				</div>
+			</div>
+			<!--底部数据bar-->
+			<div class="terminal-bottom">
+				<div class="layui-col-md3 height100">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						数据统计
+					</div>
+					<div class="hd-con-hei publicborder">
+						<div class="hd-innercontent">
+							<div class="datatiatis-l">
+								<div id="main2" class="en-echars"></div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md4 height100">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						末端环境质量监测
+					</div>
+					<div class="hd-con-hei publicborder environmental">
+						<div class="hd-innercontent">
+							<div class="left posrelative">
+								<img src="./image/circle1.png" class="circle1 " />
+								<img src="./image/circle2.png" class="circle2" />
+								<div class="status">优</div>
+								<div class="details">室内空气质量</div>
+							</div>
+							<div class="right">
+								<div class="item">
+									<img src="./image/icon1.png" />
+									温度监测设备
+									<div class="number col1"><span>--</span>/<em>--</em>台</div>
+								</div>
+								<div class="item">
+									<img src="./image/icon2.png" />
+									湿度监测设备
+									<div class="number col2"><span>--</span>/<em>--</em>台</div>
+								</div>
+								<div class="item">
+									<img src="./image/icon3.png" />
+									供冷设备
+									<div class="number col3"><span>--</span>/<em>--</em>台</div>
+								</div>
+								<div class="item">
+									<img src="./image/icon4.png" />
+									送风设备
+									<div class="number"><span>--</span>/<em>--</em>台</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="layui-col-md5 height100">
+					<div class="hd-title">
+						<img src="./image/title_icon.png" class="title_icon" />
+						当前实时末端监控
+					</div>
+					<div class="hd-con-hei publicborder">
+						<div class="hd-innercontent equlist">
+							<div class="equlist-title">
+								<span class="width1"> 房间</span>
+								<span class="width2"> 温度℃</span>
+								<span class="width2"> 湿度%</span>
+								<span class="width3"> CO<sub>2</sub>浓度ppm</span>
+								<span class="width2"> 风速</span>
+								<span class="width2"> 开关</span>
+							</div>
+							<div class="txtMarquee-top">
+								<div class="bd">
+									<ul class="infoList" id="equipmentstatus">
+										<!-- <li>
+												<span class="width1"> 电梯间</span>
+												<span class="width2"> 50</span>
+												<span class="width2"> 80</span>
+												<span class="width2"> 80</span>
+												<span class="width2"> 高</span>
+												<span class="width2"><img src="./image/open.png"/> </span>
+											</li> -->
+
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--左侧楼层切换按钮-->
+			<div class="terminal-control-bar" id="floorBtns">				
+				<span class="f1">1F</span>
+				<span class="f2">2F</span>
+				<span class="on mainfloor">主楼</span>
+			</div>
+
+			</div>
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="../../common/lib/config.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/hdTools.js"></script>
+<script src="./js/index.js"></script>
+<!-- <script src="./js/index.map.js"></script> -->
+<script>
+
+</script>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>HuaDeGuangHeGu</title>
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				/* background: #444; */
+			}
+
+			#gameContainer {
+				width: 100vw;
+				height: 100vh;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.logo {
+				display: block;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.progress {
+				margin: 1.5em;
+				border: 1px solid #02a7fe;
+				width: 30vw;
+				display: none;
+				/* display: block!important; */
+				position: absolute;
+				bottom: 100px;
+				left: 50%;
+				margin-left: -15vw;
+			}
+
+			.progress .full {
+				margin: 2px;
+				background: #02a7ce;
+				height: 0.1em;
+				transform-origin: top left;
+			}
+
+			#loader {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.spinner,
+			.spinner:after {
+				border-radius: 50%;
+				width: 5em;
+				height: 5em;
+			}
+
+			.spinner {
+				margin: 10px;
+				font-size: 10px;
+				position: relative;
+				text-indent: -9999em;
+				border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+				border-left: 1.1em solid #ffffff;
+				transform: translateZ(0);
+				animation: spinner-spin 1.1s infinite linear;
+			}
+
+			@keyframes spinner-spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+		<script>
+			document.write('<script src="../../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui">
+	</head>
+
+	<body onload="Reset()" onresize="Reset()" ,scroll=no, style="overflow:hidden">
+		<div id="gameContainer" style="width: 100%; height: 100%;margin:auto"></div>
+		<div id="loader">
+			<img class="logo" src="logo.png" />
+			<div class="spinner"></div>
+			<div class="progress">
+				<div class="full"></div>
+			</div>
+		</div>
+
+		<div id="#pointer" style="cursor:pointer"></div>
+		<div id="#default" style="cursor:default"></div>
+		<button Type="button" onclick="JsToUnity()">WebToUnity</button>
+	</body>
+	<script src="../../../common/lib/jquery-3.2.1.js"></script>
+	<script>
+		document.write('<script src="Build/UnityLoader.js?v='+version+'"><\/script>');
+		document.write('<script src="../../../common/js/u3dTools.js?v=' + version + '"><\/script\>');
+	</script>
+	<script>
+		var u3dObj = new U3DTools('gameContainer', {
+			"jsonPath": "Build/Bussiness_MoDuan.json",
+			"completeCallback": completeCallback
+		})
+		var gameInstance = u3dObj.createUnity()
+
+		function completeCallback(gameInstance) {
+			parent.CBDterminal3D.u3dinit(gameInstance);
+			// console.log(gameInstance.MoDuanClickFloor())
+			console.log("company回调")
+			var objName = parent.layuiId;
+			// var objName = 'hdzh-home';
+			// var objName = sessionStorage.layuiId;
+			window.onunload = function() {
+				// top.unregisterListener(objName); //销毁
+			}
+			gameInstance.SendMessage("SceneMgr", "LoadMoDuanScene", objName);
+			// top.registerListener(objName, function(e) {
+			// 	console.log("来自公司页面" + e)
+			// 	gameInstance.SendMessage("SceneMgr", "LoadMoDuanScene", e);
+			// 	Reset();
+			// }); //注册
+			Reset();
+		}
+
+		// var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Bussiness.json", { onProgress: UnityProgress });
+		// var canvas = document.getElementById("#canvas");
+		// var pointerDiv = document.getElementById("#pointer");
+		// var defaultDiv = document.getElementById("#default");
+
+		// function Reset() {
+		// 	var canvas = document.getElementById("#canvas"); //获取#canvas
+
+		// 	canvas.width = window.innerWidth;
+		// 	canvas.height = window.innerHeight;
+
+		// 	if (typeof canvas.width != "number") {
+		// 		//在标准模式下面
+		// 		if (document.compatMode == "CSS1Compat") {
+		// 			canvas.width = document.documentElement.clientWidth;
+		// 			canvas.height = document.documentElement.clientHeight;
+		// 		} else {
+		// 			canvas.width = document.body.clientWidth;
+		// 			canvas.height = window.body.clientHeight;
+		// 		}
+		// 	}
+		// }
+		//JS发送消息给Unity
+		function JsToUnity() {
+			gameInstance.SendMessage("gameObjName", "JsMessage", "unity你好");
+		}
+		// //修改鼠标指针为手型
+		// function ChangeMouse2Pointer(arg0) {
+		// 	canvas.style.cursor = pointerDiv.style.cursor;
+		// }
+
+		// //修改鼠标指针为默认
+		// function ChangeMouse2Default(arg0) {
+		// 	canvas.style.cursor = defaultDiv.style.cursor;
+		// }
+
+		function showVideo() {
+			gameInstance.SendMessage("ItemDetailPanel", "HideDetailPanel");
+		}
+
+		function closeVideo() {
+
+		}
+
+		function ChangeMouse2Pointer() {
+
+		}
+
+		function ChangeMouse2Default() {
+
+		}
+
+		function canmerHide() {
+
+		}
+
+		// function Log(str) {
+		// 	console.log(str);
+		// }
+
+		function canShowCameraPositionById(str) {
+			console.log(str);
+		}
+
+		// function UnityProgress(gameInstance, progress) {
+		// 	if (!gameInstance.Module) {
+		// 		return;
+		// 	}
+		// 	const loader = document.querySelector("#loader");
+		// 	if (!gameInstance.progress) {
+		// 		const progress = document.querySelector("#loader .progress");
+		// 		progress.style.display = "block";
+		// 		gameInstance.progress = progress.querySelector(".full");
+		// 		loader.querySelector(".spinner").style.display = "none";
+		// 	}
+		// 	gameInstance.progress.style.transform = `scaleX(${progress})`;
+		// 	if (progress === 1 && !gameInstance.removeTimeout) {
+		// 		gameInstance.removeTimeout = setTimeout(function() {
+		// 			loader.style.display = "none";
+		// 		}, 0);
+		// 	}
+		// }
+
+		function MoDuanClickFloor(floor) {
+			parent.CBDterminal3D.offFloor(floor)
+		}
+		// 控制设置U3d触控
+		function UnityStart(){
+			console.log('UnityStart');
+			if(window.matchMedia("(any-pointer: coarse)").matches) {
+				console.log('触摸屏');
+				gameInstance.SendMessage("RecvJsMessageObject", 'GetEvent', '15000' + ', ');
+			} else {
+				console.log('非触摸屏');
+			}
+			Reset();
+		}
+	</script>
+
+</html>

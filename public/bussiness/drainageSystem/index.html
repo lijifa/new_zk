@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<!-- <meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/SuperSlideList.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/warnContent.css"/>
+		<script>
+			document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/drainageSystem.css?v=' + version + '"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div>
+		<div class="layui-row sc-container" id="camera-container">
+			<!-- <img src="image/bg.jpg" /> -->
+			<div class="camera camera1 cameraMove" data-flag="false" id="camera10">
+				<i class="layui-icon layui-icon-close cameraclose"></i>
+				<div id="camerID" style="width: 580px; height: 350px"></div>
+			</div>
+			<div class="btnLeft" id="btnLeft">
+				<i class="layui-icon layui-icon1 layui-icon-right"></i>
+			</div>
+			<div class="btnRight" id="btnRight">
+				<i class="layui-icon layui-icon1 layui-icon-left"></i>
+			</div>
+			<!-- 弹窗评分 -->
+			<!-- <div class="div_rules">
+				<div class="title">评分规则：</div>
+				<div> 100 分为满分，一次报警减 10 分，一次预警减 10 分。<br /> 最低分为 0 分，无负数的分数。</div>
+			</div> -->
+			<!-- 弹窗列表 -->
+			<!-- <div class="pop_fault" id="pop_fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+			</div>
+			<div class="pop_fault" id="bob_fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+			</div> -->
+			<!-- 左侧 -->
+			<div class="leftbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">系统安全</span>
+				</div>
+				<div class="safetyRating">
+					<div class="safetyRatingItem">
+						<div class="bgOut"></div>
+						<div class="bgIn"></div>
+						<div class="posi50">
+							<span class="fontsize40 textColorGreen" style="font-weight: bolder;">100</span>
+							<span class="fontsize14">安全综合评分</span>
+						</div>
+					</div>
+					<div class="safetyRatingItem">
+						<div class="posi50">
+							<div class="safetyRatingFault hoverDom" data-type="0">
+								<img src="image/bjRed.png" >
+								<div class="safetyRatingData textColorRed">
+									<span style="font-size: 24px;">0</span>
+									<span>报警情况</span>
+								</div>
+							</div>
+							<div class="safetyRatingFault hoverDom" data-type="1">
+								<img src="image/yjYellow.png" >
+								<div class="safetyRatingData textColorYellow">
+									<span style="font-size: 24px;">0</span>
+									<span>预警情况</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">给排水设备状态</span>
+					<div class="control_btn">
+						单位：台
+					</div>
+				</div>
+				<div class="displayFlex">
+					<div class="deviceTotal">
+						设备总数：<span class="fontsize24" style="vertical-align: middle;">125</span>
+						<a id="windowTo">查看详情>></a>
+					</div>
+					<div class="deviceItem">
+						<div class="deviceTitle">离线设备</div>
+						<span>0</span><em>台</em>
+					</div>
+					<div class="deviceItem">
+						<div class="deviceTitle">运行设备</div>
+						<span>115</span><em>台</em>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">给水漏损报警</span>
+					<div class="control_btn">
+						单位：次
+					</div>
+				</div>
+				<div class="displayFlex">
+					<div class="faultItem">
+						<div class="deviceTitle">
+							当日报警
+						</div>
+						<span>0</span>
+					</div>
+					<div class="faultItem">
+						<div class="deviceTitle">
+							当月报警
+						</div>
+						<span>0</span>
+					</div>
+					<div class="faultItem">
+						<div class="deviceTitle">
+							上月报警
+						</div>
+						<span>5</span>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">给水安全</span>
+				</div>
+				<div class="displayFlex">
+					<div class="waterItem">
+						<img src="image/phGreen.png" >
+						<div class="deviceTitle">
+							自来水PH正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/clGreen.png" >
+						<div class="deviceTitle">
+							自来水CL正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/atuGreen.png" >
+						<div class="deviceTitle">
+							自来水ATU正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/phBlue.png" >
+						<div class="deviceTitle">
+							中水PH正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/clBlue.png" >
+						<div class="deviceTitle">
+							中水CL正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/atuBlue.png" >
+						<div class="deviceTitle">
+							中水ATU正常
+						</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">排水安全</span>
+				</div>
+				<div class="displayFlex" style="justify-content: space-around;margin-bottom: 10px;">
+					<div class="waterItem">
+						<img src="image/psBlue.png" >
+						<div class="deviceTitle">
+							排水设备 正常
+						</div>
+					</div>
+					<div class="waterItem">
+						<img src="image/lsBlue.png" >
+						<div class="deviceTitle">
+							降雨量 正常
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 右侧 -->
+			<div class="rightbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">给水能耗分析</span>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日能耗费用</span>
+					<div class="control_btn">
+						单位：元
+					</div>
+				</div>
+				<div class="displayFlex">
+					<div class="displayFlexItem today">
+						<img src="image/nhfy.png" >
+						<div class="deviceTitle">当日能耗费用</div>
+						<div class="num fontsize24" id="energyCost">--</div>
+					</div>
+					<div class="displayFlexItem today">
+						<img src="image/nhzb.png" >
+						<div class="deviceTitle">当日费用指标</div>
+						<div class="num fontsize24" id="energyQuota">--</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当月能耗费用</span>
+					<div class="control_btn">
+						单位：元
+					</div>
+				</div>
+				<div class="displayFlex">
+					<div class="displayFlexItem currentMonth">
+						<div class="deviceTitle">当月能耗费用</div>
+						<div class="num fontsize24" id="monthEnergyCost">--</div>
+					</div>
+					<div class="displayFlexItem currentMonth">
+						<div class="deviceTitle">当月费用指标</div>
+						<div class="num fontsize24" id="monthEnergyQuota">--</div>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日能耗</span>
+				</div>
+				<div class="displayFlex">
+					<div class="displayFlexItem energyItem">
+						<div class="deviceTitle">
+							耗电量
+						</div>
+						<span class="fontsize24" id="energyDepletion">--</span>
+						<em>kW·h</em>
+					</div>
+					<div class="displayFlexItem energyItem">
+						<div class="deviceTitle">
+							耗自来水量
+						</div>
+						<span class="fontsize24" id="waterDepletion">--</span>
+						<em>m³</em>
+					</div>
+					<div class="displayFlexItem energyItem">
+						<div class="deviceTitle">
+							耗中水量
+						</div>
+						<span class="fontsize24" id="reclaimedDepletion">--</span>
+						<em>m³</em>
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">给排水流向图</span>
+				</div>
+				<div class="displayFlex" style="background-color: rgba(20, 35, 54, 0.8);">
+					<video src="image/waterFlow.mp4" autoplay muted loop class="waterFlow"></video>
+				</div>
+			</div>
+			<!-- 下方按钮 -->
+			<div class="bottomBtn" style="display: none;">
+				<div class="sysBtn" style="background-image: url(image/waterYellow.png);" data-flag="0">自来水管网</div>
+				<div class="sysBtn" style="background-image: url(image/drainBlue.png);" data-flag="1">排水管网</div>
+			</div>
+		</div>
+		<!-- <div class="tipList"></div> -->
+		<div class="pop" id="listPop"></div>
+		
+	</body>
+</html>
+<link rel="stylesheet" href="../../common/lib/swiper-5.2.0/package/css/swiper.min.css">
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/TcPlayer-2.3.3.js"></script>
+<script type="text/javascript" src="../../common/lib/jquery.SuperSlide.3.0.alpha.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="../../common/lib/EZUIKit-JavaScript/ezuikit.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<!-- <script src="./js/monitoring.js"></script> -->
+<script src="../../common/js/slideMenuNew.js"></script>
+<script src="../../common/js/popUps.js"></script>
+<script src="../../common/js/ballAndMask.js"></script>
+<script src="../../common/js/SuperSlideList.js"></script>
+<script src="../../common/js/warnContent.js"></script>
+<script type="text/javascript">
+	document.write('<script language="javascript" src="js/drainageSystem.js?v=' + version + '"><\/script\>');
+</script>

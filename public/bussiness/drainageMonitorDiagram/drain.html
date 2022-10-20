@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/generalStyle.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css" />
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css" />
+		<script type="text/javascript">
+			document.write('<script src="../../common/lib/config.js?time=' + new Date().getTime() + '"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/waterDiagram.css?v=' + version + '"/>');
+		</script>
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="innerheader" id="innerheader" data-title="水源系统监控"></div>
+		<div class="layui-row sc-container">
+			<div class="gridContainer">
+				<div class="diagram">
+					<div class="zzt" style="background-image: url(image/drainDiagram.png);"></div>
+				</div>
+				<div class="list">
+					<div class="lev3title_pub" style="padding: 0 20px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						当前设备状态
+					</div>
+					<div class="component" id="list">
+						<img src="../../common/image/load.gif" class="load">
+					</div>
+				</div>
+				<div class="flow">
+					<div class="lev3title_pub" style="padding: 0 20px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						当月风险次数
+						<span class="unit"><em class="legend" style="background-color: #00ffff;"></em>风险</span>
+					</div>
+					<div class="component" id="risk">
+						<img src="../../common/image/load.gif" class="load">
+					</div>
+				</div>
+				<div class="systom systom1" style="grid-row:1/3;">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						温/湿度监测
+					</div>
+					<div class="displayFlex" style="justify-content: flex-start;">
+						<div class="weatherMonitor">
+							<img src="../../common/image/temperature.gif" >
+							<div class="weatherItem">
+								<div class="weatherTitle">室外温度</div>
+								<div class="weatherNum" style="color: rgba(252, 234, 69, 1);">
+									<span id="temperature">--</span> <em class="weatherUnit">℃</em></div>
+							</div>
+						</div>
+						<div class="weatherMonitor">
+							<img src="../../common/image/humidity.gif" >
+							<div class="weatherItem">
+								<div class="weatherTitle">室外湿度</div>
+								<div class="weatherNum" style="color: rgba(0, 203, 254, 1);">
+									<span id="humidity">--</span> <em class="weatherUnit">%</em></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="device device1" style="grid-row:3/5;">
+					<div class="lev3title_pub" style="padding: 0 20px;margin-top: -20px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						设备监测
+						<span class="unit">单位：台</span>
+					</div>
+					<div class="displayFlex" style="height: calc(100% - 5px);justify-content: space-around;">
+						<div class="deviceMonitor">
+							<div class="monitor" style="background-image: url(image/faultBlue.png);">
+								<div class="monitorNum" style="color: rgba(72, 211, 150, 1);">13</div>
+							</div>
+							<div class="customTitle">
+								设备总数
+							</div>
+						</div>
+						<div class="deviceMonitor">
+							<div class="monitor" style="background-image: url(image/faultGray.png);">
+								<div class="monitorNum" style="color: rgba(254, 254, 254, 1);">0</div>
+							</div>
+							<div class="customTitle">
+								离线设备
+							</div>
+						</div>
+						<div class="deviceMonitor">
+							<div class="monitor" style="background-image: url(image/faultRed.png);">
+								<div class="monitorNum" style="color: rgba(255, 67, 48, 1);">0</div>
+							</div>
+							<div class="customTitle">
+								故障设备
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tank tank1" style="grid-row:5/10;">
+					<div class="lev3title_pub">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						雨量计实况
+					</div>
+					<div class="displayFlex" style="height: 240px;margin-top: calc(50% - 190px);justify-content: space-around;">
+						<div class="yl">
+							<div class="ylBox" id="yl"></div>
+							<img src="image/yuliang.png" class="ylImg"/>
+						</div>
+						<!-- <img src="image/yuliang.png" class="yl"> -->
+						<div class="displayFlex" style="height: 100%;flex-direction: column;justify-content: space-around;">
+							<div class="rain">
+								<img src="image/xiaodu.png" >
+								<div class="waterData">
+									<div class="waterTitle">
+										设备状态
+									</div>
+									<div class="waterState">
+										正常
+									</div>
+								</div>
+							</div>
+							<div class="rain">
+								<img src="image/jiangyu.png" >
+								<div class="waterData">
+									<div class="waterTitle">
+										当日降雨量
+									</div>
+									<div class="waterState">
+										<span id="precipitation">--</span> <em>mm</em>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="level level1">
+					<div class="lev3title_pub" style="padding: 0 20px;">
+						<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+						风险点监测
+						<!-- <span class="unit"><em class="legend" style="background-color: #00ffff;"></em>水位</span> -->
+					</div>
+					<div class="component" id="riskList">
+						<img src="../../common/image/load.gif" class="load">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<!-- <script type="text/javascript" src="../../common/lib/jquery.SuperSlide.2.1.3.js"></script> -->
+<script src="../../common/lib/jquery.SuperSlide.3.0.alpha.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/lib/countadd.js"></script>
+<script src="../../common/lib/tagcloud.js"></script>
+<script src="../../common/lib/echarts-liq.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib//jquery.liMarquee.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/go.js"></script>
+<script src="../../common/js/waterTank.js"></script>
+<script type="text/javascript">
+	document.write('<script src="./js/drainDiagram.js?v=' + version + '"><\/script>');
+</script>

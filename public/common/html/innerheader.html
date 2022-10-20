@@ -1,0 +1,49 @@
+<!-- <div class="layui-row sc-title">
+	<span class="navbtn floatleft" id="hidenavbarBtn">站内导航&nbsp;&gt;</span>
+	<span class="weather floatright"></span>
+	<span class="title"></span>
+	<span class="time floatright" id="datetime"></span>	
+</div> -->
+<div class="newtitle sc-title">
+			<div class="item left">
+				<div style="width: 102px;height: 33px;float: left;"></div>
+				<!-- <span class="navbtn floatleft" id="hidenavbarBtn">站内导航&nbsp;&gt;</span> -->
+				<!-- <span id="title-project" class="fr"><img src="../../common/image/icon_title0.png"/>所在项目：<em></em></span> --><!--所在项目如果需要可以加回来-->
+			</div>
+			<div class="item">
+				<img src="/common/image/innerheader/titlebgleft.png" class="fl"/>
+				<div class="fl center title"></div>
+				<img src="/common/image/innerheader/titlebgright.png"  class="fr"/>
+			</div>
+			<div class="item right">
+				<!-- <span id="title-site" class="fl"></span> --><!--所在机房如果需要可以加回来-->
+				<span class="weather floatright" id="weather"></span>
+				<span class="time floatright" id="datetime"></span>	
+			</div>
+		</div>
+
+<div class="header-zhanwei"></div>
+<script src="/common/js/hdTools.js"></script>
+<script>
+	// var siteId=getParams()["siteId"];
+	// console.log("======siteId==========");
+	// console.log(siteId);
+	// $.ajax({
+	// 	
+	// 	url:hdInterface.selectSiteNameAndProjectNameBySiteId,
+	// 	type: "POST",
+	// 	data:{
+	// 		siteId:siteId
+	// 	},
+	// 	success: function(res) {
+	// 		if (res.code == 0) {
+	// 			// var data = res["data"] || {};
+	// 			// var currentTimes = data.currentTime;
+	// 			// $("#datetime").html(currentTimes);
+	// 		}
+	// 	},
+	// });
+	document.oncontextmenu = function () {
+		event.returnValue = false;
+	}
+</script>

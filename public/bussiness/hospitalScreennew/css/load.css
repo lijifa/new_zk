@@ -1,0 +1,20 @@
+
+.warn{
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+}
+
+.heigh{
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  margin-top: -350px ;
+  margin-left: -350px;
+  width:50px;
+  height: 50px;
+}
+#waringlight{
+  display: none
+}

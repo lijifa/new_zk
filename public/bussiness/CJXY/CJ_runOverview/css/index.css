@@ -1,0 +1,371 @@
+html,
+body {
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.sc-container {
+  /* height: calc(100% - 70px); */
+}
+
+.sidebar {
+  width: 420px;
+  height: calc(100% - 89px - 50px);
+  background: rgba(3, 27, 51, 0.3);
+  border: 1px solid rgba(126, 206, 244, 0.3);
+  position: absolute;
+  z-index: 10;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: 89px;
+}
+
+.rightBar {
+  right: 0;
+}
+
+.todayelecText {
+  font-size: 24px;
+  color: #11fffa;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.todayElecRankBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todayElecRankBox > .elecRankItem:nth-child(1) .todayelecText {
+  color: #ff204a;
+}
+
+.todayElecRankBox > .elecRankItem:nth-child(2) .todayelecText {
+  color: #f4e446;
+}
+
+.todayElecRankBox > .elecRankItem:nth-child(3) .todayelecText {
+  color: #4edf92;
+}
+
+.elecRankItem {
+  width: 400px;
+  height: 70px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  background: url(../image/bottomLine.png) no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  margin-top: 10px;
+  color: #a5eaff;
+}
+
+.elecRankItem img {
+  width: 35px;
+  height: 15px;
+  margin-left: 10px;
+}
+
+.electRankItemText {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+
+.electRankItemText span {
+  display: block;
+}
+
+.monthEnergyWatch {
+  margin-top: 20px;
+}
+
+.control_btn {
+  width: 100%;
+  padding: 0 10px 0 15px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+}
+
+.control_btn span {
+  flex: 1;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  line-height: 31px;
+  cursor: pointer;
+  padding-left: 3px;
+  background: #16263b;
+  color: #a5eaff;
+  margin-left: 10px;
+}
+
+.control_btn span.on {
+  color: #00ffff;
+  background: #0c3056;
+}
+
+.monthEnergyWatch_chart {
+  height: 200px;
+  margin-top: 40px;
+}
+
+.waterWatchCon {
+  display: flex;
+  padding-left: 20px;
+}
+
+.waterWatchConItem {
+  flex: 1;
+  height: 66px;
+  display: flex;
+}
+
+.waterWatchConItem .itemIcon {
+  width: 59px;
+  height: 66px;
+  background: url("../image/green_tempIcon.png") no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+
+.waterWatchConItem .itemIcon2 {
+  width: 59px;
+  height: 66px;
+  background: url("../image/blue_pressure.png") no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+
+.waterWatchConItemText {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.waterWatchConItemText .title1 {
+  font-size: 18px;
+}
+
+.waterWatchConItemText .title2 {
+  font-size: 15.06px;
+}
+
+.roomTempWatch {
+  margin-top: 20px;
+  position: relative;
+}
+
+.tempDetail {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #227ffe;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.roomTempWatchCon {
+  width: 100%;
+  padding: 0 10px 0 20px;
+  box-sizing: border-box;
+}
+.lev3title_pub {
+  position: relative;
+}
+.legend {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.legend em {
+  width: 12px;
+  height: 3px;
+  display: inline-block;
+  margin: 0 3px;
+  vertical-align: middle;
+}
+.roomTempWatchItem {
+  height: 85px;
+  background: url("../image/floor.png") no-repeat;
+  background-position: bottom;
+  display: flex;
+  margin-top: 20px;
+}
+
+.roomTempWatchItemSon {
+  flex: 1;
+  display: flex;
+  padding-left: 30px;
+  font-family: "MicrosoftYaHei-Bold";
+}
+
+.roomTempWatchItemSon img {
+  width: 49px;
+  height: 47px;
+  margin-top: 5px;
+}
+
+.roomTempWatchItemSon .ItemSonTextCon {
+  margin-left: 10px;
+}
+
+.roomTempWatchItemSon2 {
+  flex: 1;
+  display: flex;
+  font-family: "MicrosoftYaHei-Bold";
+}
+
+.roomTempWatchItemSon2 img {
+  width: 35px;
+  height: 56px;
+}
+
+.roomTempWatchItemSon2 .ItemSonTextCon {
+  margin-left: 10px;
+}
+
+.todayTempWatch {
+  padding-top: 10px;
+}
+
+.todayTempWatchCon {
+  width: 100%;
+  height: 250px;
+}
+
+.topThreeBox {
+  width: 100%;
+  height: 160px;
+  position: absolute;
+  top: 80px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.topThreeItem {
+  display: flex;
+  padding: 0 20px 0 30px;
+}
+.topThreeItem img {
+  width: 84px;
+  height: 55px;
+}
+.topThreeItemText {
+  display: flex;
+  flex-direction: column;
+}
+
+.topThreeItem:not(:last-child) {
+  background: url(../image/right_line.png) no-repeat right 0 top 0;
+  background-size: contain;
+}
+.logo {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.font16 {
+  font-size: 16px;
+}
+.font18 {
+  font-size: 18px;
+}
+
+.font24 {
+  font-size: 24px;
+}
+.font30 {
+  font-size: 30px;
+}
+
+.font32 {
+  font-size: 32px;
+}
+
+.yahei {
+  font-family: "MicrosoftYaHei-Bold";
+}
+.bold {
+  font-weight: bold;
+}
+
+.blueText {
+  color: #00cbfe;
+}
+.centerText {
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #a5eaff;
+}
+
+.blueshinyText {
+  text-shadow: 2px 0rem 0.5rem #004e8d, -2px 0rem 0.5rem #004e8d,
+    0rem 2px 0.5rem #004e8d, 0rem -2px 0.5rem #004e8d;
+}
+
+.goldText {
+  color: #fcea45;
+}
+
+.greenText {
+  color: #48d396;
+}
+
+.top10 {
+  margin-top: 10px;
+}
+
+@media screen and (min-height: 995px) {
+  /* @media screen and (min-height: 900px) { */
+  /*按f11但未隐藏导航模式*/
+  .logo {
+    top: 160px;
+  }
+}
+
+@media screen and (min-height: 1080px) {
+  /*按f11隐藏导航模式*/
+}
+/* 窗口width大于1800 */
+@media screen and (min-width: 1800px) and (max-width: 2000px) {
+}
+
+/* 窗口height大于900 */
+@media screen and (min-height: 900px) and (max-height: 1000px) {
+}
+
+@media screen and (min-height: 1000px) and (max-height: 1050px) {
+}
+
+/* 窗口height大于1050 */
+@media screen and (min-height: 1050px) {
+  .waterWatch .lev3title_pub {
+    margin-bottom: 20px;
+  }
+  .roomTempWatch {
+    margin-bottom: 20px;
+  }
+  .roomTempWatchItem {
+    margin-top: 35px;
+  }
+  .todayTempWatchCon {
+    height: 280px;
+  }
+}

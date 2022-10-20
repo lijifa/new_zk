@@ -1,0 +1,69 @@
+.breakerLoadMark{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 1;
+	display: none;
+}
+.breakerLoadImg{
+	width: 550px;
+	height: 365px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background-image: url('/common/image/passwordBg.png');
+	background-size: 100% 100%;
+}
+.breakerLoadImg video{
+	width: 544px;
+	height: 350px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.breakerLoadText{
+	height: 30px;
+	line-height: 30px;
+	font-size: 24px;
+	color: rgba(212, 245, 255, 1);
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	bottom: 30px;
+	transform: translate(-50%,-50%);
+}
+.breakerLoadReason{
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	color: rgba(212, 245, 255, 1);
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	bottom: 10px;
+	transform: translate(-50%,-50%);
+}
+.breakerLoadNum{
+	position: absolute;
+	left: 50%;
+	top: 165px;
+	transform: translate(-50%,-50%);
+}
+.breakerLoadNum span{
+	font-size: 40px;
+}
+.closeX{
+	width: 20px;
+	height: 20px;
+	background-image: url('/common/image/x.png');
+	background-size: 100% 100%;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+}

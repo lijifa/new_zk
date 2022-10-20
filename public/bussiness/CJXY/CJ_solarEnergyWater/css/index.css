@@ -1,0 +1,355 @@
+.sc-container {
+  height: calc(100% - 70px);
+  padding-top: 70px;
+}
+.colorYellow {
+  color: rgba(252, 234, 69, 1);
+}
+
+.colorGreen {
+  color: rgba(72, 211, 150, 1);
+}
+
+.colorBlue {
+  color: rgba(26, 209, 255, 1);
+}
+
+.fontBlue {
+  color: #0a94ff;
+}
+
+.fontgold {
+  color: #fe870a;
+}
+
+.font30 {
+  font-size: 30px;
+}
+
+.lev3title_pub {
+  position: relative;
+}
+
+.leftBar {
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 450px;
+  height: 100%;
+  z-index: 1;
+}
+
+.rightBar {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 450px;
+  height: 100%;
+  z-index: 1;
+}
+
+.TNT {
+  height: 70px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.weatherInfo {
+  width: 140px;
+  display: flex;
+  justify-content: center;
+}
+
+.infoTitle {
+  color: rgba(0, 203, 254, 1);
+  font-size: 18px;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.infoNum {
+  display: block;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.infoNum > em {
+  font-size: 32px;
+}
+
+.floorBg {
+  width: calc(100% - 40px);
+  height: 50px;
+  padding: 0 0 30px;
+  margin: 20px;
+  background-image: url(../image/floor.png);
+  background-position: 0 40px;
+  background-size: 100% 40%;
+  background-repeat: no-repeat;
+}
+
+.topTools {
+  position: absolute;
+  z-index: 10;
+  left: 60px;
+  margin-top: 40px;
+}
+
+.topToolsItem {
+  float: left;
+  margin-left: 40px;
+  width: 140px;
+  height: 103px;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding: 15px 10px;
+  background: url("../image/topBox.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.topToolsItemTitle {
+  font-size: 16px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #aff7ff;
+  text-align: center;
+}
+
+.topToolsItemData {
+  color: #0a94ff;
+  margin-top: 10px;
+  text-align: center;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+}
+
+.power {
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.power > img {
+  width: 36px;
+  height: 37px;
+}
+
+.power em {
+  font-size: 30px;
+}
+
+.powerToday {
+  padding: 0 20px;
+  height: calc(100% - 630px);
+}
+
+.echarts {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.echarts img {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.energyBg {
+  width: calc(100% - 40px);
+  height: 80px;
+  padding: 0 0 30px;
+  margin: 20px;
+  background-image: url(../image/floor.png);
+  background-position: 0 70px;
+  background-size: 100% 30%;
+  background-repeat: no-repeat;
+}
+
+.energy {
+  width: 240px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+.energyText {
+  width: 150px;
+}
+
+.energy > img {
+  width: 78px;
+  height: 78px;
+}
+
+.energy em {
+  font-size: 30px;
+}
+
+.energyToday {
+  padding: 0 20px;
+  height: calc(100% - 630px);
+}
+
+.standard {
+  font-size: 14px;
+  color: rgba(0, 255, 255, 1);
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.AUEcharts {
+  height: calc(100% - 690px);
+  padding: 0 20px;
+}
+
+.legend {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #a5eaff;
+}
+
+.legend em {
+  width: 12px;
+  height: 3px;
+  display: inline-block;
+  margin: 0 3px;
+  vertical-align: middle;
+}
+
+.videoBox {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: transparent; */
+  /* mix-blend-mode: screen; */
+}
+
+.video {
+  width: 100%;
+  object-fit: fill !important;
+}
+
+.energyTitle {
+  font-size: 16px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #a5eaff;
+}
+
+.energyText span em {
+  font-size: 30px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #48d396;
+}
+
+.tipInfo {
+  width: 315px;
+  height: 250px;
+  padding: 20px;
+  padding-right: 30px;
+  position: absolute;
+  z-index: 9999;
+  right: 450px;
+  top: 70px;
+  background-image: url(/common/image/faultRight.png);
+  background-size: 100% 100%;
+  display: none;
+}
+
+.tipInfo span {
+  display: block;
+  color: #a5eaff;
+  font-size: 14px;
+}
+
+.bottomBtns {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.energyText,
+.powerTitle,
+.powerText {
+  color: #a5eaff;
+}
+.bottomBtnItem {
+  width: 204px;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 45px;
+  margin-left: 20px;
+  box-sizing: border-box;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  /* font-weight: bold; */
+  color: #d4f5ff;
+  cursor: pointer;
+}
+.bottomBtn1Bg {
+  background: url(../image/blueBox1.png) no-repeat;
+}
+.bottomBtn1Bg_active {
+  background: url(../image/goldBox1.png) no-repeat;
+}
+.bottomBtn2Bg {
+  background: url(../image/blueBox2.png) no-repeat;
+}
+.bottomBtn2Bg_active {
+  background: url(../image/goldBox2.png) no-repeat;
+}
+
+/* 窗口width大于1800 */
+@media screen and (min-width: 1800px) and (max-width: 2000px) {
+  .AUEcharts {
+  }
+}
+
+/* 窗口height大于900 */
+@media screen and (min-height: 900px) and (max-height: 1000px) {
+  .AUEcharts {
+    height: calc(100% - 745px);
+  }
+}
+
+@media screen and (min-height: 1000px) and (max-height: 1050px) {
+  .AUEcharts {
+    height: calc(100% - 770px);
+  }
+}
+
+/* 窗口height大于1050 */
+@media screen and (min-height: 1050px) {
+  .AUEcharts {
+    height: calc(100% - 810px);
+  }
+}

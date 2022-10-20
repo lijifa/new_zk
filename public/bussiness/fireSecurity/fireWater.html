@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/generalStyle.css">
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<!-- <link rel="stylesheet" href="./css/fireWater.css"> -->
+		<script type="text/javascript">
+			document.write('<script language="javascript" src="../../common/lib/config.js?r='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+		   document.write('<link rel="stylesheet" href="./css/fireWater.css?v='+version+'"/>');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+	    <img src="../../common/image/beiing130.jpg" class="image-bg" style="width: 120%;">
+		<div class="innerheader" id="innerheader" data-title="华德广场消防给水监控系统"></div>
+		<div class="pop">
+			<div id="list" style="height: 100%;"></div>
+		</div>
+		<div class="layui-row sc-container">
+			<div class="layui-col-md9 height100">
+				<div class="layui-row  middle-top" style="height: 66%;">
+					<div class="layui-col-md12 height100" style="padding: 10px 0;">
+						<div class="layui-col-md12 height100">
+							<div class="hd-con-hei" style="position: relative;">
+								<!-- <div class="waterTankX waterTank1"></div>
+								<div class="waterTankX waterTank2"></div>
+								<div class="waterTankC waterTank3"></div>
+								<div class="waterTankC waterTank4"></div> -->
+								<div class="hd-title lefttoptitle">
+									消防给水监控系统示意图
+								</div>
+								<!-- <img src="./image/firewater/lefttopimg.png" class="lefttopimg"/> -->
+								<video src="image/fireWater.mp4" muted="true" loop="true" autoplay="true" class="video" width="100%" height="100%" style="top: 10px;"></video>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-row  middle-bottom" style="display: flex;height: 34%;">
+					<div class="height100 backgroundGray widthAndMargin" style="padding-top: 0;height: 100%;">
+					<div class="height100">
+						<div class="hd-title">
+							当日水位监测		
+							<div class="btnParent">
+								<div class="btn on" data-id="0">消防水池</div>
+								<div class="btn" data-id="1">水箱水位</div>
+							</div>					
+						</div>
+						<div class="hd-con-hei publicborder" style="height: calc(100% - 20px);">
+							<div class="hd-innercontent textcenter jfsqzt">								
+								<div class="height100 colorWh posrelative">
+									<div class="hd-loadmask">
+										<img src="../../common/image/load.gif" class="iconimg">
+									</div>																		
+									<div  class="waterlevel">
+										<div id="waterlevel0"></div>
+									</div>
+									<div  class="waterlevel" style="opacity: 0;z-index: -1;">
+										<div class="legend">
+											<span class="legend_pub maright"><em class="icon_line yellow1_legend_pub"></em><em class="font">消火栓水箱</em></span>
+											<span class="legend_pub"><em class="icon_line blue2_legend_pub"></em><em class="font">喷淋水箱</em></span>
+										</div>
+										
+										<div id="waterlevel1"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="height100 backgroundGray widthAndMargin" style="padding-top: 10px;padding-bottom: 0;height: 100%;">
+					<div class="height100">
+						<div class="hd-title">
+							给水系统水位监测
+						</div>
+						<div class="hd-con-hei publicborder" style="margin-top: 5px;">
+								<div class="hd-innercontent textcenter jfsqzt">
+									
+									<div class="height100 colorWh">
+										
+										<div class="layui-col-md12 height100 pad10" style="position: relative;">
+											<ul class="postUl posiTop">
+												<li>
+													<!-- <i class="icon_yl"></i> -->
+													<div class="position50">
+														<span class="differenceText2">消防水池水位(AL)</span>
+														<span class="differenceNum2">
+															<span id="SystemDifference" class="colorBlue">2.8039</span>
+															<span class="differenceUnit">PV</span>
+														</span>
+													</div>
+												</li>
+												<li>
+													<div class="position50">
+														<span class="differenceText2">喷淋水箱水位</span>
+														<span class="differenceNum2">
+															<span id="supplyWaterDif" class="colorBlue">1.2111</span>
+															<span class="differenceUnit">m</span>
+														</span>
+													</div>
+												</li>
+												<li>
+													<div class="position50">
+														<span class="differenceText2">消火栓水箱水位</span>
+														<span class="differenceNum2">
+															<span id="returnWaterDif" class="colorBlue">1.1831</span>
+															<span class="differenceUnit">m</span>
+														</span>
+													</div>
+												</li>
+											</ul>
+											<ul class="postUl posiBottom">
+												<li>
+													<!-- <i class="icon_wd"></i> -->
+													<div class="position50">
+														<span class="differenceText2">消防水池报警水位(AL)</span>
+														<span class="differenceNum2">
+															<span id="supplyAndReturn" class="colorBlue fontsmall">1.4</span>
+															<span class="differenceUnit">PV</span>
+														</span>
+													</div>
+												</li>
+												<li>
+													<div class="position50">
+														<span class="differenceText2">报警最高/最低水位</span>
+														<span class="differenceNum2">
+															<span id="waterSupply" class="colorBlue fontsmall">1.6/0.8</span>
+															<span class="differenceUnit">m</span>
+														</span>
+													</div>
+												</li>
+												<li>
+													<div class="position50">
+														<span class="differenceText2">报警最高/最低水位</span>
+														<span class="differenceNum2">
+															<span id="returnWater" class="colorBlue fontsmall">1.6/0.8</span>
+															<span class="differenceUnit">m</span>
+														</span>
+													</div>
+												</li>
+											</ul>
+											<div class="line_bor" style="left: 36%;"></div>
+											<div class="line_bor" style="left: 65%;"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+						
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 height100 backgroundGray">
+				<div class="height100">
+				<div class="layui-col-md12 height100">
+					<div class="layui-col-md12" style="height: 22%;">
+						<div class="hd-title">
+							当前系统报警
+						</div>
+						<div class="hd-con-hei" style="margin-top: 0; height: 100%;">
+							
+							<div class="hd-innercontent">
+								<div class="ene" style="margin-top: 10px;">
+									<div class="eneItem height100" style="clear: both;" id="alarm">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon1.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop red" style="font-size: 22px;">1</span>
+											<span>系统报警</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon2.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop yellow" style="font-size: 22px;">5</span>
+											<span>设备故障</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									
+								</div>
+								<div class="ene" style="margin-top: 5px;">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon11.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop" style="font-size: 22px;">0</span>
+											<span>启动水泵</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon4.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop" style="font-size: 22px;">2</span>
+											<span>离线设备</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md12" style="height: 30%;">
+						<div class="hd-title">
+							主要设备数量
+						</div>
+						<div class="hd-con-hei" style="margin-top: 10px;">
+							
+							<div class="hd-innercontent">
+								<div class="ene" style="height: 33.33%;">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon5.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">2</em>台</span>
+											<span>室内消火栓泵</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon6.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">2</em>台</span>
+											<span>室外消火栓泵</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									
+								</div>
+								<div class="ene" style="height: 33.33%;">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon7.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">2</em>台</span>
+											<span>喷淋泵</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon8.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">2</em>套</span>
+											<span>稳压装置</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									
+								</div>
+								<div class="ene" style="height: 33.33%;">
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon9.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">6</em>台</span>
+											<span>水压监测装置</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									<div class="eneItem height100" style="clear: both;">
+										<div class="eneItemImg height100 backgroundLightGray">
+											<img src="./image/firewater/icon10.png" >
+										</div>
+										<div class="eneItemText height100 backgroundLightGray">											
+											<span  class="marginTop"><em class="rightcount">9</em>套</span>
+											<span>报警阀</span>
+											<!-- <span>kW·h</span> -->
+										</div>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="layui-col-md12" style="height: 48%;">
+						<div class="hd-title">
+							重点设备监测
+						</div>						
+						<div class="hd-con-hei" style="margin-top: 0;">
+							<div class="hd-innercontent textcenter waterpump">								
+								<div class="top">
+									<!-- <img src="./image/firewater/img1.png" /> -->
+									<div class="img">
+										<video src="./image/firewater/pump.mp4" class="video" muted="true" loop="true" autoplay="true" width="150px" height="110px"></video>
+									</div>
+									<div class="rightfont">
+										<div class="state">
+											<img src="image/firewater/icon12.png" >
+											消防水泵控制柜状态：</div>
+										<div class="stateIcon">
+											<div class="iconItem">
+												<img src="../../common/image/greenLamp.png" >
+												自动
+											</div>
+											<div class="iconItem">
+												<img src="../../common/image/greenLamp.png" >
+												主电
+											</div>
+											<div class="iconItem">
+												<img src="../../common/image/grayLamp.png" >
+												备电
+											</div>
+										</div>
+										<!-- <div>消防水泵巡检模式</div> -->
+										<!-- <button>自动巡检</button> -->
+									</div>
+								</div>
+								<div class="middle">消防水泵巡检模式：自动巡检</div>
+								<div class="bottom">
+									<div class="item">
+										上次巡检时间：
+										 <div class="count" id="timeChange"></div>
+									</div>
+									<div class="item">
+										各泵巡检时长：
+										 <div class="count">15s</div>
+									</div>
+									<div class="item">
+										系统自动巡检周期：
+										 <div class="count">10天</div>
+									</div>
+									<div class="item">
+										水泵故障延时判断：
+										 <div class="count">2S</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/jquery.SuperSlide.3.0.alpha.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/js/utils.js"></script>
+<!-- <script src="../../common/js/public.js"></script> -->
+<script type="text/javascript">
+   document.write('<script language="javascript" src="../../common/js/public.js?r='+Math.random()+'"><\/script>');
+</script>
+
+<script src="../../../common/js/echarsComponent.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/js/listRoll.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/popUps.js"></script>
+<!-- <script src="../../common/js/go.js"></script> -->
+<!-- <script src="../../common/js/drag-detail.js"></script> -->
+<!-- <script src="./js/fireWater.js"></script> -->
+<script type="text/javascript">
+   document.write('<script language="javascript" src="js/fireWater.js?v='+version+'"><\/script>');
+</script>

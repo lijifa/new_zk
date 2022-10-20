@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+		<!-- <meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,minimal-ui"> -->
+		<title>华德智慧能源管理系统</title>
+		<link rel="stylesheet" href="../../common/css/public.css">
+		<link rel="stylesheet" href="../../common/lib/Animate/animate.min.css">
+		<link rel="stylesheet" href="../../../common/css/generalStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/listRoll.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/css/liMarquee.css"/>
+		<link rel="stylesheet" href="/common/css/errorAlert.css">
+		<link rel="stylesheet" href="/common/css/camera.css">
+		<script>
+			document.write('<script src="../../common/lib/config.js?time='+new Date().getTime()+'"><\/script>');
+		</script>
+		<script>
+			document.write('<link rel="stylesheet" href="./css/hdSquare.css?v='+version+'">');
+		</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="innerheader mobile_title" id="innerheader" data-title="站点驾驶舱"></div>
+		<div class="layui-row sc-container" id="camera-containerPD">
+			<!-- <div class="camera camera1 cameraMove" data-flag="false"  id="camera10">
+				<i class="layui-icon layui-icon-close cameraclose"></i> 
+				<div id="camerID" style="width: 580px; height: 350px"></div>
+			</div> -->
+			<div class="backBtn"></div>
+			<div class="btnCenter" style="display: none;">
+				<button class="btn btnBlue0" data-type="15013">电力监测</button>
+				<button class="btn btnBlue1" data-type="15014">环境监测</button>
+				<button class="btn btnOn btnYellow2" data-type="15017">视频监测</button>
+				<button class="btn btnBlue3" data-type="15016">安防监测</button>
+			</div>
+			<div class="btnLeft" id="btnLeft">
+				<i class="layui-icon layui-icon1 layui-icon-right"></i>
+			</div>
+			<div class="btnRight" id="btnRight">
+				<i class="layui-icon layui-icon1 layui-icon-left"></i>
+			</div>
+			<div class="pop_fault" id="fault">
+				<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 50%;"></div>
+			</div>
+			<div class="leftbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">安全概况</span>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">配电室铭牌</span>
+				</div>
+				<ul class="equpro" style="height: 85px;">
+					<li>
+						<div class="position50">
+							<span>变压器总数</span>
+							<span class="fontsize24 textColorBlue"><em id="transformerCount">--</em> <em class="fontsize16">台</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>变压器容量</span>
+							<span class="fontsize24 textColorBlue"><em id="transformerFusionStrategy">--</em> <em class="fontsize16">kVA</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>电压等级</span>
+							<span class="fontsize24 textColorBlue"><em id="voltageDe">--</em> <em class="fontsize16">kV</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<ul class="equpro" style="height: 85px;margin-top: 10px;">
+					<li>
+						<div class="position50">
+							<span>受监测设备</span>
+							<span class="fontsize24 textColorBlue"><em id="cabinet">--</em> <em class="fontsize16">台</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>传感器总数</span>
+							<span class="fontsize24 textColorBlue"><em id="sensor">--</em> <em class="fontsize16">个</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>监测点总数</span>
+							<span class="fontsize24 textColorBlue"><em id="signal">--</em> <em class="fontsize16">个</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">环境安防监测</span>
+				</div>
+				<ul class="equpro device" style="margin-bottom: 10px;">
+					<li data-id="temperature">
+						<div class="position50" id="temperature">
+							<img src="image/wenduBlue.png" >
+							<span>温度 <em>--</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li data-id="humidity">
+						<div class="position50" id="humidity">
+							<img src="image/shiduBlue.png" >
+							<span>湿度 <em>--</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<ul class="equpro device">
+					<li data-id="waterImmersion">
+						<div class="position50" id="waterImmersion">
+							<img src="image/shuijinBlue.png" >
+							<span>水浸 <em>--</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li data-id="smokeSensation">
+						<div class="position50" id="smokeSensation">
+							<img src="image/yanganBlue.png" >
+							<span>烟感 <em>--</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">设备安全监测</span>
+				</div>
+				<ul class="equpro device" style="height: 85px;margin-bottom: 10px;">
+					<li data-id="highVoltageCircuit">
+						<div class="position50">
+							<span>高压回路</span>
+							<span class="fontsize14" id="highVoltageCircuit">--</span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li data-id="lowVoltageCircuit">
+						<div class="position50">
+							<span>低压回路</span>
+							<span class="fontsize14" id="lowVoltageCircuit">--</span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li style="margin-right: 0;" data-id="transformer">
+						<div class="position50">
+							<span>变压器</span>
+							<span class="fontsize14" id="transformer">--</span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当前报警汇总</span>
+				</div>
+				<div id="alarm_list">
+					<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+				</div>
+				
+			</div>
+			<div class="rightbar sildebar scrollbar">
+				<div class="lev1title_pub bgTil">
+					<span class="titfont">能效分析</span>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">当日总能耗</span>
+				</div>
+				<ul class="equpro" style="height: 75px;,margin-top: 10px;">
+					<li>
+						<div class="position50">
+							<span>日用电量(kW·h)</span>
+							<span class="fontsize24 textColorBlue"><em id="electricityDay">--</em><em class="fontsize16"></em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li>
+						<div class="position50">
+							<span>昨日同期(kW·h)</span>
+							<span class="fontsize24 textColorBlue"><em id="electricityYesterday">--</em><em class="fontsize16"></em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>环比(%)</span>
+							<span class="fontsize24 textColorBlue"><em id="trend">--</em> <em class="fontsize16"></em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<ul class="equpro" style="height: 75px;margin-top: 10px;">
+					<li>
+						<div class="position50">
+							<span>当日用电最大时段</span>
+							<span class="fontsize24 textColorBlue"><em id="timePeriod">--</em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li  style="margin-right: 0;">
+						<div class="position50">
+							<span>最大时段功率(kW)</span>
+							<span class="fontsize24 textColorBlue"><em id="avePower">--</em><em class="fontsize16"></em></span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<!-- <span id="moneryEnergyTitle">当日耗电前5名</span> -->
+					当日耗电前5名
+					<span class="fr unit">单位：kW·h</span>
+				</div>
+				<div id="top" class="top">
+					<div class="hd-loadmask">
+						<img src="../../common/image/load.gif" class="iconimg" style="top: 50%;">
+					</div>
+				</div>
+				<div class="lev3title_pub">
+					<img src="../../../common/image/titleGather/title-icon3.png" class="title_icon">
+					<span id="moneryEnergyTitle">电能利用效率</span>
+				</div>
+				<div class="transformerBtn">
+					<button data-type="1#" class="transformerBtnOn">1#变压器</button>
+					<button data-type="2#" style="margin: 0;">2#变压器</button>
+				</div>
+				<ul class="equpro" style="height: 75px;">
+					<li>
+						<div class="position50">
+							<span>频率(Hz)</span>
+							<span class="fontsize24" id="harmonic">--</span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+					<li style="margin-right: 0;">
+						<div class="position50">
+							<span>功率因数</span>
+							<span class="fontsize24" id="powerFactor">--</span>
+						</div>
+						<div class="equproLine"></div>
+					</li>
+				</ul>
+				<div class="lev3title_pub">
+					<!-- <img src="../../../common/image/titleGather/title-icon3.png" class="title_icon"> -->
+					<!-- <span id="moneryEnergyTitle">当日负荷曲线</span> -->
+					<span class="legend_pub fr"><em class="icon_line" style="background: #168FFF;"></em><em class="font">无功功率</em></span>
+					<span class="legend_pub fr"><em class="icon_line" style="background: #00FFFF;"></em><em class="font">有功功率</em></span>
+				</div>
+				<div id="temp_echars" >
+					<div style="height: 100%;position: relative;" id="echarsCreate">
+						<div class="hd-loadmask"><img src="../../common/image/load.gif" class="iconimg" style="top: 60%;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<!-- <script src="../../common/lib/config.js"></script> -->
+<script src="../../common/lib/jquery-3.2.1.js"></script>
+<script src="../../common/lib/TcPlayer-2.3.3.js"></script>
+<script src="../../common/lib/jquery.liMarquee.js"></script>
+<script src="../../common/lib/layui/layui.js"></script>
+<script src="../../common/lib/echarts.min.js"></script>
+<script src="../../common/js/public.js"></script>
+<script src="../../common/js/utils.js"></script>
+<script src="../../common/js/echarsComponent.js"></script>
+<script src="../../common/js/listRollNew.js"></script>
+<script src="../../common/js/slideMenuNew.js"></script>
+<script src="/common/js/errorAlert.js"></script>
+<script src="/common/js/camera.js"></script>
+<script type="text/javascript">
+	document.write('<script src="js/pdSquare.js?v='+version+'"><\/script\>');
+</script>

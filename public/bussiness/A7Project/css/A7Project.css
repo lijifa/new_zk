@@ -1,0 +1,260 @@
+*{
+	user-select: none;
+}
+.sc-container{
+	height: 100%;
+	padding-top: 0;
+	top: 0;
+}
+.controlPanel{
+	position: absolute;
+	right:10px;
+	top: calc(100% - 310px);
+	width: 400px;
+	height: 300px;
+	background-color: rgba(0,13,26,0.3);
+	border-radius: 3px;
+	backdrop-filter:blur(5px);
+	display: none;
+}
+.controlBtn{
+	height: 40px;
+	line-height: 40px;
+	display: flex;
+}
+.controlBtn>button{
+	flex: 1;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: transparent;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	background-position: 55px center;
+	background-image: url(../image/itemWhite.png);
+	background-repeat: no-repeat;
+}
+.controlBtn>.on{
+	background-color: rgba(5,30,55,0.3);
+	background-image: url(../image/itemBlue.png);
+	text-decoration: underline;
+}
+.controlItem{
+	max-height: calc(100% - 40px);
+	/* height: 160px; */
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.panel{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+	text-align: left;
+	color: #fff;
+	background-color: rgba(5,30,55,0.3);
+	background-position: 370px center;
+	background-image: url(../image/right.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.panelOn{
+	background-image: url(../image/down.png);
+}
+.panelItem{
+	height: 0px;
+	padding: 0 20px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: height linear .5s;
+}
+.panelItem>li{
+	padding: 0 10px;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 2px solid rgba(5,30,55,0.2);
+	color:#A5EAFF;
+}
+.panelItem>.on{
+	background-color: rgba(47,100,148,0.8);
+}
+.floorBar{
+	position: absolute;
+	left: 5px;
+	top: 300px;
+	width: 70px;
+	height: 260px;
+	padding: 20px 10px;
+	background-image: url(../image/floorBar.png);
+	background-size: 100% 100%;
+	display: none;
+}
+.floorBar>span{
+	display: block;
+	font-size: 16px;
+	color: #fff;
+	width: 70px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+}
+.floorBar>div{
+	width: 70px;
+	height: 60px;
+	line-height: 60px;
+	background-image: url(../image/floorBgA.png);
+	background-size: 100% 100%;
+	text-align: center;
+	font-size: 16px;
+	margin: 15px 0;
+	cursor: pointer;
+}
+.floorBar>.on{
+	background-image: url(../image/floorBgL.png);
+}
+.topBar{
+	position: absolute;
+	left:0;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	background-image: url(../image/topBar.png);
+	background-size: 100% 100%;
+}
+.infoTime{
+	width: 20%;
+	height: 50px;
+	float: right;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+}
+.infoTime>span{
+	display: block;
+	font-size: 16px;
+	height: 50px;
+	line-height: 50px;
+}
+.hexagon{
+	position: absolute;
+	left: 10px;
+	top: 60px;
+	width: 124px;
+	height: 80px;
+	padding: 12px 0;
+	background-image: url(../image/hexagon.png);
+	background-size: 100% 100%;
+	text-align: center;
+}
+.hexagon>div{
+	font-size: 16px;
+	height: 34px;
+	line-height: 34px;
+}
+.hexagon>span{
+	font-size: 20px;
+	color: #00ffff;
+	height: 24px;
+	line-height: 24px;
+	display: block;
+}
+.hexagon>em{
+	display: block;
+	font-size: 20px;
+	height: 20px;
+	line-height: 20px;
+}
+.bottomBar{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 35px;
+	background-image: url(../image/downBar.png);
+	background-size: 100% 100%;
+}
+.return{
+	position: absolute;
+	left: 50%;
+	bottom: 30px;
+	width: 206px;
+	height: 40px;
+	transform: translate(-105%,0);
+	background-image: url(../image/backOutdoor.png);
+	background-size: 100% 100%;
+	cursor: pointer;
+	display: none;
+}
+.cruise{
+	position: absolute;
+	left: 50%;
+	bottom: 30px;
+	width: 206px;
+	height: 40px;
+	transform: translate(5%,0);
+	background-image: url(../image/openCruise.png);
+	background-size: 100% 100%;
+	cursor: pointer;
+	display: none;
+}
+.cruiseOn{
+	background-image: url(../image/closeCruise.png);
+}
+.mask{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.3);
+}
+.loadBg{
+	width: 320px;
+	height: 140px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background-image: url(../image/loadBg.png);
+	background-size: 100% 100%;
+	display: flex;
+	justify-content: center;
+}
+.loadImg{
+	width: 200px;
+	height: calc(100% - 40px);
+	padding: 20px 0;
+	text-align: center;
+}
+.loadImg span{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+}
+.textInfo{
+	display: none;
+	position: absolute;
+	left: 40px;
+	top: 70px;
+	font-size: 20px;
+	/* transform: translate(-50%,-50%); */
+	padding: 5px 10px;
+	z-index: 2;
+}
+@media screen and (min-height: 995px) {
+}
+@media screen and (min-height: 1080px) {
+}
+
+/* 竖屏 */
+
+@media screen and (orientation: portrait) and (max-width: 720px) {
+}
+
+/* 横屏 */
+
+@media screen and (orientation: landscape) and (min-width: 300px) and (max-width: 998px) {
+}

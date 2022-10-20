@@ -1,0 +1,41 @@
+/* 文字翻转动画 */
+@keyframes rolling-over {
+    0% {
+        transform: rotateX(0)
+    }
+
+    15% {
+        transform: rotateX(90deg)
+    }
+
+    30% {
+        transform: rotateX(0)
+    }
+}
+
+.rolling-over-animated {
+    display: inline-block;
+    animation-name: rolling-over;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+.rolling-over-animated.duration1 {
+    animation-duration: 2400ms;
+}
+
+.rolling-over-animated.duration2 {
+    animation-duration: 2500ms;
+}
+
+.rolling-over-animated.duration3 {
+    animation-duration: 2600ms;
+}
+
+.rolling-over-animated.duration4 {
+    animation-duration: 2700ms;
+}
+
+.rolling-over-animated.duration5 {
+    animation-duration: 2800ms;
+}
