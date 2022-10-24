@@ -1,7 +1,5 @@
-import InsideNav from '@/components/InsideNav';
 import KeepAliveTabs from '@/components/KeepAliveTabs';
 import IndexMenu from '@/components/Menu';
-import Ralis from '@/components/Ralis';
 import RightContent from '@/components/RightContent';
 import { Outlet, useModel } from '@umijs/max';
 import { Layout } from 'antd';
@@ -42,15 +40,12 @@ const App = () => {
           <Content className={baseStyle.layoutContent}>
             {/* <HeadTags /> */}
             <KeepAliveTabs />
-            {/* <SubHead /> */}
-            <InsideNav />
             <AliveScope>
               <Outlet />
             </AliveScope>
           </Content>
         </Layout>
       </Layout>
-      <Ralis />
     </>
   );
 };
