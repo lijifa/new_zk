@@ -142,7 +142,7 @@ export default () => {
                           "params": {},
                           "parentId": 5693,
                           "perms": "business:electricBoardDiagraw:view",
-                          "url": "/business/electricBoardData/electricBoardDiagraw"
+                          "url": "/electricDiagramPanel"
                       },
                       {
                           "ancestors": ",4001,5692,5693",
@@ -157,7 +157,7 @@ export default () => {
                           "params": {},
                           "parentId": 5693,
                           "perms": "business:electricBoardData:view",
-                          "url": "/business/electricBoardData"
+                          "url": "/electricDataPanel"
                       },
                       {
                           "ancestors": ",4001,5692,5693",

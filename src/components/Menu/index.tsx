@@ -41,7 +41,7 @@ const IndexMenu: React.FC = () => {
     // saveMenuItem(key);
     // history.push('/jquery/' + key);
     console.log('obj===============');
-    console.log(menuFlatData);
+    console.log(menuFlatData[key]);
 
     history.push(menuFlatData[key].url);
     return;
