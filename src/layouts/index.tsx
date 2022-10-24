@@ -1,4 +1,3 @@
-import InsideNav from '@/components/InsideNav';
 import KeepAliveTabs from '@/components/KeepAliveTabs';
 import IndexMenu from '@/components/Menu';
 import HeaderMenu from '@/components/Menu/HeaderMenu';
@@ -42,8 +41,6 @@ const App = () => {
           <Content className={baseStyle.layoutContent}>
             {/* <HeadTags /> */}
             <KeepAliveTabs />
-            {/* <SubHead /> */}
-            <InsideNav />
             <AliveScope>
               <Outlet />
             </AliveScope>

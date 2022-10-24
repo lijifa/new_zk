@@ -1,0 +1,49 @@
+.content {
+  background: url(/common/image/subHeader/pageTitle.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  .title {
+    color: white;
+    font-size: 36px;
+    color: #8cfffd;
+    line-height: 50px;
+  }
+  .leftItem {
+    position: absolute;
+    color: white;
+    margin-bottom: 15px;
+    :global {
+      .ant-select-single {
+        width: 160px;
+        height: 30px;
+        margin-right: 8px;
+        background: #0534547c;
+        border: 1px solid #268bff77;
+        .ant-select-selector {
+          background-color: transparent;
+          border: none;
+          .ant-select-selection-placeholder {
+            color: white;
+          }
+          .ant-select-selection-item {
+            color: white;
+          }
+        }
+        .ant-select-arrow {
+          color: #00ffff;
+        }
+      }
+    }
+  }
+  .rightBtn {
+    margin-bottom: 15px;
+  }
+}

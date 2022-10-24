@@ -24,11 +24,6 @@ const routes = [
     component: './JQuery/topMenuPage',
   },
   {
-    name: '权限演示',
-    path: '/access',
-    component: './Access',
-  },
-  {
     name: ' CRUD 示例',
     path: '/table',
     component: './Table',
@@ -129,6 +124,16 @@ const routes = [
   /*
    *  异常模块路由  
   */
+  {
+    name: '暖通数据看板',
+    path: '/hvacDataPanel',
+    component: '@/pages/HvacDataPanel',
+  },
+  {
+    name: '电力数据看板',
+    path: '/powerDataPanel',
+    component: '@/pages/PowerDataPanel',
+  },
   {
     name: '404',
     path: '*',
