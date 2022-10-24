@@ -100,6 +100,7 @@ const IndexMenu: React.FC = () => {
       <div className={styles.headerNav}>
         <ul>{getMenuLv1()}</ul>
       </div>
+      <div className={styles.navBarLine}></div>
     </>
   );
 };
