@@ -1,11 +1,12 @@
-import { history, useLocation, useModel } from '@umijs/max';
-import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
-import { Menu } from 'antd';
-import styles from './index.less';
-import { getCompanySelected } from '@/utils/format';
+import { getCompanySelected, menuflat } from '@/utils/format';
+import { getStorageItems } from '@/utils/storageTool';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { history, useLocation, useModel } from '@umijs/max';
+import { Menu } from 'antd';
+import _ from 'lodash';
+import React, { useEffect, useState } from 'react';
 import IconFont from '../IconFont';
+import styles from './index.less';
 
 interface MenuItemType {
   key: number;
@@ -15,28 +16,34 @@ interface MenuItemType {
   children?: any;
 }
 interface OriginaMenuItemType {
-  menuLeftId: number;
+  menuId: number;
   menuName: string;
   url: string;
-  menuChildList: any[];
+  children: any[];
 }
 
 // 脚手架示例组件
 const IndexMenu: React.FC = () => {
-  const { initialState } = useModel('@@initialState');
-  const { menuItem, saveMenuItem, updateMenuApiData } = useModel('menuModel');
+  const { menuItem, saveMenuItem, updateMenuApiData, menuLv1Id } =
+    useModel('menuModel');
 
   const [menuData, setMenuData] = useState<any>([]);
+  const [menuFlatData, setMenuflatData] = useState<any>({});
   const [menuLocation, setMenuLocation] = useState<any>([]);
   const { pathname } = useLocation();
   const { collapsed, setCollapsed } = useModel('global');
   // 点击菜单回调
-  const clickItem = async (key: string) => {
+  const clickItem = async (key: any) => {
     if (menuItem.menuId === key) {
       return;
     }
-    saveMenuItem(key);
-    history.push('/jquery/' + key);
+
+    // saveMenuItem(key);
+    // history.push('/jquery/' + key);
+    console.log('obj===============');
+    console.log(menuFlatData);
+
+    history.push(menuFlatData[key].url);
     return;
   };
 
@@ -70,42 +77,44 @@ const IndexMenu: React.FC = () => {
 
     let menuLvTwo: MenuItemType[] = [],
       menuAll: MenuItemType[] = [];
-    updateMenuApiData(comData.key, pathname).then((e) => {
-      let { originalData, firstItemData } = e;
+    let leftMenuData = getStorageItems('MENU_INFO_CACHE');
 
-      setMenuLocation(firstItemData?.menuRelation);
-      originalData.forEach((item: OriginaMenuItemType, index: number) => {
+    if (leftMenuData && leftMenuData[menuLv1Id]) {
+      setMenuflatData(menuflat(leftMenuData[menuLv1Id]));
+    }
+
+    // setMenuLocation(firstItemData?.menuRelation);
+    leftMenuData[menuLv1Id]?.forEach(
+      (item: OriginaMenuItemType, index: number) => {
         // 第一级菜单
         // menuLvOne.push({
-        //     key: item.menuLeftId,
+        //     key: item.menuId,
         //     icon: <UserOutlined />,
         //     label: item.menuName
         // })
 
         // 第二级菜单
-        // menuLvTwo[item.menuLeftId] = [];
+        // menuLvTwo[item.menuId] = [];
 
         menuLvTwo = [];
-        item.menuChildList.forEach((ii) => {
-          let threeMenuData = ii.menuChildList.map(
-            (iii: OriginaMenuItemType) => {
-              return {
-                key: iii.menuLeftId,
-                label: iii.menuName,
-                path: iii.url,
-              };
-            },
-          );
+        item.children.forEach((ii) => {
+          let threeMenuData = ii.children.map((iii: OriginaMenuItemType) => {
+            return {
+              key: iii.menuId,
+              label: iii.menuName,
+              path: iii.url,
+            };
+          });
           if (threeMenuData.length > 0) {
             menuLvTwo.push({
-              key: ii.menuLeftId,
+              key: ii.menuId,
               label: ii.menuName,
               children: threeMenuData,
             });
           } else {
             if (ii.url === '#') return;
             menuLvTwo.push({
-              key: ii.menuLeftId,
+              key: ii.menuId,
               label: ii.menuName,
               path: ii.url,
             });
@@ -113,21 +122,26 @@ const IndexMenu: React.FC = () => {
         });
 
         menuAll.push({
-          key: item.menuLeftId,
+          key: item.menuId,
           icon: icon(index),
           label: item.menuName,
           children: menuLvTwo,
         });
         // menuLvTwo[item.menuId] = item.children;
-      });
 
-      setMenuData(menuAll);
-    });
+        setMenuData(menuAll);
+      },
+    );
   };
 
   useEffect(() => {
-    getMenuList();
-  }, [initialState?.selectedCompany?.key]);
+    console.log('ssssssssssssssssssssssssssssssssss');
+
+    if (menuLv1Id) {
+      console.log(menuLv1Id);
+      getMenuList();
+    }
+  }, [menuLv1Id]);
 
   // 点击菜单，收起其他展开的所有菜单
   const onOpenChange = (keys: string[]) => {
@@ -158,10 +172,6 @@ const IndexMenu: React.FC = () => {
         className: `${styles.trigger}`,
         onClick: () => setCollapsed(!collapsed),
       })}
-      <div className={`${styles.MenuBackgroundImg} ${styles.leftTopImg}`} />
-      <div className={`${styles.MenuBackgroundImg} ${styles.rightTopImg}`} />
-      <div className={`${styles.MenuBackgroundImg} ${styles.leftBotImg}`} />
-      <div className={`${styles.MenuBackgroundImg} ${styles.rightBotImg}`} />
     </>
   );
 };

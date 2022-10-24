@@ -1,13 +1,12 @@
 import InsideNav from '@/components/InsideNav';
 import KeepAliveTabs from '@/components/KeepAliveTabs';
 import IndexMenu from '@/components/Menu';
-import Ralis from '@/components/Ralis';
+import HeaderMenu from '@/components/Menu/HeaderMenu';
 import RightContent from '@/components/RightContent';
 import { Outlet, useModel } from '@umijs/max';
 import { Layout } from 'antd';
 import { AliveScope } from 'react-activation';
 import baseStyle from './index.less';
-// import HeadTags from '@/components/HeadTags';
 const { Header, Sider, Content } = Layout;
 // const { pathname } = useLocation;
 const App = () => {
@@ -27,6 +26,7 @@ const App = () => {
           }}
         >
           <div className={baseStyle.logo} />
+          <HeaderMenu />
           <RightContent />
         </Header>
         <Layout className={baseStyle.siteLayout}>
@@ -50,7 +50,6 @@ const App = () => {
           </Content>
         </Layout>
       </Layout>
-      <Ralis />
     </>
   );
 };
