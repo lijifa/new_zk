@@ -1,0 +1,198 @@
+.hidennavBar {
+  width: 100%;
+  background: url('/image/subHead/hidenavbarbg.png') no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11112;
+  min-height: 225px;
+
+  ul {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 45px;
+
+    li {
+      display: inline-block;
+      width: 170px;
+      text-align: center;
+      margin: 0 10px;
+      vertical-align: top;
+      margin-top: 30px;
+
+      span {
+        display: block;
+
+        a {
+          color: #a5eaff;
+          display: block;
+          height: 100%;
+          line-height: 35px;
+        }
+
+        a:hover {
+          background: url('/image/subHead/hidebavbar-hover.png') no-repeat;
+          background-size: 100% 100%;
+          color: #0ff;
+        }
+      }
+
+      .title {
+        height: 48px;
+        line-height: 48px;
+        color: #00c6ff;
+        font-size: 18px;
+        background: url('/image/subHead/hidenavbar-titlebg.png') no-repeat;
+        background-size: 100% 100%;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .closeBtn {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -74px;
+    cursor: pointer;
+  }
+}
+
+:global {
+  .ant-drawer-content {
+    background-color: transparent;
+  }
+
+  .ant-menu-submenu-title {
+    background: transparent !important;
+
+    span {
+      user-select: none;
+    }
+  }
+
+  .ant-menu-title-content {
+    user-select: none;
+  }
+
+  .ant-layout-sider-children {
+    border: 1px solid #073b71;
+  }
+}
+
+.LeftMenu {
+  margin-top: 20px;
+  border: none;
+}
+.MenuBackgroundImg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
+.leftTopImg {
+  background: url('../../../public/image/Menu/topleft.png');
+  background-repeat: no-repeat;
+  top: 0px;
+  left: 0px;
+}
+
+.rightTopImg {
+  background: url('../../../public/image/Menu/topright.png');
+  background-repeat: no-repeat;
+  top: 0px;
+  right: -3px;
+}
+
+.leftBotImg {
+  background: url('../../../public/image/Menu/bottomleft.png');
+  background-repeat: no-repeat;
+  bottom: -3px;
+  left: 0px;
+}
+
+.rightBotImg {
+  background: url('../../../public/image/Menu/bottomright.png');
+  background-repeat: no-repeat;
+  bottom: -3px;
+  right: -3px;
+}
+
+.trigger {
+  color: white;
+  margin-right: -14px;
+  font-size: 13px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding-right: 2px;
+  line-height: 34px;
+  cursor: pointer;
+  position: absolute;
+  top: calc(50vh - 5%);
+  right: 0%;
+  z-index: 999999;
+  width: 14px;
+  height: 32px;
+  background: #073b71;
+}
+
+
+.headerNav {
+  min-width: 200px;
+  height: 60px;
+  ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+    li {
+      list-style: none;
+      min-width: 84px;
+      height: 60px;
+      margin-right: 10px;
+      text-align: center;
+      color: #7BE5FF;
+      font-weight: bold;
+      font-size: 14px;
+      background-image: url(/image/Menu/menuItem.png);
+      background-size: 100% 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+
+      .title {
+        height: 20px;
+        width: 80px;
+        line-height: 26px;
+        text-align: center;
+      }
+    }
+
+    .active {
+      color: #FFF;
+      background-image: url(/image/Menu/menuItemActive.png);
+
+    }
+  }
+
+
+  .navBarLine {
+    position: absolute;
+    left: 0;
+    top: 58px;
+    background-color: rgba(38, 140, 255, 1);
+    background-image: url(/image/Menu/navbarline.png);
+    background-repeat: no-repeat;
+    background-position: -464px center;
+    height: 2px;
+    width: 100%;
+    animation: navBarLineLoop 4s infinite linear;
+  }
+}

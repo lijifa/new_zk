@@ -9,10 +9,10 @@ export function menuflat(menuData: any, res: { [propName: number]: any } = {}) {
     (item: {
       menuName: any;
       url: string;
-      menuLeftId: number;
+      menuId: number;
       parentId: number;
       ancestors: string;
-      menuChildList: any[];
+      children: any[];
       menuType: string;
     }) => {
       // 处理菜单关系
@@ -27,10 +27,10 @@ export function menuflat(menuData: any, res: { [propName: number]: any } = {}) {
       let reg = RegExp(/.html/);
       let r_path =
         item.url && reg.test(item.url)
-          ? '/jquery/' + item.menuLeftId
+          ? '/jquery/' + item.menuId
           : item.url;
       let resItem = {
-        menuId: item.menuLeftId.toString(),
+        menuId: item.menuId.toString(),
         menuPid: item.parentId.toString(),
         menuName: item.menuName,
         menuRelation: menuRelationArr,
@@ -38,11 +38,11 @@ export function menuflat(menuData: any, res: { [propName: number]: any } = {}) {
         routePath: r_path,
         menuType: item.menuType,
       };
-      if (item.menuChildList && item.menuChildList.length > 0) {
-        res[item.menuLeftId] = resItem;
-        menuflat(item.menuChildList, res); //递归
+      if (item.children && item.children.length > 0) {
+        res[item.menuId] = resItem;
+        menuflat(item.children, res); //递归
       } else {
-        res[item.menuLeftId] = resItem;
+        res[item.menuId] = resItem;
       }
     },
   );
@@ -64,8 +64,8 @@ export function getFirstMenuItem(mData: any): menuItemType {
     return {};
   }
   let firstMenuItem = {};
-  if (mData.menuChildList && mData.menuChildList.length > 0) {
-    return getFirstMenuItem(mData.menuChildList[0]);
+  if (mData.children && mData.children.length > 0) {
+    return getFirstMenuItem(mData.children[0]);
   } else {
     let menuRelationArr: string[] = [];
     mData.ancestors.split(',').forEach((i: string) => {
@@ -77,11 +77,11 @@ export function getFirstMenuItem(mData: any): menuItemType {
     let reg = RegExp(/.html/);
     let r_path =
       mData.url && reg.test(mData.url)
-        ? '/jquery/' + mData.menuLeftId
+        ? '/jquery/' + mData.menuId
         : mData.url;
 
     firstMenuItem = {
-      menuId: mData.menuLeftId.toString(),
+      menuId: mData.menuId.toString(),
       menuPid: mData.parentId.toString(),
       menuName: mData.menuName,
       menuRelation: menuRelationArr,
@@ -134,12 +134,41 @@ export function getCompanySelected() {
 // 顶部菜单扁平化处理
 export function topMenuflat(data: any) {
   let resArr: any = {};
-  data.forEach((item: { menuChildList: any[] }) => {
-    if (item.menuChildList && item.menuChildList.length > 0) {
-      item.menuChildList.forEach((i) => {
+  data.forEach((item: { children: any[] }) => {
+    if (item.children && item.children.length > 0) {
+      item.children.forEach((i) => {
         resArr[i.menuNavId] = i;
       });
     }
   });
   return resArr;
+}
+
+
+
+//==========================================================
+// 格式化智控菜单：返回格式化后的菜单，及初始化菜单ID
+export function zkMenuFormat(zkMenuList: any[]) {
+  let resMenu:any = {};
+  let resMenuLv1:{ label: string; key: number }[] = [];
+  let menuLvFristId = 0;
+  // 转换JSON结构
+  zkMenuList.map((item, index) => {
+    if (index === 0) {
+      menuLvFristId = item.menuId;
+    }
+      resMenu[item.menuId] = item.children;
+      resMenuLv1.push({
+        key: item.menuId,
+        label: item.menuName,
+      })
+  })
+
+  // setStorageItems('MENU_INFO_CACHE', resMenu);
+  return {
+    menuAll: resMenu,
+    menuLv1Data: resMenuLv1,
+    menuLv2Data: resMenu[menuLvFristId],
+    menuLvFristId: menuLvFristId
+  };
 }

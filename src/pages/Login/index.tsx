@@ -6,34 +6,14 @@ import {
 } from '@/services/zg-base/login';
 import { saveCompanySelected } from '@/utils/format';
 import { clearStorageAll, setStorageItems } from '@/utils/storageTool';
-import {
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  LockOutlined,
-  PhoneOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import { Button, Form, Input, Layout, message } from 'antd';
-import ChooseCompany from './ChooseCompany';
 import { useState } from 'react';
+import ChooseCompany from './ChooseCompany';
 import styles from './index.less';
 
 const { Header, Footer, Content } = Layout;
-// const LoginMessage: React.FC<{
-//   content: string;
-// }> = ({ content }) => {
-//   return (
-//     <Alert
-//       style={{
-//         marginBottom: 24,
-//       }}
-//       message={content}
-//       type="error"
-//       showIcon
-//     />
-//   );
-// };
 //点击智控平台触发跳转
 const changerl = () => {
   window.open('http://zk.hdzhenergy.cn/');
@@ -44,13 +24,6 @@ const Login = () => {
   const { updateMenuApiData } = useModel('menuModel');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-
-  // 判断当前是否已登录
-  // if (initialState?.isLogin) {
-  //   const urlParams = new URL(window.location.href).searchParams;
-  //   history.push(urlParams.get('redirect') || '/home');
-  //   return;
-  // }
 
   // 登录成功回调
   const loginSuccessFun = async (companyItem: {
@@ -133,6 +106,7 @@ const Login = () => {
     setIsModalVisible(!isModalVisible);
   };
 
+  // 按钮样式修改函数
   const changeLogin = (event: any) => {
     if (event.target.value.length >= 5) {
       return setIsLogin(true);
@@ -140,18 +114,31 @@ const Login = () => {
     return setIsLogin(false);
   };
 
+  // 重置密码
+  const resetPwd = (event: any) => {
+    event.preventDefault();
+    console.log('忘记密码');
+  };
+
+  // 企业注册
+  const pathToRegister = (event: any) => {
+    event.preventDefault();
+    console.log('企业注册');
+  };
+
   return (
     <Layout className={styles.layoutBg}>
       <Header className={styles.headerBox}>
-        <img src="/image/logo.png" />
+        <div className={styles.headerLogo}></div>
         <div className={styles.other} onClick={changerl}>
-          智控平台
+          智观平台
         </div>
+        <div className={styles.navBarLine}></div>
       </Header>
       <Content className={styles.contentBox}>
         <div className={styles.leftBox}>
           <video
-            src={require('@/assets/Login/login_video_bg.mp4')}
+            src={require('@/assets/Login/loginBg.mp4')}
             autoPlay={true}
             muted={true}
             loop={true}
@@ -159,7 +146,10 @@ const Login = () => {
         </div>
         <div className={styles.rightBox}>
           <div className={styles.loginBox}>
-            <h1 className={styles.loginTitle}>智观用户登录</h1>
+            <div className={styles.loginTitle}>
+              <div className={styles.loginTitleImg} />
+            </div>
+            <div className={styles.titleBarLine} />
             <Form
               name="normal_login"
               className={styles.loginForm}
@@ -174,7 +164,7 @@ const Login = () => {
               >
                 <Input
                   className={styles.formInput}
-                  prefix={<UserOutlined className={styles.loginIcon} />}
+                  prefix={<div className={styles.userIcon}>账户</div>}
                   autoComplete="off"
                   placeholder="请输入用户名/手机号"
                 />
@@ -184,7 +174,7 @@ const Login = () => {
                 rules={[{ required: true, message: '密码不能为空' }]}
               >
                 <Input.Password
-                  prefix={<LockOutlined className={styles.loginIcon} />}
+                  prefix={<div className={styles.pwdIcon}>密码</div>}
                   type="password"
                   className={styles.formInput}
                   placeholder="请输入密码"
@@ -200,10 +190,6 @@ const Login = () => {
                   }}
                 />
               </Form.Item>
-              <div className={styles.rememberPwdBox}>
-                <PhoneOutlined className={styles.loginIcon} />
-                <span>业务咨询电话：022-59698888</span>
-              </div>
 
               <Form.Item>
                 <Button
@@ -217,9 +203,15 @@ const Login = () => {
                 >
                   登 录
                 </Button>
-                <span className={styles.rememberPwdBox}>
-                  构建楼宇全场景智慧物联生态圈--助力实现节能降碳目标
-                </span>
+                <div className={styles.titleTextBox}>
+                  <div>
+                    还没有账号？
+                    <a onClick={(e) => pathToRegister(e)}>企业注册</a>
+                  </div>
+                  <div>
+                    <a onClick={(e) => resetPwd(e)}>{'忘记密码>>'}</a>
+                  </div>
+                </div>
               </Form.Item>
             </Form>
           </div>
@@ -232,6 +224,7 @@ const Login = () => {
           }
         />
       </Content>
+
       <Footer className={styles.footerBox}>
         Copyright © 华德智慧能源管理（天津）有限公司 版权所有
         津ICP备16006426号-1
