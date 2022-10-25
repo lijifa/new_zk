@@ -5,6 +5,32 @@ const routes = [
     layout: false,
   },
   {
+    name:'企业注册',
+    path:'/companyReg',
+    component:'./CompanyReg'
+  },
+  {
+    name:'忘记密码',
+    path:'/forgetPwd',
+    component:'./ForgetPwd'
+  },
+  {
+    name:'变压器状态监测',
+    path:'/transformerPanel',
+    component:'./TransformerPanel'
+  },
+  {
+    name:'暖通运维看板',
+    path:'/hvacMaintenancePanel',
+    component:'./HvacMaintenancePanel'
+  },
+  {
+    name:'电力运维看板',
+    path:'/electricMaintenancePane',
+    component:'./ElectricMaintenancePane'
+  },
+  
+  {
     path: '/',
     redirect: '/home',
   },

@@ -1,0 +1,129 @@
+.position{
+    height: 100%;
+    width: 100%;
+    flex: none!important;
+    position: absolute!important;
+    left: 0;
+    top: 0;
+    .gDDiv{
+        padding: 0 20px;
+        height: 100%;
+
+    }
+    .gunDong{
+        //border-bottom:1px soild rgba(38,140,255,1) !important;
+        border-bottom: 1px solid rgba(38,140,255,1);
+        height: 30px;
+        display: flex;
+        .gDitem{
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            .gDlie_title{
+               font-size: 18px;
+               color: rgba(0, 255, 255, 1);
+               flex: 2;
+               height: 30px;
+
+            }
+            .gDlie_title1{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: rgba(0, 238, 255, 1);
+                text-align: left;
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                font-family: NumberT;
+            }
+
+        }
+
+    }
+    .gDlistOut{
+        width: 100%;
+        height: calc(100% - 35px);
+        display: flex;
+        //overflow: hidden;
+        overflow-y: auto;
+        font-size: 12px;
+        line-height: 35px;
+        position: relative;
+        user-select: none;
+        white-space: nowrap;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .move{
+            cursor: inherit;
+            white-space: normal;
+            width: 100%;
+            position: absolute;
+            .gDlistIn{
+                width: 100%;
+                padding: 0px;
+                li{
+                    list-style: none;
+                }
+                .gDhang0{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0ac5f5;
+                    width: 100%;
+                    &:hover{
+                        background-color: rgba(38, 140, 255, 0.2);
+                    }
+                }
+                .gDhang1{
+                    text-align: left;
+                    height: 30px;
+                    line-height: 30px;
+                    font-family: NumberT;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    display: inline-block;
+                   
+                }
+                .gDhang2{
+                    text-align: left;
+                    height: 30px;
+                    line-height: 30px;
+                    color: rgba(255, 255, 255, 1);
+                    font-size: 14px;
+                    font-family: NumberT !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    display: inline-block;
+                    .bR4{
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 10px;
+                        background-color: rgba(255,27,27,1);
+                        margin-right: 10px;
+                        font-style: normal;
+
+                    }
+                    .class4{
+                        color: rgba(255,27,27,1);
+                    }
+
+                }
+
+            }
+        }
+        
+    }
+    }
