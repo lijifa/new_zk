@@ -4,15 +4,15 @@ import React, { memo, useEffect, useState } from 'react';
 type EChartsOption = echarts.EChartsOption;
 interface Props {
   ID: any; //id 
-  Data:Array<any>,//数据data
-  total:string //中间第一行数据
-  centerTitle:string,//中间第二行数据
-  centertest:string//中间第三行数据
-
+  Data?:Array<any>,//数据data
+  total?:string //中间第一行数据
+  centerTitle?:string,//中间第二行数据
+  centertest?:string,//中间第三行数据
+  unit?:string,//单位名称
 }
 
 const ConCom = memo((props: Props) => {
-  let { ID ,Data ,centerTitle,centertest ,total =''} = props;
+  let { ID ,Data ,centerTitle,centertest ,total ='',unit} = props;
 
 
   function init() {
@@ -87,7 +87,7 @@ const ConCom = memo((props: Props) => {
         formatter: function (name: any) {
           let res = Data.filter((v) => v.name === name);
           return (
-            '{name| ' + name + '}{percent| ' + res[0].value + '}' + '{unit| 天}'
+            `{name| ${name} }{percent| ${res[0].value === undefined ? '--' : res[0].value  }}{unit| ${unit}}`
           );
         },
       },
