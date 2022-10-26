@@ -5,32 +5,6 @@ const routes = [
     layout: false,
   },
   {
-    name:'企业注册',
-    path:'/companyReg',
-    component:'./CompanyReg'
-  },
-  {
-    name:'忘记密码',
-    path:'/forgetPwd',
-    component:'./ForgetPwd'
-  },
-  {
-    name:'变压器状态监测',
-    path:'/transformerPanel',
-    component:'./TransformerPanel'
-  },
-  {
-    name:'暖通运维看板',
-    path:'/hvacMaintenancePanel',
-    component:'./HvacMaintenancePanel'
-  },
-  {
-    name:'电力运维看板',
-    path:'/electricMaintenancePane',
-    component:'./ElectricMaintenancePane'
-  },
-  
-  {
     path: '/',
     redirect: '/home',
   },
@@ -92,6 +66,36 @@ const routes = [
     name: '暖通数据看板',
     path: '/hvacDataPanel',
     component: './RunningFacts/EnergyStationMonitoring/HvacDataPanel',
+  },
+  //企业注册
+  {
+    name:'企业注册',
+    path:'/companyReg',
+    component:'./RunningFacts/CompanyReg'
+  },
+  //忘记密码
+  {
+    name:'忘记密码',
+    path:'/forgetPwd',
+    component:'./RunningFacts/ForgetPwd'
+  },
+  //变压器状态监测
+  {
+    name:'变压器状态监测',
+    path:'/transformerPanel',
+    component:'./RunningFacts/ElectricStationMonitoring/TransformerPanel'
+  },
+  //暖通运维看板
+  {
+    name:'暖通运维看板',
+    path:'/hvacMaintenancePanel',
+    component:'./RunningFacts/MaintenancePanel/HvacMaintenancePanel'
+  },
+  //电力运维看板
+  {
+    name:'电力运维看板',
+    path:'/electricMaintenancePanel',
+    component:'./RunningFacts/MaintenancePanel/ElectricMaintenancePanel'
   },
   
   /* 断路器监测================ */

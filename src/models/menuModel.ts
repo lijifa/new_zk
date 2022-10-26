@@ -187,7 +187,7 @@ export default () => {
                           "params": {},
                           "parentId": 5693,
                           "perms": "business:transformerMonitor:view",
-                          "url": "/business/transformerMonitor"
+                          "url": "/transformerPanel"
                       }
                   ],
                   "createTime": 1651134139000,
@@ -249,7 +249,7 @@ export default () => {
                           "params": {},
                           "parentId": 5695,
                           "perms": "business:heatOperatBoard:view",
-                          "url": "/business/heatOperatBoard"
+                          "url": "/hvacMaintenancePanel"
                       },
                       {
                           "ancestors": ",4001,5692,5695",
@@ -264,7 +264,7 @@ export default () => {
                           "params": {},
                           "parentId": 5695,
                           "perms": "business:electricOperatBoard:view",
-                          "url": "/business/electricOperatBoard"
+                          "url": "/electricMaintenancePanel"
                       }
                   ],
                   "createTime": 1651134414000,
