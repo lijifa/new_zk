@@ -95,6 +95,12 @@ const routes = [
     path: '/electricMaintenancePanel',
     component: './RunningFacts/MaintenancePanel/ElectricMaintenancePanel',
   },
+   //经济运行分析
+    {
+      name: '经济运行分析',
+      path: '/distributing',
+      component: './StatisticalAnalysis/PowerConsumption/Distributing',
+    },
 
   /* 断路器监测================ */
   // 断路器看板

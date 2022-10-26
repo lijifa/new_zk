@@ -414,7 +414,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:economicsRun:view',
-                url: '/business/electricEnergy/economicsRun',
+                url: '/distributing',
               },
               {
                 ancestors: ',4001,5440,5704',
