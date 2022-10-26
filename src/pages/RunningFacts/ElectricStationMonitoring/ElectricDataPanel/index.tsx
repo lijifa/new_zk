@@ -1,6 +1,7 @@
 import BoardBack from '@/components/BoardBack';
 import Item_H from '@/components/BoardItem';
-import SubHeader from '@/components/SubHeader';
+import Chart from '@/components/Echarts';
+import  SubHeader  from '@/components/SubHeader';
 import { Radio, Select } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
@@ -21,7 +22,7 @@ const PowerDataPanel = () => {
   const [power, setPower] = useState<String>('用电量');
 
   return (
-    <>
+    <div className={styles.content}>
       <SubHeader
         title={'电力数据看板'}
         leftItem={
@@ -221,7 +222,17 @@ const PowerDataPanel = () => {
                   </Radio.Group>
                 </>
               }
-              content={<></>}
+              content={
+                <>
+                  <div style={{ height: '100%', width: '100%' }}>
+                    <Chart
+                      type="LineChart"
+                      XDATA={[1, 2, 3, 4, 5, 6]}
+                      YDATA={[[1, 2, 4, 5, 6, 7, 8]]}
+                    />
+                  </div>
+                </>
+              }
             />
           </div>
         </div>
@@ -425,7 +436,7 @@ const PowerDataPanel = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

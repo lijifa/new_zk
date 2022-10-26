@@ -49,11 +49,9 @@ const routes = [
     component: './JQuery',
   },
 
-
-
   /*
-   *  运行实况  
-  */
+   *  运行实况
+   */
   /* 能源站监测================ */
   // 暖通组态看板
   {
@@ -67,7 +65,7 @@ const routes = [
     path: '/hvacDataPanel',
     component: './RunningFacts/EnergyStationMonitoring/HvacDataPanel',
   },
-  
+
   /* 断路器监测================ */
   // 断路器看板
   // {
@@ -75,7 +73,7 @@ const routes = [
   //   path: '/switchDiagramPanel',
   //   component: './RunningFacts/ElectricStationMonitoring/SwitchDiagramPanel',
   // },
-  
+
   /* 变配站监测================ */
   // 电力组态看板
   {
@@ -95,7 +93,7 @@ const routes = [
     path: '/transformerPanel',
     component: './RunningFacts/ElectricStationMonitoring/TransformerPanel',
   },
-  
+
   /* 实景监控================【LiveMonitoring】 */
   // 影像监控
   {
@@ -118,12 +116,27 @@ const routes = [
     component: './RunningFacts/MaintenancePanel/ElectricMaintenancePanel',
   },
 
-
-
+  /*
+   *  统计分析
+   */
+  /* 暖通能耗================ */
+  // 系统运行分析
+  {
+    name: '系统运行分析',
+    path: '/System_operation_analysis',
+    component:
+      './StatisticalAnalysis/EnergyConsumption/System_operation_analysis',
+  },
+  // 能源站耗能统计
+  {
+    name: '能源站耗能统计',
+    path: '/hvacDataPanel',
+    component: './RunningFacts/EnergyStationMonitoring/HvacDataPanel',
+  },
 
   /*
-   *  异常模块路由  
-  */
+   *  异常模块路由
+   */
   {
     name: '404',
     path: '*',

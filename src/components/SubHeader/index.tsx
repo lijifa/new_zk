@@ -5,6 +5,9 @@ interface SubHeader {
   title: any;
   leftItem?: any;
 }
+interface PageHeader {
+  title: string;
+}
 
 const onChange = (event: any) => {
   console.log('onChange:', event);
@@ -60,9 +63,17 @@ const SubHeader = ({ leftItem, title }: SubHeader) => {
       <div className={styles.seat} />
       <div className={styles.leftItem}>{LeftBox}</div>
       <div className={styles.title}>{title}</div>
-      <div className={styles.rightBtn}>{<button>全屏</button>}</div>
+      <div className={styles.seat}></div>
     </div>
   );
 };
-
 export default SubHeader;
+
+export const PageHeader = ({ title }: PageHeader) => {
+  return (
+    <div className={styles.PageHeader}>
+      <span className={styles.Title}>{title}</span>
+      <div className={styles.pageLine} />
+    </div>
+  );
+};

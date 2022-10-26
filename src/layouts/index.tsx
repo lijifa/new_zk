@@ -24,6 +24,7 @@ const App = () => {
             display: full ? 'none' : 'flex',
           }}
         >
+          <div className={baseStyle.navBarLine}></div>
           <div className={baseStyle.logo} />
           <HeaderMenu />
           <RightContent />

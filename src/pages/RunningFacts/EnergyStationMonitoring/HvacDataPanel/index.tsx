@@ -1,6 +1,7 @@
 import BoardBack from '@/components/BoardBack';
 import Item_H, { Item_V } from '@/components/BoardItem';
-import SubHeader from '@/components/SubHeader';
+import Chart from '@/components/Echarts';
+import  SubHeader  from '@/components/SubHeader';
 import { Radio, Select } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
@@ -20,7 +21,7 @@ const HvacDataPanel = () => {
   const [warn, setWarn] = useState<String>('报警');
 
   return (
-    <>
+    <div className={styles.content}>
       <SubHeader
         title={'暖通数据看板'}
         leftItem={
@@ -202,6 +203,7 @@ const HvacDataPanel = () => {
             />
           </div>
         </div>
+
         <div
           style={{
             marginTop: '15px',
@@ -214,12 +216,11 @@ const HvacDataPanel = () => {
             <BoardBack
               title={'系统运行曲线'}
               content={
-                <>
-                  <div>
-                    环境温度
-                    <span>12~22℃</span>
+                <div style={{ width: 600, height: 300 }}>
+                  <div style={{ width: '100%', height: '100%' }}>
+                    <Chart type="RoundToolChart" XDATA={1} />
                   </div>
-                </>
+                </div>
               }
             />
           </div>
@@ -355,7 +356,7 @@ const HvacDataPanel = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

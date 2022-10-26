@@ -138,7 +138,6 @@
   background: #073b71;
 }
 
-
 .headerNav {
   min-width: 200px;
   height: 60px;
@@ -156,7 +155,7 @@
       height: 60px;
       margin-right: 10px;
       text-align: center;
-      color: #7BE5FF;
+      color: #7be5ff;
       font-weight: bold;
       font-size: 14px;
       background-image: url(/image/Menu/menuItem.png);
@@ -176,12 +175,19 @@
     }
 
     .active {
-      color: #FFF;
+      color: #fff;
       background-image: url(/image/Menu/menuItemActive.png);
-
     }
   }
 
+  @keyframes navBarLineLoop {
+    0% {
+      background-position: -464px center;
+    }
+    100% {
+      background-position: calc(100% + 464px) center;
+    }
+  }
 
   .navBarLine {
     position: absolute;
