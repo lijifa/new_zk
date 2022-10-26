@@ -30,9 +30,9 @@ const ScrollList = memo((props : Props) => {
       timer = setInterval(() => {
         if (
           scrollTop1 >=
-          Child1Ref.current.scrollHeight +
-            Child2Ref.current.scrollHeight +
-            Child3Ref.current.scrollHeight -
+          Child1Ref.current?.scrollHeight +
+            Child2Ref.current?.scrollHeight +
+            Child3Ref.current?.scrollHeight -
             200
         ) {
           scrollTop1 = 0;
