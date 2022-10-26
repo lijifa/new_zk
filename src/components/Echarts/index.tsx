@@ -24,9 +24,8 @@ interface PieData {
   LineXInterval?: number; //X轴数据间距
   LineYInterval?: number; //Y轴数据间距
   LineTooltipShow?: boolean; //提示框可见
-  LineXColor?: string; //X轴刻度颜色
   LineXtextColor?: string; //X轴刻度文字颜色
-  LineYColor?: string; //Y轴刻度颜色
+  LineColor?: string; //刻度颜色
   LineYtextColor?: string; //Y轴刻度文字颜色
   LineLegendColor?: string; //图例文字颜色
   LineLegendPadding?: number[]; //图例位置
@@ -79,9 +78,8 @@ export default function Chart({
   LineXInterval,
   LineYInterval,
   LineTooltipShow,
-  LineXColor,
   LineXtextColor,
-  LineYColor,
+  LineColor,
   LineYtextColor,
   LineLegendColor,
   LineLegendPadding,
@@ -149,9 +147,8 @@ export default function Chart({
         const lineStyleOpacity = LineStyleOpacity || [];
         const lineYAxisName = LineYAxisName;
         const lineTooltipShow = LineTooltipShow || false;
-        const lineXColor = LineXColor || '#133755';
         const lineXtextColor = LineXtextColor || '#A5EAFF';
-        const lineYColor = LineYColor || '#133755';
+        const lineColor = LineColor || '#133755';
         const lineYtextColor = LineYtextColor || '#A5EAFF';
         const lineLegendColor = LineLegendColor || '#A5EAFF';
         const grid = LineGrid || {
@@ -163,7 +160,7 @@ export default function Chart({
         };
         const lineXInterval = LineXInterval;
         const lineYInterval = LineYInterval;
-        const lineLegendPadding = LineLegendPadding || [20, 30, 0, 0];
+        const lineLegendPadding = LineLegendPadding || [0, 0, 0, 0];
         const series = ydata.map((item, index) => {
           const StyleColor = lineStyleColor[index] || '#00FFFF';
           const StyleOpacity = lineStyleOpacity[index] || 0.3;
@@ -205,7 +202,7 @@ export default function Chart({
             data: xdata,
             axisLine: {
               lineStyle: {
-                color: lineXColor, //X轴刻度颜色
+                color: lineColor, //X轴刻度颜色
               },
             },
             axisLabel: {
@@ -224,12 +221,12 @@ export default function Chart({
             axisLine: {
               show: true, //Y轴刻度线显示
               lineStyle: {
-                color: lineYColor, //Y轴刻度颜色
+                color: lineColor, //Y轴刻度颜色
               },
             },
             splitLine: {
               lineStyle: {
-                color: lineYColor, //Y轴网格背景颜色
+                color: lineColor, //Y轴网格背景颜色
               },
             },
             axisLabel: {
@@ -824,7 +821,9 @@ export default function Chart({
   useEffect(() => {
     setYData(YDATA);
     setXData(XDATA);
-    initChart();
+    setTimeout(() => {
+      initChart();
+    }, 500);
   }, []);
 
   // const Btn = document.getElementsByClassName(
