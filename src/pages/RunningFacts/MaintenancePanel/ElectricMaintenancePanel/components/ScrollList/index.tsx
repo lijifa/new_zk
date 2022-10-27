@@ -21,8 +21,6 @@ const ScrollList = memo((props : Props) => {
     let time: any;
     Child2Ref.current.innerHTML = Child1Ref.current.innerHTML;
     Child3Ref.current.innerHTML = Child2Ref.current.innerHTML;
-    setTop(Child1Ref.current.scrollHeight - 10);
-    set1Top(Child1Ref.current.scrollHeight * 2 - 20);
     PersonRef.current.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     let timer: any;
     let scrollTop1 = 0;
@@ -39,14 +37,22 @@ const ScrollList = memo((props : Props) => {
         } else {
           scrollTop1++;
         }
+    
+        // if(PersonRef.current.scrollTop == null) {
+        //   PersonRef.current.scrollTop  = 0
+        //   console.log( PersonRef.current.scrollTop,'++++++++++++++++++++++++++++')
+        // }
         PersonRef.current.scrollTop = scrollTop1;
+
       }, speed);
   
 
     }
+    setTop(Child1Ref.current.scrollHeight - 10);
+    set1Top(Child1Ref.current.scrollHeight * 2 - 20);
  
     return () => {
-      clearTimeout(timer);
+      clearInterval(timer);
     };
   }, [agg,isScrolle]);
   const hoverHandler = ()=>{

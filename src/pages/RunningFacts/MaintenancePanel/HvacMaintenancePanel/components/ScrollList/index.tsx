@@ -40,14 +40,13 @@ const ScrollList = memo((props : Props) => {
           scrollTop1++;
         }
         PersonRef.current.scrollTop = scrollTop1;
-        console.log(scrollTop1)
       }, speed);
   
 
     }
  
     return () => {
-      clearTimeout(timer);
+      clearInterval(timer);
     };
   }, [agg,isScrolle]);
   const hoverHandler = ()=>{

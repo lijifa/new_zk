@@ -2,12 +2,11 @@
 import Analyseheader from '@/components/Analyseheader';
 import Chart from '@/components/Echarts';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, DatePicker, Select } from 'antd';
-import moment from 'moment';
-import Searchheader from './Searchheader'
+import { Button } from 'antd';
 import React, { memo } from 'react';
 import ConCom from './ConCom';
 import styles from './index.less';
+import Searchheader from './Searchheader';
 let Data = [
   {
     name: '优良',
@@ -15,37 +14,29 @@ let Data = [
   },
   {
     name: '一般',
-   // value: 0,
+    // value: 0,
   },
   {
     name: '极差',
-   // value: 0,
+    // value: 0,
   },
   {
     name: '超载',
-   // value: 0,
+    // value: 0,
   },
   {
     name: '离线',
-   // value: 0,
+    // value: 0,
   },
 ];
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-
 const Distributing = memo(() => {
-  const dateFormat = 'YYYY/MM/DD';
   return (
     <>
       <PageHeader title="变配站耗电分析" />
       <div className={styles.moduleContent}>
-        <Searchheader
-        time = {true}
-        type ={ 3}
-        
-        />
-      
+        <Searchheader time={true} type={3} />
+
         <div className={styles.module}>
           <div className={styles.moduleLeft}>
             <Analyseheader title="经济运行时间占比" rightshow={false} />
@@ -55,7 +46,7 @@ const Distributing = memo(() => {
                 Data={Data}
                 centerTitle="总运行天数"
                 centertest="--天"
-                unit='天'
+                unit="天"
               />
             </div>
           </div>
@@ -64,7 +55,15 @@ const Distributing = memo(() => {
             <div className={styles.earchsR}>
               <Chart
                 type="LineChart"
-                XDATA={['2022-09-26', '2022-09-29', '2022-10-01', '2022-10-05', '2022-10-09', '2022-10-14', '2022-10-18']}
+                XDATA={[
+                  '2022-09-26',
+                  '2022-09-29',
+                  '2022-10-01',
+                  '2022-10-05',
+                  '2022-10-09',
+                  '2022-10-14',
+                  '2022-10-18',
+                ]}
                 YDATA={[
                   [1, 2, 3, 4, 5, 6, 8],
                   [8, 1, 6, 3, 8, 5, 6],

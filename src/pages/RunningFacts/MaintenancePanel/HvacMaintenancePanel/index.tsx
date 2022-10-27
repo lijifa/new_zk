@@ -291,7 +291,7 @@ const HvacMaintenancePanel = memo(() => {
                 <span>当前告警汇总</span>
               </div>
               <div className={styles.lines}>{Thead()}</div>
-              <div className={styles.moduleInner}>{LeftPage(Index)}</div>
+              {/* <div className={styles.moduleInner}>{LeftPage(Index)}</div> */}
             </div>
           </div>
           <div className={styles.module} style={{ flex: '1' }}>
@@ -301,7 +301,7 @@ const HvacMaintenancePanel = memo(() => {
                 <span>当前待处理任务</span>
               </div>
               <div className={styles.legendBtns}>{RightThead()}</div>
-              <div className={styles.moduleInner}>{Rightpage(btnIndx)}</div>
+              {/* <div className={styles.moduleInner}>{Rightpage(btnIndx)}</div> */}
             </div>
           </div>
         </div>
