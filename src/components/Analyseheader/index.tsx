@@ -21,7 +21,7 @@ const Analyseheader = memo((props: Props) => {
         result = (
           <>
             <div className={styles.right}>
-              {data.map((item: any, index: number) => {
+              {data?.map((item: any, index: number) => {
                 return (
                   <>
                     <li

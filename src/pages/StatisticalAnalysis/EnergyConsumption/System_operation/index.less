@@ -1,5 +1,5 @@
 .selectBox {
-  margin: 10px 0;
+  margin-top: 10px;
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
@@ -140,11 +140,35 @@
       text-align: center;
     }
   }
+  .toolBarBox {
+    margin: 10px 0;
+    display: flex;
+    justify-content: left;
+    .toolbarTip {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(38, 140, 255, 1);
+      height: 32px;
+      line-height: 30px;
+      padding: 0 0 0 20px;
+      margin: 0 0 0 5px;
+      background-color: rgba(234, 244, 255, 1);
+      border: 1px solid rgba(176, 213, 255, 1);
+      img {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 .DayBox {
-  display: flex;
   .leftBox {
+    float: left;
+    height: 373px;
     width: 330px;
     border: 1px solid rgba(205, 215, 232, 1);
     background-color: rgba(255, 255, 255, 1);

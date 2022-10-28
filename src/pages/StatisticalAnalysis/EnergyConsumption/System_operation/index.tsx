@@ -1,13 +1,13 @@
+import Analyseheader from '@/components/Analyseheader';
 import Chart from '@/components/Echarts';
+import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, DatePicker, Radio, Select, Space, Table, Tabs } from 'antd';
+import { Button, Radio, Table, Tabs } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
-
-const { Option } = Select;
 
 interface DataType {
   name: {
@@ -27,6 +27,45 @@ interface TableParams {
   filters?: Record<string, FilterValue>;
 }
 
+const title = {
+  size: 25,
+  linHeight: 24,
+};
+const title2 = {
+  text: '总运行天数',
+  size: 18,
+  linHeight: 30,
+};
+let circle = {
+  max: 80,
+  min: 65,
+  top: '30%',
+  left: '50%',
+};
+let middletext = {
+  top: '20%',
+  left: '48%',
+};
+let outsidetext = {
+  top: '70%',
+  left: '13%',
+  width1: 150,
+};
+let Data1 = [
+  {
+    name: '系统安全运行天数',
+    value: 80,
+  },
+  {
+    name: '系统不安全运行天数',
+    value: 10,
+  },
+  {
+    name: '离线天数',
+    value: 2,
+  },
+];
+
 // 页签切换数据;
 const TabData = [
   {
@@ -34,7 +73,7 @@ const TabData = [
     children: (
       <div style={{ width: '100%', height: '100%' }}>
         <Chart
-          type="LineChart"
+          type="Line"
           XDATA={[1, 2, 3, 4, 5, 6, 7]}
           YDATA={[
             [1, 2, 3, 4, 5, 6, 8],
@@ -59,7 +98,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[[1, 2, 3, 4, 5, 6, 8]]}
             LineStyleOpacity={['0', '0', '0']}
@@ -81,7 +120,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -107,7 +146,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -132,7 +171,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -219,7 +258,7 @@ const getRandomuserParams = (params: TableParams) => ({
   ...params,
 });
 
-function System_operation_analysis() {
+function System_operation() {
   const [data, setData] = useState();
   const [Time, setTime] = useState('hour');
   const [loading, setLoading] = useState(false);
@@ -262,20 +301,39 @@ function System_operation_analysis() {
   };
 
   const titleNav = () => {
-    if (Time === 'hour')
+    if (Time === 'hour') {
       return (
         <div className="card-container">
           <Tabs destroyInactiveTabPane type="card" items={items} />
         </div>
       );
-    return (
-      <div className={styles.DayBox}>
-        <div className={styles.leftBox}>left</div>
-        <div className="card-container" style={{ flex: 1 }}>
-          <Tabs type="card" items={items} />
+    } else {
+      return (
+        <div className={styles.DayBox}>
+          <div className={styles.leftBox}>
+            <Analyseheader title="供能运行结果" />
+            <div style={{ height: 300, width: '100%', marginTop: 30 }}>
+              <Chart
+                type="ConCom"
+                XDATA={Data1}
+                ConComUnit="天"
+                ConComTitle={title}
+                ConComTitle2={title2}
+                ConComTitle3={{
+                  text: '',
+                }}
+                ConComCircle={circle}
+                ConComMiddletext={middletext}
+                ConComOutsidetext={outsidetext}
+              />
+            </div>
+          </div>
+          <div className="card-container">
+            <Tabs destroyInactiveTabPane type="card" items={items} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   };
 
   return (
@@ -283,27 +341,7 @@ function System_operation_analysis() {
       <PageHeader title="系统运行分析" />
       <div className={styles.selectBox}>
         <div>
-          <Space>
-            <Select
-              showSearch
-              placeholder="Select a person"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string)
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-            <DatePicker />
-            <Button type="primary" size="middle">
-              搜索
-            </Button>
-            <Button size="middle">重置</Button>
-          </Space>
+          <Searchheader time={true} type={1} />
         </div>
         <div>
           <Radio.Group defaultValue={'hour'}>
@@ -328,10 +366,14 @@ function System_operation_analysis() {
       </div>
       <div className={styles.content}>
         {titleNav()}
-        <div style={{ margin: '10px 0' }}>
+        <div className={styles.toolBarBox}>
           <Button type="primary" size="middle">
             导出
           </Button>
+          <span className={styles.toolbarTip}>
+            <img src={require('@/assets/System_operation/img/tipBlue.png')} />
+            室外温度、室外湿度、供水温度、回水温度、供水压力、回水压力、系统温差、系统压差取系统内当日平均值。系统流量、耗冷(热)量、总能耗为当日累计值。
+          </span>
         </div>
         <div>
           <Table
@@ -349,4 +391,4 @@ function System_operation_analysis() {
   );
 }
 
-export default System_operation_analysis;
+export default System_operation;
