@@ -1,19 +1,21 @@
 import * as echarts from 'echarts';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 
 type EChartsOption = echarts.EChartsOption;
-interface Props {
-  ID: any; //id 
-  Data?:Array<any>,//数据data
-  total?:string //中间第一行数据
-  centerTitle?:string,//中间第二行数据
-  centertest?:string,//中间第三行数据
-  unit?:string,//单位名称
-}
 
-const ConCom = memo((props: Props) => {
-  let { ID ,Data ,centerTitle,centertest ,total ='',unit} = props;
 
+const ConCom = memo((props: API.Props) => {
+  let {
+    ID,
+    Data,
+    unit,
+    title,
+    title2,
+    title3,
+    circle,
+    middletext,
+    outsidetext
+  } = props;
 
   function init() {
     var chartDom = document.getElementById(ID)!;
@@ -21,48 +23,41 @@ const ConCom = memo((props: Props) => {
     var option: EChartsOption;
 
     option = {
-      color: [
-        '#00D8A0',
-        '#F7CA3F',
-        '#DA0C0C',
-        '#FF7C1B',
-        '#888888'
-      ],
+      color: ['#00D8A0', '#F7CA3F', '#DA0C0C', '#FF7C1B', '#888888'],
       tooltip: {
         trigger: 'item',
         formatter: '{b}: {c} ({d}%)',
       },
       title: {
-        text: `{a|${total}}\n{b|${centertest}}\n{c|${centerTitle}}`,
-        top: '10%',
+        text: `{a|${title?.text ? title?.text : ''}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
+        top: middletext?.top,
         textAlign: 'center',
-        left: '48%',
+        left: middletext?.left,
         textStyle: {
           color: '#fff',
           rich: {
             a: {
-              fontSize: 40,
-              lineHeight: 50,
-             // fontWeight: 'bold',
+              fontSize: title?.size,
+              lineHeight: title?.linHeight,
+              // fontWeight: 'bold',
               color: 'rgba(106, 113, 124, 1)',
             },
             b: {
-              fontSize: 16,
-              color: '#black',
-              lineHeight: 30,
-              fontWeight: 'rgba(106, 113, 124, 1)'
+              fontSize: title2?.size,
+              color: 'rgba(106, 113, 124, 1)k',
+              lineHeight: title2?.linHeight,
             },
-            c:{
-              fontSize:15,
-              color:'rgba(106, 113, 124, 1)'
-            }
+            c: {
+              fontSize: title3?.size,
+              color: 'rgba(106, 113, 124, 1)',
+            },
           },
         },
       },
       legend: {
-        top: '70%',
+        top: outsidetext?.top,
         orient: 'vertical',
-        left: '20%',
+        left: outsidetext?.left,
         icon: 'rect',
         itemWidth: 15,
         itemHeight: 15,
@@ -72,7 +67,7 @@ const ConCom = memo((props: Props) => {
             name: {
               color: ' rgba(106, 113, 124, 1)',
               fontSize: 16,
-              width: 40,
+              width: outsidetext?.width1,
             },
             percent: {
               color: ' rgba(106, 113, 124, 1)',
@@ -86,9 +81,9 @@ const ConCom = memo((props: Props) => {
         },
         formatter: function (name: any) {
           let res = Data.filter((v) => v.name === name);
-          return (
-            `{name| ${name} }{percent| ${res[0].value === undefined ? '--' : res[0].value  }}{unit| ${unit}}`
-          );
+          return `{name| ${name} }{percent| ${
+            res[0].value === undefined ? '--' : res[0].value
+          }}{unit| ${unit}}`;
         },
       },
       toolbox: {
@@ -98,8 +93,8 @@ const ConCom = memo((props: Props) => {
         {
           name: '',
           type: 'pie',
-          radius: [70, 90],
-          center: ['50%', '35%'],
+          radius: [circle?.min, circle?.max],
+          center: [ circle?.left,circle?.top],
           label: {
             normal: {
               show: false,

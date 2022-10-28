@@ -101,6 +101,18 @@ const routes = [
     path: '/distributing',
     component: './StatisticalAnalysis/PowerConsumption/Distributing',
   },
+  //变配站耗电分析
+  {
+    name: '变配站耗电分析',
+    path: '/consumption',
+    component: './StatisticalAnalysis/PowerConsumption/consumption',
+  },
+  //耗电同比分析
+  {
+    name: '耗电同比分析',
+    path: '/Powerconsumption',
+    component: './StatisticalAnalysis/PowerConsumption/Powerconsumption',
+  },
 
   /* 断路器监测================ */
   // 断路器看板

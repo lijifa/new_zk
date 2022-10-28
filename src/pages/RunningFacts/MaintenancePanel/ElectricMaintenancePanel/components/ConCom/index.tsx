@@ -104,8 +104,8 @@ const ConCom = memo((props: Props) => {
         {
           name: '',
           type: 'pie',
-          radius: [80, 100],
-          center: ['23%', '52%'],
+          radius: [70, 95],
+          center: ['23%', '50%'],
           label: {
             normal: {
               show: false,
@@ -134,7 +134,6 @@ const ConCom = memo((props: Props) => {
       style={{
         width: '100%',
         height: '100%',
-        marginTop: '30px',
         position: 'absolute',
       }}
     ></div>
