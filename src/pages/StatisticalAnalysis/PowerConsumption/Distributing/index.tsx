@@ -78,7 +78,7 @@ let data = [
 const Distributing = memo(() => {
   return (
     <>
-      <PageHeader title="变配站耗电分析" />
+      <PageHeader title="经济运行分析" />
       <div className={styles.moduleContent}>
         <Searchheader time={true} type={3} list={list} />
 
