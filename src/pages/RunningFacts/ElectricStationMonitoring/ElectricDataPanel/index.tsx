@@ -1,7 +1,7 @@
 import BoardBack from '@/components/BoardBack';
 import Item_H from '@/components/BoardItem';
 import Chart from '@/components/Echarts';
-import  SubHeader  from '@/components/SubHeader';
+import SubHeader from '@/components/SubHeader';
 import { Radio, Select } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
@@ -228,7 +228,12 @@ const PowerDataPanel = () => {
                     <Chart
                       type="LineChart"
                       XDATA={[1, 2, 3, 4, 5, 6]}
-                      YDATA={[[1, 2, 4, 5, 6, 7, 8]]}
+                      YDATA={[
+                        [1, 2, 4, 5, 6, 7, 8],
+                        [7, 2, 4, 6, 6, 7, 8],
+                      ]}
+                      LineStyleOpacity={['0', '0']}
+                      LineStyleColor={['', 'red']}
                     />
                   </div>
                 </>

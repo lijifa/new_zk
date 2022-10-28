@@ -1,7 +1,6 @@
-import { Empty } from 'antd';
 import * as echarts from 'echarts';
 import type { ReactElement } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './index.less';
 
 interface PieData {
@@ -111,18 +110,18 @@ export default function Chart({
   DashPoint,
   DashShowText,
 }: PieData): ReactElement {
-  const [xData, setXData] = useState<any>(XDATA);
-  const [yData, setYData] = useState<any>(YDATA);
+  const xDataRef = useRef(XDATA);
+  const yDataRef = useRef(YDATA);
   const pie = useRef<any>(null);
-
+  const content = useRef<any>(null);
   let setPieOPtion: any;
   let MyChart: any;
   function initChart() {
-    if (MyChart != null || MyChart != undefined) {
+    if (MyChart !== undefined) {
       MyChart.dispose();
     }
     MyChart = echarts.init(pie.current);
-    const options = setPieOPtion(xData, yData);
+    const options = setPieOPtion(xDataRef, yDataRef);
     MyChart.setOption(options);
     window.addEventListener('resize', function () {
       MyChart.resize();
@@ -132,16 +131,9 @@ export default function Chart({
   switch (type) {
     // 折线图
     case 'LineChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
-      setPieOPtion = function setPieOption(XData: [], YData: []) {
-        const xdata = XData;
-        const ydata = YData;
+      setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
+        const xdata = xDataRef.current;
+        const ydata = yDataRef.current;
         const lineName = LineName || [];
         const lineStyleColor = LineStyleColor || [];
         const lineStyleOpacity = LineStyleOpacity || [];
@@ -161,7 +153,7 @@ export default function Chart({
         const lineXInterval = LineXInterval;
         const lineYInterval = LineYInterval;
         const lineLegendPadding = LineLegendPadding || [0, 0, 0, 0];
-        const series = ydata.map((item, index) => {
+        const series = ydata?.map((item: any, index: any) => {
           const StyleColor = lineStyleColor[index] || '#00FFFF';
           const StyleOpacity = lineStyleOpacity[index] || 0.3;
           const name = lineName[index];
@@ -250,16 +242,9 @@ export default function Chart({
       break;
     // 柱状图
     case 'BarChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
-      setPieOPtion = function setPieOption(XData: [], YData: []) {
-        const xdata = XData;
-        const ydata = YData;
+      setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
+        const xdata = xDataRef.current;
+        const ydata = yDataRef.current;
         const grid = BarGrid || {
           left: '3%',
           right: '4%',
@@ -273,7 +258,7 @@ export default function Chart({
         const barYInterval = BarYInterval;
         const barTooltipShow = BarTooltipShow || false;
         const barStyleColor = BarStyleColor || [];
-        const series = ydata.map((item, index) => {
+        const series = ydata?.map((item: any, index: any) => {
           const StyleColor = barStyleColor[index] || '#00FFFF';
           const name = barName[index];
           return {
@@ -347,16 +332,9 @@ export default function Chart({
       break;
     // 横向柱状图
     case 'VerBarChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
-      setPieOPtion = function setPieOption(XData: [], YData: []) {
-        const xdata = XData;
-        const ydata = YData;
+      setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
+        const xdata = xDataRef.current;
+        const ydata = yDataRef.current;
         const verlabelColor = VerlabelColor || '#fff';
         const verlabelFontSize = VerlabelFontSize || 12;
         const vercountColor = VercountColor || '#fff';
@@ -365,7 +343,7 @@ export default function Chart({
         const verstartColor = VerstartColor || 'rgb(72,212,150,1)';
         const verendColor = VerendColor || 'rgb(0,255,255,1)';
         const verbarWidth = VerbarWidth || 10;
-        const data = ydata.map((item) => {
+        const data = ydata?.map((item: any) => {
           return item;
         });
         return {
@@ -456,15 +434,8 @@ export default function Chart({
       break;
     // 圆环图
     case 'RoundChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
-      setPieOPtion = function setPieOption(XData: number) {
-        const xdata = XData;
+      setPieOPtion = function setPieOption(xDataRef: any) {
+        const xdata = xDataRef.current;
         const roundTextColor = RoundTextColor || '#fff';
         const roundStyleColor = RoundStyleColor || '#36D0FF';
         const roundPieName = RoundPieName || 'Line 1';
@@ -534,14 +505,7 @@ export default function Chart({
       break;
     // 仪表盘
     case 'DashChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
-      setPieOPtion = function setPieOption(XData: number) {
+      setPieOPtion = function setPieOption(xDataRef: any) {
         const point = DashPoint || ['50%', '60%'];
         const radius = { inner: '', outer: '' };
         const colorSet = DashOutTextStyle || '#00FFFF';
@@ -552,7 +516,7 @@ export default function Chart({
           color: colorSet,
           distance: DashTextPosition || -15, //文字位置
         };
-        const dataArr = XData || '';
+        const dataArr = xDataRef.current || '';
         return {
           series: [
             {
@@ -684,13 +648,6 @@ export default function Chart({
       break;
     // 带图例的圆环图
     case 'RoundToolChart':
-      if (xData?.length == 0 || xData == null || xData == undefined) {
-        return (
-          <div style={{ height: '100%' }}>
-            <Empty />
-          </div>
-        );
-      }
       let echartData = [
         {
           name: '巡检任务',
@@ -819,28 +776,29 @@ export default function Chart({
   }
 
   useEffect(() => {
-    setYData(YDATA);
-    setXData(XDATA);
-    setTimeout(() => {
-      initChart();
-    }, 500);
+    xDataRef.current = XDATA;
+    yDataRef.current = YDATA;
+    initChart();
+  }, [XDATA, YDATA]);
+
+  useEffect(() => {
+    let ResizeObject = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const cr = entry.contentRect;
+        if (ele == undefined) {
+        }
+        MyChart.resize();
+      }
+    });
+    const ele = document.getElementById('content');
+    if (ele) {
+      ResizeObject.observe(ele);
+    }
   }, []);
 
-  // const Btn = document.getElementsByClassName(
-  //   'ant-pro-sider-collapsed-button',
-  // )[0];
-
-  // Btn.addEventListener('click', () => {
-  //   setTimeout(() => {
-  //     if (MyChart != null || MyChart != undefined) {
-  //       MyChart.dispose();
-  //     }
-  //     MyChart = echarts.init(pie.current);
-  //     const options = setPieOPtion(xData, yData);
-  //     MyChart.setOption(options);
-  //     MyChart.resize();
-  //   }, 200);
-  // });
-
-  return <div ref={pie} className={styles.pie} id="pie" />;
+  return (
+    <div ref={content} style={{ height: '100%' }} id="content">
+      <div ref={pie} className={styles.pie} id="pie" />
+    </div>
+  );
 }

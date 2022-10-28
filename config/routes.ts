@@ -95,18 +95,18 @@ const routes = [
     path: '/electricMaintenancePanel',
     component: './RunningFacts/MaintenancePanel/ElectricMaintenancePanel',
   },
-   //经济运行分析
+  //经济运行分析
   {
     name: '经济运行分析',
     path: '/distributing',
     component: './StatisticalAnalysis/PowerConsumption/Distributing',
   },
-      //变配站耗电分析
-      {
-        name: '变配站耗电分析',
-        path: '/consumption',
-        component: './StatisticalAnalysis/PowerConsumption/consumption',
-      },
+  //变配站耗电分析
+  {
+    name: '变配站耗电分析',
+    path: '/consumption',
+    component: './StatisticalAnalysis/PowerConsumption/consumption',
+  },
   //耗电同比分析
   {
     name: '耗电同比分析',
@@ -177,15 +177,32 @@ const routes = [
   // 系统运行分析
   {
     name: '系统运行分析',
-    path: '/System_operation_analysis',
-    component:
-      './StatisticalAnalysis/EnergyConsumption/System_operation_analysis',
+    path: '/System_operation',
+    component: './StatisticalAnalysis/EnergyConsumption/System_operation',
   },
   // 能源站耗能统计
   {
     name: '能源站耗能统计',
-    path: '/hvacDataPanel',
-    component: './RunningFacts/EnergyStationMonitoring/HvacDataPanel',
+    path: '/Energy_consumption',
+    component: './StatisticalAnalysis/EnergyConsumption/Energy_consumption',
+  },
+  // 用户舒适度分析
+  {
+    name: '用户舒适度分析',
+    path: '/User_comfort',
+    component: './StatisticalAnalysis/EnergyConsumption/User_comfort',
+  },
+  // 设备耗电分析
+  {
+    name: '设备耗电分析',
+    path: '/Power_equipment',
+    component: './StatisticalAnalysis/EnergyConsumption/Power_equipment',
+  },
+  // 能效分析
+  {
+    name: '能效分析',
+    path: '/Efficiency_analysis',
+    component: './StatisticalAnalysis/EnergyConsumption/Efficiency_analysis',
   },
 
   /*

@@ -64,7 +64,7 @@ export default () => {
     }
 
     let res = getFirstMenuItem(mData);
-    setMenuItem(res);
+    setMenuItem(res as any);
   }, []);
 
   // 获取当前用户所有菜单
@@ -308,7 +308,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:systemAnalysis:view',
-                url: '/System_operation_analysis',
+                url: '/System_operation',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -323,7 +323,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:hvacEnergyStatistics:view',
-                url: '/business/hvacEnergy/hvacEnergyStatistics',
+                url: '/Energy_consumption',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -338,7 +338,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:uceStatistics:view',
-                url: '/business/havcstatistics/userComfort',
+                url: '/User_comfort',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -353,7 +353,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:dpcStatistics:view',
-                url: '/business/havcstatistics/dpc',
+                url: '/Power_equipment',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -368,7 +368,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:secStatistics:view',
-                url: '/business/havcstatistics/siteEnergy',
+                url: '/Efficiency_analysis',
               },
               {
                 ancestors: ',4001,5440,5703',

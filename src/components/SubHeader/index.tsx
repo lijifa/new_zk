@@ -72,8 +72,9 @@ export default SubHeader;
 export const PageHeader = ({ title }: PageHeader) => {
   return (
     <div className={styles.PageHeader}>
-      <span className={styles.Title}>{title}</span>
-      <div className={styles.pageLine} />
+      <div>
+        <span className={styles.Title}>{title}</span>
+      </div>
     </div>
   );
 };
