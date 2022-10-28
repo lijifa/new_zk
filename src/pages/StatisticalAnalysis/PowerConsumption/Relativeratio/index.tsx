@@ -154,7 +154,7 @@ const Relativeratio = memo(() => {
           <Analyseheader title="变电站耗电环比分析趋势图" type='rectangle' data ={data1} />
           <div className={styles.earchs}>
             <Chart
-              type="LineChart"
+              type="Line"
               XDATA={[
                 '2022-09-26',
                 '2022-09-29',

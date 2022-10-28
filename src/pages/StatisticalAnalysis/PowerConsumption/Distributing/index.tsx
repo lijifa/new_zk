@@ -28,7 +28,10 @@ let Data = [
     value: 0,
   },
 ];
-
+const title = {
+  size: 30,
+  linHeight: 30,
+};
 const title4 = {
   text: '--天',
   size: 18,
@@ -46,13 +49,13 @@ let circle = {
   left: '50%',
 };
 let middletext = {
-  top: '20%',
+  top: '17%',
   left: '48%',
 };
 let outsidetext1 = {
   top: '70%',
-  left: '12%',
-  width1: 60,
+  left: '10%',
+  width1: 40,
 };
 
 let list = [
@@ -86,6 +89,7 @@ const Distributing = memo(() => {
               <Chart
                 type="ConCom"
                 XDATA={Data}
+                ConComTitle={title}
                 ConComUnit="KW.h"
                 ConComTitle2={title4}
                 ConComTitle3={title5}

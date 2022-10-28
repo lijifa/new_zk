@@ -162,7 +162,7 @@ const AveragePower = memo(() => {
           />
           <div className={styles.earchs}>
             <Chart
-              type="LineChart"
+              type="Line"
               XDATA={[
                 '2022-09-26',
                 '2022-09-29',

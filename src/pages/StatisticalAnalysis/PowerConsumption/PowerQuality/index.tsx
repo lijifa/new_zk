@@ -16,6 +16,44 @@ let list = [
     label: '静海区政府西楼变电室',
   },
 ];
+const title = {
+  size: 25,
+  linHeight: 24,
+};
+const title2 = {
+  text: '总运行天数',
+  size: 18,
+  linHeight: 30,
+};
+let circle = {
+  max: 80,
+  min: 65,
+  top: '30%',
+  left: '50%',
+};
+let middletext = {
+  top: '20%',
+  left: '48%',
+};
+let outsidetext = {
+  top: '70%',
+  left: '13%',
+  width1: 150,
+};
+let Data1 = [
+  {
+    name: '系统安全运行天数',
+    value: 80,
+  },
+  {
+    name: '系统不安全运行天数',
+    value: 10,
+  },
+  {
+    name: '离线天数',
+    value: 2,
+  },
+];
 //右侧样式
 let RightList = [
   {
@@ -24,7 +62,7 @@ let RightList = [
       <>
         <div className={styles.earchs}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[
               '2022-09-26',
               '2022-09-29',
@@ -93,6 +131,23 @@ const PowerQuality = memo(() => {
         <div className={styles.module}>
           <div className={styles.left}>
             <Analyseheader title="电能质量时间分布" />
+            <div className={styles.earchs}>
+
+           
+            <Chart
+                type="ConCom"
+                XDATA={Data1}
+                ConComUnit="天"
+                ConComTitle={title}
+                ConComTitle2={title2}
+                ConComTitle3={{
+                  text: '',
+                }}
+                ConComCircle={circle}
+                ConComMiddletext={middletext}
+                ConComOutsidetext={outsidetext}
+              />
+            </div>
           </div>
           <div className={styles.right}>
             <Tabs type="card" items={items} destroyInactiveTabPane />
