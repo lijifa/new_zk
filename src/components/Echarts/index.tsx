@@ -3,68 +3,6 @@ import type { ReactElement } from 'react';
 import { useEffect, useRef } from 'react';
 import styles from './index.less';
 
-interface PieData {
-  type: string /*        图表类型
-                          LineChart    折线图
-                          BarChart     柱状图
-                          VerBarChart  横向柱状图
-                          RoundChart   圆环图
-                          DashChart    仪表盘
-                       */;
-  XDATA: string[] | number[] | number;
-  YDATA?: number[] | number[][];
-
-  // 折线图参数 Line...
-  LineName?: string | string[]; //线段名字
-  LineStyleColor?: string | string[]; //线段颜色
-  LineStyleOpacity?: string | string[]; //线段透明度
-  LineYAxisName?: string; //Y轴单位
-  LineGrid?: object; //边距
-  LineXInterval?: number; //X轴数据间距
-  LineYInterval?: number; //Y轴数据间距
-  LineTooltipShow?: boolean; //提示框可见
-  LineXtextColor?: string; //X轴刻度文字颜色
-  LineColor?: string; //刻度颜色
-  LineYtextColor?: string; //Y轴刻度文字颜色
-  LineLegendColor?: string; //图例文字颜色
-  LineLegendPadding?: number[]; //图例位置
-
-  // 柱状图参数 Bar...
-  BarName?: string | string[]; //线段名字
-  BarStyleColor?: string | string[]; //线段颜色
-  BarYAxisName?: string; //Y轴单位
-  BarGrid?: object; //边距
-  BarXInterval?: number; //X轴数据间距
-  BarYInterval?: number; //Y轴数据间距
-  BarTooltipShow?: boolean; //提示框可见
-
-  // 横向柱状图参数 Ver...
-  VerlabelColor?: string; //Y轴表单左侧文字颜色
-  VerlabelFontSize?: number; //Y轴表单左侧文字大小
-  VercountColor?: string; //Y轴表单右侧文字颜色
-  VercountFontSize?: number; //Y轴表单右侧文字大小
-  VershowCount?: boolean; //是否显示右侧文字
-  VerstartColor?: string; //开始颜色
-  VerendColor?: string; //结束颜色
-  VerbarWidth?: number; //线条宽度
-
-  // 圆环图参数 Round...
-  RoundTextColor?: string; //文字颜色
-  RoundStyleColor?: string; //线段颜色
-  RoundPieName?: string; //线段名称
-  RoundDataName?: string; //数据名称
-  RoundRadius?: string[]; //宽度
-  RoundTooltipShow?: boolean; //提示框可见
-
-  // 仪表盘参数 Dash...
-  DashOutTextStyle?: string; //外侧文字颜色
-  DashInStyle?: string; //线段颜色
-  DashMaxData?: number; //最大刻度
-  DashTextPosition?: number; //文字位置
-  DashPoint?: string[]; //图形位置
-  DashShowText?: boolean; //是否显示文字
-}
-
 export default function Chart({
   type,
   XDATA,
@@ -109,15 +47,22 @@ export default function Chart({
   DashTextPosition,
   DashPoint,
   DashShowText,
+  ConComUnit,
+  ConComTitle,
+  ConComTitle2,
+  ConComTitle3,
+  ConComCircle,
+  ConComMiddletext,
+  ConComOutsidetext,
 }: PieData): ReactElement {
   const xDataRef = useRef(XDATA);
   const yDataRef = useRef(YDATA);
   const pie = useRef<any>(null);
-  const content = useRef<any>(null);
+  const chartContent = useRef<any>(null);
   let setPieOPtion: any;
   let MyChart: any;
   function initChart() {
-    if (MyChart !== undefined) {
+    if (MyChart != undefined) {
       MyChart.dispose();
     }
     MyChart = echarts.init(pie.current);
@@ -130,7 +75,7 @@ export default function Chart({
 
   switch (type) {
     // 折线图
-    case 'LineChart':
+    case 'Line':
       setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
         const xdata = xDataRef.current;
         const ydata = yDataRef.current;
@@ -241,7 +186,7 @@ export default function Chart({
       };
       break;
     // 柱状图
-    case 'BarChart':
+    case 'Bar':
       setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
         const xdata = xDataRef.current;
         const ydata = yDataRef.current;
@@ -331,7 +276,7 @@ export default function Chart({
 
       break;
     // 横向柱状图
-    case 'VerBarChart':
+    case 'VerBar':
       setPieOPtion = function setPieOption(xDataRef: any, yDataRef: any) {
         const xdata = xDataRef.current;
         const ydata = yDataRef.current;
@@ -433,7 +378,7 @@ export default function Chart({
       };
       break;
     // 圆环图
-    case 'RoundChart':
+    case 'Round':
       setPieOPtion = function setPieOption(xDataRef: any) {
         const xdata = xDataRef.current;
         const roundTextColor = RoundTextColor || '#fff';
@@ -504,7 +449,7 @@ export default function Chart({
       };
       break;
     // 仪表盘
-    case 'DashChart':
+    case 'Dash':
       setPieOPtion = function setPieOption(xDataRef: any) {
         const point = DashPoint || ['50%', '60%'];
         const radius = { inner: '', outer: '' };
@@ -647,69 +592,60 @@ export default function Chart({
       };
       break;
     // 带图例的圆环图
-    case 'RoundToolChart':
-      let echartData = [
-        {
-          name: '巡检任务',
-          value: 0,
-        },
-        {
-          name: '抄表任务',
-          value: 0,
-        },
-        {
-          name: '维修任务',
-          value: 0,
-        },
-        {
-          name: '保养任务',
-          value: 0,
-        },
-      ];
-      let total = 0;
-      echartData.forEach(function (value) {
-        total += value.value;
-      });
-      setPieOPtion = function setPieOption(XData: number) {
+    case 'ConCom':
+      setPieOPtion = function setPieOption(xDataRef: any) {
+        let getAllValue = 0;
+        const getxDataRef = () => {
+          xDataRef.current.map((res: any) => {
+            return (getAllValue += res.value);
+          });
+        };
+        getxDataRef();
+        const data = xDataRef.current;
+        const unit = ConComUnit;
+        const AllValue = getAllValue;
+        const title = ConComTitle;
+        const title2 = ConComTitle2;
+        const title3 = ConComTitle3;
+        const circle = ConComCircle;
+        const middletext = ConComMiddletext;
+        const outsidetext = ConComOutsidetext;
         return {
-          // 数据初始化
-          color: [
-            '#06FDBC',
-            '#F6FE05',
-            '#07B0FE',
-            '#FDB408',
-            '#00DB1C',
-            '#0188FE',
-          ],
+          color: ['#00D8A0', '#F7CA3F', '#DA0C0C', '#FF7C1B', '#888888'],
           tooltip: {
             trigger: 'item',
             formatter: '{b}: {c} ({d}%)',
           },
           title: {
-            text: '{a|' + total + '}\n{b|任务总数}',
-            top: 'center',
+            text: `{a|${AllValue}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
+            top: middletext?.top,
             textAlign: 'center',
-            left: '49.5%',
+            left: middletext?.left,
             textStyle: {
               color: '#fff',
               rich: {
                 a: {
-                  fontSize: 30,
-                  lineHeight: 60,
-                  fontWeight: 400,
-                  color: '#00FFFF',
+                  fontSize: title?.size,
+                  lineHeight: title?.linHeight,
+                  // fontWeight: 'bold',
+                  color: 'rgba(106, 113, 124, 1)',
                 },
                 b: {
-                  fontSize: 15,
-                  color: '#96d6ff',
+                  fontSize: title2?.size,
+                  color: 'rgba(106, 113, 124, 1)k',
+                  lineHeight: title2?.linHeight,
+                },
+                c: {
+                  fontSize: title3?.size,
+                  color: 'rgba(106, 113, 124, 1)',
                 },
               },
             },
           },
           legend: {
-            top: 'center',
+            top: outsidetext?.top,
             orient: 'vertical',
-            left: '75%',
+            left: outsidetext?.left,
             icon: 'rect',
             itemWidth: 15,
             itemHeight: 15,
@@ -717,30 +653,25 @@ export default function Chart({
             textStyle: {
               rich: {
                 name: {
-                  color: '#96d6ff',
-                  fontSize: 12,
-                  width: 80,
+                  color: ' rgba(106, 113, 124, 1)',
+                  fontSize: 16,
+                  width: outsidetext?.width1,
                 },
                 percent: {
-                  color: '#18DB9F',
-                  fontSize: 20,
+                  color: ' rgba(106, 113, 124, 1)',
+                  fontSize: 16,
                 },
                 unit: {
-                  color: '#96d6ff',
-                  fontSize: 12,
+                  color: 'rgba(106, 113, 124, 1)',
+                  fontSize: 15,
                 },
               },
             },
             formatter: function (name: any) {
-              let res = echartData.filter((v) => v.name === name);
-              return (
-                '{name| ' +
-                name +
-                '}{percent| ' +
-                res[0].value +
-                '}' +
-                '{unit| 次}'
-              );
+              let res = data.filter((v: any) => v.name === name);
+              return `{name| ${name} }{percent| ${
+                res[0].value === undefined ? '--' : res[0].value
+              }}{unit| ${unit}}`;
             },
           },
           toolbox: {
@@ -750,8 +681,8 @@ export default function Chart({
             {
               name: '',
               type: 'pie',
-              radius: [65, 80],
-              center: ['50%', '50%'],
+              radius: [circle?.min, circle?.max],
+              center: [circle?.left, circle?.top],
               label: {
                 normal: {
                   show: false,
@@ -764,7 +695,7 @@ export default function Chart({
                   borderWidth: 1,
                 },
               },
-              data: echartData,
+              data: data,
             },
           ],
         };
@@ -775,12 +706,14 @@ export default function Chart({
       break;
   }
 
+  // 实时更新数据
   useEffect(() => {
     xDataRef.current = XDATA;
     yDataRef.current = YDATA;
     initChart();
   }, [XDATA, YDATA]);
 
+  // 实时更新尺寸
   useEffect(() => {
     let ResizeObject = new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -790,14 +723,14 @@ export default function Chart({
         MyChart.resize();
       }
     });
-    const ele = document.getElementById('content');
+    const ele = document.getElementById('chartContent');
     if (ele) {
       ResizeObject.observe(ele);
     }
   }, []);
 
   return (
-    <div ref={content} style={{ height: '100%' }} id="content">
+    <div ref={chartContent} style={{ height: '100%' }} id="chartContent">
       <div ref={pie} className={styles.pie} id="pie" />
     </div>
   );

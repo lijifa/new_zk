@@ -226,7 +226,7 @@ const PowerDataPanel = () => {
                 <>
                   <div style={{ height: '100%', width: '100%' }}>
                     <Chart
-                      type="LineChart"
+                      type="Line"
                       XDATA={[1, 2, 3, 4, 5, 6]}
                       YDATA={[
                         [1, 2, 4, 5, 6, 7, 8],

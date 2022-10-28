@@ -5,7 +5,6 @@ import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
 import { Button } from 'antd';
 import React, { memo } from 'react';
-import ConCom from '@/components/ConCom';
 import styles from './index.less';
 let Data = [
   {
@@ -67,12 +66,12 @@ let list = [
     label: '静海区政府西楼变电室',
   },
 ];
-let data =[
+let data = [
   {
-    text:'日负荷概率',
-    color:'rgba(38, 140, 255, 1)'
-  }
-]
+    text: '日负荷概率',
+    color: 'rgba(38, 140, 255, 1)',
+  },
+];
 const Distributing = memo(() => {
   return (
     <>
@@ -82,25 +81,33 @@ const Distributing = memo(() => {
 
         <div className={styles.module}>
           <div className={styles.moduleLeft}>
-            <Analyseheader title="经济运行时间占比" type='rectangle' data={data} />
+            <Analyseheader
+              title="经济运行时间占比"
+              type="rectangle"
+              data={data}
+            />
             <div className={styles.earchs}>
-              <ConCom
-                ID="main2"
-                Data={Data}
-                unit="天"
-                title2={title4}
-                title3={title5}
-                circle={circle}
-                middletext={middletext}
-                outsidetext={outsidetext1}
+              <Chart
+                type="ConCom"
+                XDATA={Data}
+                ConComUnit="KW.h"
+                ConComTitle2={title4}
+                ConComTitle3={title5}
+                ConComCircle={circle}
+                ConComMiddletext={middletext}
+                ConComOutsidetext={outsidetext1}
               />
             </div>
           </div>
           <div className={styles.moduleRight}>
-            <Analyseheader title="变电站日负荷趋势图" type='rectangle'  data={data}/>
+            <Analyseheader
+              title="变电站日负荷趋势图"
+              type="rectangle"
+              data={data}
+            />
             <div className={styles.earchsR}>
               <Chart
-                type="LineChart"
+                type="Line"
                 XDATA={[
                   '2022-09-26',
                   '2022-09-29',

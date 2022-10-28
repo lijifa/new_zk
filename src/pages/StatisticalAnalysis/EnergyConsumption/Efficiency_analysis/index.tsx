@@ -1,12 +1,11 @@
+import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, DatePicker, Select, Space, Table } from 'antd';
+import { Button, Table } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
-
-const { Option } = Select;
 
 interface DataType {
   name: {
@@ -80,7 +79,7 @@ const getRandomuserParams = (params: TableParams) => ({
   ...params,
 });
 
-function System_operation_analysis() {
+function Efficiency_analysis() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -148,29 +147,7 @@ function System_operation_analysis() {
     <>
       <PageHeader title="能效分析" />
       <div className={styles.selectBox}>
-        <div>
-          <Space>
-            <Select
-              showSearch
-              placeholder="Select a person"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string)
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-            <DatePicker />
-            <Button type="primary" size="middle">
-              搜索
-            </Button>
-            <Button size="middle">重置</Button>
-          </Space>
-        </div>
+        <Searchheader time={true} type={3} />
       </div>
       <div className={styles.content}>
         <div style={{ margin: '10px 0' }}>
@@ -200,4 +177,4 @@ function System_operation_analysis() {
   );
 }
 
-export default System_operation_analysis;
+export default Efficiency_analysis;

@@ -3,8 +3,8 @@ import styles from './index.less';
 
 interface Props {
   title: string;
-  type: any; //类型
-  data: Array<Data>; //传入的数据需要 color:'',text:''
+  type?: any; //类型
+  data?: Array<Data>; //传入的数据需要 color:'',text:''
 }
 interface Data {
   text: string | number; //名称
@@ -21,7 +21,7 @@ const Analyseheader = memo((props: Props) => {
         result = (
           <>
             <div className={styles.right}>
-              {data.map((item: any, index: number) => {
+              {data?.map((item: any, index: number) => {
                 return (
                   <>
                     <li
@@ -41,7 +41,7 @@ const Analyseheader = memo((props: Props) => {
         result = (
           <>
             <div className={styles.right}>
-              {data.map((item: any, index: number) => {
+              {data?.map((item: any, index: number) => {
                 return (
                   <>
                     <li

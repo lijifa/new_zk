@@ -7,10 +7,8 @@ import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
 import React, { memo, useEffect, useState } from 'react';
-import ConCom from '@/components/ConCom';
 import styles from './index.less';
 const title = {
-  text: 0,
   size: 25,
   linHeight: 24,
 };
@@ -174,16 +172,16 @@ const LeftLIst = [
     Children: (
       <>
         <div className={styles.earchs}>
-          <ConCom
-            ID="main1"
-            Data={Data}
-            unit="KW.h"
-            title={title}
-            title2={title2}
-            title3={title3}
-            circle={circle}
-            middletext={middletext}
-            outsidetext={outsidetext}
+          <Chart
+            type="ConCom"
+            XDATA={Data}
+            ConComUnit="KW.h"
+            ConComTitle={title}
+            ConComTitle2={title2}
+            ConComTitle3={title3}
+            ConComCircle={circle}
+            ConComMiddletext={middletext}
+            ConComOutsidetext={outsidetext}
           />
         </div>
       </>
@@ -192,22 +190,21 @@ const LeftLIst = [
   {
     label: '时段电费统计',
     Children: (
-        <>
-          <div className={styles.earchs}>
-            <ConCom
-              ID="main2"
-              Data={Data1}
-              unit="元"
-              title={title}
-              title2={title4}
-              title3={title5}
-              circle={circle}
-              middletext={middletext}
-              outsidetext={outsidetext1}
-            />
-     
-          </div>
-        </>
+      <>
+        <div className={styles.earchs}>
+          <Chart
+            type="ConCom"
+            XDATA={Data1}
+            ConComUnit="KW.h"
+            ConComTitle={title}
+            ConComTitle2={title4}
+            ConComTitle3={title5}
+            ConComCircle={circle}
+            ConComMiddletext={middletext}
+            ConComOutsidetext={outsidetext1}
+          />
+        </div>
+      </>
     ),
   },
 ];
@@ -225,7 +222,7 @@ const RightLIst = [
     Children: (
       <div className={styles.earchs}>
         <Chart
-          type="LineChart"
+          type="Line"
           XDATA={[
             '2022-09-26',
             '2022-09-29',
@@ -257,7 +254,7 @@ const RightLIst = [
       <>
         <div className={styles.earchs}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[
               '2022-09-26',
               '2022-09-29',

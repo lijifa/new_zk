@@ -1,7 +1,7 @@
 import BoardBack from '@/components/BoardBack';
 import Item_H, { Item_V } from '@/components/BoardItem';
 import Chart from '@/components/Echarts';
-import  SubHeader  from '@/components/SubHeader';
+import SubHeader from '@/components/SubHeader';
 import { Radio, Select } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
@@ -216,10 +216,12 @@ const HvacDataPanel = () => {
             <BoardBack
               title={'系统运行曲线'}
               content={
-                <div style={{ width: 600, height: 300 }}>
-                  <div style={{ width: '100%', height: '100%' }}>
-                    <Chart type="RoundToolChart" XDATA={1} />
-                  </div>
+                <div style={{ width: '100%', height: '100%' }}>
+                  <Chart
+                    type="Line"
+                    XDATA={[1, 2, 3, 4, 5]}
+                    YDATA={[[1, 3, 4, 56, 7]]}
+                  />
                 </div>
               }
             />

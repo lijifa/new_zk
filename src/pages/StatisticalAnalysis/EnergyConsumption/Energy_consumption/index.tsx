@@ -1,13 +1,12 @@
 import Chart from '@/components/Echarts';
+import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, DatePicker, Select, Space, Table, Tabs } from 'antd';
+import { Button, Table, Tabs } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
-
-const { Option } = Select;
 
 interface DataType {
   name: {
@@ -34,7 +33,7 @@ const TabData = [
     children: (
       <div style={{ width: '100%', height: '100%' }}>
         <Chart
-          type="LineChart"
+          type="Line"
           XDATA={[1, 2, 3, 4, 5, 6, 7]}
           YDATA={[
             [1, 2, 3, 4, 5, 6, 8],
@@ -59,7 +58,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[[1, 2, 3, 4, 5, 6, 8]]}
             LineStyleOpacity={['0', '0', '0']}
@@ -81,7 +80,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -107,7 +106,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -132,7 +131,7 @@ const TabData = [
       <>
         <div style={{ width: '100%', height: '100%' }}>
           <Chart
-            type="LineChart"
+            type="Line"
             XDATA={[1, 2, 3, 4, 5, 6, 7]}
             YDATA={[
               [1, 2, 3, 4, 5, 6, 8],
@@ -259,41 +258,73 @@ function Energy_consumption() {
     <>
       <PageHeader title="能源站耗能统计" />
       <div className={styles.selectBox}>
-        <div>
-          <Space>
-            <Select
-              showSearch
-              placeholder="Select a person"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string)
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-            <DatePicker />
-            <Button type="primary" size="middle">
-              搜索
-            </Button>
-            <Button size="middle">重置</Button>
-          </Space>
-        </div>
+        <Searchheader time={true} smallcheck={true} type={1} />
       </div>
       <div className={styles.content}>
         <div className={styles.DayBox}>
-          <div className={styles.leftBox}>left</div>
+          <div className={styles.leftBox}>
+            <div className={styles.energy}>
+              <img src={require('@/assets/Energy_consumption/img/hvac1.png')} />
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>电能耗(kW·h)</div>
+                <div className={styles.energyItemN}>
+                  <span style={{ color: 'rgba(38, 140, 255)' }}>
+                    1111111.11
+                  </span>
+                </div>
+              </div>
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>费用(元)</div>
+                <div className={styles.energyItemN}>
+                  <span>1111111.11</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.energy}>
+              <img src={require('@/assets/Energy_consumption/img/hvac2.png')} />
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>水能耗(m³)</div>
+                <div className={styles.energyItemN}>
+                  <span style={{ color: 'rgba(38, 140, 255)' }}>
+                    1111111.11
+                  </span>
+                </div>
+              </div>
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>费用(元)</div>
+                <div className={styles.energyItemN}>
+                  <span>1111111.11</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.energy}>
+              <img src={require('@/assets/Energy_consumption/img/hvac3.png')} />
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>天然气(Nm³)</div>
+                <div className={styles.energyItemN}>
+                  <span style={{ color: 'rgba(38, 140, 255)' }}>111.11</span>
+                </div>
+              </div>
+              <div className={styles.energyItem}>
+                <div className={styles.energyItemT}>费用(元)</div>
+                <div className={styles.energyItemN}>
+                  <span>11.11</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="card-container" style={{ flex: 1 }}>
             <Tabs destroyInactiveTabPane type="card" items={items} />
           </div>
         </div>
-        <div style={{ margin: '10px 0' }}>
+        <div className={styles.toolBarBox}>
           <Button type="primary" size="middle">
             导出
           </Button>
+          <span className={styles.toolbarTip}>
+            <img src={require('@/assets/System_operation/img/tipBlue.png')} />
+            室外温度、室外湿度、取系统内当日平均值，其他值为当日累计。
+          </span>
         </div>
         <div>
           <Table
