@@ -113,6 +113,12 @@ const routes = [
     path: '/Powerconsumption',
     component: './StatisticalAnalysis/PowerConsumption/Powerconsumption',
   },
+    //耗电环比分析
+    {
+      name: '耗电环比分析',
+      path: '/relativeratio',
+      component: './StatisticalAnalysis/PowerConsumption/Relativeratio',
+    },
 
   /* 断路器监测================ */
   // 断路器看板
