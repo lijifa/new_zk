@@ -29,7 +29,7 @@ const ConCom = memo((props: API.Props) => {
         formatter: '{b}: {c} ({d}%)',
       },
       title: {
-        text: `{a|${title?.text ? title?.text : ''}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
+        text: `{a|${title?.text === undefined ? '':title?.text}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
         top: middletext?.top,
         textAlign: 'center',
         left: middletext?.left,

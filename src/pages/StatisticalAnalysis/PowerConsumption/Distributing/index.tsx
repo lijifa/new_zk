@@ -82,7 +82,7 @@ const Distributing = memo(() => {
 
         <div className={styles.module}>
           <div className={styles.moduleLeft}>
-            <Analyseheader title="经济运行时间占比" type='rectangle' data={data} />
+            <Analyseheader title="经济运行时间占比"  />
             <div className={styles.earchs}>
               <ConCom
                 ID="main2"

@@ -444,7 +444,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:deviceElectricConsumptionAndRate:view',
-                url: '/business/electric/eleDeviceEnergyAndCostList',
+                url: '/eledeviceenergyandcostlist',
               },
               {
                 ancestors: ',4001,5440,5704',
@@ -459,7 +459,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:useElectricChain:view',
-                url: '/business/electricEnergy/useElectricChain',
+                url: '/relativeratio',
               },
               {
                 ancestors: ',4001,5440,5704',
@@ -489,7 +489,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:averagePower:view',
-                url: '/business/electricEnergy/averagePower',
+                url: '/averagepower',
               },
               {
                 ancestors: ',4001,5440,5704',
@@ -504,7 +504,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:powerQuality:view',
-                url: '/business/electricEnergy/powerQuality',
+                url: '/powerquality',
               },
             ],
             createTime: 1651134963000,

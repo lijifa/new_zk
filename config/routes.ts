@@ -114,11 +114,29 @@ const routes = [
     component: './StatisticalAnalysis/PowerConsumption/Powerconsumption',
   },
     //耗电环比分析
-    {
-      name: '耗电环比分析',
-      path: '/relativeratio',
-      component: './StatisticalAnalysis/PowerConsumption/Relativeratio',
-    },
+  {
+    name: '耗电环比分析',
+    path: '/relativeratio',
+    component: './StatisticalAnalysis/PowerConsumption/Relativeratio',
+  },
+    //平均功率因数
+  {
+    name: '平均功率因数',
+    path: '/averagepower',
+    component: './StatisticalAnalysis/PowerConsumption/AveragePower',
+  },
+  //分项耗电分析
+  {
+   name: '分项耗电分析',
+   path: '/eledeviceenergyandcostlist',
+   component: './StatisticalAnalysis/PowerConsumption/eleDeviceEnergyAndCostList',
+  },
+    //电能质量分析
+  {
+   name: '电能质量分析',
+   path: '/powerquality',
+   component: './StatisticalAnalysis/PowerConsumption/PowerQuality',
+  },
 
   /* 断路器监测================ */
   // 断路器看板

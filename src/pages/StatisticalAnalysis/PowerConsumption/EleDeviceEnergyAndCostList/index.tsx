@@ -1,32 +1,25 @@
-//耗电环比分析
-import Analyseheader from '@/components/Analyseheader';
-import Chart from '@/components/Echarts';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
+import {Button,Table} from 'antd'
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
-import { Button ,Table} from 'antd';
-import React, { memo ,useState,useEffect } from 'react';
-import styles from './index.less';
+import { useEffect, useState } from 'react';
+import React, { memo } from 'react';
+import styles from './index.less'
 let list = [
-  {
-    label: '静海区政府西楼变电室',
-  },
-  {
-    label: '静海区政府西楼变电室',
-  },
-  {
-    label: '静海区政府西楼变电室',
-  },
-];
-let data1 = [
     {
-        text:'环比',
-        color:'rgba(38, 140, 255, 1)'
-    }
-]
-interface DataType {
+      label: '静海区政府西楼变电室',
+    },
+    {
+      label: '静海区政府西楼变电室',
+    },
+    {
+      label: '静海区政府西楼变电室',
+    },
+  ];
+
+  interface DataType {
     name: {
       first: string;
       last: string;
@@ -47,53 +40,57 @@ interface DataType {
   // 表格数据
   const columns: ColumnsType<DataType> = [
     {
-      title: '时间',
+      title: '用户侧支路名称',
       dataIndex: 'name',
       render: (name) => `${name.first} ${name.last}`,
     },
     {
-      title: '室外温度(℃)',
+      title: '站点名称',
       dataIndex: 'gender',
     },
     {
-      title: '室外湿度(%)',
+      title: '所属项目',
       dataIndex: 'gender',
     },
     {
-      title: '供水温度(℃)',
+      title: '站内供水温度(℃)',
       dataIndex: 'gender',
     },
     {
-      title: '回水温度(℃)',
+      title: '站内回水温度(℃)',
       dataIndex: 'gender',
     },
     {
-      title: '供水压力(bar)',
+      title: '末端供水温度(℃)',
       dataIndex: 'gender',
     },
     {
-      title: '回水压力(bar)',
+      title: '末端回水温度(℃))',
       dataIndex: 'gender',
     },
     {
-      title: '系统温差(℃)',
+      title: '站内平均流量(t/h)',
       dataIndex: 'gender',
     },
     {
-      title: '系统压差(bar)',
+      title: '末端平均流量(t/h)',
       dataIndex: 'gender',
     },
     {
-      title: '系统流量(m³)',
+      title: '站内冷(热)量(kW·h)',
       dataIndex: 'gender',
     },
     {
-      title: '耗冷(热)量(GJ)',
+      title: '末端总管冷(热)量(kW·h)',
       dataIndex: 'gender',
     },
     {
-      title: '总能耗(kgce)',
+      title: '末端室内温度(℃)',
       dataIndex: 'gender',
+    },
+    {
+      title: '日期',
+      dataIndex: 'cell',
     },
   ];
   
@@ -102,8 +99,10 @@ interface DataType {
     page: params.pagination?.current,
     ...params,
   });
+  
 
-const Relativeratio = memo(() => {
+
+const EleDeviceEnergyAndCostList = memo(() => {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
     const [tableParams, setTableParams] = useState<TableParams>({
@@ -147,40 +146,10 @@ const Relativeratio = memo(() => {
     };
   return (
     <>
-      <PageHeader title="耗电环比分析" />
+      <PageHeader title="分项耗电分析" />
       <div className={styles.moduleContent}>
-        <Searchheader time={true} type={1} list={list} />
-        <div className={styles.module}>
-          <Analyseheader title="变电站耗电环比分析趋势图" type='rectangle' data ={data1} />
-          <div className={styles.earchs}>
-            <Chart
-              type="LineChart"
-              XDATA={[
-                '2022-09-26',
-                '2022-09-29',
-                '2022-10-01',
-                '2022-10-05',
-                '2022-10-09',
-                '2022-10-14',
-                '2022-10-18',
-              ]}
-              YDATA={[
-                [1, 2, 3, 4, 5, 6, 8],
-                [8, 1, 6, 3, 8, 5, 6],
-                [5, 6, 5, 8, 1, 3, 2],
-              ]}
-              LineStyleOpacity={['0', '0', '0']}
-              LineStyleColor={['#00D8A0 ', '#268CFF', '#f7d18a']}
-              LineXtextColor={'#666'}
-              LineYtextColor={'#666'}
-              LineTooltipShow
-              LineLegendColor={'#666'}
-              LineColor={'#CDD7E8'}
-            />
-          </div>
-        </div>
-        <div className={styles.moduleB}>
-          <div className={styles.bars}>
+      <Searchheader time={true} type={2} list={list} /> 
+      <div className={styles.bars}>
             <div className={styles.barscontent}>
               <Button
                 type="primary"
@@ -193,11 +162,12 @@ const Relativeratio = memo(() => {
                 导出
               </Button>
             </div>
+          
           </div>
-          <div className={styles.Table}>
-          <Table
+        <div className={styles.table}>
+        <Table
               style={{ marginTop: 20 }}
-              scroll={{ y: 'calc(100vh - 750px)' }}
+              scroll={{ y: 'calc(100vh - 400px)' }}
               columns={columns}
               rowKey={(record) => record.login.uuid}
               dataSource={data}
@@ -205,11 +175,11 @@ const Relativeratio = memo(() => {
               loading={loading}
               onChange={handleTableChange}
             />
-          </div>
         </div>
+
       </div>
     </>
   );
 });
 
-export default Relativeratio;
+export default EleDeviceEnergyAndCostList;
