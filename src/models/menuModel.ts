@@ -429,7 +429,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:siteElectricConsumptionAndRate:view',
-                url: 'business/electric/eleEnergyAndCostList',
+                url: '/consumption',
               },
               {
                 ancestors: ',4001,5440,5704',
@@ -474,7 +474,7 @@ export default () => {
                 params: {},
                 parentId: 5704,
                 perms: 'business:useElectricAnalysis:view',
-                url: '/business/electricEnergy/useElectricAnalysis',
+                url: '/powerconsumption',
               },
               {
                 ancestors: ',4001,5440,5704',

@@ -1,57 +1,103 @@
 //经济运行分析
 import Analyseheader from '@/components/Analyseheader';
 import Chart from '@/components/Echarts';
+import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
 import { Button } from 'antd';
 import React, { memo } from 'react';
-import ConCom from './ConCom';
+import ConCom from '@/components/ConCom';
 import styles from './index.less';
-import Searchheader from './Searchheader';
 let Data = [
   {
     name: '优良',
-    //value: 0,
+    value: 0,
   },
   {
     name: '一般',
-    // value: 0,
+    value: 0,
   },
   {
     name: '极差',
-    // value: 0,
+    value: 0,
   },
   {
     name: '超载',
-    // value: 0,
+    value: 0,
   },
   {
     name: '离线',
-    // value: 0,
+    value: 0,
   },
 ];
 
+const title4 = {
+  text: '--天',
+  size: 18,
+  linHeight: 30,
+};
+const title5 = {
+  text: '总运行天数',
+  size: 16,
+};
+
+let circle = {
+  max: 90,
+  min: 70,
+  top: '30%',
+  left: '50%',
+};
+let middletext = {
+  top: '20%',
+  left: '48%',
+};
+let outsidetext1 = {
+  top: '70%',
+  left: '12%',
+  width1: 60,
+};
+
+let list = [
+  {
+    label: '静海区政府西楼变电室',
+  },
+  {
+    label: '静海区政府西楼变电室',
+  },
+  {
+    label: '静海区政府西楼变电室',
+  },
+];
+let data =[
+  {
+    text:'日负荷概率',
+    color:'rgba(38, 140, 255, 1)'
+  }
+]
 const Distributing = memo(() => {
   return (
     <>
       <PageHeader title="变配站耗电分析" />
       <div className={styles.moduleContent}>
-        <Searchheader time={true} type={3} />
+        <Searchheader time={true} type={3} list={list} />
 
         <div className={styles.module}>
           <div className={styles.moduleLeft}>
-            <Analyseheader title="经济运行时间占比" rightshow={false} />
+            <Analyseheader title="经济运行时间占比" type='rectangle' data={data} />
             <div className={styles.earchs}>
               <ConCom
-                ID="main"
+                ID="main2"
                 Data={Data}
-                centerTitle="总运行天数"
-                centertest="--天"
                 unit="天"
+                title2={title4}
+                title3={title5}
+                circle={circle}
+                middletext={middletext}
+                outsidetext={outsidetext1}
               />
             </div>
           </div>
           <div className={styles.moduleRight}>
-            <Analyseheader title="变电站日负荷趋势图" rightshow={true} />
+            <Analyseheader title="变电站日负荷趋势图" type='rectangle'  data={data}/>
             <div className={styles.earchsR}>
               <Chart
                 type="LineChart"
@@ -106,6 +152,7 @@ const Distributing = memo(() => {
               </span>
             </div>
           </div>
+          <div className={styles.Table}></div>
         </div>
       </div>
     </>

@@ -1,5 +1,7 @@
 import { Button, DatePicker, Select } from 'antd';
 import moment from 'moment';
+import 'moment/locale/zh-cn';
+import locale from 'antd/lib/date-picker/locale/zh_CN';
 import React, { memo } from 'react';
 import styles from './index.less';
 const { Option } = Select;
@@ -8,9 +10,12 @@ interface Props {
   time: boolean; //是否有时间选择,
   type: number; //选择框的数量
   smallcheck?: boolean; //是否需要小的选择框
+  list ?: Array<any> //用户传入的数据
 }
+
+
 const Searchheader = memo((props: Props) => {
-  let { time, type, smallcheck = false } = props;
+  let { time, type, smallcheck = false ,list } = props;
   const dateFormat = 'YYYY/MM/DD';
   function Time(time: boolean) {
     let result;
@@ -18,13 +23,14 @@ const Searchheader = memo((props: Props) => {
       case true:
         result = (
           <>
-            <li style={{ width: '225px' }}>
+            <li style={{ width: '260px' }}>
               <RangePicker
                 defaultValue={[
                   moment('2015/01/01', dateFormat),
                   moment('2015/01/01', dateFormat),
                 ]}
                 format={dateFormat}
+                locale={locale}
               />
             </li>
           </>
@@ -53,6 +59,7 @@ const Searchheader = memo((props: Props) => {
                 style={{ width: '100%' }}
                 showSearch
                 placeholder="静海区政府主楼变电室"
+                defaultValue="jack"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   (option!.children as unknown as string)
@@ -67,7 +74,7 @@ const Searchheader = memo((props: Props) => {
             </li>
           );
         })}
-        {Time(time)}
+       
         {smallcheck === true ? (
           <li style={{ minWidth: '80px', width: '80px' }}>
             <Select
@@ -89,6 +96,7 @@ const Searchheader = memo((props: Props) => {
         ) : (
           ''
         )}
+         {Time(time)}
 
         <li>
           <Button
