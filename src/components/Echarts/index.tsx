@@ -617,7 +617,9 @@ export default function Chart({
             formatter: '{b}: {c} ({d}%)',
           },
           title: {
-            text: `{a|${AllValue}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
+            text: `{a|${AllValue}}\n{b|${
+              title2?.text ? title2?.text : ''
+            }}\n{c|${title3?.text}}`,
             top: middletext?.top,
             textAlign: 'center',
             left: middletext?.left,
@@ -710,7 +712,9 @@ export default function Chart({
   useEffect(() => {
     xDataRef.current = XDATA;
     yDataRef.current = YDATA;
-    initChart();
+    setTimeout(() => {
+      initChart();
+    }, 300);
   }, [XDATA, YDATA]);
 
   // 实时更新尺寸
@@ -720,7 +724,9 @@ export default function Chart({
         const cr = entry.contentRect;
         if (ele == undefined) {
         }
-        MyChart.resize();
+        setTimeout(() => {
+          MyChart.resize();
+        }, 301);
       }
     });
     const ele = document.getElementById('chartContent');
@@ -730,7 +736,11 @@ export default function Chart({
   }, []);
 
   return (
-    <div ref={chartContent} style={{ height: '100%' }} id="chartContent">
+    <div
+      ref={chartContent}
+      style={{ height: '100%', width: '100%', position: 'relative' }}
+      id="chartContent"
+    >
       <div ref={pie} className={styles.pie} id="pie" />
     </div>
   );

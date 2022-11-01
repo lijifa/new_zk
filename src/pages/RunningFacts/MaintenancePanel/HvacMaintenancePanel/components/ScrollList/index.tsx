@@ -1,61 +1,54 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import styles from './index.less';
 interface Props {
-  waring : Array<any>,
-  agg ?: boolean
+  waring: Array<any>;
+  agg?: boolean;
 }
 interface REF {
-  current :any
+  current: any;
 }
-const ScrollList = memo((props : Props) => {
-  let { waring ,agg = true} = props;
-  const PersonRef :REF = useRef<HTMLDivElement | undefined>();
+const ScrollList = memo((props: Props) => {
+  let { waring, agg = true } = props;
+  const PersonRef: REF = useRef<HTMLDivElement | undefined>();
   const [isScrolle, setIsScrolle] = useState<boolean>(true);
-  const Child1Ref :REF = useRef();
-  const Child2Ref :REF = useRef();
-  const Child3Ref :REF= useRef();
-  const [top, setTop] = useState(0);
-  const [top1, set1Top] = useState(0);
-  const speed = 50;//移动数度
+  const Child1Ref: REF = useRef(); //子组件一
+  const Child2Ref: REF = useRef();
+  const [ChildTran, setCildTran] = useState(0);
+
+  const speed = 50; //移动速度
   useEffect(() => {
-    let time: any;
-    Child2Ref.current.innerHTML = Child1Ref.current.innerHTML;
-    Child3Ref.current.innerHTML = Child2Ref.current.innerHTML;
-    setTop(Child1Ref.current.scrollHeight - 10);
-    set1Top(Child1Ref.current.scrollHeight * 2 - 20);
-    PersonRef.current.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     let timer: any;
     let scrollTop1 = 0;
-    if(isScrolle){
-      timer = setInterval(() => {
-        if (
-          scrollTop1 >=
-          Child1Ref.current.scrollHeight +
-            Child2Ref.current.scrollHeight +
-            Child3Ref.current.scrollHeight -
-            200
-        ) {
-          scrollTop1 = 0;
-        } else {
+   let Timetout = setTimeout(() => {
+      let childHeight = Child1Ref.current.offsetHeight;
+      let PersonHeight = PersonRef.current.clientHeight;
+      if (isScrolle) {
+        if (childHeight < PersonHeight) return;
+        Child2Ref.current.innerHTML = Child1Ref.current.innerHTML;
+        timer = setInterval(() => {
           scrollTop1++;
-        }
-        PersonRef.current.scrollTop = scrollTop1;
-      }, speed);
+          if (scrollTop1 >= childHeight) {
+            scrollTop1 = 0;
+            setCildTran(scrollTop1);
+          }
+          setCildTran(scrollTop1);
+        }, speed);
+      }
   
+      
+    }, 50);
 
-    }
- 
     return () => {
       clearInterval(timer);
+      clearTimeout(Timetout)
     };
-  }, [agg,isScrolle]);
-  const hoverHandler = ()=>{
-    setIsScrolle(false)
-
-  }
-  const ThoverHandler = () =>{
-    setIsScrolle(true)
-  }
+  }, [agg, isScrolle]);
+  const hoverHandler = () => {
+    setIsScrolle(false);
+  };
+  const ThoverHandler = () => {
+    setIsScrolle(true);
+  };
   return (
     <div className={styles.position}>
       <div className={styles.gDDiv}>
@@ -77,56 +70,75 @@ const ScrollList = memo((props : Props) => {
           </div>
         </div>
         <div className={styles.gDlistOut} ref={PersonRef}>
-          <div className={styles.move} ref={Child1Ref}>
-            <ul className={styles.gDlistIn} onMouseOver={ hoverHandler} onMouseLeave={ ThoverHandler}>
-              {waring.map((item, index) => {
-                return (
-                  <li key={index} className={styles.gDhang0}>
-                    <div
-                      className={styles.gDhang1}
-                      style={{
-                        fontSize: '18px',
-                        color: 'rgba(0,255,255,1)',
-                        flex: '2',
-                      }}
-                    >
-                      {index + 1}
-                    </div>
-                    <div className={styles.gDhang2} style={{ flex: '10' }}>
-                      {item.name}
-                    </div>
-                    <div className={styles.gDhang2} style={{ flex: '4' }}>
-                      {item.waring}
-                    </div>
-                    <div className={styles.gDhang2} style={{ flex: '4' }}>
-                      {item.time}
-                    </div>
-                    <div className={styles.gDhang2} style={{ flex: '2' }}>
-                      <em className={styles.bR4} 
-                       style ={{background:agg === true ? '' :'rgba(255, 224, 55, 1)'}}
-                      ></em>
-                      <span className={styles.class4}
-                       style ={{color:agg === true ? '' : 'rgba(255, 224, 55, 1)'}}
-                      
-                      >报警</span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+          <div
+            className={styles.moveParent}
+            style={{
+              width: '100%',
+              position: 'absolute',
+              transform: `translate(0px,-${ChildTran}px)`,
+            }}
+          >
+            <div className={styles.move} ref={Child1Ref}>
+              <ul
+                className={styles.gDlistIn}
+                onMouseOver={hoverHandler}
+                onMouseLeave={ThoverHandler}
+              >
+                {waring.map((item, index) => {
+                  return (
+                    <li key={index} className={styles.gDhang0}>
+                      <div
+                        className={styles.gDhang1}
+                        style={{
+                          fontSize: '18px',
+                          color: 'rgba(0,255,255,1)',
+                          flex: '2',
+                        }}
+                      >
+                        {index + 1}
+                      </div>
+                      <div className={styles.gDhang2} style={{ flex: '10' }}>
+                        {item.name}
+                      </div>
+                      <div className={styles.gDhang2} style={{ flex: '4' }}>
+                        {item.waring}
+                      </div>
+                      <div
+                        className={styles.gDhang2}
+                        style={{ flex: '4', fontSize: '13px' }}
+                      >
+                        {item.time}
+                      </div>
+                      <div className={styles.gDhang2} style={{ flex: '2' }}>
+                        <em
+                          className={styles.bR4}
+                          style={{
+                            background:
+                              agg === true ? '' : 'rgba(255, 224, 55, 1)',
+                          }}
+                        ></em>
+                        <span
+                          className={styles.class4}
+                          style={{
+                            color: agg === true ? '' : 'rgba(255, 224, 55, 1)',
+                          }}
+                        >
+                          {agg === true ? '报警' : '预警'}
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div
+              className={styles.move}
+              style={{ width: '100%', marginTop: '-10px' }}
+              ref={Child2Ref}
+              onMouseOver={hoverHandler}
+              onMouseLeave={ThoverHandler}
+            ></div>
           </div>
-          <div
-            className={styles.move}
-            style={{ width: '100%', marginTop: top }}
-            ref={Child2Ref}
-            onMouseOver={ hoverHandler} onMouseLeave={ ThoverHandler}
-          ></div>
-          <div
-            className={styles.move}
-            style={{ width: '100%', marginTop: top1 }}
-            ref={Child3Ref}
-            onMouseOver={ hoverHandler} onMouseLeave={ ThoverHandler}
-          ></div>
         </div>
       </div>
     </div>

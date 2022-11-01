@@ -1,11 +1,13 @@
-import React, { memo, useState } from 'react';
-import ScrollList from './components/ScrollList';
-import TopCom from '@/components/TopCom';
-import styles from './index.less';
-import ConCom from './components/ConCom'
+import Chart from '@/components/Echarts';
 import SubHeader from '@/components/SubHeader';
-import {Select} from 'antd'
-let {Option} = Select
+import TopCom from '@/components/TopCom';
+import BoardBack from '@/components/BoardBack';
+import { Select } from 'antd';
+import React, { memo, useState } from 'react';
+import ConCom from './components/ConCom';
+import ScrollList from './components/ScrollList';
+import styles from './index.less';
+let { Option } = Select;
 const list: any = [
   {
     label: '光合谷',
@@ -125,7 +127,49 @@ const waring = [
     time: '2022-07-01 12:40:42',
   },
 ];
-const agg = false
+let Data = [
+  {
+    name: '巡检任务',
+    value: 0,
+  },
+  {
+    name: '抄表任务',
+    value: 0,
+  },
+  {
+    name: '维修任务',
+    value: 0,
+  },
+  {
+    name: '保养任务',
+    value: 0,
+  },
+];
+const title = {
+  size: 30,
+  linHeight: 30,
+};
+const title5 = {
+  text: '任务总数',
+  size: 16,
+};
+
+let circle = {
+  max: 95,
+  min: 70,
+  top: '50%',
+  left: '30%',
+};
+let middletext = {
+  top: '40%',
+  left: '29%',
+};
+let outsidetext1 = {
+  top: '30%',
+  left: '55%',
+  width1: 100,
+};
+const agg = false;
 const HvacMaintenancePanel = memo(() => {
   const [Index, setIndex] = useState<number>(0);
   const [btnIndx, setBtnIndex] = useState<number>(0);
@@ -157,14 +201,14 @@ const HvacMaintenancePanel = memo(() => {
       case 0:
         result = (
           <>
-            <ScrollList waring={waring}/>
+            <ScrollList waring={waring} />
           </>
         );
         break;
       case 1:
         result = (
           <>
-            <ScrollList waring={waring} agg={agg}  />
+            <ScrollList waring={waring} agg={agg} />
           </>
         );
         break;
@@ -204,7 +248,7 @@ const HvacMaintenancePanel = memo(() => {
         result = (
           <>
             <div className={styles.nodata}>
-              <img src={require('./img/nodata.png')}/>
+              <img src={require('./img/nodata.png')} />
             </div>
           </>
         );
@@ -251,7 +295,16 @@ const HvacMaintenancePanel = memo(() => {
               </div>
               <div className={styles.moduleInner}>
                 <div className={styles.echarts}>
-                   <ConCom ID='main'/>
+                  <Chart
+                    type="ConCom"
+                    XDATA={Data}
+                    ConComTitle={title}
+                    ConComUnit="KW.h"
+                    ConComTitle3={title5}
+                    ConComCircle={circle}
+                    ConComMiddletext={middletext}
+                    ConComOutsidetext={outsidetext1}
+                  />
                 </div>
               </div>
             </div>
@@ -264,7 +317,7 @@ const HvacMaintenancePanel = memo(() => {
               </div>
               <div className={styles.moduleInner}>
                 <div className={styles.echarts}>
-                   <ConCom ID='main1'/>
+                  <ConCom ID="main1" />
                 </div>
               </div>
             </div>
@@ -276,9 +329,7 @@ const HvacMaintenancePanel = memo(() => {
                 <span>当前待处理任务</span>
               </div>
               <div className={styles.moduleInner}>
-                <div className={styles.echarts}>
-                   <ConCom ID='main2'/>
-                </div>
+                <div className={styles.echarts}></div>
               </div>
             </div>
           </div>
@@ -291,7 +342,7 @@ const HvacMaintenancePanel = memo(() => {
                 <span>当前告警汇总</span>
               </div>
               <div className={styles.lines}>{Thead()}</div>
-              {/* <div className={styles.moduleInner}>{LeftPage(Index)}</div> */}
+              <div className={styles.moduleInner}>{LeftPage(Index)}</div>
             </div>
           </div>
           <div className={styles.module} style={{ flex: '1' }}>
