@@ -325,6 +325,7 @@ function System_operation() {
                 ConComCircle={circle}
                 ConComMiddletext={middletext}
                 ConComOutsidetext={outsidetext}
+                ConComColor={['#00D8A0', 'red', '#888888']}
               />
             </div>
           </div>

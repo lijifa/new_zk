@@ -54,6 +54,7 @@ export default function Chart({
   ConComCircle,
   ConComMiddletext,
   ConComOutsidetext,
+  ConComColor,
 }: PieData): ReactElement {
   const xDataRef = useRef(XDATA);
   const yDataRef = useRef(YDATA);
@@ -610,8 +611,15 @@ export default function Chart({
         const circle = ConComCircle;
         const middletext = ConComMiddletext;
         const outsidetext = ConComOutsidetext;
+        const color = ConComColor || [
+          '#00D8A0',
+          '#888888',
+          '#DA0C0C',
+          '#FF7C1B',
+          '#F7CA3F',
+        ];
         return {
-          color: ['#00D8A0', '#F7CA3F', '#DA0C0C', '#FF7C1B', '#888888'],
+          color: color,
           tooltip: {
             trigger: 'item',
             formatter: '{b}: {c} ({d}%)',
@@ -710,7 +718,9 @@ export default function Chart({
   useEffect(() => {
     xDataRef.current = XDATA;
     yDataRef.current = YDATA;
-    initChart();
+    setTimeout(() => {
+      initChart();
+    }, 300);
   }, [XDATA, YDATA]);
 
   // 实时更新尺寸
@@ -720,7 +730,9 @@ export default function Chart({
         const cr = entry.contentRect;
         if (ele == undefined) {
         }
-        MyChart.resize();
+        setTimeout(() => {
+          MyChart.resize();
+        }, 300);
       }
     });
     const ele = document.getElementById('chartContent');
@@ -730,7 +742,11 @@ export default function Chart({
   }, []);
 
   return (
-    <div ref={chartContent} style={{ height: '100%' }} id="chartContent">
+    <div
+      ref={chartContent}
+      style={{ height: '100%', width: '100%' }}
+      id="chartContent"
+    >
       <div ref={pie} className={styles.pie} id="pie" />
     </div>
   );

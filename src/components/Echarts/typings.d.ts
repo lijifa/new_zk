@@ -67,6 +67,7 @@ interface PieData {
   ConComCircle?: Circle; //圆环属性
   ConComMiddletext?: Middletext; //中间汉字位置
   ConComOutsidetext?: Outsidetext; // 外边汉字的位置
+  ConComColor?: string[]; //圆环颜色 按照顺序
 }
 interface text {
   text?: any; //value数据

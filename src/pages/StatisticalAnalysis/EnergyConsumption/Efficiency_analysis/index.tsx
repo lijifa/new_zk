@@ -1,32 +1,13 @@
+import ExportList from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue } from 'antd/es/table/interface';
+import type { TablePaginationConfig } from 'antd/es/table';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  login: {
-    uuid: string;
-  };
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
-
 // 表格数据
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
     title: '站点名称',
     dataIndex: 'gender',
@@ -73,23 +54,17 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-
 function Efficiency_analysis() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [tableParams, setTableParams] = useState<TableParams>({
+  const [tableParams, setTableParams] = useState<any>({
     pagination: {
       current: 1,
       pageSize: 10,
     },
   });
 
+  // 数据请求
   const fetchData = () => {
     setLoading(true);
     fetch(
@@ -105,12 +80,19 @@ function Efficiency_analysis() {
           ...tableParams,
           pagination: {
             ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
+            total: 100,
           },
         });
       });
+  };
+  const getRandomuserParams = (params: any) => ({
+    results: params.pagination?.pageSize,
+    page: params.pagination?.current,
+    ...params,
+  });
+
+  const handleClick = (Listkey: any) => {
+    console.log('点击:', Listkey);
   };
 
   useEffect(() => {
@@ -123,26 +105,6 @@ function Efficiency_analysis() {
     });
   };
 
-  const start = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
-
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    // console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-
-  const hasSelected = selectedRowKeys.length > 0;
-
   return (
     <>
       <PageHeader title="能效分析" />
@@ -150,28 +112,15 @@ function Efficiency_analysis() {
         <Searchheader time={true} type={3} />
       </div>
       <div className={styles.content}>
-        <div style={{ margin: '10px 0' }}>
-          <Button
-            type="primary"
-            onClick={start}
-            disabled={!hasSelected}
-            size="middle"
-          >
-            导出
-          </Button>
-        </div>
-        <div>
-          <Table
-            rowSelection={rowSelection}
-            scroll={{ y: 'calc(100vh - 350px)' }}
-            columns={columns}
-            rowKey={(record) => record.login.uuid}
-            dataSource={data}
-            pagination={tableParams.pagination}
-            loading={loading}
-            onChange={handleTableChange}
-          />
-        </div>
+        <ExportList
+          Loading={loading}
+          onChange={handleTableChange}
+          Data={data}
+          Columns={columns}
+          Pagination={tableParams.pagination}
+          Scroll={{ y: 'calc(100vh - 350px)' }}
+          onCilck={handleClick}
+        />
       </div>
     </>
   );

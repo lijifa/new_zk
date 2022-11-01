@@ -1,22 +1,11 @@
+import { FormList } from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
+import type { TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
-
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  login: {
-    uuid: string;
-  };
-}
 
 interface TableParams {
   pagination?: TablePaginationConfig;
@@ -26,11 +15,11 @@ interface TableParams {
 }
 
 // 表格数据
-const columns: ColumnsType<DataType> = [
+const columns = [
   {
     title: '设备名称',
     dataIndex: 'name',
-    render: (name) => `${name.first} ${name.last}`,
+    render: (name: any) => `${name.first} ${name.last}`,
   },
   {
     title: '所属设备类型',
@@ -82,8 +71,6 @@ function Power_equipment() {
           pagination: {
             ...tableParams.pagination,
             total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
           },
         });
       });
@@ -109,17 +96,14 @@ function Power_equipment() {
         <div style={{ margin: '10px 0' }}>
           <div className={styles.allpower}>耗电总量：0.00（kW·h）</div>
         </div>
-        <div>
-          <Table
-            scroll={{ y: 'calc(100vh - 350px)' }}
-            columns={columns}
-            rowKey={(record) => record.login.uuid}
-            dataSource={data}
-            pagination={tableParams.pagination}
-            loading={loading}
-            onChange={handleTableChange}
-          />
-        </div>
+        <FormList
+          Scroll={{ y: 'calc(100vh - 350px)' }}
+          Columns={columns}
+          Data={data}
+          Pagination={tableParams.pagination}
+          Loading={loading}
+          onChange={handleTableChange}
+        />
       </div>
     </>
   );
