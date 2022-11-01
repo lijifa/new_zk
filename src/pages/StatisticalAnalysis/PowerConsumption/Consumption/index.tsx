@@ -43,12 +43,12 @@ let middletext = {
 };
 let outsidetext = {
   top: '60%',
-  left: '35%',
+  left: '32%',
   width1: 40,
 };
 let outsidetext1 = {
   top: '60%',
-  left: '30%',
+  left: '25%',
   width1: 85,
 };
 let Data = [

@@ -625,7 +625,9 @@ export default function Chart({
             formatter: '{b}: {c} ({d}%)',
           },
           title: {
-            text: `{a|${AllValue}}\n{b|${title2?.text}}\n{c|${title3?.text}}`,
+            text: `{a|${AllValue}}\n{b|${
+              title2?.text ? title2?.text : ''
+            }}\n{c|${title3?.text}}`,
             top: middletext?.top,
             textAlign: 'center',
             left: middletext?.left,
@@ -732,7 +734,7 @@ export default function Chart({
         }
         setTimeout(() => {
           MyChart.resize();
-        }, 300);
+        }, 301);
       }
     });
     const ele = document.getElementById('chartContent');

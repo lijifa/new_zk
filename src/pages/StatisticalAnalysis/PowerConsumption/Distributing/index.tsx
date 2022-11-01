@@ -137,7 +137,9 @@ const Distributing = memo(() => {
           <div className={styles.bars}>
             <div className={styles.barscontent}>
               <Button
-                type="primary"
+                // type="primary"
+                disabled
+                
                 style={{
                   textAlign: 'center',
                   alignItems: 'center',
