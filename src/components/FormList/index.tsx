@@ -1,7 +1,18 @@
-import { Button, Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import { useState } from 'react';
+import { Button, ConfigProvider, Pagination, Space, Table } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+import type { ColumnsType } from 'antd/es/table';
+import { useEffect, useState } from 'react';
 import styles from './index.less';
+
+// 表格中操作列 show 是否显示   name 操作名字
+/* showAction={{ show: true, name: ['查看', '删除'] }} */
+
+// 表格顶部按钮
+/* TableBts={[
+  { type: 'add', text: '添加' },
+  { type: 'update', text: '修改' },
+  { type: 'del', text: '删除' },
+]} */
 
 interface DataType {
   name: {
@@ -12,44 +23,133 @@ interface DataType {
   login: {
     uuid: string;
   };
+  key: number;
 }
-interface ExportList {
-  Columns: ColumnsType<DataType>;
-  Data: DataType[] | undefined;
-  Pagination: TablePaginationConfig | undefined;
-  onChange: any;
-  Loading: boolean;
-  onCilck: any;
-  Scroll?: {
-    x?: string | number;
-    y?: string | number;
-  };
-}
+
 interface FormList {
   Columns: ColumnsType<DataType>;
   Data: DataType[] | undefined;
-  Pagination: TablePaginationConfig | undefined;
-  onChange: any;
   Loading: boolean;
+  onCilck: any;
+  TableBts?: {
+    type: string;
+    text: string;
+  }[];
+  showAction?: {
+    show: boolean;
+    name: string[];
+  };
   Scroll?: {
     x?: string | number;
     y?: string | number;
   };
 }
 
-const ExportList = ({
+const FormList = ({
   Columns,
   Scroll,
   Data,
-  Pagination,
-  onChange,
   Loading,
   onCilck,
-}: ExportList) => {
-  const [loading, setLoading] = useState(Loading);
+  showAction,
+  TableBts,
+}: FormList) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  // 表格header
-  const columns: ColumnsType<DataType> = Columns;
+  const [columns, setColumns] = useState(Columns);
+  const [tableBts, setTableBts] = useState([]);
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    const tableTitle = Columns;
+    if (showAction?.show) {
+      tableTitle.push({
+        title: '操作',
+        key: 'action',
+        render: (_, record, key) => (
+          <Space>
+            {showAction.name?.map((res, index) => {
+              return (
+                <a key={index} onClick={(e: any) => ActionClick(e, key)}>
+                  {res}
+                </a>
+              );
+            })}
+          </Space>
+        ),
+      });
+    }
+    setColumns(tableTitle);
+    return () => {
+      if (showAction?.show) {
+        tableTitle.pop();
+      }
+    };
+  }, [selectedRowKeys]);
+
+  useEffect(() => {
+    let TableBtns: any = [];
+    TableBts?.map((res, index) => {
+      switch (res.type) {
+        case 'add':
+          TableBtns.push(
+            <Button
+              key={index}
+              type="primary"
+              onClick={() => TableToolClick('add')}
+              size="middle"
+            >
+              {res.text}
+            </Button>,
+          );
+          break;
+        case 'del':
+          TableBtns.push(
+            <Button
+              key={index}
+              type="primary"
+              onClick={() => TableToolClick('del')}
+              disabled={!hasSelected}
+              size="middle"
+              danger
+            >
+              {res.text}
+            </Button>,
+          );
+          break;
+        case 'update':
+          TableBtns.push(
+            <Button
+              key={index}
+              type="primary"
+              onClick={() => TableToolClick('update')}
+              disabled={!hasSelected}
+              size="middle"
+              className={styles.updateBtn}
+            >
+              {res.text}
+            </Button>,
+          );
+          break;
+        case 'export':
+          TableBtns.push(
+            <Button
+              key={index}
+              type="primary"
+              onClick={() => TableToolClick('export')}
+              disabled={!hasSelected}
+              size="middle"
+            >
+              {res.text}
+            </Button>,
+          );
+          break;
+        default:
+          break;
+      }
+    });
+    setTableBts(TableBtns);
+    setDisplay(false);
+  }, [selectedRowKeys]);
 
   // 监听选择到的列表
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -62,70 +162,53 @@ const ExportList = ({
     onChange: onSelectChange,
   };
 
-  // 导出点击事件
-  const exportList = () => {
-    setLoading(true);
-    setTimeout(() => {
-      onCilck(selectedRowKeys);
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  // 传给父组件点击事件
+  const TableToolClick = (type: string) => {
+    onCilck(type, selectedRowKeys);
+  };
+
+  const ActionClick = (e: any, key: any) => {
+    onCilck(e.target.innerText, key);
+  };
+
+  const handleTableChange = (page: any, pageSize: any) => {
+    onCilck(page, pageSize);
   };
 
   // 判断选择数量
   const hasSelected = selectedRowKeys.length > 0;
 
   return (
-    <div className={styles.content}>
+    <div
+      className={styles.content}
+      style={{ display: display ? 'none' : 'block' }}
+    >
       <div style={{ margin: '10px 0' }}>
-        <Button
-          type="primary"
-          onClick={exportList}
-          disabled={!hasSelected}
-          size="middle"
-        >
-          导出
-        </Button>
+        <Space>{tableBts}</Space>
       </div>
-      <Table
-        // 左侧点击选择框
-        rowSelection={rowSelection}
-        // scroll 滚动高度
-        scroll={Scroll}
-        // columns 顶部header数据
-        columns={columns}
-        // rowKey 拿到所有的数据的key
-        rowKey={(record) => record.login.uuid}
-        dataSource={Data}
-        pagination={Pagination}
-        loading={loading || Loading}
-        onChange={onChange}
-      />
+      <ConfigProvider locale={zhCN}>
+        <Table
+          rowSelection={tableBts?.length > 0 ? rowSelection : (false as any)}
+          scroll={Scroll}
+          columns={columns}
+          rowKey={(record) => record.key}
+          dataSource={Data}
+          loading={Loading}
+          pagination={false}
+        />
+        <Pagination
+          style={{ marginTop: 10, display: 'flex', justifyContent: 'flex-end' }}
+          total={Data?.length}
+          showTotal={(total, range) =>
+            `第 ${range[0]} 到 ${range[1]} 条， 共 ${total} 条记录。`
+          }
+          defaultPageSize={10}
+          defaultCurrent={1}
+          onChange={handleTableChange}
+        />
+      </ConfigProvider>
     </div>
   );
 };
 
-export default ExportList;
-
-export const FormList = ({
-  Columns,
-  Data,
-  Pagination,
-  Loading,
-  onChange,
-  Scroll,
-}: FormList) => {
-  return (
-    <div>
-      <Table
-        scroll={Scroll}
-        columns={Columns}
-        rowKey={(record) => record.login.uuid}
-        dataSource={Data}
-        pagination={Pagination}
-        loading={Loading}
-        onChange={onChange}
-      />
-    </div>
-  );
-};
+export default FormList;
