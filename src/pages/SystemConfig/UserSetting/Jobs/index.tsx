@@ -7,40 +7,16 @@ import styles from './index.less';
 // 表格数据
 const columns = [
   {
-    title: '用户名',
+    title: '岗位名称',
     dataIndex: 'name',
   },
   {
-    title: '真实姓名',
+    title: '创建人',
     dataIndex: 'age',
   },
   {
-    title: '手机号',
+    title: '创建时间',
     dataIndex: 'address',
-  },
-  {
-    title: '申请次数',
-    dataIndex: '',
-  },
-  {
-    title: '申请时间',
-    dataIndex: '',
-  },
-  {
-    title: '申请理由',
-    dataIndex: '',
-  },
-  {
-    title: '审核人',
-    dataIndex: '',
-  },
-  {
-    title: '审核时间',
-    dataIndex: '',
-  },
-  {
-    title: '审核状态',
-    dataIndex: '',
   },
 ];
 
@@ -63,9 +39,9 @@ const UserCheck = () => {
 
   return (
     <>
-      <PageHeader title="用户审核" />
+      <PageHeader title="岗位维护" />
       <div className={styles.selectBox}>
-        <Searchheader time={true} type={4} />
+        <Searchheader time={false} type={1} />
       </div>
       <div className={styles.content}>
         <FormList
@@ -74,7 +50,11 @@ const UserCheck = () => {
           Data={data}
           Loading={loading}
           onCilck={handleClick}
-          showAction={{ show: true, name: ['查看', '删除'] }}
+          TableBts={[
+            { type: 'add', text: '新增' },
+            { type: 'update', text: '修改' },
+            { type: 'del', text: '删除' },
+          ]}
         />
       </div>
     </>

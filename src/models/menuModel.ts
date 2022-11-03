@@ -1331,7 +1331,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'system:mfrs:view',
-                url: '/system/mfrs',
+                url: '/companyInfo',
               },
               {
                 ancestors: ',4001,5710,5163',
@@ -1346,7 +1346,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'business:mfrsUserApplication:view',
-                url: '/system/mfrsUserApplication',
+                url: '/userCheck',
               },
               {
                 ancestors: ',4001,5710,5163',
@@ -1361,7 +1361,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'system:user:view',
-                url: '/system/mfrsMember',
+                url: '/userManage',
               },
               {
                 ancestors: ',4001,5710,5163',
@@ -1376,7 +1376,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'system:dept:view',
-                url: '/system/dept',
+                url: '/department',
               },
               {
                 ancestors: ',4001,5710,5163',
@@ -1391,7 +1391,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'business:position:view',
-                url: '/system/position',
+                url: '/jobs',
               },
               {
                 ancestors: ',4001,5710,5163',
@@ -1406,7 +1406,7 @@ export default () => {
                 params: {},
                 parentId: 5163,
                 perms: 'system:role:view',
-                url: '/system/role',
+                url: '/role',
               },
             ],
             createTime: 1555550550000,

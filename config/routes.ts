@@ -113,13 +113,13 @@ const routes = [
     path: '/Powerconsumption',
     component: './StatisticalAnalysis/PowerConsumption/Powerconsumption',
   },
-    //耗电环比分析
+  //耗电环比分析
   {
     name: '耗电环比分析',
     path: '/relativeratio',
     component: './StatisticalAnalysis/PowerConsumption/Relativeratio',
   },
-    //平均功率因数
+  //平均功率因数
   {
     name: '平均功率因数',
     path: '/averagepower',
@@ -127,15 +127,16 @@ const routes = [
   },
   //分项耗电分析
   {
-   name: '分项耗电分析',
-   path: '/eledeviceenergyandcostlist',
-   component: './StatisticalAnalysis/PowerConsumption/eleDeviceEnergyAndCostList',
+    name: '分项耗电分析',
+    path: '/eledeviceenergyandcostlist',
+    component:
+      './StatisticalAnalysis/PowerConsumption/eleDeviceEnergyAndCostList',
   },
-    //电能质量分析
+  //电能质量分析
   {
-   name: '电能质量分析',
-   path: '/powerquality',
-   component: './StatisticalAnalysis/PowerConsumption/PowerQuality',
+    name: '电能质量分析',
+    path: '/powerquality',
+    component: './StatisticalAnalysis/PowerConsumption/PowerQuality',
   },
 
   /* 断路器监测================ */
@@ -221,6 +222,47 @@ const routes = [
     name: '能效分析',
     path: '/Efficiency_analysis',
     component: './StatisticalAnalysis/EnergyConsumption/Efficiency_analysis',
+  },
+
+  /*
+   *  系统配置
+   */
+  /* 用户设置================ */
+  // 公司信息
+  {
+    name: '公司信息',
+    path: '/companyInfo',
+    component: './SystemConfig/UserSetting/CompanyInfo',
+  },
+  // 用户审核
+  {
+    name: '用户审核',
+    path: '/userCheck',
+    component: './SystemConfig/UserSetting/userCheck',
+  },
+  // 用户审核
+  {
+    name: '用户管理',
+    path: '/userManage',
+    component: './SystemConfig/UserSetting/userManage',
+  },
+  // 部分维护
+  {
+    name: '部分维护',
+    path: '/department',
+    component: './SystemConfig/UserSetting/Department',
+  },
+  // 岗位维护
+  {
+    name: '岗位维护',
+    path: '/jobs',
+    component: './SystemConfig/UserSetting/Jobs',
+  },
+  // 角色管理
+  {
+    name: '角色管理',
+    path: '/role',
+    component: './SystemConfig/UserSetting/Role',
   },
 
   /*

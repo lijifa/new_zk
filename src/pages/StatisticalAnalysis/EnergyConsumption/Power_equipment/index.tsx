@@ -1,4 +1,4 @@
-import { FormList } from '@/components/FormList';
+import ExportList from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
 import type { TablePaginationConfig } from 'antd/es/table';
@@ -96,7 +96,7 @@ function Power_equipment() {
         <div style={{ margin: '10px 0' }}>
           <div className={styles.allpower}>耗电总量：0.00（kW·h）</div>
         </div>
-        <FormList
+        <ExportList
           Scroll={{ y: 'calc(100vh - 350px)' }}
           Columns={columns}
           Data={data}

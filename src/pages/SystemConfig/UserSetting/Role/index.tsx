@@ -7,40 +7,28 @@ import styles from './index.less';
 // 表格数据
 const columns = [
   {
-    title: '用户名',
+    title: '角色名称',
     dataIndex: 'name',
   },
   {
-    title: '真实姓名',
+    title: '所属企业',
     dataIndex: 'age',
   },
   {
-    title: '手机号',
+    title: '权限字符',
     dataIndex: 'address',
   },
   {
-    title: '申请次数',
-    dataIndex: '',
+    title: '显示顺序',
+    dataIndex: 'address',
   },
   {
-    title: '申请时间',
-    dataIndex: '',
+    title: '状态',
+    dataIndex: 'address',
   },
   {
-    title: '申请理由',
-    dataIndex: '',
-  },
-  {
-    title: '审核人',
-    dataIndex: '',
-  },
-  {
-    title: '审核时间',
-    dataIndex: '',
-  },
-  {
-    title: '审核状态',
-    dataIndex: '',
+    title: '创建时间',
+    dataIndex: 'address',
   },
 ];
 
@@ -63,7 +51,7 @@ const UserCheck = () => {
 
   return (
     <>
-      <PageHeader title="用户审核" />
+      <PageHeader title="角色管理" />
       <div className={styles.selectBox}>
         <Searchheader time={true} type={4} />
       </div>
@@ -74,7 +62,12 @@ const UserCheck = () => {
           Data={data}
           Loading={loading}
           onCilck={handleClick}
-          showAction={{ show: true, name: ['查看', '删除'] }}
+          showAction={{ show: true, name: ['启用'] }}
+          TableBts={[
+            { type: 'add', text: '新增' },
+            { type: 'update', text: '修改' },
+            { type: 'del', text: '删除' },
+          ]}
         />
       </div>
     </>
