@@ -1,7 +1,6 @@
 import Chart from '@/components/Echarts';
 import SubHeader from '@/components/SubHeader';
 import TopCom from '@/components/TopCom';
-import BoardBack from '@/components/BoardBack';
 import { Select } from 'antd';
 import React, { memo, useState } from 'react';
 import ConCom from './components/ConCom';
@@ -146,12 +145,12 @@ let Data = [
   },
 ];
 const title = {
-  size: 30,
-  linHeight: 30,
+  size: 50,
+  linHeight: 40,
 };
 const title5 = {
   text: '任务总数',
-  size: 16,
+  size: 20,
 };
 
 let circle = {
@@ -161,14 +160,33 @@ let circle = {
   left: '30%',
 };
 let middletext = {
-  top: '40%',
+  top: '38%',
   left: '29%',
 };
 let outsidetext1 = {
-  top: '30%',
+  top: '22%',
   left: '55%',
-  width1: 100,
+  width1:120,
 };
+
+let color = [
+  'rgba(22, 143, 255, 1)',
+  'rgba(72, 211, 150, 1)',
+  'rgba(0, 255, 255, 1)',
+  'rgba(232, 211, 111, 1)',
+];
+let ConComformatterColor = [
+  'rgba(150, 214, 255, 1)',
+  'rgba(0, 255, 255, 1)',
+  'rgba(150, 214, 255, 1)',
+]
+let ConComTitleColor = [
+  'rgba(0, 255, 255, 1)',
+  'rgba(150, 214, 255, 1)',
+  'rgba(150, 214, 255, 1)',
+
+]
+let ConComformatterSize = [18,25,15,15]
 const agg = false;
 const HvacMaintenancePanel = memo(() => {
   const [Index, setIndex] = useState<number>(0);
@@ -299,11 +317,15 @@ const HvacMaintenancePanel = memo(() => {
                     type="ConCom"
                     XDATA={Data}
                     ConComTitle={title}
-                    ConComUnit="KW.h"
+                    ConComUnit="次"
                     ConComTitle3={title5}
                     ConComCircle={circle}
                     ConComMiddletext={middletext}
                     ConComOutsidetext={outsidetext1}
+                    ConComColor={color}
+                    ConComformatterColor={ConComformatterColor}
+                    ConComformatterSize={ConComformatterSize}
+                    ConComTitleColor={ConComTitleColor}
                   />
                 </div>
               </div>
@@ -317,7 +339,20 @@ const HvacMaintenancePanel = memo(() => {
               </div>
               <div className={styles.moduleInner}>
                 <div className={styles.echarts}>
-                  <ConCom ID="main1" />
+                <Chart
+                    type="ConCom"
+                    XDATA={Data}
+                    ConComTitle={title}
+                    ConComUnit="次"
+                    ConComTitle3={title5}
+                    ConComCircle={circle}
+                    ConComMiddletext={middletext}
+                    ConComOutsidetext={outsidetext1}
+                    ConComColor={color}
+                    ConComformatterColor={ConComformatterColor}
+                    ConComformatterSize={ConComformatterSize}
+                    ConComTitleColor={ConComTitleColor}
+                  />
                 </div>
               </div>
             </div>
@@ -329,7 +364,22 @@ const HvacMaintenancePanel = memo(() => {
                 <span>当前待处理任务</span>
               </div>
               <div className={styles.moduleInner}>
-                <div className={styles.echarts}></div>
+                <div className={styles.echarts}>
+                <Chart
+                    type="ConCom"
+                    XDATA={Data}
+                    ConComTitle={title}
+                    ConComUnit="次"
+                    ConComTitle3={title5}
+                    ConComCircle={circle}
+                    ConComMiddletext={middletext}
+                    ConComOutsidetext={outsidetext1}
+                    ConComColor={color}
+                    ConComformatterColor={ConComformatterColor}
+                    ConComformatterSize={ConComformatterSize}
+                    ConComTitleColor={ConComTitleColor}
+                  />
+                </div>
               </div>
             </div>
           </div>

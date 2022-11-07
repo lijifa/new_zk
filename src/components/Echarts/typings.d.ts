@@ -68,6 +68,9 @@ interface PieData {
   ConComMiddletext?: Middletext; //中间汉字位置
   ConComOutsidetext?: Outsidetext; // 外边汉字的位置
   ConComColor?: string[]; //圆环颜色 按照顺序
+  ConComformatterColor?:string[] ; //name,precent,unit颜色文字的颜色
+  ConComformatterSize?:number[];//name,precent,unit颜色文字的大小
+  ConComTitleColor?:string[];//中间文字的颜色
 }
 interface text {
   text?: any; //value数据

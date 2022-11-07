@@ -1,85 +1,87 @@
 import { Button, Form, Input, Layout } from 'antd';
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { history, useModel } from '@umijs/max';
+import { LoginName, PASSWORD, PHONE, USERNAME } from './constant';
 import styles from './index.less';
-import {PHONE,LoginName,USERNAME,PASSWORD } from './constant'
 
 const { Header, Footer, Content } = Layout;
-const CompanyReg: React.FC =(props,ref) => {
+const CompanyReg: React.FC = (props, ref) => {
   // console.log(getFieldDecorator)
   const [layout, setyatout] = useState({
     labelCol: { span: 5 },
     wrapperCol: { span: 24 },
   });
-  const [like,setlike] = useState<boolean>(true)
-  const [count,setcount] = useState<number>(60)
-  const [show,setshow] = useState(true)
-  const timeref = useRef<any>(null)
-  useEffect(()=>{
-    if(count === 0){
-      clearInterval(timeref.current),
-      setcount(60)
-      setshow(true)
-      setlike(false)
+  const [like, setlike] = useState<boolean>(true);//sh
+  const [count, setcount] = useState<number>(60);
+  const [show, setshow] = useState(true);
+  const timeref = useRef<any>(null);
+  useEffect(() => {
+    if (count === 0) {
+      clearInterval(timeref.current), setcount(60);
+      setshow(true);
+      setlike(false);
     }
-
-  },[count])
+  }, [count]);
   //输入手机号
-  const changePhoneNumber = (e :any)=>{
-    const number = PHONE
-    const phonenumber = e.target.value
-    if(number.test(phonenumber)){
-      setlike(false)
-    }else{
-      setlike(true)
-      
+  const changePhoneNumber = (e: any) => {
+    const number = PHONE;
+    const phonenumber = e.target.value;
+    if (number.test(phonenumber)) {
+      setlike(false);
+    } else {
+      setlike(true);
+    }
+  };
+  const cutCount = () => {
+    setcount((pre) => pre - 1);
+    setlike(true);
+  };
+  const getVerification = () => {
+    setshow(false);
+    cutCount();
+    timeref.current = setInterval(cutCount, 1000);
+  };
+  function showCode() {
+    if (show === true) {
+      return <div>获取验证码</div>;
+    } else {
+      return <div>已发送({count})</div>;
     }
   }
-  const cutCount = () =>{
-    setcount((pre) => pre -1 )
-    setlike(true)
+
+  //去登录页
+  const GoLogin =()=>{
+    history.push('/login')
   }
-  const getVerification = () =>{
-    setshow(false) 
-    cutCount()
-    timeref.current = setInterval(cutCount,1000)
+  //查看协议
+  const GoStatement = () =>{
+    history.push('/statement')
   }
-  function showCode(){
-    if(show === true){
-      return(
-        <div>获取验证码</div>
-      )
-    }else{
-      return(
-        <div>已发送({count})</div>
-      )
-    }
-  }
- 
+
   return (
     <Layout className={styles.layoutBg}>
-      <Header className={styles.headerBox}></Header>
+      <Header className={styles.headerBox}>
+        <div className={styles.headerLogo}></div>
+
+        <div className={styles.navBarLine}></div>
+      </Header>
       <Content className={styles.contentBox}>
         <div className={styles.formTitle}>企业注册</div>
-        <Form 
-        className={styles.mianForm} 
-        {...layout}
-         labelAlign="left"
-         
-         >
+        <Form className={styles.mianForm} {...layout} labelAlign="left">
           <Form.Item
             className={styles.Formitem}
             label="手机号"
             name="phoneNumber"
             rules={[
               { required: true, message: '手机号不能为空' },
-              {pattern:new RegExp(PHONE),message:'请输入正确的手机号'}
+              { pattern: new RegExp(PHONE), message: '请输入正确的手机号' },
             ]}
           >
             <Input
-              onChange = {changePhoneNumber}
+              onChange={changePhoneNumber}
               className={styles.formInput}
               placeholder="请输入11位手机号"
-              maxLength= {11}
+              maxLength={11}
             ></Input>
           </Form.Item>
           <Form.Item
@@ -89,21 +91,21 @@ const CompanyReg: React.FC =(props,ref) => {
             rules={[{ required: true, message: '图形验证码不能为空' }]}
           >
             <Input
-              style={{width:'230px'}}
+              style={{ width: '230px' }}
               className={styles.formInput}
               placeholder="输入图形验证码"
             ></Input>
           </Form.Item>
           <Form.Item
-          style={{position:'absolute', top: '72px',left: '350px'}}
+            style={{ position: 'absolute', top: '72px', left: '350px' }}
             className={styles.Formitem}
           >
             <Input
-              style={{width:'150px'}}
+              style={{ width: '150px' }}
               className={styles.formInput}
             ></Input>
           </Form.Item>
-       
+
           <Form.Item
             className={styles.Formitem}
             label="短信验证码"
@@ -111,10 +113,10 @@ const CompanyReg: React.FC =(props,ref) => {
             rules={[{ required: true, message: '短信验证码不能为空' }]}
           >
             <Input
-             style={{width:'230px'}}
+              style={{ width: '230px' }}
               className={styles.formInput}
               placeholder="输入收到的六位验证码"
-              maxLength= {6}
+              maxLength={6}
             ></Input>
           </Form.Item>
           <Form.Item
@@ -122,28 +124,33 @@ const CompanyReg: React.FC =(props,ref) => {
             name="loginName"
             label="用户名"
             rules={[
-              { required: true, message: '支持4-20位的大小写字母和数字，至少有一位字母' },
-              {pattern:new RegExp(LoginName),message:'支持4-20位的大小写字母和数字，至少有一位字母'}
-            
+              {
+                required: true,
+                message: '支持4-20位的大小写字母和数字，至少有一位字母',
+              },
+              {
+                pattern: new RegExp(LoginName),
+                message: '支持4-20位的大小写字母和数字，至少有一位字母',
+              },
             ]}
           >
             <Input
               className={styles.formInput}
               placeholder="支持4-20位的大小写字母和数字，至少有一位字母"
-              maxLength= {20}
+              maxLength={20}
             ></Input>
           </Form.Item>
           <Form.Item
-          style={{position:'absolute', top: '140px',left: '350px'}}
+            style={{ position: 'absolute', top: '140px', left: '350px' }}
             className={styles.Formitem}
           >
-          <Button
+            <Button
               className={styles.formInput}
               disabled={like}
               onClick={getVerification}
               style={{
                 color: 'rgba(38, 140, 255, 1)',
-                width:'150px'
+                width: '150px',
               }}
             >
               <div>{showCode()}</div>
@@ -155,13 +162,13 @@ const CompanyReg: React.FC =(props,ref) => {
             name="userName"
             rules={[
               { required: true, message: '真实姓名不能为空' },
-              {pattern:new RegExp(USERNAME),message:'请输入正确的名字'}
+              { pattern: new RegExp(USERNAME), message: '请输入正确的名字' },
             ]}
           >
             <Input
               className={styles.formInput}
               placeholder="支持汉字或字母，2-10位"
-              maxLength= {10}
+              maxLength={10}
             ></Input>
           </Form.Item>
           <Form.Item
@@ -170,14 +177,14 @@ const CompanyReg: React.FC =(props,ref) => {
             name="password"
             rules={[
               { required: true, message: '密码不能为空' },
-              {pattern:new RegExp(PASSWORD),message:'请输入正确的密码'},
+              { pattern: new RegExp(PASSWORD), message: '请输入正确的密码' },
             ]}
           >
             <Input.Password
-              type='password'
+              type="password"
               className={styles.formInput}
               placeholder="支持4-20位的大小写字母和数字，至少有一位字母"
-              maxLength= {20}
+              maxLength={20}
             ></Input.Password>
           </Form.Item>
           <Form.Item
@@ -186,30 +193,29 @@ const CompanyReg: React.FC =(props,ref) => {
             name="checkPassword"
             rules={[
               { required: true, message: '确认密码不能为空' },
-              ({getFieldValue})=>({
-                validator(_,value){
-                  if(!value || getFieldValue('password') === value){
-                    return Promise.resolve()
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
                   }
-                  return Promise.reject(new Error('两次密码不一致'))
-                }
-              })
-            
+                  return Promise.reject(new Error('两次密码不一致'));
+                },
+              }),
             ]}
           >
             <Input.Password
-              type='password'
+              type="password"
               className={styles.formInput}
               placeholder="请再次输入密码"
-              maxLength= {20}
+              maxLength={20}
             ></Input.Password>
           </Form.Item>
           <Form.Item>
-            <p style={{ float:'left',marginLeft:'5px' }}>
-              注册代表同意 <a>智控用户协议</a>
+            <p style={{ float: 'left', marginLeft: '5px' }}>
+              注册代表同意 <a onClick={GoStatement}>智控用户协议</a>
             </p>
-            <p style={{ float:'right',marginRight:'13px'}}>
-              已有账号？ <a>登录</a>
+            <p style={{ float: 'right', marginRight: '13px' }}>
+              已有账号？ <a onClick={GoLogin}>登录</a>
             </p>
           </Form.Item>
           <Form.Item>
@@ -222,7 +228,10 @@ const CompanyReg: React.FC =(props,ref) => {
           </Form.Item>
         </Form>
       </Content>
-      <Footer className={styles.footerBox}></Footer>
+      <Footer className={styles.footerBox}>
+        Copyright © 华德智慧能源管理（天津）有限公司 版权所有
+        津ICP备16006426号-1
+      </Footer>
     </Layout>
   );
 };

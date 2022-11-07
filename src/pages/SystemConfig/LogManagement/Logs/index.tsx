@@ -1,7 +1,8 @@
 //操作日志
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import {getLogList} from '@/services/Logs'
 import styles from './index.less';
 let list1 =[
   {id:1,text:'光合谷A能源站'},
@@ -18,6 +19,11 @@ let list3 = [
 let List = [list1,list2,list3]
 
 const Logs = memo(() => {
+  useEffect(()=>{
+    getLogList().then(res=>{
+      console.log(res)
+    })
+  })
   return (
     <>
       <PageHeader title="操作日志" />

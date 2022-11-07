@@ -51,7 +51,11 @@ const ForgetPwd = memo(() => {
       }
   return (
     <Layout className={styles.layoutBg}>
-      <Header className={styles.headerBox}></Header>
+         <Header className={styles.headerBox}>
+        <div className={styles.headerLogo}></div>
+
+        <div className={styles.navBarLine}></div>
+      </Header>
       <Content className={styles.contentBox}>
         <Form className={styles.Form}>
           <div className={styles.title}>重置密码</div>
@@ -128,7 +132,10 @@ const ForgetPwd = memo(() => {
              </div>
         </div>
       </Content>
-      <Footer className={styles.footerBox}></Footer>
+      <Footer className={styles.footerBox}>
+        Copyright © 华德智慧能源管理（天津）有限公司 版权所有
+        津ICP备16006426号-1
+      </Footer>
     </Layout>
   );
 });
