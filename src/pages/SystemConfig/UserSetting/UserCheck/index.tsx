@@ -74,7 +74,8 @@ const UserCheck = () => {
           Data={data}
           Loading={loading}
           onCilck={handleClick}
-          showAction={{ show: true, name: ['查看', '删除'] }}
+          ShowAction={{ show: true, name: ['通过', '驳回'] }}
+          ShowPagination
         />
       </div>
     </>

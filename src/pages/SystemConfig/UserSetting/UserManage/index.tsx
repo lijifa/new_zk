@@ -1,11 +1,13 @@
 import FormList from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { DownOutlined } from '@ant-design/icons';
-import { Tree } from 'antd';
+import { DownOutlined, RedoOutlined, UpOutlined } from '@ant-design/icons';
+import { Button, Tree } from 'antd';
 import type { DataNode, TreeProps } from 'antd/es/tree';
 import { useState } from 'react';
 import styles from './index.less';
+
+const { DirectoryTree } = Tree;
 
 // 表格数据
 const columns = [
@@ -52,46 +54,19 @@ const treeData: DataNode[] = [
     key: '0-0',
     children: [
       {
-        title: 'parent 1-0',
-        key: '0-0-0',
-        children: [
-          {
-            title: 'leaf',
-            key: '0-0-0-0',
-          },
-          {
-            title: 'leaf',
-            key: '0-0-0-1',
-          },
-          {
-            title: 'leaf',
-            key: '0-0-0-2',
-          },
-        ],
+        title: 'leaf',
+        key: '1',
+        isLeaf: true,
       },
       {
-        title: 'parent 1-1',
-        key: '0-0-1',
-        children: [
-          {
-            title: 'leaf',
-            key: '0-0-1-0',
-          },
-        ],
+        title: 'leaf',
+        key: '2',
+        isLeaf: true,
       },
       {
-        title: 'parent 1-2',
-        key: '0-0-2',
-        children: [
-          {
-            title: 'leaf',
-            key: '0-0-2-0',
-          },
-          {
-            title: 'leaf',
-            key: '0-0-2-1',
-          },
-        ],
+        title: 'leaf',
+        key: '3',
+        isLeaf: true,
       },
     ],
   },
@@ -99,6 +74,8 @@ const treeData: DataNode[] = [
 
 const UserManage = () => {
   const [loading, setLoading] = useState(false);
+  const [treeIcon, setTreeIcon] = useState(false);
+  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(['0-0']);
 
   const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
@@ -114,36 +91,71 @@ const UserManage = () => {
     });
   }
 
+  // 监听表格点击
   const handleClick = (type: string, key: any) => {
     console.log('打印:', type, key);
+  };
+
+  // 展开/收起节点时触发
+  const onExpand = (expandedKeysValue: React.Key[]) => {
+    console.log('onExpand:', expandedKeysValue);
+    setExpandedKeys(expandedKeysValue);
+  };
+
+  // 点击刷新
+  const Refrish = () => {
+    console.log('点击刷新');
+  };
+
+  // 点击展开/收回
+  const ToggleTree = () => {
+    setTreeIcon(!treeIcon);
+    setExpandedKeys(treeIcon ? ['0-0'] : []);
   };
 
   return (
     <>
       <PageHeader title="用户管理" />
       <div className={styles.content}>
-        <div>
-          <Tree
+        <div className={styles.TreeBox}>
+          <div className={styles.Treetitle}>
+            <span>部门信息</span>
+            <div>
+              <Button
+                type="link"
+                icon={treeIcon ? <UpOutlined /> : <DownOutlined />}
+                onClick={() => ToggleTree()}
+              />
+              <Button
+                type="link"
+                icon={<RedoOutlined />}
+                onClick={() => Refrish()}
+              />
+            </div>
+          </div>
+          <DirectoryTree
+            multiple
             className={styles.tree}
-            showLine
-            switcherIcon={<DownOutlined />}
-            defaultExpandedKeys={['0-0-0']}
             onSelect={onSelect}
             treeData={treeData}
+            onExpand={onExpand}
+            expandedKeys={expandedKeys}
           />
         </div>
-        <div>
+        <div style={{ flex: 1, width: 200 }}>
           <div className={styles.selectBox}>
             <Searchheader time={true} type={4} />
           </div>
           <div className={styles.container}>
             <FormList
-              Scroll={{ y: 'calc(100vh - 350px)' }}
+              Scroll={{ y: 'calc(100vh - 300px)' }}
               Columns={columns}
               Data={data}
               Loading={loading}
               onCilck={handleClick}
-              showAction={{ show: true, name: ['查看', '删除'] }}
+              ShowAction={{ show: true, name: ['查看', '删除'] }}
+              ShowSelection
+              ShowPagination
             />
           </div>
         </div>
