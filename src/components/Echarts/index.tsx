@@ -87,7 +87,7 @@ export default function Chart({
         const lineStyleColor = LineStyleColor || [];
         const lineStyleOpacity = LineStyleOpacity || [];
         const lineYAxisName = LineYAxisName;
-        const lineTooltipShow = LineTooltipShow || false;
+        const lineTooltipShow = LineTooltipShow ?? true;
         const lineXtextColor = LineXtextColor || '#A5EAFF';
         const lineColor = LineColor || '#133755';
         const lineYtextColor = LineYtextColor || '#A5EAFF';
@@ -104,7 +104,7 @@ export default function Chart({
         const lineLegendPadding = LineLegendPadding || [0, 0, 0, 0];
         const series = ydata?.map((item: any, index: any) => {
           const StyleColor = lineStyleColor[index] || '#00FFFF';
-          const StyleOpacity = lineStyleOpacity[index] || 0.3;
+          const StyleOpacity = lineStyleOpacity[index] ?? 0.3;
           const name = lineName[index];
           return {
             name: name,
@@ -205,7 +205,7 @@ export default function Chart({
         const barName = BarName || [];
         const barXInterval = BarXInterval;
         const barYInterval = BarYInterval;
-        const barTooltipShow = BarTooltipShow || false;
+        const barTooltipShow = BarTooltipShow ?? true;
         const barStyleColor = BarStyleColor || [];
         const series = ydata?.map((item: any, index: any) => {
           const StyleColor = barStyleColor[index] || '#00FFFF';
@@ -285,13 +285,13 @@ export default function Chart({
         const xdata = xDataRef.current;
         const ydata = yDataRef.current;
         const verlabelColor = VerlabelColor || '#fff';
-        const verlabelFontSize = VerlabelFontSize || 12;
+        const verlabelFontSize = VerlabelFontSize ?? 12;
         const vercountColor = VercountColor || '#fff';
-        const vercountFontSize = VercountFontSize || 12;
+        const vercountFontSize = VercountFontSize ?? 12;
         const vershowCount = VershowCount || false;
         const verstartColor = VerstartColor || 'rgb(72,212,150,1)';
         const verendColor = VerendColor || 'rgb(0,255,255,1)';
-        const verbarWidth = VerbarWidth || 10;
+        const verbarWidth = VerbarWidth ?? 10;
         const data = ydata?.map((item: any) => {
           return item;
         });
@@ -390,7 +390,7 @@ export default function Chart({
         const roundPieName = RoundPieName || 'Line 1';
         const roundDataName = RoundDataName || '01';
         const roundRadius = RoundRadius || ['50%', '60%'];
-        const roundTooltipShow = RoundTooltipShow || false;
+        const roundTooltipShow = RoundTooltipShow ?? true;
         return {
           title: {
             text: xdata + '%',
@@ -459,11 +459,11 @@ export default function Chart({
         const radius = { inner: '', outer: '' };
         const colorSet = DashOutTextStyle || '#00FFFF';
         const colorSet2 = DashInStyle || '#04a7a7';
-        const maxdata = DashMaxData || 100;
+        const maxdata = DashMaxData ?? 100;
         const axisLabel = {
           show: DashShowText || false,
           color: colorSet,
-          distance: DashTextPosition || -15, //文字位置
+          distance: DashTextPosition ?? -15, //文字位置
         };
         const dataArr = xDataRef.current || '';
         return {

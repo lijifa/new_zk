@@ -1,7 +1,7 @@
 // import React, {useEffect} from 'react';
 import { useModel } from '@umijs/max';
 import { Button, Modal } from 'antd';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ChooseCompany.less';
 interface companyItemDataType {
   key: number;
@@ -78,7 +78,7 @@ const ChooseCom = (props: any) => {
             确定
           </Button>
           <Button className={styles.closeBtn} onClick={() => clickClose()}>
-            取消
+            关闭
           </Button>
         </div>
       </div>

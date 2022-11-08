@@ -62,7 +62,8 @@ const UserCheck = () => {
           Data={data}
           Loading={loading}
           onCilck={handleClick}
-          showAction={{ show: true, name: ['启用'] }}
+          ShowSelection
+          ShowAction={{ show: true, name: ['启用'] }}
           TableBts={[
             { type: 'add', text: '新增' },
             { type: 'update', text: '修改' },

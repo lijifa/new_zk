@@ -1,74 +1,90 @@
 .companyListBox {
   display: flex;
-  width: 520px;
-  height: 650px;
-  padding: 14px;
-  background: url('@/assets/Login/login_box_1.png') no-repeat;
+  width: 500px;
+  height: 600px;
+  background: white;
   background-size: 100% 100%;
   flex-direction: column;
   align-items: center;
 
   .contentTitle {
-    color: #FFF;
-		font-size: 24px;
+    width: 100%;
+    margin-bottom: 35px;
+    background: #cfe6ff;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
     height: 60px;
-    text-align: center;
+    text-align: left;
+    line-height: 60px;
+    padding-left: 35px;
   }
 
   .companyContent {
-    width: 450px;
+    width: 370px;
     height: 450px;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   .companyItem {
-    height: 50px;
-    line-height: 50px;
-    background: url('@/assets/Login/companyBg.png') no-repeat;
+    height: 30px;
+    line-height: 30px;
     background-size: 100% 100%;
-    font-size: 18px;
+    font-size: 14px;
+    border: 1px solid #cdd7e8;
     font-weight: 400;
     text-align: center;
-    color: #0FF;
-    margin-bottom: 20px;
+    color: black;
+    margin-bottom: 10px;
     cursor: pointer;
   }
 
   .companyCheck {
-    background: url('@/assets/Login/companyCheck.png') no-repeat;
-    background-size: 100% 100%;
-    color: #FFF;
-    font-weight: bold;
+    border: 1px solid #268cff;
+    // &:after {
+    //   font-family: 'iconfont' !important;
+    //   font-size: 37px;
+    //   font-style: normal;
+    //   -webkit-font-smoothing: antialiased;
+    //   -moz-osx-font-smoothing: grayscale;
+    //   content: '\e8b7';
+    //   color: #268cff;
+    //   position: absolute;
+    //   /* margin-left: 37px; */
+    //   bottom: 2px;
+    //   right: 0;
+    // }
   }
 
   .companyBtn {
     position: absolute;
     bottom: 40px;
+    right: 30px;
   }
 
   .sureBtn {
-    width: 225px;
-    height: 50px;
-    margin-right: 20px;
-    color: #FFF;
-    border: 0;
-    font-size: 18px;
-    background-color: #268CFF;
+    width: 65px;
+    height: 30px;
+    margin-right: 10px;
+    color: #fff;
+    border: 1px solid #1e9fff;
+    font-size: 14px;
+    background-color: #268cff;
   }
 
   .closeBtn {
-    width: 225px;
-    height: 50px;
-    color: #FFF;
-    border: 0;
-    font-size: 18px;
-    background-color: rgb(2, 73, 130);
+    width: 65px;
+    height: 30px;
+    color: #1e9fff;
+    border: 1px solid #1e9fff;
+    font-size: 14px;
+    background-color: #f1f1f1;
   }
 }
 
 :global {
   .ant-modal-content {
-      background-color: transparent;
+    background-color: transparent;
   }
 }

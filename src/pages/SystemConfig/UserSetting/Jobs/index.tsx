@@ -48,6 +48,7 @@ const UserCheck = () => {
           Scroll={{ y: 'calc(100vh - 350px)' }}
           Columns={columns}
           Data={data}
+          ShowSelection
           Loading={loading}
           onCilck={handleClick}
           TableBts={[
