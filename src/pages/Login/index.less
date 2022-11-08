@@ -129,6 +129,15 @@
         height: 40px;
         position: relative;
         width: 340px;
+        :global {
+          .ant-input {
+            &:-webkit-autofill {
+              background: transparent;
+              transition: background-color 50000s ease-in-out 0s;
+              -webkit-text-fill-color: rgb(0, 0, 0);
+            }
+          }
+        }
         .formInput {
           margin: 30px 0 0;
           height: 40px;
