@@ -118,12 +118,14 @@ const Login = () => {
   const resetPwd = (event: any) => {
     event.preventDefault();
     console.log('忘记密码');
+    history.push('/forgetpwd')
   };
 
   // 企业注册
   const pathToRegister = (event: any) => {
     event.preventDefault();
     console.log('企业注册');
+    history.push('/companyreg')
   };
 
   return (

@@ -68,14 +68,23 @@ const routes = [
   //企业注册
   {
     name: '企业注册',
-    path: '/companyReg',
-    component: './RunningFacts/CompanyReg',
+    path: '/companyreg',
+    component: './CompanyReg',
+    layout: false,
   },
   //忘记密码
   {
     name: '忘记密码',
-    path: '/forgetPwd',
-    component: './RunningFacts/ForgetPwd',
+    path: '/forgetpwd',
+    component: './ForgetPwd',
+    layout: false,
+  },
+  //智控用户协议
+  {
+    name: '智控用户协议',
+    path: '/statement',
+    component: './Statement',
+    layout: false,
   },
   //变压器状态监测
   {

@@ -1,3 +1,7 @@
+/* 
+  Echart二次封装组件
+*/
+
 import * as echarts from 'echarts';
 import type { ReactElement } from 'react';
 import { useEffect, useRef } from 'react';
@@ -55,6 +59,9 @@ export default function Chart({
   ConComMiddletext,
   ConComOutsidetext,
   ConComColor,
+  ConComformatterColor,
+  ConComformatterSize,
+  ConComTitleColor
 }: PieData): ReactElement {
   const xDataRef = useRef(XDATA);
   const yDataRef = useRef(YDATA);
@@ -618,6 +625,17 @@ export default function Chart({
           '#FF7C1B',
           '#F7CA3F',
         ];
+       const formatter = ConComformatterColor || [
+        ' rgba(106, 113, 124, 1)',
+        ' rgba(106, 113, 124, 1)',
+        ' rgba(106, 113, 124, 1)',
+       ]
+       const fromattersize = ConComformatterSize || [16,16,15,15] //最后一位是item高度
+       const titleColor = ConComTitleColor || [
+        ' rgba(106, 113, 124, 1)',
+        ' rgba(106, 113, 124, 1)',
+        ' rgba(106, 113, 124, 1)',
+       ]
         return {
           color: color,
           tooltip: {
@@ -638,16 +656,16 @@ export default function Chart({
                   fontSize: title?.size,
                   lineHeight: title?.linHeight,
                   // fontWeight: 'bold',
-                  color: 'rgba(106, 113, 124, 1)',
+                  color: titleColor[0],
                 },
                 b: {
                   fontSize: title2?.size,
-                  color: 'rgba(106, 113, 124, 1)k',
+                  color: titleColor[1],
                   lineHeight: title2?.linHeight,
                 },
                 c: {
                   fontSize: title3?.size,
-                  color: 'rgba(106, 113, 124, 1)',
+                  color: titleColor[2],
                 },
               },
             },
@@ -658,22 +676,22 @@ export default function Chart({
             left: outsidetext?.left,
             icon: 'rect',
             itemWidth: 15,
-            itemHeight: 15,
+            itemHeight: fromattersize[3],
             itemGap: 13,
             textStyle: {
               rich: {
                 name: {
-                  color: ' rgba(106, 113, 124, 1)',
-                  fontSize: 16,
+                  color: formatter[0],
+                  fontSize: fromattersize[0],
                   width: outsidetext?.width1,
                 },
                 percent: {
-                  color: ' rgba(106, 113, 124, 1)',
-                  fontSize: 16,
+                  color: formatter[1],
+                  fontSize: fromattersize[1],
                 },
                 unit: {
-                  color: 'rgba(106, 113, 124, 1)',
-                  fontSize: 15,
+                  color:formatter[2],
+                  fontSize: fromattersize[2],
                 },
               },
             },
