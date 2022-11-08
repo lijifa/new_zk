@@ -1,31 +1,26 @@
 //项目维护
+import ExportList from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button,Table} from 'antd';
-import React, { memo } from 'react';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import ExportList from '@/components/FormList';
-import type { FilterValue } from 'antd/es/table/interface';
-import qs from 'qs';
-import { useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import styles from './index.less';
-let list1 =[
-  {id:1,text:'光合谷A能源站'},
-  {id:3,text:'国际企业社区机房_0'}
-
-]
+let list1 = [
+  { id: 1, text: '光合谷A能源站' },
+  { id: 3, text: '国际企业社区机房_0' },
+];
 let list2 = [
-  {id:2,text:'暖通系统'},
-  {id:7,text:'空调末端'}
-]
+  { id: 2, text: '暖通系统' },
+  { id: 7, text: '空调末端' },
+];
 let list3 = [
-  {id:6,text:'轨道集团光合谷园系统'},
-  {id:34,text:'静海政府智慧能源管理'}
-]
-const placeholder = ['请选择所属项目','请选择所属系统','请选择所属站点']
-let List = [list1,list2,list3]
-console.log(List)
-
+  { id: 6, text: '轨道集团光合谷园系统' },
+  { id: 34, text: '静海政府智慧能源管理' },
+];
+const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
+let List = [list1, list2, list3];
+let Inputdefalut = ['请输入缴费单位搜索'];
+let setlectdefalut = [undefined, undefined, undefined];
+let inputvaluedefalut = ['', ''];
 
 // 表格数据
 const columns = [
@@ -72,11 +67,7 @@ const columns = [
   },
 ];
 
-
-
-
 const HeatRate = memo(() => {
-
   const [loading, setLoading] = useState(false);
 
   const data: any = [];
@@ -89,13 +80,8 @@ const HeatRate = memo(() => {
     });
   }
 
-
-
-
-
-  const handleTableChange = (value:any,key:any) => {
-    console.log(value,key)
-
+  const handleTableChange = (value: any, key: any) => {
+    console.log(value, key);
   };
   const handleClick = (Listkey: any) => {
     console.log('点击:', Listkey);
@@ -105,24 +91,30 @@ const HeatRate = memo(() => {
     <>
       <PageHeader title="项目维护" />
       <div className={styles.moduleContent}>
-        <Searchheader time={false} type={1} list={List}  serarch={true} placeholder={placeholder}/>
+        <Searchheader
+          List={List}
+          placeholder={placeholder}
+          type="defalut"
+          Inputdefalut={Inputdefalut}
+          setlectdefalut={setlectdefalut}
+          inputvaluedefalut={inputvaluedefalut}
+        />
         <div className={styles.module}>
           <div className={styles.table}>
-          <ExportList
-          Loading={loading}
-          onChange={handleTableChange}
-          Data={data}
-          Columns={columns}
-          Scroll={{ y: 'calc(100vh - 400px)' }}
-          onCilck={handleClick}
-          TableBts={[
-            { type: 'add', text: '新增' },
-            { type: 'update', text: '修改' },
-            { type: 'del', text: '删除' },
-          ]}
-        />
-        </div>
-
+            <ExportList
+              Loading={loading}
+              onChange={handleTableChange}
+              Data={data}
+              Columns={columns}
+              Scroll={{ y: 'calc(100vh - 400px)' }}
+              onCilck={handleClick}
+              TableBts={[
+                { type: 'add', text: '新增' },
+                { type: 'update', text: '修改' },
+                { type: 'del', text: '删除' },
+              ]}
+            />
+          </div>
         </div>
       </div>
     </>

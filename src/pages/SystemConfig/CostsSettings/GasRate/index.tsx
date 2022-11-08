@@ -1,9 +1,8 @@
 //燃气单价维护
 import ExportList from '@/components/FormList';
+import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import {Form} from 'antd'
-import Searchheader from '@/components/Searchheader'
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useState } from 'react';
 import styles from './index.less';
 let list1 = [
   { id: 1, text: '光合谷A能源站' },
@@ -19,6 +18,9 @@ let list3 = [
 ];
 const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
 let List = [list1, list2, list3];
+let Inputdefalut = ['请输入缴费单位搜索'];
+let setlectdefalut= [undefined,undefined,undefined]
+let inputvaluedefalut = ['','']
 // 表格数据
 const columns = [
   {
@@ -88,7 +90,14 @@ const HeatRate = memo(() => {
     <>
       <PageHeader title="燃气单价维护" />
       <div className={styles.moduleContent}>
-        <Searchheader  List={List} placeholder={placeholder}  />
+        <Searchheader
+          List={List}
+          placeholder={placeholder}
+          type="defalut"
+          Inputdefalut={Inputdefalut}
+          setlectdefalut={setlectdefalut}
+          inputvaluedefalut={inputvaluedefalut}
+        />
 
         <div className={styles.module}>
           <div className={styles.table}>
