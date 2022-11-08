@@ -1559,7 +1559,7 @@ export default () => {
                 params: {},
                 parentId: 5713,
                 perms: 'business:hvacDiagramDraw:view',
-                url: '/business/diagram/diagramsign',
+                url: '/hvacDiagramSet',
               },
               {
                 ancestors: ',4001,5710,5713',

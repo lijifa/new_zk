@@ -323,6 +323,15 @@ const routes = [
     component: './SystemConfig/UserSetting/Role',
   },
 
+  
+  /* 用户设置================ */
+    // 暖通组态配置
+    {
+      name: '暖通组态配置',
+      path: '/hvacDiagramSet',
+      component: './SystemConfig/DiagramSet/hvacDiagramSet',
+    },
+
   /*
    *  异常模块路由
    */
