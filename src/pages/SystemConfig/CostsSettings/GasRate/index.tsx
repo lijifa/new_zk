@@ -19,7 +19,6 @@ let list3 = [
 ];
 const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
 let List = [list1, list2, list3];
-console.log(List);
 // 表格数据
 const columns = [
   {
