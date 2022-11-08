@@ -1,3 +1,7 @@
+/* 
+  Echart二次封装组件
+*/
+
 import * as echarts from 'echarts';
 import type { ReactElement } from 'react';
 import { useEffect, useRef } from 'react';

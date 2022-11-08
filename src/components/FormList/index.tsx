@@ -1,9 +1,6 @@
-import { history } from '@umijs/max';
-import { Button, ConfigProvider, Pagination, Space, Table } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
-import type { ColumnsType } from 'antd/es/table';
-import { useEffect, useState } from 'react';
-import styles from './index.less';
+/* 
+   表格组件
+*/
 
 // 表格顶部数据格式
 /* 
@@ -34,6 +31,13 @@ import styles from './index.less';
       { type: 'del', text: '删除' },
     ]} 
 */
+
+import { history } from '@umijs/max';
+import { Button, ConfigProvider, Pagination, Space, Table } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+import type { ColumnsType } from 'antd/es/table';
+import { useEffect, useState } from 'react';
+import styles from './index.less';
 
 interface DataType {
   name: {
@@ -80,10 +84,10 @@ const FormList = (props: FormList) => {
     ShowSelection,
     ShowPagination,
   } = props;
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [columns, setColumns] = useState(Columns);
-  const [tableBts, setTableBts] = useState([]);
-  const [display, setDisplay] = useState(true);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]); //多选框
+  const [columns, setColumns] = useState(Columns); //header数据
+  const [tableBts, setTableBts] = useState([]); //设置顶部工具按钮
+  const [display, setDisplay] = useState(true); //加载完成按钮和操作列之后显示table
   // 添加右侧操作列
   useEffect(() => {
     const tableTitle = Columns;
