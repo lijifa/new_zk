@@ -1,25 +1,32 @@
 //告警规则配置
+import ExportList from '@/components/FormList';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button,Table} from 'antd';
-import React, { memo } from 'react';
+import { Button } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import ExportList from '@/components/FormList';
 import type { FilterValue } from 'antd/es/table/interface';
 import qs from 'qs';
-import { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styles from './index.less';
-let list = [
-  {
-    label: '静海区政府西楼变电室',
-  },
-  {
-    label: '静海区政府西楼变电室',
-  },
-  {
-    label: '静海区政府西楼变电室',
-  },
+
+let list1 = [
+  { id: 1, text: '光合谷A能源站' },
+  { id: 3, text: '国际企业社区机房_0' },
 ];
+let list2 = [
+  { id: 2, text: '暖通系统' },
+  { id: 7, text: '空调末端' },
+];
+let list3 = [
+  { id: 6, text: '轨道集团光合谷园系统' },
+  { id: 34, text: '静海政府智慧能源管理' },
+];
+const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
+let List = [list1, list2, list3];
+let Inputdefalut = ['请输入缴费单位搜索'];
+let setlectdefalut = [undefined, undefined, undefined];
+let inputvaluedefalut = ['', ''];
+
 interface DataType {
   name: {
     first: string;
@@ -90,7 +97,6 @@ const getRandomuserParams = (params: TableParams) => ({
   ...params,
 });
 
-
 const AlarmRulesSet = memo(() => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -141,7 +147,14 @@ const AlarmRulesSet = memo(() => {
     <>
       <PageHeader title="告警规则配置" />
       <div className={styles.moduleContent}>
-        <Searchheader time={true} type={1} list={list}  serarch={true}/>
+        <Searchheader
+          List={List}
+          placeholder={placeholder}
+          type="defalut"
+          Inputdefalut={Inputdefalut}
+          setlectdefalut={setlectdefalut}
+          inputvaluedefalut={inputvaluedefalut}
+        />
         <div className={styles.module}>
           <div className={styles.bars}>
             <Button
@@ -171,17 +184,16 @@ const AlarmRulesSet = memo(() => {
             </Button>
           </div>
           <div className={styles.table}>
-          <ExportList
-          Loading={loading}
-          onChange={handleTableChange}
-          Data={data}
-          Columns={columns}
-          Pagination={tableParams.pagination}
-          Scroll={{ y: 'calc(100vh - 350px)' }}
-          onCilck={handleClick}
-        />
-        </div>
-
+            <ExportList
+              Loading={loading}
+              onChange={handleTableChange}
+              Data={data}
+              Columns={columns}
+              Pagination={tableParams.pagination}
+              Scroll={{ y: 'calc(100vh - 350px)' }}
+              onCilck={handleClick}
+            />
+          </div>
         </div>
       </div>
     </>

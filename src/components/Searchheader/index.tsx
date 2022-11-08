@@ -1,150 +1,165 @@
-import { Button, DatePicker, Select } from 'antd';
+import { Button, DatePicker, Input, Select } from 'antd';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styles from './index.less';
+interface Props {
+  List: any; //选择框数据
+  placeholder: Array<string>; //默认输入值
+  type: string; //选择框类型 none:没有时间框 year：年份时间选择框,month月份选择器,defalut：默认显示为字
+  Inputdefalut: Array<string>; //input的默认值决定input选择框的数量
+  setlectdefalut :Array<number | undefined> ;//给select默认的值，有几个输入框填几个
+  inputvaluedefalut:Array<string>;//给输入一个默认值
+}
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-interface Props {
-  time: boolean; //是否有时间选择,
-  type: number; //选择框的数量
-  smallcheck?: boolean; //是否需要小的选择框
-  list?: Array<any>; //用户传入的数据
-  serarch?: boolean; //是否有搜索框
-  placeholder?: Array<string>; //选择框默认文字
-}
-//默认文字
-
+const dateFormat = 'YYYY/MM/DD';
 const Searchheader = memo((props: Props) => {
-  let {
-    time,
-    type,
-    smallcheck = false,
-    list,
-    serarch = false,
-    placeholder = ['我是默认标题'],
-  } = props;
-  const dateFormat = 'YYYY/MM/DD';
- const [value,setvalue] = useState()
- 
-  function Time(time: boolean) {
+  let { List, placeholder, type, Inputdefalut,setlectdefalut,inputvaluedefalut} = props;
+  const [selectData, SetSelectData] = useState(List);
+  const [newvalue, Setnewvalue] = useState<Array<number | undefined>>(setlectdefalut); //多选框
+  const [time, settime] = useState<any>(''); //时间
+  const [inputvalue, setinputvalue] = useState<Array<string>>(inputvaluedefalut); //输入框值
+  //重置按钮方法
+  const setRest = () => {
+    const newArr = newvalue.map((_) => undefined);
+    Setnewvalue(newArr); //重置选择框
+    settime(new Date()); //重置时间
+    setinputvalue(['', '']); //重置输入框
+  };
+  useEffect(() => {
+    SetSelectData(List);
+  });
+  //改变事件调用
+  const setTime = (time: any) => {
+    console.log(time);
+    //settime(time)
+  };
+  //改变多选框调用
+  const setstale = (value: any, index?: any) => {
+    const newIndex = newvalue.map((item, Itemindex) =>
+      index === Itemindex ? value : item,
+    );
+    Setnewvalue(newIndex);
+  };
+  //改变输入框调用
+  const changeInputvalue = (event: any, index: any) => {
+    ///setinputvalue(event.target?.value);
+    console.log(index, event.target?.value);
+    const newIndex = inputvalue.map((item, Itemindex) =>
+      index === Itemindex ? event.target?.value : item,
+    );
+    setinputvalue(newIndex);
+  };
+  //选择日历
+  function ChooseDate(type: string) {
     let result;
-    switch (time) {
-      case true:
+    switch (type) {
+      case 'none':
+        result = <></>;
+        break;
+      case 'year':
         result = (
           <>
-            <li style={{ width: '260px' }}>
-              <RangePicker
-                defaultValue={[
-                  moment('2015/01/01', dateFormat),
-                  moment('2015/01/01', dateFormat),
-                ]}
-                format={dateFormat}
-                locale={locale}
-              />
-            </li>
+            <DatePicker picker="year" format={dateFormat} locale={locale} />
           </>
         );
         break;
-      case false:
-        result = <></>;
+      case 'month':
+        result = (
+          <>
+            <DatePicker picker="month" format={dateFormat} locale={locale} />
+          </>
+        );
         break;
+      case 'picker':
+        result = (
+          <>
+            <RangePicker
+              defaultValue={[
+                moment('2015/01/01', dateFormat),
+                moment('2015/01/01', dateFormat),
+              ]}
+              format={dateFormat}
+              locale={locale}
+            />
+          </>
+        );
+        break;
+      case 'defalut':
+        result = (
+          <>
+            <RangePicker
+              format={dateFormat}
+              locale={locale}
+              onChange={setTime}
+              key={time}
+            />
+          </>
+        );
+
       default:
         break;
     }
     return result;
   }
 
-  let newlist: Array<any> = [];
-  for (let i = 0; i < type; i++) {
-    newlist.push(i);
-  }
-  //重置按钮
-  const setReset = () => {
-    console.log('ss')
-    setvalue(undefined)
-    
-  };
-  const onChange = (value: any) => {
-    setvalue(value)
-    console.log(value)
-  };
-
-  const onChanges =(e:any) =>[
-    console.log(e)
-  ]
-
   return (
     <div className={styles.moduleTitle}>
       <ul className={styles.moduleUl}>
-        {serarch ? (
-          <li>
-            <Select
-              showSearch
-              onSearch={onChanges}
-              placeholder="请输搜索内容"
-              style={{ width: '100%' }}
-              defaultActiveFirstOption={false}
-              showArrow={false}
-              filterOption={false}
-              notFoundContent={null}
-            ></Select>
-          </li>
-        ) : (
-          ''
-        )}
+        {/* <Input
+            placeholder="请输入缴费单位搜索"
+            value={inputvalue}
+            onChange={setInputvalue}
+          /> */}
+        {Inputdefalut.map((item, index) => {
+          return (
+            <li key={index}>
+              <Input
+                value={inputvalue[index]}
+                onChange={(value) => changeInputvalue(value, index)}
+                placeholder={item}
+                key={index}
+              />
+            </li>
+          );
+        })}
 
-        {list?.map((item: any, index: any) => {
-
-            return (
-              <li key={index}>
-                <Select
-                  key ={index}
-                  style={{ width: '100%' }}
-                  showSearch
-                  onChange={onChange}
-                 // value={value}
-                  placeholder={placeholder[index]}
-                  optionFilterProp="children"
-                  labelInValue={true}
-                  filterOption={(input, option) =>
-                    (option!.children as unknown as string)
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-                  }
-                >
-                  {item.map((iten: any, index: any) => {
-                    return <Option key={index} value={iten.id}>{iten.text}</Option>;
-                  })}
-                </Select>
-              </li>
-            );
-          })}
-
-        {smallcheck === true ? (
-          <li style={{ minWidth: '80px', width: '80px' }}>
-            <Select
-              style={{ width: '100%' }}
-              showSearch
-              placeholder="每日"
-              defaultValue="jack"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option!.children as unknown as string)
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-            >
-              <Option value="jack">每日</Option>
-              <Option value="lucy">每月</Option>
-            </Select>
-          </li>
-        ) : (
-          ''
-        )}
-        {Time(time)}
-
+        {selectData.map((item: any, index: number) => {
+          return (
+            <li key={index}>
+              <Select
+                style={{ width: '100%' }}
+                placeholder={placeholder[index]}
+                onChange={(value) => setstale(value, index)}
+                value={newvalue[index]}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  (option!.children as unknown as string)
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                // options={item.map((iten: { text: string; id: number }) => ({
+                //   label: iten.text,
+                //   value: iten.id,
+                // }))}
+              >
+                {item.map((iten: any, index: any) => {
+                  return (
+                    <Option key={index} value={iten.id} label={iten.text}>
+                      {iten.text}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </li>
+          );
+        })}
+        <li style={{ width: type === 'none' ? '0px' : '260px' }}>
+          {ChooseDate(type)}
+        </li>
         <li>
           <Button
             type="primary"
@@ -156,7 +171,7 @@ const Searchheader = memo((props: Props) => {
             搜索
           </Button>
           <Button
-            onClick={setReset}
+            onClick={setRest}
             style={{
               color: ' #268CFF',
               marginLeft: '10px',
