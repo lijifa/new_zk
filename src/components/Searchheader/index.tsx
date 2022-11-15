@@ -5,36 +5,44 @@ import 'moment/locale/zh-cn';
 import React, { memo, useEffect, useState } from 'react';
 import styles from './index.less';
 interface Props {
-  List: any; //选择框数据
-  placeholder: Array<string>; //默认输入值
+  List?: any; //选择框数据
+  placeholder?: Array<string>; //默认输入值
   type: string; //选择框类型 none:没有时间框 year：年份时间选择框,month月份选择器,defalut：默认显示为字
-  Inputdefalut: Array<string>; //input的默认值决定input选择框的数量
-  setlectdefalut :Array<number | undefined> ;//给select默认的值，有几个输入框填几个
-  inputvaluedefalut:Array<string>;//给输入一个默认值
+  Inputdefalut?: Array<string>; //input的默认值决定input选择框的数量
+  setlectdefalut?:Array<number | undefined> ;//给select默认的值，有几个输入框填几个
+  inputvaluedefalut?:Array<string>;//给输入一个默认值
 }
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 const Searchheader = memo((props: Props) => {
   let { List, placeholder, type, Inputdefalut,setlectdefalut,inputvaluedefalut} = props;
-  const [selectData, SetSelectData] = useState(List);
-  const [newvalue, Setnewvalue] = useState<Array<number | undefined>>(setlectdefalut); //多选框
+  const [selectData, SetSelectData] = useState(List);//父组件传来的数据
+  const [newvalue, Setnewvalue] = useState<Array<number | undefined | null>>(setlectdefalut); //多选框
   const [time, settime] = useState<any>(''); //时间
-  const [inputvalue, setinputvalue] = useState<Array<string>>(inputvaluedefalut); //输入框值
+  const [inputvalue, setinputvalue] = useState<Array<string|undefined|null>>(inputvaluedefalut); //输入框值
+  const [Timevalue,setTimeValue] = useState<Array<string>>([])//选择的开始与结束时间
   //重置按钮方法
   const setRest = () => {
     const newArr = newvalue.map((_) => undefined);
     Setnewvalue(newArr); //重置选择框
     settime(new Date()); //重置时间
-    setinputvalue(['', '']); //重置输入框
+    setinputvalue(inputvaluedefalut); //重置输入框
   };
+  //点击搜索触发调用
+  const onsearch =()=>{
+    console.log(newvalue,inputvalue)
+    console.log(Timevalue)
+  }
   useEffect(() => {
     SetSelectData(List);
   });
   //改变事件调用
-  const setTime = (time: any) => {
-    console.log(time);
-    //settime(time)
+  const setTime = (time :any,dateString:any) => {
+    console.log(time,dateString);
+    let StartTime = dateString[0]
+    let EndTime = dateString[1]
+    setTimeValue([StartTime,EndTime])
   };
   //改变多选框调用
   const setstale = (value: any, index?: any) => {
@@ -46,7 +54,6 @@ const Searchheader = memo((props: Props) => {
   //改变输入框调用
   const changeInputvalue = (event: any, index: any) => {
     ///setinputvalue(event.target?.value);
-    console.log(index, event.target?.value);
     const newIndex = inputvalue.map((item, Itemindex) =>
       index === Itemindex ? event.target?.value : item,
     );
@@ -62,14 +69,14 @@ const Searchheader = memo((props: Props) => {
       case 'year':
         result = (
           <>
-            <DatePicker picker="year" format={dateFormat} locale={locale} />
+            <DatePicker picker="year" format={dateFormat} locale={locale} onChange={setTime} />
           </>
         );
         break;
       case 'month':
         result = (
           <>
-            <DatePicker picker="month" format={dateFormat} locale={locale} />
+            <DatePicker picker="month" format={dateFormat} locale={locale} onChange={setTime} />
           </>
         );
         break;
@@ -83,6 +90,7 @@ const Searchheader = memo((props: Props) => {
               ]}
               format={dateFormat}
               locale={locale}
+              onChange={setTime}
             />
           </>
         );
@@ -113,7 +121,7 @@ const Searchheader = memo((props: Props) => {
             value={inputvalue}
             onChange={setInputvalue}
           /> */}
-        {Inputdefalut.map((item, index) => {
+        {Inputdefalut&&Inputdefalut.map((item, index) => {
           return (
             <li key={index}>
               <Input
@@ -126,12 +134,12 @@ const Searchheader = memo((props: Props) => {
           );
         })}
 
-        {selectData.map((item: any, index: number) => {
+        {selectData&&selectData.map((item: any, index: number) => {
           return (
             <li key={index}>
               <Select
                 style={{ width: '100%' }}
-                placeholder={placeholder[index]}
+                placeholder={placeholder&&placeholder[index]}
                 onChange={(value) => setstale(value, index)}
                 value={newvalue[index]}
                 showSearch
@@ -162,6 +170,7 @@ const Searchheader = memo((props: Props) => {
         </li>
         <li>
           <Button
+            onClick={onsearch}
             type="primary"
             style={{
               textAlign: 'center',
