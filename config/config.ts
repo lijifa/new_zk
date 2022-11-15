@@ -2,7 +2,7 @@ import { defineConfig } from '@umijs/max';
 import proxyCfg from './proxy';
 import routes from './routes';
 
-const REACT_APP_ENV = 'test'; // dev: 开发；test：测试；prod：生产
+const REACT_APP_ENV = 'prod'; // dev: 开发；test：测试；prod：生产
 
 export default defineConfig({
   antd: {},
@@ -10,6 +10,12 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
+  locale: {
+    antd: true,
+    // 默认使用 src/locales/zh-CN.ts 作为多语言文件
+    default: 'zh-CN',
+    baseSeparator: '-',
+  },
   //   layout: {
   //     title: '@umijs/max',
   //   },

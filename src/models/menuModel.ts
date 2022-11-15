@@ -1574,7 +1574,7 @@ export default () => {
                 params: {},
                 parentId: 5713,
                 perms: 'business:elcDiagramDraw:view',
-                url: 'business/diagram/electricRoomDiagramsign',
+                url: '/electricDiagramSet',
               },
               {
                 ancestors: ',4001,5710,5713',
@@ -1589,7 +1589,7 @@ export default () => {
                 params: {},
                 parentId: 5713,
                 perms: 'business:diagram:view',
-                url: '/business/diagram',
+                url: '/hvacPanelSet',
               },
               {
                 ancestors: ',4001,5710,5713',
@@ -1604,7 +1604,7 @@ export default () => {
                 params: {},
                 parentId: 5713,
                 perms: 'business:diagram:view',
-                url: 'business/diagram/diagramElectric',
+                url: '/electricPanelSet',
               },
             ],
             createTime: 1651138157000,

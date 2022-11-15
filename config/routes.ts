@@ -24,11 +24,6 @@ const routes = [
     component: './JQuery/topMenuPage',
   },
   {
-    name: ' CRUD 示例',
-    path: '/table',
-    component: './Table',
-  },
-  {
     name: ' 菜单一',
     path: '/menuPage/menu1',
     component: './MenuPage/Menu1',
@@ -333,12 +328,30 @@ const routes = [
   },
 
   
-  /* 用户设置================ */
+  /* 组态配置================ */
     // 暖通组态配置
     {
       name: '暖通组态配置',
       path: '/hvacDiagramSet',
-      component: './SystemConfig/DiagramSet/hvacDiagramSet',
+      component: './SystemConfig/DiagramSet/HvacDiagramSet',
+    },
+    // 配电组态配置
+    {
+      name: '暖通组态配置',
+      path: '/electricDiagramSet',
+      component: './SystemConfig/DiagramSet/ElectricDiagramSet',
+    },
+    // 暖通组态配置
+    {
+      name: '暖通组态配置',
+      path: '/hvacPanelSet',
+      component: './SystemConfig/DiagramSet/HvacPanelSet',
+    },
+    // 配电组态配置
+    {
+      name: '暖通组态配置',
+      path: '/electricPanelSet',
+      component: './SystemConfig/DiagramSet/ElectricPanelSet',
     },
 
   /*
