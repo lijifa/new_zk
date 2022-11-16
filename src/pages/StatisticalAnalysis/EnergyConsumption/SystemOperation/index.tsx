@@ -1,31 +1,13 @@
 import Analyseheader from '@/components/Analyseheader';
 import Chart from '@/components/Echarts';
-import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, Radio, Table, Tabs } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue } from 'antd/es/table/interface';
-import qs from 'qs';
-import { useEffect, useState } from 'react';
+import ZKTable from '@/components/ZKTable';
+import { useBoolean } from 'ahooks';
+import { Button, DatePicker, Form, Radio, Select, Space, Tabs } from 'antd';
+import { useRef, useState } from 'react';
 import styles from './index.less';
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  login: {
-    uuid: string;
-  };
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
+const { RangePicker } = DatePicker;
 
 const title = {
   size: 25,
@@ -199,106 +181,63 @@ const items = TabData.map((item: any, i: any) => {
   };
 });
 
-// 表格数据
-const columns: ColumnsType<DataType> = [
-  {
-    title: '时间',
-    dataIndex: 'name',
-    render: (name) => `${name.first} ${name.last}`,
-  },
-  {
-    title: '室外温度(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '室外湿度(%)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '供水温度(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '回水温度(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '供水压力(bar)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '回水压力(bar)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '系统温差(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '系统压差(bar)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '系统流量(m³)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '耗冷(热)量(GJ)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '总能耗(kgce)',
-    dataIndex: 'gender',
-  },
-];
-
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-
-function System_operation() {
-  const [data, setData] = useState();
+const SystemOperation = () => {
   const [Time, setTime] = useState('hour');
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
+  const [form] = Form.useForm();
+  const [state, { toggle }] = useBoolean(false);
+  const shareRef = useRef<any>();
+
+  // 表格数据
+  const columns = [
+    {
+      title: '时间',
+      dataIndex: 'name',
     },
-  });
-
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams),
-      )}`,
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-          },
-        });
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
-
-  const handleTableChange = (pagination: TablePaginationConfig) => {
-    setTableParams({
-      pagination,
-    });
-  };
+    {
+      title: '室外温度(℃)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '室外湿度(%)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '供水温度(℃)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '回水温度(℃)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '供水压力(bar)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '回水压力(bar)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '系统温差(℃)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '系统压差(bar)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '系统流量(m³)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '耗冷(热)量(GJ)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '总能耗(kgce)',
+      dataIndex: 'gender',
+    },
+  ];
 
   const titleNav = () => {
     if (Time === 'hour') {
@@ -337,14 +276,65 @@ function System_operation() {
     }
   };
 
+  // 点击搜索、重置按钮
+  const searchOper = (type: string) => {
+    shareRef?.current?.clickSearchBtn(type);
+  };
+
+  // 高级搜索栏Form
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="email">
+            <Select
+              placeholder="请选择所属站点"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '待审核',
+                },
+                {
+                  value: '2',
+                  label: '已通过',
+                },
+                {
+                  value: '3',
+                  label: '已拒绝',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="createData">
+            {Time === 'hour' ? <DatePicker /> : <RangePicker />}
+          </Form.Item>
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
+
   return (
     <>
-      <PageHeader title="系统运行分析" />
+      <PageHeader />
       <div className={styles.selectBox}>
-        <div>
-          <Searchheader time={true} type={1} />
+        <div className={'zkTableContent'} style={{ paddingLeft: 0 }}>
+          {advanceSearchForm}
         </div>
-        <div>
+        <div style={{ width: 129, marginTop: 12 }}>
           <Radio.Group defaultValue={'hour'}>
             <Radio.Button
               value="hour"
@@ -367,29 +357,37 @@ function System_operation() {
       </div>
       <div className={styles.content}>
         {titleNav()}
-        <div className={styles.toolBarBox}>
-          <Button type="primary" size="middle">
-            导出
-          </Button>
-          <span className={styles.toolbarTip}>
-            <img src={require('@/assets/System_operation/img/tipBlue.png')} />
-            室外温度、室外湿度、供水温度、回水温度、供水压力、回水压力、系统温差、系统压差取系统内当日平均值。系统流量、耗冷(热)量、总能耗为当日累计值。
-          </span>
-        </div>
         <div>
-          <Table
-            scroll={{ y: 'calc(100vh - 750px)' }}
-            columns={columns}
-            rowKey={(record) => record.login.uuid}
-            dataSource={data}
-            pagination={tableParams.pagination}
-            loading={loading}
-            onChange={handleTableChange}
+          <ZKTable
+            btnList={['export']}
+            searchForm={form}
+            tableColumns={columns}
+            clickOperBtn={(t: string, d: any) => {
+              console.log(
+                't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+              );
+              console.log(t, d);
+              console.log('点击表格上方操作按钮回调');
+              toggle();
+            }}
+            otherBtnFun={(e: any) => {
+              return [
+                <div className={styles.toolBarBox}>
+                  <span className={styles.toolbarTip}>
+                    <img
+                      src={require('@/assets/System_operation/img/tipBlue.png')}
+                    />
+                    室外温度、室外湿度、供水温度、回水温度、供水压力、回水压力、系统温差、系统压差取系统内当日平均值。系统流量、耗冷(热)量、总能耗为当日累计值。
+                  </span>
+                </div>,
+              ];
+            }}
+            ref={shareRef}
           />
         </div>
       </div>
     </>
   );
-}
+};
 
-export default System_operation;
+export default SystemOperation;

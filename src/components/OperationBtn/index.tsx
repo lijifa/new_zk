@@ -83,7 +83,7 @@ const OperationBtn = (props: BtnListType) => {
 
   return (
     <>
-      <Space align="center" style={{ marginBottom: 12 }}>
+      <Space align="center" style={{ marginBottom: 12, width: '100%' }}>
         {createBtnList()}
       </Space>
     </>

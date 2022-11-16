@@ -147,59 +147,55 @@ const routes = [
     name: '项目维护',
     path: '/project',
     component: './SystemConfig/ProjectSettings/Project',
-   },
-     //站点维护
-     {
-      name: '站点维护',
-      path: '/site',
-      component: './SystemConfig/ProjectSettings/Site',
-     },
-    //电费单价维护
-   {
-     name: '电费单价维护',
-     path: '/powerRate',
-     component: './SystemConfig/CostsSettings/PowerRate',
-    },
-      //水费费单价维护
-    {
-     name: '水费单价维护',
-     path: '/waterRate',
-     component: './SystemConfig/CostsSettings/WaterRate',
-    },
-     //地热单价维护
-     {
-      name: '地热单价维护',
-      path: '/heatRate',
-      component: './SystemConfig/CostsSettings/HeatRate',
-     },
-       //燃气单价维护
-     {
-      name: '燃气单价维护',
-      path: '/gasRate',
-      component: './SystemConfig/CostsSettings/GasRate',
-     },
-       //告警规则配置
-     {
-      name: '告警规则配置',
-      path: '/alarmRulesSet',
-      component: './SystemConfig/MonitoringSetiing/AlarmRulesSet',
-    },
-      //消息通知
-    {
-      name: '消息通知',
-      path: '/notification',
-      component: './SystemConfig/NotificationManager/Notification',
-    },
-      //操作日志
-     {
-      name: '操作日志',
-      path: '/logs',
-      component: './SystemConfig/LogManagement/Logs',
-    },
-      
-
- 
-
+  },
+  //站点维护
+  {
+    name: '站点维护',
+    path: '/site',
+    component: './SystemConfig/ProjectSettings/Site',
+  },
+  //电费单价维护
+  {
+    name: '电费单价维护',
+    path: '/powerRate',
+    component: './SystemConfig/CostsSettings/PowerRate',
+  },
+  //水费费单价维护
+  {
+    name: '水费单价维护',
+    path: '/waterRate',
+    component: './SystemConfig/CostsSettings/WaterRate',
+  },
+  //地热单价维护
+  {
+    name: '地热单价维护',
+    path: '/heatRate',
+    component: './SystemConfig/CostsSettings/HeatRate',
+  },
+  //燃气单价维护
+  {
+    name: '燃气单价维护',
+    path: '/gasRate',
+    component: './SystemConfig/CostsSettings/GasRate',
+  },
+  //告警规则配置
+  {
+    name: '告警规则配置',
+    path: '/alarmRulesSet',
+    component: './SystemConfig/MonitoringSetiing/AlarmRulesSet',
+  },
+  //消息通知
+  {
+    name: '消息通知',
+    path: '/notification',
+    component: './SystemConfig/NotificationManager/Notification',
+  },
+  //操作日志
+  {
+    name: '操作日志',
+    path: '/logs',
+    component: './SystemConfig/LogManagement/Logs',
+  },
 
   /* 断路器监测================ */
   // 断路器看板
@@ -258,32 +254,32 @@ const routes = [
   // 系统运行分析
   {
     name: '系统运行分析',
-    path: '/System_operation',
-    component: './StatisticalAnalysis/EnergyConsumption/System_operation',
+    path: '/systemOperation',
+    component: './StatisticalAnalysis/EnergyConsumption/SystemOperation',
   },
   // 能源站耗能统计
   {
     name: '能源站耗能统计',
-    path: '/Energy_consumption',
-    component: './StatisticalAnalysis/EnergyConsumption/Energy_consumption',
+    path: '/energyConsumption',
+    component: './StatisticalAnalysis/EnergyConsumption/EnergyConsumption',
   },
   // 用户舒适度分析
   {
     name: '用户舒适度分析',
-    path: '/User_comfort',
-    component: './StatisticalAnalysis/EnergyConsumption/User_comfort',
+    path: '/userComfort',
+    component: './StatisticalAnalysis/EnergyConsumption/UserComfort',
   },
   // 设备耗电分析
   {
     name: '设备耗电分析',
-    path: '/Power_equipment',
-    component: './StatisticalAnalysis/EnergyConsumption/Power_equipment',
+    path: '/powerequipment',
+    component: './StatisticalAnalysis/EnergyConsumption/PowerEquipment',
   },
   // 能效分析
   {
     name: '能效分析',
-    path: '/Efficiency_analysis',
-    component: './StatisticalAnalysis/EnergyConsumption/Efficiency_analysis',
+    path: '/efficiencyAnalysis',
+    component: './StatisticalAnalysis/EnergyConsumption/EfficiencyAnalysis',
   },
 
   /*
@@ -327,32 +323,63 @@ const routes = [
     component: './SystemConfig/UserSetting/Role',
   },
 
-  
   /* 组态配置================ */
-    // 暖通组态配置
-    {
-      name: '暖通组态配置',
-      path: '/hvacDiagramSet',
-      component: './SystemConfig/DiagramSet/HvacDiagramSet',
-    },
-    // 配电组态配置
-    {
-      name: '暖通组态配置',
-      path: '/electricDiagramSet',
-      component: './SystemConfig/DiagramSet/ElectricDiagramSet',
-    },
-    // 暖通组态配置
-    {
-      name: '暖通组态配置',
-      path: '/hvacPanelSet',
-      component: './SystemConfig/DiagramSet/HvacPanelSet',
-    },
-    // 配电组态配置
-    {
-      name: '暖通组态配置',
-      path: '/electricPanelSet',
-      component: './SystemConfig/DiagramSet/ElectricPanelSet',
-    },
+  // 暖通组态配置
+  {
+    name: '暖通组态配置',
+    path: '/hvacDiagramSet',
+    component: './SystemConfig/DiagramSet/HvacDiagramSet',
+  },
+  // 配电组态配置
+  {
+    name: '暖通组态配置',
+    path: '/electricDiagramSet',
+    component: './SystemConfig/DiagramSet/ElectricDiagramSet',
+  },
+  // 暖通组态配置
+  {
+    name: '暖通组态配置',
+    path: '/hvacPanelSet',
+    component: './SystemConfig/DiagramSet/HvacPanelSet',
+  },
+  // 配电组态配置
+  {
+    name: '配电组态配置',
+    path: '/electricPanelSet',
+    component: './SystemConfig/DiagramSet/ElectricPanelSet',
+  },
+
+  /* 调试配置================ */
+  // 网关配置
+  {
+    name: '网关配置',
+    path: '/gatewaySet',
+    component: './SystemConfig/DebugSet/GatewaySet',
+  },
+  // 信号配置
+  {
+    name: '信号配置',
+    path: '/signalSet',
+    component: './SystemConfig/DebugSet/SignalSet',
+  },
+  // 设备绑定信号
+  {
+    name: '设备绑定信号',
+    path: '/signalBinding',
+    component: './SystemConfig/DebugSet/SignalBinding',
+  },
+  // 设备绑定传感器
+  {
+    name: '设备绑定传感器',
+    path: '/sensorBinding',
+    component: './SystemConfig/DebugSet/SensorBinding',
+  },
+  // 抄表参数配置
+  {
+    name: '抄表参数配置',
+    path: '/meterParamSet',
+    component: './SystemConfig/DebugSet/MeterParamSet',
+  },
 
   /*
    *  异常模块路由

@@ -2,8 +2,10 @@ import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Select, Space } from 'antd';
+import { Button, DatePicker, Form, Input, Select, Space } from 'antd';
 import { useRef } from 'react';
+
+const { RangePicker } = DatePicker;
 
 const HvacDiagramSet = () => {
   const [form] = Form.useForm();
@@ -13,40 +15,48 @@ const HvacDiagramSet = () => {
   // 表格数据
   const columns = [
     {
-      title: '用户名',
-      dataIndex: 'name',
+      title: '站点名称',
+      dataIndex: 'gender',
     },
     {
-      title: '真实姓名',
-      dataIndex: 'age',
+      title: '所属项目',
+      dataIndex: 'gender',
     },
     {
-      title: '手机号',
-      dataIndex: 'address',
+      title: '室外环境温度(℃)',
+      dataIndex: 'gender',
     },
     {
-      title: '申请次数',
-      dataIndex: '',
+      title: '室外环境湿度(%)',
+      dataIndex: 'gender',
     },
     {
-      title: '申请时间',
-      dataIndex: '',
+      title: '耗电量(kW·h))',
+      dataIndex: 'gender',
     },
     {
-      title: '申请理由',
-      dataIndex: '',
+      title: '用电费用(元))',
+      dataIndex: 'gender',
     },
     {
-      title: '审核人',
-      dataIndex: '',
+      title: '耗水量(m³)',
+      dataIndex: 'gender',
     },
     {
-      title: '审核时间',
-      dataIndex: '',
+      title: '用水费用(元)',
+      dataIndex: 'gender',
     },
     {
-      title: '审核状态',
-      dataIndex: '',
+      title: '耗气量(Nm³)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '用气费用(元)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '日期',
+      dataIndex: 'cell',
     },
     {
       title: '操作',
@@ -85,18 +95,12 @@ const HvacDiagramSet = () => {
       <Form form={form}>
         <Space align="center">
           <Form.Item name="username">
-            <Input placeholder="输入用户名搜索" />
-          </Form.Item>
-          <Form.Item name="name">
-            <Input placeholder="输入真实姓名搜索" />
-          </Form.Item>
-          <Form.Item name="phone">
-            <Input placeholder="输入手机号搜索" />
+            <Input placeholder="请输入站点名称搜索" />
           </Form.Item>
 
           <Form.Item name="email">
             <Select
-              placeholder="审核状态"
+              placeholder="请选择所属站点"
               style={{ width: 200 }}
               optionFilterProp="label"
               filterOption={(input, option) =>
@@ -123,6 +127,38 @@ const HvacDiagramSet = () => {
               ]}
             />
           </Form.Item>
+          <Form.Item name="email">
+            <Select
+              placeholder="请选择所属项目"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '待审核',
+                },
+                {
+                  value: '2',
+                  label: '已通过',
+                },
+                {
+                  value: '3',
+                  label: '已拒绝',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="createData">
+            <RangePicker />
+          </Form.Item>
 
           <Button type="primary" onClick={() => searchOper('submit')}>
             搜索
@@ -146,7 +182,7 @@ const HvacDiagramSet = () => {
           {advanceSearchForm}
 
           <ZKTable
-            btnList={[]}
+            btnList={['export']}
             searchForm={form}
             tableColumns={columns}
             clickOperBtn={(t: string, d: any) => {
@@ -157,28 +193,6 @@ const HvacDiagramSet = () => {
               console.log('点击表格上方操作按钮回调');
               toggle();
             }}
-            isRowCheck={false}
-            // checkboxType="radio"
-            // disabledFun={(res: { gender: string }) => {
-            //   return {
-            //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
-            //     // name: record.gender,
-            //   };
-            // }}
-            // otherBtnFun={(e: any) => {
-            //   return [
-            //     <Button
-            //       key="other1"
-            //       type="primary"
-            //       onClick={() => {
-            //         console.log(e);
-            //       }}
-            //       disabled={!(e.length === 1)}
-            //     >
-            //       其他
-            //     </Button>,
-            //   ];
-            // }}
             ref={shareRef}
           />
         </div>

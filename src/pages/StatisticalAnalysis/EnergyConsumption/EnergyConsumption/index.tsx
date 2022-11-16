@@ -1,30 +1,12 @@
 import Chart from '@/components/Echarts';
-import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button, Table, Tabs } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue } from 'antd/es/table/interface';
-import qs from 'qs';
-import { useEffect, useState } from 'react';
+import ZKTable from '@/components/ZKTable';
+import { useBoolean } from 'ahooks';
+import { Button, DatePicker, Form, Select, Space, Tabs } from 'antd';
+import { useRef } from 'react';
 import styles from './index.less';
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  login: {
-    uuid: string;
-  };
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
+const { RangePicker } = DatePicker;
 
 // 页签切换数据;
 const TabData = [
@@ -159,108 +141,140 @@ const items = TabData.map((item: any, i: any) => {
   };
 });
 
-// 表格数据
-const columns: ColumnsType<DataType> = [
-  {
-    title: '时间',
-    dataIndex: 'name',
-    render: (name) => `${name.first} ${name.last}`,
-  },
-  {
-    title: '所属站点',
-    dataIndex: 'gender',
-  },
-  {
-    title: '室外温度(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '室外湿度(%)',
-    dataIndex: 'gender',
-  },
+const EnergyConsumption = () => {
+  const [form] = Form.useForm();
+  const [state, { toggle }] = useBoolean(false);
+  const shareRef = useRef<any>();
 
-  {
-    title: '电能耗(kW·h)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '电费(元)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '水能耗(m³)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '水费(元)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '天然气能耗(Nm³)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '天然气费(元)',
-    dataIndex: 'gender',
-  },
-];
-
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-
-function Energy_consumption() {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
+  // 表格数据
+  const columns = [
+    {
+      title: '时间',
+      dataIndex: 'name',
     },
-  });
+    {
+      title: '所属站点',
+      dataIndex: 'gender',
+    },
+    {
+      title: '室外温度(℃)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '室外湿度(%)',
+      dataIndex: 'gender',
+    },
 
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams),
-      )}`,
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
+    {
+      title: '电能耗(kW·h)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '电费(元)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '水能耗(m³)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '水费(元)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '天然气能耗(Nm³)',
+      dataIndex: 'gender',
+    },
+    {
+      title: '天然气费(元)',
+      dataIndex: 'gender',
+    },
+  ];
+
+  // 点击搜索、重置按钮
+  const searchOper = (type: string) => {
+    shareRef?.current?.clickSearchBtn(type);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
-
-  const handleTableChange = (pagination: TablePaginationConfig) => {
-    setTableParams({
-      pagination,
-    });
-  };
+  // 高级搜索栏Form
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="email">
+            <Select
+              placeholder="请选择所属站点"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '待审核',
+                },
+                {
+                  value: '2',
+                  label: '已通过',
+                },
+                {
+                  value: '3',
+                  label: '已拒绝',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="data">
+            <Select
+              placeholder="请选择时间"
+              style={{ width: 80 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '按日',
+                },
+                {
+                  value: '2',
+                  label: '按月',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="createData">
+            <RangePicker />
+          </Form.Item>
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
 
   return (
     <>
-      <PageHeader title="能源站耗能统计" />
-      <div className={styles.selectBox}>
-        <Searchheader time={true} smallcheck={true} type={1} />
-      </div>
+      <PageHeader />
+
       <div className={styles.content}>
+        <div className={'zkTableContent'} style={{ paddingLeft: 0 }}>
+          {advanceSearchForm}
+        </div>
         <div className={styles.DayBox}>
           <div className={styles.leftBox}>
             <div className={styles.energy}>
@@ -317,29 +331,38 @@ function Energy_consumption() {
             <Tabs destroyInactiveTabPane type="card" items={items} />
           </div>
         </div>
-        <div className={styles.toolBarBox}>
-          <Button type="primary" size="middle">
-            导出
-          </Button>
-          <span className={styles.toolbarTip}>
-            <img src={require('@/assets/System_operation/img/tipBlue.png')} />
-            室外温度、室外湿度、取系统内当日平均值，其他值为当日累计。
-          </span>
-        </div>
-        <div>
-          <Table
-            scroll={{ y: 'calc(100vh - 750px)' }}
-            columns={columns}
-            rowKey={(record) => record.login.uuid}
-            dataSource={data}
-            pagination={tableParams.pagination}
-            loading={loading}
-            onChange={handleTableChange}
+        <div className={styles.table_box}>
+          <ZKTable
+            btnList={['export']}
+            searchForm={form}
+            tableColumns={columns}
+            defaultFormItem={{ data: '1' }}
+            clickOperBtn={(t: string, d: any) => {
+              console.log(
+                't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+              );
+              console.log(t, d);
+              console.log('点击表格上方操作按钮回调');
+              toggle();
+            }}
+            otherBtnFun={(e: any) => {
+              return [
+                <div className={styles.toolBarBox}>
+                  <span className={styles.toolbarTip}>
+                    <img
+                      src={require('@/assets/System_operation/img/tipBlue.png')}
+                    />
+                    室外温度、室外湿度、取系统内当日平均值，其他值为当日累计。
+                  </span>
+                </div>,
+              ];
+            }}
+            ref={shareRef}
           />
         </div>
       </div>
     </>
   );
-}
+};
 
-export default Energy_consumption;
+export default EnergyConsumption;

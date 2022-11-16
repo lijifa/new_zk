@@ -1,53 +1,15 @@
-import FormList from '@/components/FormList';
-import Searchheader from '@/components/Searchheader';
+import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
+import ZKTable from '@/components/ZKTable';
 import { DownOutlined, RedoOutlined, UpOutlined } from '@ant-design/icons';
-import { Button, Tree } from 'antd';
+import { useBoolean } from 'ahooks';
+import { Button, Form, Input, Select, Space, Tree } from 'antd';
 import type { DataNode, TreeProps } from 'antd/es/tree';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './index.less';
 
 const { DirectoryTree } = Tree;
 
-// 表格数据
-const columns = [
-  {
-    title: '用户名',
-    dataIndex: 'name',
-  },
-  {
-    title: '真实姓名',
-    dataIndex: 'age',
-  },
-  {
-    title: '手机号',
-    dataIndex: 'address',
-  },
-  {
-    title: '角色',
-    dataIndex: '',
-  },
-  {
-    title: '所属部门',
-    dataIndex: '',
-  },
-  {
-    title: '所属岗位',
-    dataIndex: '',
-  },
-  {
-    title: '在职/离职',
-    dataIndex: '',
-  },
-  {
-    title: '入职日期',
-    dataIndex: '',
-  },
-  {
-    title: '离职日期',
-    dataIndex: '',
-  },
-];
 const treeData: DataNode[] = [
   {
     title: 'parent 1',
@@ -72,47 +34,79 @@ const treeData: DataNode[] = [
   },
 ];
 
-// select假数据
-const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
-let list1 = [
-  { id: 1, text: '光合谷A能源站' },
-  { id: 3, text: '国际企业社区机房_0' },
-];
-let list2 = [
-  { id: 2, text: '暖通系统' },
-  { id: 7, text: '空调末端' },
-];
-let list3 = [
-  { id: 6, text: '轨道集团光合谷园系统' },
-  { id: 34, text: '静海政府智慧能源管理' },
-];
-let List = [list1, list2, list3];
-let Inputdefalut = ['请输入缴费单位搜索'];
-let setlectdefalut = [undefined, undefined, undefined];
-let inputvaluedefalut = ['', ''];
-
 const UserManage = () => {
-  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+  const [state, { toggle }] = useBoolean(false);
+  const shareRef = useRef<any>();
   const [treeIcon, setTreeIcon] = useState(false);
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(['0-0']);
+
+  // 表格数据
+  const columns = [
+    {
+      title: '用户名',
+      dataIndex: 'name',
+    },
+    {
+      title: '真实姓名',
+      dataIndex: 'age',
+    },
+    {
+      title: '手机号',
+      dataIndex: 'address',
+    },
+    {
+      title: '角色',
+      dataIndex: '',
+    },
+    {
+      title: '所属部门',
+      dataIndex: '',
+    },
+    {
+      title: '所属岗位',
+      dataIndex: '',
+    },
+    {
+      title: '在职/离职',
+      dataIndex: '',
+    },
+    {
+      title: '入职日期',
+      dataIndex: '',
+    },
+    {
+      title: '离职日期',
+      dataIndex: '',
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      render: (record: any) => (
+        <RowOperBtn
+          btnList={[
+            { key: 'copy', text: '复制该组态图' },
+            { key: 'detail', text: '组态图详情' },
+          ]}
+          btnCilck={(e: string) => {
+            clickRowbtn(e, record);
+          }}
+          rowData={record}
+          // isDisabled={isDisabledFun(record)}
+        />
+      ),
+    },
+  ];
 
   const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
     console.log('selected', selectedKeys, info);
   };
 
-  const data: any = [];
-  for (let i = 0; i < 100; i++) {
-    data.push({
-      key: i,
-      name: `Edward King ${i}`,
-      age: 32,
-      address: `London, Park Lane no. ${i}`,
-    });
-  }
-
-  // 监听表格点击
-  const handleClick = (type: string, key: any) => {
-    console.log('打印:', type, key);
+  // 点击行内操作按钮回调
+  const clickRowbtn = (e: string, data: any) => {
+    console.log('e：按钮标识(key);\n data当前操作行数据');
+    console.log(e);
+    console.log(data);
   };
 
   // 展开/收起节点时触发
@@ -126,10 +120,65 @@ const UserManage = () => {
     console.log('点击刷新');
   };
 
+  // 高级搜索栏Form
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="username">
+            <Input placeholder="请输入真实姓名搜索" />
+          </Form.Item>
+          <Form.Item name="name">
+            <Input placeholder="请输入用户名搜索" />
+          </Form.Item>
+          <Form.Item name="phone">
+            <Input placeholder="请输入手机号搜索" />
+          </Form.Item>
+
+          <Form.Item name="email">
+            <Select
+              placeholder="选择在职/离职"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '在职',
+                },
+                {
+                  value: '2',
+                  label: '离职',
+                },
+              ]}
+            />
+          </Form.Item>
+
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
+
   // 点击展开/收回
   const ToggleTree = () => {
     setTreeIcon(!treeIcon);
     setExpandedKeys(treeIcon ? ['0-0'] : []);
+  };
+
+  // 点击搜索、重置按钮
+  const searchOper = (type: string) => {
+    shareRef?.current?.clickSearchBtn(type);
   };
 
   return (
@@ -162,28 +211,47 @@ const UserManage = () => {
           />
         </div>
         <div style={{ flex: 1, width: 200 }}>
-          <div className={styles.selectBox}>
-            <Searchheader
-              List={List}
-              placeholder={placeholder}
-              type="defalut"
-              Inputdefalut={Inputdefalut}
-              setlectdefalut={setlectdefalut}
-              inputvaluedefalut={inputvaluedefalut}
-            />
-          </div>
           <div className={styles.container}>
-            <FormList
-              Scroll={{ y: 'calc(100vh - 300px)' }}
-              Columns={columns}
-              Data={data}
-              Loading={loading}
-              getItem={handleClick}
-              selectionType="check"
-              ShowAction={{ show: true, name: ['查看', '删除'] }}
-              ShowSelection
-              ShowPagination
-            />
+            <div className={'zkTableContent'}>
+              {advanceSearchForm}
+
+              <ZKTable
+                btnList={[]}
+                searchForm={form}
+                tableColumns={columns}
+                clickOperBtn={(t: string, d: any) => {
+                  console.log(
+                    't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+                  );
+                  console.log(t, d);
+                  console.log('点击表格上方操作按钮回调');
+                  toggle();
+                }}
+                isRowCheck={false}
+                // checkboxType="radio"
+                // disabledFun={(res: { gender: string }) => {
+                //   return {
+                //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
+                //     // name: record.gender,
+                //   };
+                // }}
+                // otherBtnFun={(e: any) => {
+                //   return [
+                //     <Button
+                //       key="other1"
+                //       type="primary"
+                //       onClick={() => {
+                //         console.log(e);
+                //       }}
+                //       disabled={!(e.length === 1)}
+                //     >
+                //       其他
+                //     </Button>,
+                //   ];
+                // }}
+                ref={shareRef}
+              />
+            </div>
           </div>
         </div>
       </div>
