@@ -53,6 +53,7 @@ const columns = [
 ];
 const Notification = memo(() => {
   const [loading, setLoading] = useState(false);
+  const [value,setValue] = useState<undefined|string>(undefined)//设置多选框初始值
 
   const data: any = [];
   for (let i = 0; i < 100; i++) {
@@ -70,6 +71,15 @@ const Notification = memo(() => {
   const handleClick = (Listkey: any) => {
     console.log('点击:', Listkey);
   };
+  //重置操作
+  const onReset = () =>{
+    setValue(undefined)
+  }
+  //选择时改变默认值
+  const onSelectValue =(value :string)=>{
+    setValue(value)
+
+  }
   return (
     <>
       <PageHeader title="消息通知" />
@@ -102,7 +112,9 @@ const Notification = memo(() => {
               showSearch
               style={{ width: '100%' }}
               placeholder="选择已读未读"
+              onChange={onSelectValue}
               //  defaultValue="jack"
+              value={value}
               optionFilterProp="children"
               filterOption={(input, option) =>
                 (option!.children as unknown as string)
@@ -110,7 +122,6 @@ const Notification = memo(() => {
                   .includes(input.toLowerCase())
               }
             >
-              <Option value="jack">选择已读未读</Option>
               <Option value="lucy">Lucy</Option>
               <Option value="tom">Tom</Option>
             </Select>
@@ -126,6 +137,7 @@ const Notification = memo(() => {
             搜索
           </Button>
           <Button
+           onClick={onReset}
             style={{
               color: ' #268CFF',
               marginLeft: '5px',

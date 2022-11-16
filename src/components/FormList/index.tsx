@@ -33,8 +33,7 @@
 */
 
 import { history } from '@umijs/max';
-import { Button, ConfigProvider, Pagination, Space, Table } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
+import { Button, Pagination, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
@@ -55,7 +54,8 @@ interface FormList {
   Columns: ColumnsType<DataType>;
   Data: DataType[] | undefined;
   Loading: boolean;
-  onCilck: any;
+  getItem: any; //返回参数
+  selectionType: 'check' | 'radio';
   ShowSelection?: boolean; //是否显示多选框
   ShowPagination?: boolean; //是否显示分页
   TableBts?: {
@@ -74,15 +74,16 @@ interface FormList {
 
 const FormList = (props: FormList) => {
   const {
-    Columns,
-    Scroll,
-    Data,
-    Loading,
-    onCilck,
-    ShowAction,
-    TableBts,
-    ShowSelection,
-    ShowPagination,
+    Columns, //table header数据
+    Scroll, //高度 x & y
+    Data, //表格数据
+    Loading, //加载loading
+    getItem, //获得表格传出参数
+    ShowAction, //是否显示操作列
+    TableBts, //顶部按钮
+    ShowSelection, //是否显示多选框
+    ShowPagination, //是否显示分页
+    selectionType, //选择框样式 check or radio
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]); //多选框
   const [columns, setColumns] = useState(Columns); //header数据
@@ -208,17 +209,17 @@ const FormList = (props: FormList) => {
 
   // 顶部按钮点击事件
   const TableToolClick = (type: string) => {
-    onCilck(type, selectedRowKeys);
+    getItem(type, selectedRowKeys);
   };
 
   // 表格操作列点击事件
   const ActionClick = (event: any, key: number) => {
-    onCilck(event.target.innerText, key);
+    getItem(event.target.innerText, key);
   };
 
   // 监听page切换
   const handleTableChange = (page: number, pageSize: number) => {
-    onCilck(page, pageSize);
+    getItem(page, pageSize);
   };
 
   // 判断选择数量
@@ -233,32 +234,36 @@ const FormList = (props: FormList) => {
       <div style={{ margin: '10px 0' }}>
         <Space>{tableBts}</Space>
       </div>
-      <ConfigProvider locale={zhCN}>
-        <Table
-          rowSelection={ShowSelection ? rowSelection : (false as any)}
-          scroll={Scroll}
-          columns={columns}
-          rowKey={(record) => record.key}
-          dataSource={Data}
-          loading={Loading}
-          pagination={false}
-          defaultExpandAllRows
-        />
-        <Pagination
-          style={{
-            marginTop: 10,
-            display: ShowPagination ? 'flex' : 'none',
-            justifyContent: 'flex-end',
-          }}
-          total={Data?.length}
-          showTotal={(total, range) =>
-            `第 ${range[0]} 到 ${range[1]} 条， 共 ${total} 条记录。`
-          }
-          defaultPageSize={10}
-          defaultCurrent={1}
-          onChange={handleTableChange}
-        />
-      </ConfigProvider>
+      {/* 表格 */}
+      <Table
+        rowSelection={
+          ShowSelection
+            ? { type: ShowSelection, ...rowSelection }
+            : (false as any)
+        }
+        scroll={Scroll}
+        columns={columns}
+        rowKey={(record) => record.key}
+        dataSource={Data}
+        loading={Loading}
+        pagination={false}
+        defaultExpandAllRows
+      />
+      {/* 分页 */}
+      <Pagination
+        style={{
+          marginTop: 10,
+          display: ShowPagination ? 'flex' : 'none',
+          justifyContent: 'flex-end',
+        }}
+        total={Data?.length}
+        showTotal={(total, range) =>
+          `第 ${range[0]} 到 ${range[1]} 条， 共 ${total} 条记录。`
+        }
+        defaultPageSize={10}
+        defaultCurrent={1}
+        onChange={handleTableChange}
+      />
     </div>
   );
 };

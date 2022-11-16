@@ -1,5 +1,4 @@
 import FormList from '@/components/FormList';
-import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
 import { useState } from 'react';
 import styles from './index.less';
@@ -39,9 +38,9 @@ const UserCheck = () => {
 
   return (
     <>
-      <PageHeader title="岗位维护" />
+      <PageHeader />
       <div className={styles.selectBox}>
-        <Searchheader time={false} type={1} />
+        {/* <Searchheader time={false} type={1} /> */}
       </div>
       <div className={styles.content}>
         <FormList
@@ -50,7 +49,8 @@ const UserCheck = () => {
           Data={data}
           ShowSelection
           Loading={loading}
-          onCilck={handleClick}
+          getItem={handleClick}
+          selectionType="check"
           TableBts={[
             { type: 'add', text: '新增' },
             { type: 'update', text: '修改' },

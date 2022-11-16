@@ -1,5 +1,4 @@
 import FormList from '@/components/FormList';
-import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
 import { useState } from 'react';
 import styles from './index.less';
@@ -60,9 +59,9 @@ const UserCheck = () => {
 
   return (
     <>
-      <PageHeader title="部门维护" />
+      <PageHeader />
       <div className={styles.selectBox}>
-        <Searchheader time={true} type={4} />
+        {/* <Searchheader time={true} type={4} /> */}
       </div>
       <div className={styles.warnText}>注：请按照同一层级进行从小到大排序</div>
       <div className={styles.content}>
@@ -71,7 +70,8 @@ const UserCheck = () => {
           Columns={columns}
           Data={data}
           Loading={loading}
-          onCilck={handleClick}
+          getItem={handleClick}
+          selectionType="check"
           ShowAction={{ show: true, name: ['编辑', '新增', '删除'] }}
           TableBts={[
             { type: 'add', text: '新增' },

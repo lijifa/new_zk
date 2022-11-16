@@ -1,4 +1,4 @@
-import KeepAliveTabs from '@/components/KeepAliveTabs';
+import HeadTags from '@/components/HeadTags';
 import IndexMenu from '@/components/Menu';
 import HeaderMenu from '@/components/Menu/HeaderMenu';
 import RightContent from '@/components/RightContent';
@@ -40,8 +40,8 @@ const App = () => {
             <IndexMenu name="李吉发" />
           </Sider>
           <Content className={baseStyle.layoutContent}>
-            {/* <HeadTags /> */}
-            <KeepAliveTabs />
+            <HeadTags />
+            {/* <KeepAliveTabs /> */}
             <AliveScope>
               <Outlet />
             </AliveScope>

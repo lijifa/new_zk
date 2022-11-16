@@ -12,7 +12,7 @@ import styles from './index.less';
 
 const GlobalHeaderRight: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
-  const { updateMenuApiData } = useModel('menuModel');
+  const { updateMenuApiData, tags, removeTagFun } = useModel('menuModel');
 
   const { clear, drop } = useAliveController();
   // const companyName = initialState?.currentCompany.find((item: { key: number | undefined; }) => item.key === initialState.mfrsId)
