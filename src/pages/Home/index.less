@@ -1,3 +1,394 @@
-.container {
-  padding-top: 80px;
+.main{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: rgba(54, 68, 91, 1);
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 10px;
+  font-family: '微软雅黑';
+  .maincontent{
+    height: calc(100% - 100px);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+    justify-content: space-between;
+    display: flex;
+    .module{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .mainModule{
+        padding: 5px 0 0 ;
+        border-top:2px solid;
+        border-image: linear-gradient(90deg,rgba(0, 255, 255, 0.8),rgba(38, 140, 255, 0.2)) 10% 10%;
+        background-color: rgba(32, 39, 53, 1);
+        position: relative;
+        background-size: 100% 100%;
+        .center{
+           height:calc(100% - 30px);
+           background-color: rgba(32, 39, 53, 1);
+           padding-left: 20px;
+  
+        }
+          
+        .outDoor{
+          height: calc(100% - 30px);
+          width: 100%;
+          background-color: rgba(32,39,53,1);
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .outDoorItem1{
+            background-image: url(./img/wendu.png);
+            padding: 10px 10px 10px 70px;
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            .outDoorTitle {
+              display: block;
+              font-size: 14px;
+              color: rgba(255, 255, 255, 1);
+              line-height: 20px;
+              height: 20px;
+          }
+          .outDoorText {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 1);
+            line-height: 40px;
+            em{
+              color: rgba(0, 255, 255, 1);
+              font-size: 26px;
+              font-family: 'NumberF';
+              font-style: normal;
+              margin-right: 3px;
+            }
+        }
+          }
+          .outDoorItem2{
+            background-image: url(./img/shidu.png);
+            padding: 10px 10px 10px 70px;
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            .outDoorTitle {
+              display: block;
+              font-size: 14px;
+              color: rgba(255, 255, 255, 1);
+              line-height: 20px;
+              height: 20px;
+          }
+          .outDoorText {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 1);
+            line-height: 40px;
+            em{
+              color: rgba(0, 255, 255, 1);
+              font-size: 26px;
+              font-family: 'NumberF';
+              font-style: normal;
+              margin-right: 3px;
+            }
+        }
+          }
+
+        }
+        .energyCost{
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: calc(100% - 30px);
+          padding: 0 20px 0 30px;
+          justify-content: center;
+          .Costmodule{
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 1);
+            .energyCostTitle{
+              font-size: 14px;
+              height: 30px;
+              line-height: 30px;
+            }
+            .energyCostNum{
+              font-size: 14px;
+              height: 20px;
+              line-height: 20px;
+              em{
+                font-size: 18px;
+                font-family: 'NumberF';
+                font-weight: bold;
+                font-style: normal;
+                margin-right: 4px;
+              }
+            }
+            img{
+              height: 63px;
+              width: 63px;
+            }
+
+          }
+        }
+        .projectIntroduce{
+          margin-top: 10px;
+          padding: 0 20px;
+          height: calc(100% - 50px);
+          line-height: 30px;
+          font-size: 16px;
+          color: rgba(165, 234, 255, 1);
+          overflow-x: hidden;
+          overflow-y: auto;
+          p{
+            margin: 0;
+            padding: 0;
+            text-indent: 20px;
+            word-break: break-all;
+          }
+      }
+      
+       .projectIntroduce::-webkit-scrollbar-thumb{
+          border-radius: 10px;
+          -webkit-box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+          background: rgba(17, 157, 255, .5);
+          }
+          .projectIntroduce::-webkit-scrollbar{
+           width: 5px;
+           height: 1px;
+              
+      
+          }
+      .mianList{
+        height: 200px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        .LeftList{
+          width: 320px;
+          height: 180px;
+          background-image: url('./img/co2Bg.png');
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(32, 39, 53, 1);
+          color: rgba(255, 255, 255, 1);
+          background-size: 100% 100%;
+          padding-top: 10px;
+          .COTitle{
+            font-size: 14px;
+            text-align: center;
+            width: 190px;
+            line-height: 20px;
+            height: 20px;
+            background-image: url(./img/co2Title.png);
+            background-size: 100% 100%;
+          }
+          span{
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 1);
+            display: block;
+            font-weight: bold;
+            margin: 10px 0;
+          }
+          em{
+            font-size: 32px;
+            font-style: normal;
+            font-family: 'NumberF';
+          }
+          .COTips{
+            color: rgba(165, 234, 255, 1);
+            font-size: 14px;
+            line-height: 20px;
+             height: 20px;
+          }
+        }
+        .RightList{
+          flex: 1;
+          height: 100%;
+          margin-left: 10px;
+          background-color: rgba(24, 31, 41, 0.8);
+          display: flex;
+          flex-direction: column;
+          .ListChild{
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 10px;
+            .ListItem{
+              flex: 1;
+              .ListItemTitle{
+                color: #fff;
+                 font-size: 16px;
+                line-height: 20px;
+                font-weight: bold;
+              }
+              .ListItemText{
+                font-size: 30px;
+                font-weight: bold;
+                font-family: 'NumberF';
+                color: rgba(0, 255, 255, 1);
+              }
+            }
+          }
+
+      }
+
+        
+    
+        }
+      .alarmCon{
+        width: 100%;
+        height: calc(100% - 30px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px 0 15px;
+        .alarmItem{
+          height: 80px;
+          width: 70px;
+          text-align: center;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 10px;
+          cursor: pointer;
+          &:hover{
+            background-color: rgba(23, 27, 37, 1);
+            border: 1px soild rgba(0, 255, 255, 0.8);
+          }
+          span{
+            display: block;
+            color: rgba(165, 234, 255, 1);
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+          }
+
+  
+        }
+
+
+      }
+      .deviceCustom{
+        height: calc(100% - 30px);
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding-top: 10px;
+        align-items: center;
+        background-color: rgba(32, 39, 53, 1);
+        .alarmCustomItem{
+          width: 160px;
+          height: 70px;
+          display: flex;
+          align-items: center;
+          img{
+            width: 55px;
+            height: 55px;
+            margin-right: 15px;
+          }
+          span {
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'NumberF';
+            margin-right: 4px;
+          }
+          .deviceCustomText{
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+        
+
+          }
+          .deviceCustomTitle{
+            color: #fff;
+             font-size: 16px;
+             line-height: 30px;
+             font-weight: bold;
+
+          }
+        }
+      }
+
+        .lines{
+          display: flex;
+          position: absolute;
+          justify-content: space-between;
+          position: absolute;
+          right: 12px;
+          top: 5px;
+          color: rgba(165, 234, 255, 1);
+          div{
+              padding: 0 15px;
+              font-size: 14px;
+              height: 30px;
+              line-height: 30px;
+              color: rgba(165, 234, 255, 1);
+              text-align: center;
+              background-color: rgba(40, 49, 66, 1);
+              border: 1px solid rgba(40, 49, 66, 1);
+              cursor: pointer;
+              margin-left: 10px;
+              :last-child(1){
+                  margin-right: 0 !important;
+              }
+          }
+      }
+      .tencec{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: calc(100% - 30px);
+        background-color: rgba(32, 39, 53, 1);
+        .deviceCustomLine {
+          height: 100px;
+          width: 2px;
+          background-color: rgba(39, 147, 255, 0.4);
+      }
+        .deviceCustomItem{
+          text-align: center;
+          border: none;
+          .deviceCustomTitle{
+            color: #fff;
+            font-size: 16px;
+            line-height: 40px;
+            font-weight: bold;
+          }
+          .deviceCustomText{
+            font-size: 14px;
+            line-height: 40px;
+            font-weight: 400;
+             color: rgba(153, 153, 153, 1);
+             span{
+              font-size: 30px;
+              font-weight: bold;
+              font-family: 'NumberF';
+              color: rgba(0, 255, 255, 1);
+              margin-right: 4px;
+             }
+            
+
+          }
+        }
+      }
+ 
+      
+
+        
+
+      }
+    }
+  }
+
+  
 }

@@ -6,9 +6,9 @@ import styles from './index.less';
 const { Header, Footer, Content } = Layout;
 
 const ForgetPwd = memo(() => {
-    const [like,setlike] = useState<boolean>(true)
-    const [count,setcount] = useState<number>(60)
-    const [show,setshow] = useState(true)
+    const [like,setlike] = useState<boolean>(true)//按钮是否能点击
+    const [count,setcount] = useState<number>(60)//倒计时初始值
+    const [show,setshow] = useState(true)//切换倒计时
     const timeref = useRef<any>(null)
     useEffect(()=>{
         if(count === 0){
@@ -45,8 +45,7 @@ const ForgetPwd = memo(() => {
         if(number.test(phonenumber)){
           setlike(false)
         }else{
-          setlike(true)
-          
+          setlike(true) 
         }
       }
   return (

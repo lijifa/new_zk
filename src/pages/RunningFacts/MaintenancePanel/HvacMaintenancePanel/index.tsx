@@ -3,7 +3,6 @@ import SubHeader from '@/components/SubHeader';
 import TopCom from '@/components/TopCom';
 import { Select } from 'antd';
 import React, { memo, useState } from 'react';
-import ConCom from './components/ConCom';
 import ScrollList from './components/ScrollList';
 import styles from './index.less';
 let { Option } = Select;
