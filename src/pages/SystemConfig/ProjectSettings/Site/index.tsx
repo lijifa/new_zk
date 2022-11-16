@@ -9,7 +9,7 @@ import Add from './Add';
 
 const { RangePicker } = DatePicker;
 
-const HvacDiagramSet = () => {
+const Site = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
@@ -17,17 +17,25 @@ const HvacDiagramSet = () => {
   // 表格列字段
   const columns = [
     {
-      title: '项目名称',
+      title: '站点名称',
       dataIndex: 'reason',
       align: 'left',
     },
     {
-      title: '组态图类型',
+      title: '站点所在地',
       dataIndex: 'systemName',
     },
     {
-      title: '所属站点',
+      title: '站点人数',
       dataIndex: 'siteName',
+    },
+    {
+      title: '所属项目',
+      dataIndex: 'siteProject',
+    },
+    {
+      title: '所属系统',
+      dataIndex: 'siteSystem',
     },
     {
       title: '创建人',
@@ -42,7 +50,7 @@ const HvacDiagramSet = () => {
       key: 'operation',
       render: (record: any) => (
         <RowOperBtn
-          btnList={[{ key: 'detail', text: '查看详情' }]}
+          btnList={[{ key: 'detail', text: '查看详情' },{key:'site',text:'站点详情'}]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
           }}
@@ -223,8 +231,8 @@ const HvacDiagramSet = () => {
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={650}
-        bodyStyle={{ height: '400px' }}
+        width={1400}
+        bodyStyle={{ height: '800px'}}
       >
         <Add
           onSubmit={() => {
@@ -238,4 +246,4 @@ const HvacDiagramSet = () => {
     </>
   );
 };
-export default HvacDiagramSet;
+export default Site;

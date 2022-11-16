@@ -3,11 +3,9 @@ interface Props {
   onSubmit: Function; // 提交按钮回调方法
 }
 import ModalFooter from '@/components/ModalFooter';
-import { Col, DatePicker, Form, Input, Radio, Row, Select } from 'antd';
+import { Col, Form, Input, Row, Select } from 'antd';
 
 const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
 
 const Add = (props: Props) => {
   const [form] = Form.useForm();
@@ -18,20 +16,19 @@ const Add = (props: Props) => {
   };
 
   return (
-   
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="站点名称:"
             name="diagram-name"
-            rules={[{ required: true, message: '请输入站点名称' }]}
+            rules={[{ required: true, message: '请填写组态看板名称' }]}
           >
             <Input placeholder="请输入站点名称" />
           </Form.Item>
         </Col>
 
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="所属系统："
             name="diagram-name2"
@@ -45,11 +42,11 @@ const Add = (props: Props) => {
           </Form.Item>
         </Col>
 
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="站点所在地"
             name="diagram-name3"
-            rules={[{ required: true, message: '请选择所在地' }]}
+            rules={[{ required: true, message: '请选择所属系统' }]}
           >
             <Select placeholder="请选择所在地">
               <Option value="red">Red</Option>
@@ -60,22 +57,22 @@ const Add = (props: Props) => {
         </Col>
       </Row>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="所属区域："
             name="diagram-name4"
             rules={[{ required: true, message: '请选择所属站点' }]}
           >
-            <Select placeholder="--请选择--">
+            <Select placeholder="请选择所属站点">
               <Option value="red">Red</Option>
               <Option value="green">Green</Option>
               <Option value="blue">Blue</Option>
             </Select>
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
-            style={{ marginTop: '30px' }}
+            label="组态看板类型"
             name="diagram-name5"
             rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
@@ -86,10 +83,10 @@ const Add = (props: Props) => {
             </Select>
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
+            label="组态看板类型"
             name="diagram-name6"
-            style={{ marginTop: '30px' }}
             rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
             <Select placeholder="--请选择--">
@@ -101,109 +98,109 @@ const Add = (props: Props) => {
         </Col>
       </Row>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
-            label="供冷面积(万㎡)："
+            label="供冷面积(万m)："
             name="diagram-name7"
-            rules={[{ required: true, message: '请输入供冷面积' }]}
+            rules={[{ required: true, message: '请选择所属站点' }]}
           >
-            <Input placeholder="请输入供冷面积" />
+              <Input placeholder="请输入供冷面积" />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="供冷季开始日期"
             name="diagram-name8"
-            rules={[{ required: true, message: '请选择供冷季开始日期' }]}
+            rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              placeholder="请选择供冷季开始日期"
-            />
+            <Select placeholder="--请选择--">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="供冷季结束日期"
             name="diagram-name9"
-            rules={[{ required: true, message: '请选择供冷季结束日期' }]}
+            rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              placeholder="请选择供冷季结束日期"
-            />
+            <Select placeholder="--请选择--">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
       </Row>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
-            label="供热面积(万㎡)："
+            label="供热面积"
             name="diagram-name10"
-            rules={[{ required: true, message: '请输入供热面积' }]}
+            rules={[{ required: true, message: '请选择所属站点' }]}
           >
-            <Input placeholder="请输入供热面积" />
+           <Input placeholder="请输入供热面积" />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="供热开始日期"
             name="diagram-name11"
-            rules={[{ required: true, message: '请选择供热开始日期' }]}
+            rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              placeholder="请选择供热开始日期"
-            />
+            <Select placeholder="--请选择--">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
-            label="供热结束日期"
+            label="供冷开始日期"
             name="diagram-name12"
-            rules={[{ required: true, message: '请选择供热结束日期' }]}
+            rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              placeholder="请选择供热季结束日期"
-            />
+            <Select placeholder="--请选择--">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
       </Row>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="负责人"
             name="diagram-name13"
-            rules={[{ required: true, message: '请输入负责人姓名' }]}
+            rules={[{ required: true, message: '请选择所属站点' }]}
           >
-            <Input placeholder="请输入负责人姓名" />
+           <Input placeholder="请输入负责人姓名" />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="联系电话"
             name="diagram-name14"
-            rules={[{ required: true, message: '请输入负责人联系电话' }]}
+            rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <Input placeholder="请输入负责人联系电话" />
+             <Input placeholder="请输入负责人联系电话" />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col span={11}>
           <Form.Item
             label="消防设备"
             name="diagram-name15"
             rules={[{ required: true, message: '请选择组态看板类型' }]}
           >
-            <Radio.Group defaultValue="a">
-              <Radio value="a"> 健全</Radio>
-
-              <Radio value="b"> 缺失</Radio>
-            </Radio.Group>
+            <Select placeholder="--请选择--">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
       </Row>
@@ -211,16 +208,10 @@ const Add = (props: Props) => {
         <Col span={24}>
           <Form.Item
             label="备注"
-            name="diagram-name16"
-            rules={[{ required: true, message: '请输入备注' }]}
+            name="diagram-name13"
+            rules={[{ required: true, message: '请选择所属站点' }]}
           >
-            <TextArea
-              showCount
-              maxLength={500}
-              style={{ height: 200, resize: 'none' }}
-              //onChange={onChange}
-              placeholder="输入字数最多不超过500字"
-            />
+           <Input placeholder="请输入负责人姓名" />
           </Form.Item>
         </Col>
       </Row>
@@ -236,7 +227,6 @@ const Add = (props: Props) => {
         </Button>
       </Form.Item> */}
     </Form>
-
   );
 };
 

@@ -1,11 +1,17 @@
 //经济运行分析
 import Analyseheader from '@/components/Analyseheader';
+import { RowOperBtn } from '@/components/OperationBtn';
 import Chart from '@/components/Echarts';
 import Searchheader from '@/components/Searchheader';
 import { PageHeader } from '@/components/SubHeader';
-import { Button } from 'antd';
+import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
+import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import React, { memo } from 'react';
 import styles from './index.less';
+const { RangePicker } = DatePicker;
+
+
 let Data = [
   {
     name: '优良',
@@ -76,15 +82,156 @@ let data = [
   },
 ];
 const Distributing = memo(() => {
+  const [form] = Form.useForm();
+
+
+  // 表格列字段
+  const columns = [
+    {
+      title: '缴费单位',
+      dataIndex: 'reason',
+      align: 'left',
+    },
+    {
+      title: '用水类型',
+      dataIndex: 'systemName',
+    },
+    {
+      title: '所属项目',
+      dataIndex: 'siteName',
+    },
+    {
+      title: '所属系统',
+      dataIndex: 'siteProject',
+    },
+    {
+      title: '所属站点',
+      dataIndex: 'siteSystem',
+    },
+    {
+      title: '站点所在地',
+      dataIndex: 'businessAlarmRuleTempId',
+    },
+    {
+      title: '创建时间',
+      dataIndex: ['alarmTime'],
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      render: (record: any) => (
+        <RowOperBtn
+          btnList={[{ key: 'detail', text: '单价详情' }]}
+          btnCilck={(e: string) => {
+            clickRowbtn(e, record);
+          }}
+          rowData={record}
+          // isDisabled={isDisabledFun(record)}
+        />
+      ),
+    },
+  ];
+
+
+
+  // 过滤不可选择的行属性
+  const isDisabledFun = (res: { gender: string }) => {
+    return res.gender === 'female';
+  };
+
+  // 点击行内操作按钮回调
+  const clickRowbtn = (e: string, data: any) => {
+    console.log('e：按钮标识(key);\n data当前操作行数据');
+    console.log(e);
+    console.log(data);
+  };
+
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="name">
+            <Input placeholder="请输入组态图名称搜索" />
+          </Form.Item>
+
+          <Form.Item name="email">
+            <Select
+              placeholder="请选择组态图类型"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '供冷',
+                },
+                {
+                  value: '2',
+                  label: '供热',
+                },
+              ]}
+            />
+          </Form.Item>
+
+          <Form.Item name="phone">
+            <Select
+              placeholder="请选择站点"
+              showSearch
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: 'A光合谷A能源站',
+                },
+                {
+                  value: '2',
+                  label: 'B光合谷B能源站',
+                },
+                {
+                  value: '3',
+                  label: 'C光合谷C能源站',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="createData">
+            <RangePicker />
+          </Form.Item>
+
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
+
+
   return (
     <>
       <PageHeader title="经济运行分析" />
       <div className={styles.moduleContent}>
-        <Searchheader time={true} type={3} list={list} />
-
+      {advanceSearchForm}
         <div className={styles.module}>
           <div className={styles.moduleLeft}>
-            <Analyseheader title="经济运行时间占比"  />
+            <Analyseheader title="经济运行时间占比" />
             <div className={styles.earchs}>
               <Chart
                 type="ConCom"
@@ -139,7 +286,6 @@ const Distributing = memo(() => {
               <Button
                 // type="primary"
                 disabled
-                
                 style={{
                   textAlign: 'center',
                   alignItems: 'center',
@@ -161,7 +307,32 @@ const Distributing = memo(() => {
               </span>
             </div>
           </div>
-          <div className={styles.Table}></div>
+          <div className={styles.Table}>
+            <div>
+              <div className={'zkTableContent'}>
+                <ZKTable
+                isRowCheck={false}
+                  rowId={'businessAlarmRuleTempId'}
+                  btnList={[]}
+                  searchForm={form}
+                  tableColumns={columns}
+                  //tableDataFun={getTableData}
+                  defaultFormItem={{
+                    name: 'hello',
+                    email: '1',
+                    phone: '2',
+                  }}
+                  clickOperBtn={(t: string, d: any) => {
+                    console.log(
+                      't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+                    );
+                    console.log(t, d);
+                    console.log('点击表格上方操作按钮回调');
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
