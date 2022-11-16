@@ -89,7 +89,7 @@ const HeatRate = memo(() => {
 
   return (
     <>
-      <PageHeader title="项目维护" />
+      <PageHeader />
       <div className={styles.moduleContent}>
         <Searchheader
           List={List}
