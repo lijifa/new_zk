@@ -142,8 +142,6 @@ const IndexMenu: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('ssssssssssssssssssssssssssssssssss');
-
     if (menuLv1Id) {
       console.log(menuLv1Id);
       getMenuList();
