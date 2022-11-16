@@ -39,10 +39,7 @@ const HvacDiagramSet = () => {
       key: 'operation',
       render: (record: any) => (
         <RowOperBtn
-          btnList={[
-            { key: 'detail', text: '详情' },
-            { key: 'close', text: '关闭' },
-          ]}
+          btnList={[{ key: 'detail', text: '查看详情' }]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
           }}
@@ -151,7 +148,7 @@ const HvacDiagramSet = () => {
   return (
     <>
       <div>
-        <PageHeader title="暖通组态配置" />
+        <PageHeader title="电力看板配置" />
         <div className={'zkTableContent'}>
           {advanceSearchForm}
 

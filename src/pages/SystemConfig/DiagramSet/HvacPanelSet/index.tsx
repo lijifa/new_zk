@@ -1,6 +1,7 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef } from 'react';
@@ -13,36 +14,35 @@ const HvacDiagramSet = () => {
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
 
+  // 表格列字段
   const columns = [
     {
       title: '组态图名称',
-      dataIndex: ['name', 'last'],
+      dataIndex: 'reason',
+      align: 'left',
     },
     {
       title: '组态图类型',
-      dataIndex: 'phone',
+      dataIndex: 'systemName',
     },
     {
       title: '所属站点',
-      dataIndex: 'email',
+      dataIndex: 'siteName',
     },
     {
       title: '创建人',
-      dataIndex: 'gender',
+      dataIndex: 'businessAlarmRuleTempId',
     },
     {
       title: '创建时间',
-      dataIndex: ['registered', 'date'],
+      dataIndex: ['alarmTime'],
     },
     {
       title: '操作',
       key: 'operation',
       render: (record: any) => (
         <RowOperBtn
-          btnList={[
-            { key: 'detail', text: '详情' },
-            { key: 'close', text: '关闭' },
-          ]}
+          btnList={[{ key: 'detail', text: '查看详情' }]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
           }}
@@ -52,6 +52,22 @@ const HvacDiagramSet = () => {
       ),
     },
   ];
+
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
 
   // 过滤不可选择的行属性
   const isDisabledFun = (res: { gender: string }) => {
@@ -151,14 +167,16 @@ const HvacDiagramSet = () => {
   return (
     <>
       <div>
-        <PageHeader title="暖通组态配置" />
+        <PageHeader title="暖通看板配置" />
         <div className={'zkTableContent'}>
           {advanceSearchForm}
 
           <ZKTable
+            rowId={'businessAlarmRuleTempId'}
             btnList={['add', 'edit', 'del']}
             searchForm={form}
             tableColumns={columns}
+            tableDataFun={getTableData}
             defaultFormItem={{
               name: 'hello',
               email: '1',

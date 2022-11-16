@@ -32,6 +32,7 @@ const ZKTable = forwardRef((props: any, ref) => {
   const {
     searchForm, // 表单实例：eg:  const [form] = Form.useForm();
     tableColumns, // 表格列字段
+    tableDataFun, //  获取表格数据的请求
     defaultFormItem, // 搜索表单中的默认值：eg:   { name: 'hello', email: 'abc@gmail.com', gender: 'female' }
     zkTableProps, // antd中的表格参数
     clickOperBtn, // 操作按钮
@@ -45,26 +46,44 @@ const ZKTable = forwardRef((props: any, ref) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   // 获取表格数据
+  // const getTableData = (
+  //   { current, pageSize }: { current: number; pageSize: number },
+  //   formData: Object,
+  // ): Promise<Result> => {
+  //   let query = `page=${current}&size=${pageSize}`;
+  //   Object.entries(formData).forEach(([key, value]) => {
+  //     if (value) {
+  //       query += `&${key}=${value}`;
+  //     }
+  //   });
+
+  //   return fetch(`https://randomuser.me/api?results=55&${query}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setSelectedRowKeys([]);
+  //       return {
+  //         total: res.info.results,
+  //         list: res.results,
+  //       };
+  //     });
+  // };
+
   const getTableData = (
     { current, pageSize }: { current: number; pageSize: number },
     formData: Object,
   ): Promise<Result> => {
-    let query = `page=${current}&size=${pageSize}`;
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value) {
-        query += `&${key}=${value}`;
-      }
-    });
+    const paramData = { ...formData, ...{ pageNum: current, pageSize } };
 
-    return fetch(`https://randomuser.me/api?results=55&${query}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSelectedRowKeys([]);
-        return {
-          total: res.info.results,
-          list: res.results,
-        };
+    if (tableDataFun && typeof tableDataFun === 'function') {
+      return tableDataFun(paramData);
+    } else {
+      return new Promise((resolve) => {
+        resolve({
+          total: 0,
+          list: [],
+        });
       });
+    }
   };
 
   // 列表回到钩子
@@ -92,11 +111,7 @@ const ZKTable = forwardRef((props: any, ref) => {
       if (disabledFun && typeof disabledFun === 'function') {
         return disabledFun(record);
       }
-    },
-    // ({
-    //   disabled: record.gender === disabledField ? disabledField : '', // 过滤不可选择的行属性
-    //   // name: record.gender,
-    // }),
+    }, // 过滤不可选择的行属性
   };
 
   // 点击搜索、重置按钮事件回调
@@ -157,7 +172,7 @@ const ZKTable = forwardRef((props: any, ref) => {
             : false
         }
         columns={tableColumns}
-        rowKey={rowId ? rowId : 'id'}
+        rowKey={rowId ? rowId : 'email'}
         {...tableProps}
         {...zkTableProps}
         scroll={{ y: 'calc(100vh - 350px)' }}

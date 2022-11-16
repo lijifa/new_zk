@@ -40,8 +40,8 @@ const HvacDiagramSet = () => {
       render: (record: any) => (
         <RowOperBtn
           btnList={[
-            { key: 'detail', text: '详情' },
-            { key: 'close', text: '关闭' },
+            { key: 'copy', text: '复制该组态图' },
+            { key: 'detail', text: '组态图详情' },
           ]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
@@ -151,7 +151,7 @@ const HvacDiagramSet = () => {
   return (
     <>
       <div>
-        <PageHeader title="暖通组态配置" />
+        <PageHeader title="电力组态配置" />
         <div className={'zkTableContent'}>
           {advanceSearchForm}
 
