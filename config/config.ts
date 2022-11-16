@@ -2,7 +2,7 @@ import { defineConfig } from '@umijs/max';
 import proxyCfg from './proxy';
 import routes from './routes';
 
-const REACT_APP_ENV = 'prod'; // dev: 开发；test：测试；prod：生产
+const REACT_APP_ENV = 'test'; // dev: 开发；test：测试；prod：生产
 
 export default defineConfig({
   antd: {},

@@ -1,124 +1,249 @@
-//站点维护
-import ExportList from '@/components/FormList';
-import Searchheader from '@/components/Searchheader';
+import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
-import React, { memo, useState } from 'react';
-import styles from './index.less';
-let list1 = [
-  { id: 1, text: '光合谷A能源站' },
-  { id: 3, text: '国际企业社区机房_0' },
-];
-let list2 = [
-  { id: 2, text: '暖通系统' },
-  { id: 7, text: '空调末端' },
-];
-let list3 = [
-  { id: 6, text: '轨道集团光合谷园系统' },
-  { id: 34, text: '静海政府智慧能源管理' },
-];
-const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
-let List = [list1, list2, list3];
-let Inputdefalut = ['请输入缴费单位搜索'];
-let setlectdefalut = [undefined, undefined, undefined];
-let inputvaluedefalut = ['', ''];
+import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
+import { useBoolean } from 'ahooks';
+import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
+import { useRef } from 'react';
+import Add from './Add';
 
-// 表格数据
-const columns = [
-  {
-    title: '时间',
-    dataIndex: 'name',
-  },
-  {
-    title: '所属站点',
-    dataIndex: 'gender',
-  },
-  {
-    title: '室外温度(℃)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '室外湿度(%)',
-    dataIndex: 'gender',
-  },
+const { RangePicker } = DatePicker;
 
-  {
-    title: '电能耗(kW·h)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '电费(元)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '水能耗(m³)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '水费(元)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '天然气能耗(Nm³)',
-    dataIndex: 'gender',
-  },
-  {
-    title: '天然气费(元)',
-    dataIndex: 'gender',
-  },
-];
+const Site = () => {
+  const [form] = Form.useForm();
+  const [state, { toggle }] = useBoolean(false);
+  const shareRef = useRef();
 
-const HeatRate = memo(() => {
-  const [loading, setLoading] = useState(false);
+  // 表格列字段
+  const columns = [
+    {
+      title: '站点名称',
+      dataIndex: 'reason',
+      align: 'left',
+    },
+    {
+      title: '站点所在地',
+      dataIndex: 'systemName',
+    },
+    {
+      title: '站点人数',
+      dataIndex: 'siteName',
+    },
+    {
+      title: '所属项目',
+      dataIndex: 'siteProject',
+    },
+    {
+      title: '所属系统',
+      dataIndex: 'siteSystem',
+    },
+    {
+      title: '创建人',
+      dataIndex: 'businessAlarmRuleTempId',
+    },
+    {
+      title: '创建时间',
+      dataIndex: ['alarmTime'],
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      render: (record: any) => (
+        <RowOperBtn
+          btnList={[{ key: 'detail', text: '查看详情' },{key:'site',text:'站点详情'}]}
+          btnCilck={(e: string) => {
+            clickRowbtn(e, record);
+          }}
+          rowData={record}
+          // isDisabled={isDisabledFun(record)}
+        />
+      ),
+    },
+  ];
 
-  const data: any = [];
-  for (let i = 0; i < 100; i++) {
-    data.push({
-      key: i,
-      name: `Edward King ${i}`,
-      age: 32,
-      address: `London, Park Lane no. ${i}`,
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
     });
-  }
-
-  const handleTableChange = (value: any, key: any) => {
-    console.log(value, key);
   };
-  const handleClick = (Listkey: any) => {
-    console.log('点击:', Listkey);
+
+  // 过滤不可选择的行属性
+  const isDisabledFun = (res: { gender: string }) => {
+    return res.gender === 'female';
+  };
+
+  // 点击行内操作按钮回调
+  const clickRowbtn = (e: string, data: any) => {
+    console.log('e：按钮标识(key);\n data当前操作行数据');
+    console.log(e);
+    console.log(data);
+  };
+
+  // 高级搜索栏Form
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="name">
+            <Input placeholder="请输入组态图名称搜索" />
+          </Form.Item>
+
+          <Form.Item name="email">
+            <Select
+              placeholder="请选择组态图类型"
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: '供冷',
+                },
+                {
+                  value: '2',
+                  label: '供热',
+                },
+              ]}
+            />
+          </Form.Item>
+
+          <Form.Item name="phone">
+            <Select
+              placeholder="请选择站点"
+              showSearch
+              style={{ width: 200 }}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                (option?.label ?? '').includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '')
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: 'A光合谷A能源站',
+                },
+                {
+                  value: '2',
+                  label: 'B光合谷B能源站',
+                },
+                {
+                  value: '3',
+                  label: 'C光合谷C能源站',
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item name="createData">
+            <RangePicker />
+          </Form.Item>
+
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
+
+  // 点击搜索、重置按钮
+  const searchOper = (type: string) => {
+    shareRef?.current?.clickSearchBtn(type);
   };
 
   return (
     <>
-      <PageHeader />
-      <div className={styles.moduleContent}>
-        <Searchheader
-          List={List}
-          placeholder={placeholder}
-          type="defalut"
-          Inputdefalut={Inputdefalut}
-          setlectdefalut={setlectdefalut}
-          inputvaluedefalut={inputvaluedefalut}
-        />
-        <div className={styles.module}>
-          <div className={styles.table}>
-            <ExportList
-              Loading={loading}
-              onChange={handleTableChange}
-              Data={data}
-              Columns={columns}
-              Scroll={{ y: 'calc(100vh - 400px)' }}
-              onCilck={handleClick}
-              TableBts={[
-                { type: 'add', text: '新增' },
-                { type: 'update', text: '修改' },
-                { type: 'del', text: '删除' },
-              ]}
-            />
-          </div>
+      <div>
+        <PageHeader />
+        <div className={'zkTableContent'}>
+          {advanceSearchForm}
+
+          <ZKTable
+            rowId={'businessAlarmRuleTempId'}
+            btnList={['add', 'edit', 'del']}
+            searchForm={form}
+            tableColumns={columns}
+            tableDataFun={getTableData}
+            defaultFormItem={{
+              name: 'hello',
+              email: '1',
+              phone: '2',
+            }}
+            clickOperBtn={(t: string, d: any) => {
+              console.log(
+                't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+              );
+              console.log(t, d);
+              console.log('点击表格上方操作按钮回调');
+              toggle();
+            }}
+            // isRowCheck={false}
+            // checkboxType="radio"
+            // disabledFun={(res: { gender: string }) => {
+            //   return {
+            //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
+            //     // name: record.gender,
+            //   };
+            // }}
+            // otherBtnFun={(e: any) => {
+            //   return [
+            //     <Button
+            //       key="other1"
+            //       type="primary"
+            //       onClick={() => {
+            //         console.log(e);
+            //       }}
+            //       disabled={!(e.length === 1)}
+            //     >
+            //       其他
+            //     </Button>,
+            //   ];
+            // }}
+            ref={shareRef}
+          />
         </div>
       </div>
+      <Modal
+        title="添加"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={1400}
+        bodyStyle={{ height: '800px'}}
+      >
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
     </>
   );
-});
-
-export default HeatRate;
+};
+export default Site;
