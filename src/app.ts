@@ -1,15 +1,14 @@
 // 运行时配置
-import type { RequestConfig } from '@umijs/max';
-import { history, useParams } from '@umijs/max';
-import { message } from 'antd';
-import { hasAccessToken, outLogin } from './services/zg-base/login';
-import { clearStorageAll, getStorageItems } from '@/utils/storageTool';
 import { getCompanySelected } from '@/utils/format';
+import { clearStorageAll, getStorageItems } from '@/utils/storageTool';
+import type { RequestConfig } from '@umijs/max';
+import { history } from '@umijs/max';
+import { message } from 'antd';
 // import queryString from 'query-string';
-
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档：https://next.umijs.org/docs/api/runtime-config#getinitialstate
 import URLSearchParams from 'querystring';
+import { hasAccessToken, outLogin } from './services/zg-base/login';
 const loginPath = '/login';
 export async function getInitialState(): Promise<{
   currentUser?: any;
@@ -109,7 +108,7 @@ export function onRouteChange() {
   if (u3dScriptDom && l > 0) {
     for (let i = 0; i < l; i++) {
       if (u3dScriptDom[i] !== null) {
-        u3dScriptDom[i].parentNode.removeChild(u3dScriptDom[i]);
+        u3dScriptDom[i].parentNode!.removeChild(u3dScriptDom[i]);
       }
     }
   }
