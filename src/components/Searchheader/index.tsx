@@ -17,10 +17,11 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 const Searchheader = memo((props: Props) => {
   let { List, placeholder, type, Inputdefalut,setlectdefalut,inputvaluedefalut} = props;
-  const [selectData, SetSelectData] = useState(List);
+  const [selectData, SetSelectData] = useState(List);//父组件传来的数据
   const [newvalue, Setnewvalue] = useState<Array<number | undefined | null>>(setlectdefalut); //多选框
   const [time, settime] = useState<any>(''); //时间
-  const [inputvalue, setinputvalue] = useState<Array<string>>(inputvaluedefalut); //输入框值
+  const [inputvalue, setinputvalue] = useState<Array<string|undefined|null>>(inputvaluedefalut); //输入框值
+  const [Timevalue,setTimeValue] = useState<Array<string>>([])//选择的开始与结束时间
   //重置按钮方法
   const setRest = () => {
     const newArr = newvalue.map((_) => undefined);
@@ -31,6 +32,7 @@ const Searchheader = memo((props: Props) => {
   //点击搜索触发调用
   const onsearch =()=>{
     console.log(newvalue,inputvalue)
+    console.log(Timevalue)
   }
   useEffect(() => {
     SetSelectData(List);
@@ -38,7 +40,9 @@ const Searchheader = memo((props: Props) => {
   //改变事件调用
   const setTime = (time :any,dateString:any) => {
     console.log(time,dateString);
-    //settime(time)
+    let StartTime = dateString[0]
+    let EndTime = dateString[1]
+    setTimeValue([StartTime,EndTime])
   };
   //改变多选框调用
   const setstale = (value: any, index?: any) => {

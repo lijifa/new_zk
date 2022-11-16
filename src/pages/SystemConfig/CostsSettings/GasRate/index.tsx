@@ -20,7 +20,7 @@ const placeholder = ['请选择所属项目', '请选择所属系统', '请选�
 let List = [list1, list2, list3];
 let Inputdefalut = ['请输入缴费单位搜索'];
 let setlectdefalut= [undefined,undefined,undefined]
-let inputvaluedefalut = ['','']
+let inputvaluedefalut = ['']
 // 表格数据
 const columns = [
   {
