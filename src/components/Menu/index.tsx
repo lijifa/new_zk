@@ -24,8 +24,14 @@ interface OriginaMenuItemType {
 
 // 脚手架示例组件
 const IndexMenu: React.FC = () => {
-  const { menuItem, saveMenuItem, updateMenuApiData, menuLv1Id } =
-    useModel('menuModel');
+  const {
+    menuItem,
+    saveMenuItem,
+    updateMenuApiData,
+    menuLv1Id,
+    addTagFun,
+    tags,
+  } = useModel('menuModel');
 
   const [menuData, setMenuData] = useState<any>([]);
   const [menuFlatData, setMenuflatData] = useState<any>({});
@@ -34,15 +40,16 @@ const IndexMenu: React.FC = () => {
   const { collapsed, setCollapsed } = useModel('global');
   // 点击菜单回调
   const clickItem = async (key: any) => {
-    if (menuItem.menuId === key) {
+    let res = tags.find((item) => item.key === key);
+    if (res !== undefined) {
+      history.push(res.path);
       return;
     }
-
-    // saveMenuItem(key);
-    // history.push('/jquery/' + key);
-    console.log('obj===============');
-    console.log(menuFlatData[key]);
-
+    addTagFun({
+      key,
+      label: menuFlatData[key].menuName,
+      path: menuFlatData[key].url,
+    });
     history.push(menuFlatData[key].url);
     return;
   };

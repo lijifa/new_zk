@@ -5,7 +5,7 @@ import styles from './index.less';
 const CompanyInfo = () => {
   return (
     <>
-      <PageHeader title="公司信息" />
+      <PageHeader />
       <div className={styles.content}>
         <div className={styles.tableBox}>
           <table>

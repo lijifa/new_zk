@@ -1,3 +1,4 @@
+import { useLocation, useModel } from '@umijs/max';
 import { Select } from 'antd';
 import styles from './index.less';
 
@@ -6,7 +7,7 @@ interface SubHeader {
   leftItem?: any;
 }
 interface PageHeader {
-  title: string;
+  title?: string;
 }
 
 const onChange = (event: any) => {
@@ -70,10 +71,19 @@ const SubHeader = ({ leftItem, title }: SubHeader) => {
 export default SubHeader;
 
 export const PageHeader = ({ title }: PageHeader) => {
+  const { tags } = useModel('menuModel');
+  const { pathname } = useLocation();
+
+  // 获取标题
+  const Title = () => {
+    let txt = tags.find((item: any) => item.path === pathname);
+    return txt?.label;
+  };
+
   return (
     <div className={styles.PageHeader}>
       <div>
-        <span className={styles.Title}>{title}</span>
+        <span className={styles.Title}>{title ?? Title()}</span>
       </div>
     </div>
   );

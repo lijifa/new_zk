@@ -58,8 +58,6 @@ export default function KeepAliveTabs() {
 
   // 页面刷新
   const Refresh = () => {
-    // window.location.reload()
-    // console.log(location.pathname);
     if (!refresh) return;
     refresh(location.pathname);
   };

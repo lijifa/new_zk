@@ -44,6 +44,25 @@ const columns = [
   },
 ];
 
+// select假数据
+const placeholder = ['请选择所属项目', '请选择所属系统', '请选择所属站点'];
+let list1 = [
+  { id: 1, text: '光合谷A能源站' },
+  { id: 3, text: '国际企业社区机房_0' },
+];
+let list2 = [
+  { id: 2, text: '暖通系统' },
+  { id: 7, text: '空调末端' },
+];
+let list3 = [
+  { id: 6, text: '轨道集团光合谷园系统' },
+  { id: 34, text: '静海政府智慧能源管理' },
+];
+let List = [list1, list2, list3];
+let Inputdefalut = ['请输入缴费单位搜索'];
+let setlectdefalut = [undefined, undefined, undefined];
+let inputvaluedefalut = ['', ''];
+
 const UserCheck = () => {
   const [loading, setLoading] = useState(false);
 
@@ -63,9 +82,16 @@ const UserCheck = () => {
 
   return (
     <>
-      <PageHeader title="用户审核" />
+      <PageHeader />
       <div className={styles.selectBox}>
-        <Searchheader time={true} type={4} />
+        <Searchheader
+          List={List}
+          placeholder={placeholder}
+          type="defalut"
+          Inputdefalut={Inputdefalut}
+          setlectdefalut={setlectdefalut}
+          inputvaluedefalut={inputvaluedefalut}
+        />
       </div>
       <div className={styles.content}>
         <FormList
@@ -73,7 +99,8 @@ const UserCheck = () => {
           Columns={columns}
           Data={data}
           Loading={loading}
-          onCilck={handleClick}
+          getItem={handleClick}
+          selectionType="check"
           ShowAction={{ show: true, name: ['通过', '驳回'] }}
           ShowPagination
         />

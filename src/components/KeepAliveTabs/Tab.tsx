@@ -1,13 +1,12 @@
 // /components/KeepAvlieTabs/Tab.tsx
-import { useModel, history, useLocation } from '@umijs/max';
-import { useAliveController } from 'react-activation';
 import { CloseCircleOutlined } from '@ant-design/icons';
+import { history, useLocation, useModel } from '@umijs/max';
+import { useAliveController } from 'react-activation';
+import styles from './index.less';
 import type { CachingNode } from './type';
 
-import styles from './index.less';
-
 export default function Tab({ node }: { node: CachingNode }) {
-  const { saveMenuItem } = useModel('menuModel');
+  const { saveMenuItem, tags } = useModel('menuModel');
   // const history = useHistory();
   const { pathname } = useLocation();
   // 同上，dropScope是释放节点，点删除后删掉当前节点信息
@@ -38,21 +37,19 @@ export default function Tab({ node }: { node: CachingNode }) {
     //   dropScope(node.name as string | RegExp);
     // }
 
-
-
-    let nodePath = node.path;             // 当前页面存于缓存中的节点Path
+    let nodePath = node.path; // 当前页面存于缓存中的节点Path
     // let pathname = location.pathname;  // 当前路由中的节点
-    
+
     //dropScope是释放节点，点删除后删掉当前节点信息
     setTimeout(() => {
       dropScope(nodePath);
       // clear()
     }, 100);
- 
+
     // 关闭当前页面，需跳转到其他页签
     if (nodePath === pathname) {
       const index = cachingNodes.findIndex((item) => item.path === nodePath);
-      
+
       if (index > 0) {
         history.push(cachingNodes[index - 1].path as string);
       } else {
@@ -62,12 +59,11 @@ export default function Tab({ node }: { node: CachingNode }) {
   }
 
   // 点击切换选项卡
-  function clickItem() {
-    
-    console.log('node^^^^^^^^^^^^^^');
-    console.log(node);
-    saveMenuItem(node.path)
-    history.push(node.path);
+  function clickItem(key: any) {
+    console.log('tags^^^^^^^^^^^^^^');
+    console.log(tags);
+    saveMenuItem(tags[key].path);
+    history.push(tags[key].path);
   }
 
   // 设置当前tab的样式
@@ -78,20 +74,22 @@ export default function Tab({ node }: { node: CachingNode }) {
       }
       return `${styles.active}`;
     }
-    if(pathname === '/home'){
+    if (pathname === '/home') {
       return `${styles.home_active}`;
     }
     return `${styles.deactive}`;
   };
-  
+
   return (
-    <li
-      className={className()}
-      onClick={clickItem}
-    >
+    <li className={className()} onClick={clickItem}>
       <div className="tags-nav">
-        <span>{node.tabName}</span>
-        { pathname === '/home'  ? null : <CloseCircleOutlined className={styles['close-btn']} onClick={dropTab} />}
+        <span>{node.label}</span>
+        {pathname === '/home' ? null : (
+          <CloseCircleOutlined
+            className={styles['close-btn']}
+            onClick={dropTab}
+          />
+        )}
       </div>
     </li>
   );
