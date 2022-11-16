@@ -308,7 +308,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:systemAnalysis:view',
-                url: '/System_operation',
+                url: '/systemOperation',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -323,7 +323,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:hvacEnergyStatistics:view',
-                url: '/Energy_consumption',
+                url: '/energyConsumption',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -338,7 +338,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:uceStatistics:view',
-                url: '/User_comfort',
+                url: '/userComfort',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -353,7 +353,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:dpcStatistics:view',
-                url: '/Power_equipment',
+                url: '/powerEquipment',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -368,7 +368,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: 'business:secStatistics:view',
-                url: '/Efficiency_analysis',
+                url: '/efficiencyAnalysis',
               },
               {
                 ancestors: ',4001,5440,5703',
@@ -383,7 +383,7 @@ export default () => {
                 params: {},
                 parentId: 5703,
                 perms: '',
-                url: 'under_development',
+                url: 'underDevelopment',
               },
             ],
             createTime: 1651134940000,
@@ -1666,7 +1666,7 @@ export default () => {
                 params: {},
                 parentId: 5715,
                 perms: 'business:gateway:view',
-                url: '/business/gateway',
+                url: '/gatewaySet',
               },
               {
                 ancestors: ',4001,5710,5715',
@@ -1681,7 +1681,7 @@ export default () => {
                 params: {},
                 parentId: 5715,
                 perms: 'business:mfrsPlctemplate:view',
-                url: '/business/mfrsPlctemplate',
+                url: '/signalSet',
               },
               {
                 ancestors: ',4001,5710,5715',
@@ -1696,7 +1696,7 @@ export default () => {
                 params: {},
                 parentId: 5715,
                 perms: 'business:mfrsPlcSignal:view',
-                url: '/business/mfrsPlcSignal',
+                url: '/signalBinding',
               },
               {
                 ancestors: ',4001,5710,5715',
@@ -1711,7 +1711,7 @@ export default () => {
                 params: {},
                 parentId: 5715,
                 perms: '',
-                url: 'under_development',
+                url: '/sensorBinding',
               },
               {
                 ancestors: ',4001,5710,5715',
@@ -1726,7 +1726,7 @@ export default () => {
                 params: {},
                 parentId: 5715,
                 perms: 'business:mfrsMtdDevicePlc:view',
-                url: '/business/mfrsMtdDevicePlc',
+                url: '/meterParamSet',
               },
             ],
             createTime: 1651138352000,

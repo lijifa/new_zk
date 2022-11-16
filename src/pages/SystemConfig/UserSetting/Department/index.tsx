@@ -1,6 +1,8 @@
-import FormList from '@/components/FormList';
 import { PageHeader } from '@/components/SubHeader';
-import { useState } from 'react';
+import ZKTable from '@/components/ZKTable';
+import { useBoolean } from 'ahooks';
+import { Button, Form, Input, Space } from 'antd';
+import { useRef } from 'react';
 import styles from './index.less';
 
 // 表格数据
@@ -28,55 +30,78 @@ const columns = [
 ];
 
 const UserCheck = () => {
-  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+  const [state, { toggle }] = useBoolean(false);
+  const shareRef = useRef<any>();
 
-  const data: any = [
-    {
-      key: 1,
-      name: `Edward King `,
-      age: 32,
-      address: `London, Park Lane no.`,
-      children: [
-        {
-          key: 11,
-          name: 'John Brown',
-          age: 42,
-          address: 'New York No. 2 Lake Park',
-        },
-        {
-          key: 12,
-          name: 'John Brown jr.',
-          age: 30,
-          address: 'New York No. 3 Lake Park',
-        },
-      ],
-    },
-  ];
-
-  const handleClick = (type: string, key: any) => {
-    console.log('打印:', type, key);
+  // 点击搜索、重置按钮
+  const searchOper = (type: string) => {
+    shareRef?.current?.clickSearchBtn(type);
   };
+
+  // 高级搜索栏Form
+  const advanceSearchForm = (
+    <div className="zkSearchBox">
+      <Form form={form}>
+        <Space align="center">
+          <Form.Item name="username">
+            <Input placeholder="请输入部门名称搜索" />
+          </Form.Item>
+
+          <Button type="primary" onClick={() => searchOper('submit')}>
+            搜索
+          </Button>
+          <Button onClick={() => searchOper('reset')}>重置</Button>
+        </Space>
+      </Form>
+    </div>
+  );
 
   return (
     <>
       <PageHeader />
-      <div className={styles.selectBox}>
-        {/* <Searchheader time={true} type={4} /> */}
-      </div>
-      <div className={styles.warnText}>注：请按照同一层级进行从小到大排序</div>
-      <div className={styles.content}>
-        <FormList
-          Scroll={{ y: 'calc(100vh - 350px)' }}
-          Columns={columns}
-          Data={data}
-          Loading={loading}
-          getItem={handleClick}
-          selectionType="check"
-          ShowAction={{ show: true, name: ['编辑', '新增', '删除'] }}
-          TableBts={[
-            { type: 'add', text: '新增' },
-            { type: 'collapse', text: '展开/折叠' },
-          ]}
+      <div className={'zkTableContent'}>
+        {advanceSearchForm}
+
+        <ZKTable
+          btnList={['add']}
+          searchForm={form}
+          tableColumns={columns}
+          clickOperBtn={(t: string, d: any) => {
+            console.log(
+              't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
+            );
+            console.log(t, d);
+            console.log('点击表格上方操作按钮回调');
+            toggle();
+          }}
+          isRowCheck={false}
+          // checkboxType="radio"
+          // disabledFun={(res: { gender: string }) => {
+          //   return {
+          //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
+          //     // name: record.gender,
+          //   };
+          // }}
+          otherBtnFun={(e: any) => {
+            return [
+              <Button
+                key="other1"
+                type="primary"
+                onClick={() => {
+                  console.log(e);
+                }}
+                style={{ background: '#23c6c8', border: '#23c6c8' }}
+                // disabled={!(e.length === 1)}
+              >
+                展开/折叠
+              </Button>,
+              <div className={styles.warnText} key={'warnText'}>
+                注：请按照同一层级进行从小到大排序
+              </div>,
+            ];
+          }}
+          ref={shareRef}
         />
       </div>
     </>
