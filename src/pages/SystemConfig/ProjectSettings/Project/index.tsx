@@ -4,8 +4,9 @@ import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Add from './Add';
+import Inline from './Inline';
 
 const { RangePicker } = DatePicker;
 
@@ -13,6 +14,7 @@ const Project = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
+  const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
 
   // 表格列字段
   const columns = [
@@ -56,6 +58,7 @@ const Project = () => {
           ]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
+            toggle();
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -90,8 +93,8 @@ const Project = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+    setAddCgType(e);
   };
-
   // 高级搜索栏Form
   const advanceSearchForm = (
     <div className="zkSearchBox">
@@ -157,9 +160,6 @@ const Project = () => {
               ]}
             />
           </Form.Item>
-          <Form.Item name="createData">
-            <RangePicker />
-          </Form.Item>
 
           <Button type="primary" onClick={() => searchOper('submit')}>
             搜索
@@ -174,6 +174,66 @@ const Project = () => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
+
+  //判断类型
+  function findMType(AddCgType: string) {
+    if (AddCgType === 'add') {
+      return (
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      );
+    } else if (AddCgType === 'edit') {
+      return (
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      );
+    } else {
+      return (
+        <Inline
+          Type={AddCgType}
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      );
+    }
+  }
+  //判断标头
+  function findTitle(AddCgType: string) {
+    let resule;
+    switch (AddCgType) {
+      case 'add':
+        resule = '新增项目';
+        break;
+      case 'edit':
+        resule = '修改项目';
+        break;
+      case 'detail':
+        resule = '绑定站点';
+        break;
+      case 'site':
+        resule = '人员详情';
+        break;
+      default:
+        break;
+    }
+    return resule;
+  }
 
   return (
     <>
@@ -200,31 +260,23 @@ const Project = () => {
               console.log(t, d);
               console.log('点击表格上方操作按钮回调');
               toggle();
+              setAddCgType(t);
             }}
             ref={shareRef}
           />
         </div>
       </div>
       <Modal
-        title="添加"
+        title={findTitle(AddCgType)}
         open={state}
         footer={null}
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={1400}
-        bodyStyle={{ height: '800px'}}
+        width={1300}
+        bodyStyle={{ height: '750px' }}
       >
-    
-          <Add
-            onSubmit={() => {
-              toggle();
-            }}
-            onClose={() => {
-              toggle();
-            }}
-          />
-      
+        {findMType(AddCgType)}
       </Modal>
     </>
   );

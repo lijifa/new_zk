@@ -6,6 +6,7 @@ import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef } from 'react';
 import Add from './Add';
+import Inline from './Inline';
 
 const { RangePicker } = DatePicker;
 
@@ -50,7 +51,10 @@ const Site = () => {
       key: 'operation',
       render: (record: any) => (
         <RowOperBtn
-          btnList={[{ key: 'detail', text: '查看详情' },{key:'site',text:'站点详情'}]}
+          btnList={[
+            { key: 'detail', text: '人员详情' },
+            { key: 'site', text: '站点详情' },
+          ]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
           }}
@@ -154,10 +158,6 @@ const Site = () => {
               ]}
             />
           </Form.Item>
-          <Form.Item name="createData">
-            <RangePicker />
-          </Form.Item>
-
           <Button type="primary" onClick={() => searchOper('submit')}>
             搜索
           </Button>
@@ -225,14 +225,14 @@ const Site = () => {
         </div>
       </div>
       <Modal
-        title="添加"
+        title="新增站点"
         open={state}
         footer={null}
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={1400}
-        bodyStyle={{ height: '800px'}}
+        width={1300}
+        bodyStyle={{ height: '750px' }}
       >
         <Add
           onSubmit={() => {
@@ -242,6 +242,7 @@ const Site = () => {
             toggle();
           }}
         />
+   
       </Modal>
     </>
   );

@@ -3,11 +3,58 @@ interface Props {
   onSubmit: Function; // 提交按钮回调方法
 }
 import ModalFooter from '@/components/ModalFooter';
-import { Col, DatePicker, Form, Input, Radio, Row, Select } from 'antd';
+import {
+  Cascader,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Radio,
+  Row,
+  Select,
+} from 'antd';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
+const options = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const onChange = (value: string[]) => {
+  console.log(value);
+};
 
 const Add = (props: Props) => {
   const [form] = Form.useForm();
@@ -18,7 +65,6 @@ const Add = (props: Props) => {
   };
 
   return (
-   
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
       <Row justify={'space-between'}>
         <Col span={7}>
@@ -49,54 +95,24 @@ const Add = (props: Props) => {
           <Form.Item
             label="站点所在地"
             name="diagram-name3"
-            rules={[{ required: true, message: '请选择所在地' }]}
+            rules={[{ required: true, message: '请选择站点所在地' }]}
           >
-            <Select placeholder="请选择所在地">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
+            <Cascader
+              options={options}
+             // onChange={onChange}
+              placeholder="请选择站点所在地"
+            />
           </Form.Item>
         </Col>
       </Row>
       <Row justify={'space-between'}>
-        <Col span={7}>
+        <Col span={24}>
           <Form.Item
-            label="所属区域："
+            label="站点详细地址"
             name="diagram-name4"
-            rules={[{ required: true, message: '请选择所属站点' }]}
+            rules={[{ required: true, message: '请输入站点详细地址' }]}
           >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col span={7}>
-          <Form.Item
-            style={{ marginTop: '30px' }}
-            name="diagram-name5"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col span={7}>
-          <Form.Item
-            name="diagram-name6"
-            style={{ marginTop: '30px' }}
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
+            <Input placeholder="请输入站点详细地址" />
           </Form.Item>
         </Col>
       </Row>
@@ -236,7 +252,6 @@ const Add = (props: Props) => {
         </Button>
       </Form.Item> */}
     </Form>
-
   );
 };
 
