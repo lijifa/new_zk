@@ -45,11 +45,14 @@ const IndexMenu: React.FC = () => {
       history.push(res.path);
       return;
     }
-    addTagFun({
-      key,
-      label: menuFlatData[key].menuName,
-      path: menuFlatData[key].url,
-    });
+    addTagFun(
+      {
+        key,
+        label: menuFlatData[key].menuName,
+        path: menuFlatData[key].url,
+      },
+      'menu',
+    );
     history.push(menuFlatData[key].url);
     return;
   };

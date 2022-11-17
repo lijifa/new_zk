@@ -1,6 +1,7 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { DownOutlined, RedoOutlined, UpOutlined } from '@ant-design/icons';
 import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Select, Space, Tree } from 'antd';
@@ -107,6 +108,22 @@ const UserManage = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+  };
+
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
   };
 
   // 展开/收起节点时触发
@@ -219,6 +236,7 @@ const UserManage = () => {
                 btnList={[]}
                 searchForm={form}
                 tableColumns={columns}
+                tableDataFun={getTableData}
                 clickOperBtn={(t: string, d: any) => {
                   console.log(
                     't：按钮的类型【add/edit/del/export】;\n d：选中行数据',

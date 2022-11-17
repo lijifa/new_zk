@@ -1,14 +1,33 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Select, Space } from 'antd';
-import React, { memo, useRef } from 'react';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
+import React, { memo, useRef, useState } from 'react';
+import Detail from './Detail';
+import Parameter from './Parameter';
 
 const MeterParamSet = memo(() => {
   const [form] = Form.useForm();
+  const [detail, setDetail] = useState(false);
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef<any>();
+
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
 
   // 表格数据
   const columns = [
@@ -61,9 +80,11 @@ const MeterParamSet = memo(() => {
 
   // 点击行内操作按钮回调
   const clickRowbtn = (e: string, data: any) => {
-    console.log('e：按钮标识(key);\n data当前操作行数据');
-    console.log(e);
-    console.log(data);
+    if (e == 'detail') {
+      setDetail(true);
+    } else {
+      toggle();
+    }
   };
 
   // 点击搜索、重置按钮
@@ -248,17 +269,48 @@ const MeterParamSet = memo(() => {
           btnList={[]}
           searchForm={form}
           tableColumns={columns}
-          clickOperBtn={(t: string, d: any) => {
-            console.log(
-              't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
-            );
-            console.log(t, d);
-            console.log('点击表格上方操作按钮回调');
-            toggle();
-          }}
+          tableDataFun={getTableData}
           ref={shareRef}
         />
       </div>
+      <Modal
+        title="信号绑定详情"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Parameter
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
+      <Modal
+        title="信号绑定详情"
+        open={detail}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={() => setDetail(false)}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Detail
+          onSubmit={() => {
+            setDetail(false);
+          }}
+          onClose={() => {
+            setDetail(false);
+          }}
+        />
+      </Modal>
     </>
   );
 });

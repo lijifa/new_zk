@@ -1,38 +1,97 @@
+import DelWarnModal from '@/components/DelWarnModal';
+import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Space } from 'antd';
-import { useRef } from 'react';
+import { Button, Form, Input, Modal, Space } from 'antd';
+import { useRef, useState } from 'react';
+import Add from './Add';
 import styles from './index.less';
-
-// 表格数据
-const columns = [
-  {
-    title: '部门名称',
-    dataIndex: 'name',
-  },
-  {
-    title: '显示顺序',
-    dataIndex: 'age',
-  },
-  {
-    title: '联系人姓名',
-    dataIndex: 'address',
-  },
-  {
-    title: '联系人电话',
-    dataIndex: 'address',
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'address',
-  },
-];
 
 const UserCheck = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
+  const [del, setDel] = useState(false);
   const shareRef = useRef<any>();
+
+  // 表格数据
+  const columns = [
+    {
+      title: '部门名称',
+      dataIndex: 'name',
+    },
+    {
+      title: '显示顺序',
+      dataIndex: 'age',
+    },
+    {
+      title: '联系人姓名',
+      dataIndex: 'address',
+    },
+    {
+      title: '联系人电话',
+      dataIndex: 'address',
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'address',
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      render: (record: any) => (
+        <RowOperBtn
+          btnList={[
+            { key: 'add', text: '新增' },
+            { key: 'edit', text: '编辑' },
+            { key: 'del', text: '删除' },
+          ]}
+          btnCilck={(e: string) => {
+            clickRowbtn(e, record);
+          }}
+          rowData={record}
+          // isDisabled={isDisabledFun(record)}
+        />
+      ),
+    },
+  ];
+
+  // 点击行内操作按钮回调
+  const clickRowbtn = (e: string, data: any) => {
+    switch (e) {
+      case 'add':
+        toggle();
+        break;
+      case 'edit':
+        toggle();
+        break;
+      case 'del':
+        setDel(true);
+        break;
+      default:
+        break;
+    }
+    console.log('e：按钮标识(key);\n data当前操作行数据');
+    console.log(e);
+    console.log(data);
+  };
+
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
 
   // 点击搜索、重置按钮
   const searchOper = (type: string) => {
@@ -67,6 +126,7 @@ const UserCheck = () => {
           btnList={['add']}
           searchForm={form}
           tableColumns={columns}
+          tableDataFun={getTableData}
           clickOperBtn={(t: string, d: any) => {
             console.log(
               't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
@@ -76,13 +136,6 @@ const UserCheck = () => {
             toggle();
           }}
           isRowCheck={false}
-          // checkboxType="radio"
-          // disabledFun={(res: { gender: string }) => {
-          //   return {
-          //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
-          //     // name: record.gender,
-          //   };
-          // }}
           otherBtnFun={(e: any) => {
             return [
               <Button
@@ -92,7 +145,6 @@ const UserCheck = () => {
                   console.log(e);
                 }}
                 style={{ background: '#23c6c8', border: '#23c6c8' }}
-                // disabled={!(e.length === 1)}
               >
                 展开/折叠
               </Button>,
@@ -104,6 +156,36 @@ const UserCheck = () => {
           ref={shareRef}
         />
       </div>
+      <DelWarnModal
+        Show={del}
+        Delete={() => {
+          console.log('父级删除');
+          setDel(false);
+        }}
+        Cancal={() => {
+          console.log('父级取消');
+          setDel(false);
+        }}
+      />
+      <Modal
+        title="添加"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={950}
+        bodyStyle={{ height: '620px' }}
+      >
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
     </>
   );
 };
