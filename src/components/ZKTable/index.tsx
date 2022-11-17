@@ -42,6 +42,7 @@ const ZKTable = forwardRef((props: any, ref) => {
     disabledFun, // 是否需要被禁用的列表项函数：需要返回一个[true | false]
     btnList, // 更多的表格上方按钮, 默认：['add','edit', 'del']
     otherBtnFun, // 更多的表格上方按钮, 必须要返回按钮数组
+    onRowCheckBoxFun, // 点击行选择框回调
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -102,6 +103,10 @@ const ZKTable = forwardRef((props: any, ref) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     console.log('selectedRows changed: ', selectedRows);
     setSelectedRowKeys(newSelectedRowKeys);
+
+    if (onRowCheckBoxFun && typeof onRowCheckBoxFun === 'function') {
+      onRowCheckBoxFun(selectedRows);
+    }
   };
 
   const rowSelection = {
