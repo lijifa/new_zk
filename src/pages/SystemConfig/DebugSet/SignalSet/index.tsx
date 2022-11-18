@@ -331,7 +331,7 @@ const SignalSet = memo(() => {
         />
       </div>
       <Modal
-        title="添加"
+        title="新增信号模板"
         open={state}
         footer={null}
         destroyOnClose={true}

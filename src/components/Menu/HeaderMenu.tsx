@@ -22,26 +22,16 @@ const IndexMenu: React.FC = () => {
     return;
   };
 
-  const icon = (index: number) => {
-    // 华德智慧能源 第一个icon
-    if (index === 0) {
-      return (
-        <IconFont
-          type="icon-xiezilou"
-          style={{ color: '#0CD0FA', fontSize: 18 }}
-        />
-      );
-    } else {
-      return (
-        <IconFont
-          type="icon-fangwu1"
-          style={{
-            color: '#0CD0FA',
-            fontSize: 18,
-          }}
-        />
-      );
-    }
+  const iconFun = (iconStr: string, flag: boolean = false) => {
+    return (
+      <IconFont
+        type={iconStr}
+        style={{
+          color: flag ? '#FFFFFF' : '#0CD0FA',
+          fontSize: 18,
+        }}
+      />
+    );
   };
   // 获取菜单
   const getMenuList = () => {
@@ -63,8 +53,16 @@ const IndexMenu: React.FC = () => {
   // 遍历一级菜单
   const getMenuLv1 = () => {
     let tempArr: JSX.Element[] = [];
+
     menuLv1Data.forEach(
-      (item: { key: number; label: string }, index: number) => {
+      (
+        item: {
+          icon: string;
+          key: number;
+          label: string;
+        },
+        index: number,
+      ) => {
         if (item.key === menuLv1Id) {
           tempArr.push(
             <li
@@ -72,20 +70,14 @@ const IndexMenu: React.FC = () => {
               key={index}
               onClick={() => clickItem(item.key)}
             >
-              <IconFont
-                type="icon-xiezilou"
-                style={{ color: '#FFF', fontSize: 18 }}
-              />
+              {iconFun(item.icon, true)}
               <span className={styles.title}>{item.label}</span>
             </li>,
           );
         } else {
           tempArr.push(
             <li key={index} onClick={() => clickItem(item.key)}>
-              <IconFont
-                type="icon-xiezilou"
-                style={{ color: '#FFF', fontSize: 18 }}
-              />
+              {iconFun(item.icon)}
               <span className={styles.title}>{item.label}</span>
             </li>,
           );
