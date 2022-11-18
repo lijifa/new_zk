@@ -19,7 +19,9 @@ const onChange = (value: string[]) => {
 const Inline = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
-  const [tag, setTag] = useState<Array<string>>(['默认标题']);
+  const [tags, setTag] = useState<Array<string>>(['默认标题']);
+  const [selectvallue, setselectvallue] = useState<Array<string>>(['']);
+  const { Type } = props;
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
@@ -42,6 +44,25 @@ const Inline = (props: Props) => {
     },
     {
       title: '创建时间',
+      dataIndex: 'siteProject',
+    },
+  ];
+  const columnsI = [
+    {
+      title: '姓名',
+      dataIndex: 'reason',
+      align: 'left',
+    },
+    {
+      title: '手机号',
+      dataIndex: 'systemName',
+    },
+    {
+      title: '所属岗位',
+      dataIndex: 'siteName',
+    },
+    {
+      title: '所属部门',
       dataIndex: 'siteProject',
     },
   ];
@@ -81,15 +102,43 @@ const Inline = (props: Props) => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
-  //获得选择表格数据
-
+  //添加标签
+  function Taddtag(e: any) {
+    //console.log(e);
+    let tagList: Array<string> = [];
+    e.map((item: any) => {
+      // tagList.push(item.reason);
+      //console.log(tagList)
+      if (tags.indexOf(item.reason) === -1) {
+        setTag([...tags, item.reason]);
+      }
+    });
+  }
+  //删除标签
+  const handleClose = (removedTag: string) => {
+    const newTags = tags.filter((tag) => tag !== removedTag);
+    setTag(newTags);
+  };
+  const forMap = (tag: string) => {
+    const tagElem = (
+      <Tag
+        closable
+        onClose={(e) => {
+          e.preventDefault();
+          handleClose(tag);
+        }}
+      >
+        {tag}
+      </Tag>
+    );
+    return <span style={{ display: 'inline-block' }}>{tagElem}</span>;
+  };
+  const tagChild = tags.map(forMap);
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
       <div className={styles.title}>{advanceSearchForm}</div>
-      <div className={styles.center}>
-        <Tag closable>{tag}</Tag>
-      </div>
+      {Type === 'detail' ? <div className={styles.center}>{tagChild}</div> : ''}
 
       <div
         className={'zkTableContent'}
@@ -99,7 +148,8 @@ const Inline = (props: Props) => {
           rowId={'businessAlarmRuleTempId'}
           btnList={[]}
           searchForm={form}
-          tableColumns={columns}
+          isRowCheck={Type === 'detail' ? true : false}
+          tableColumns={Type === 'detail ' ? columns : columnsI}
           tableDataFun={getTableData}
           defaultFormItem={{
             name: 'hello',
@@ -114,6 +164,7 @@ const Inline = (props: Props) => {
             console.log('点击表格上方操作按钮回调');
           }}
           ref={shareRef}
+          onRowCheckBoxFun={Taddtag}
         />
       </div>
 

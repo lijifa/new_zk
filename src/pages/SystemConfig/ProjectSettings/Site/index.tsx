@@ -3,17 +3,17 @@ import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
-import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef } from 'react';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
+import { useRef, useState } from 'react';
 import Add from './Add';
+import Detailpage from './Detailpage';
 import Inline from './Inline';
-
-const { RangePicker } = DatePicker;
 
 const Site = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
+  const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
 
   // 表格列字段
   const columns = [
@@ -57,6 +57,7 @@ const Site = () => {
           ]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
+            toggle();
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -91,6 +92,7 @@ const Site = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+    setAddCgType(e);
   };
 
   // 高级搜索栏Form
@@ -171,7 +173,55 @@ const Site = () => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
-
+  //根据Type显示不同页面
+  const AddPage = (
+    <Add
+      onSubmit={() => {
+        toggle();
+      }}
+      onClose={() => {
+        toggle();
+      }}
+    />
+  );
+  function findMType(AddCgType: string) {
+    let result;
+    switch (AddCgType) {
+      case 'add':
+        result = AddPage;
+        break;
+      case 'edit':
+        result = AddPage;
+        break;
+      case 'detail':
+        result = (
+          <Inline
+            onSubmit={() => {
+              toggle();
+            }}
+            onClose={() => {
+              toggle();
+            }}
+          />
+        );
+        break;
+      case 'site':
+        result = (
+          <Detailpage
+            onSubmit={() => {
+              toggle();
+            }}
+            onClose={() => {
+              toggle();
+            }}
+          />
+        );
+        break;
+      default:
+        break;
+    }
+    return result;
+  }
   return (
     <>
       <div>
@@ -197,29 +247,8 @@ const Site = () => {
               console.log(t, d);
               console.log('点击表格上方操作按钮回调');
               toggle();
+              setAddCgType(t);
             }}
-            // isRowCheck={false}
-            // checkboxType="radio"
-            // disabledFun={(res: { gender: string }) => {
-            //   return {
-            //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
-            //     // name: record.gender,
-            //   };
-            // }}
-            // otherBtnFun={(e: any) => {
-            //   return [
-            //     <Button
-            //       key="other1"
-            //       type="primary"
-            //       onClick={() => {
-            //         console.log(e);
-            //       }}
-            //       disabled={!(e.length === 1)}
-            //     >
-            //       其他
-            //     </Button>,
-            //   ];
-            // }}
             ref={shareRef}
           />
         </div>
@@ -231,18 +260,10 @@ const Site = () => {
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={1300}
-        bodyStyle={{ height: '750px' }}
+        width={AddCgType === 'site' ? 950 : 1300}
+        bodyStyle={{ height: AddCgType === 'site' ? '600px' : '750px' }}
       >
-        <Add
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
-   
+        {findMType(AddCgType)}
       </Modal>
     </>
   );
