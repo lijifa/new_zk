@@ -150,7 +150,7 @@ export function topMenuflat(data: any) {
 // 格式化智控菜单：返回格式化后的菜单，及初始化菜单ID
 export function zkMenuFormat(zkMenuList: any[]) {
   let resMenu:any = {};
-  let resMenuLv1:{ label: string; key: number }[] = [];
+  let resMenuLv1:{ label: string; key: number, icon: string }[] = [];
   let menuLvFristId = 0;
   // 转换JSON结构
   zkMenuList.map((item, index) => {
@@ -161,6 +161,7 @@ export function zkMenuFormat(zkMenuList: any[]) {
       resMenuLv1.push({
         key: item.menuId,
         label: item.menuName,
+        icon: item.icon,
       })
   })
 

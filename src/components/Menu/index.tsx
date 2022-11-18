@@ -18,6 +18,7 @@ interface MenuItemType {
 interface OriginaMenuItemType {
   menuId: number;
   menuName: string;
+  icon: string;
   url: string;
   children: any[];
 }
@@ -57,26 +58,16 @@ const IndexMenu: React.FC = () => {
     return;
   };
 
-  const icon = (index: number) => {
-    // 华德智慧能源 第一个icon
-    if (index === 0) {
-      return (
-        <IconFont
-          type="icon-xiezilou"
-          style={{ color: '#0CD0FA', fontSize: 18 }}
-        />
-      );
-    } else {
-      return (
-        <IconFont
-          type="icon-fangwu1"
-          style={{
-            color: '#0CD0FA',
-            fontSize: 18,
-          }}
-        />
-      );
-    }
+  const iconFun = (iconStr: string) => {
+    return (
+      <IconFont
+        type={iconStr}
+        style={{
+          color: '#0CD0FA',
+          fontSize: 18,
+        }}
+      />
+    );
   };
   // 获取菜单
   const getMenuList = () => {
@@ -94,6 +85,7 @@ const IndexMenu: React.FC = () => {
     }
 
     // setMenuLocation(firstItemData?.menuRelation);
+
     leftMenuData[menuLv1Id]?.forEach(
       (item: OriginaMenuItemType, index: number) => {
         // 第一级菜单
@@ -133,7 +125,7 @@ const IndexMenu: React.FC = () => {
 
         menuAll.push({
           key: item.menuId,
-          icon: icon(index),
+          icon: iconFun(item.icon),
           label: item.menuName,
           children: menuLvTwo,
         });
