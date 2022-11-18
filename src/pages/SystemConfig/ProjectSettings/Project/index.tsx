@@ -5,8 +5,9 @@ import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef, useState } from 'react';
-import Add from './Add';
-import Inline from './Inline';
+import Add from './Add/Add';
+import Inline from './Inine/Inline';
+import ProjectDetail from './ProjectDetail';
 
 const { RangePicker } = DatePicker;
 
@@ -50,11 +51,13 @@ const Project = () => {
     {
       title: '操作',
       key: 'operation',
+      width: '15%',
       render: (record: any) => (
         <RowOperBtn
           btnList={[
             { key: 'detail', text: '绑定站点' },
             { key: 'site', text: '人员详情' },
+            { key: 'project', text: '项目详情' },
           ]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
@@ -176,42 +179,60 @@ const Project = () => {
   };
 
   //判断类型
+  //根据Type显示不同页面
+  const AddPage = (
+    <Add
+      onSubmit={() => {
+        toggle();
+      }}
+      onClose={() => {
+        toggle();
+      }}
+    />
+  );
+  const InlinePage = (
+    <Inline
+      Type={AddCgType}
+      onSubmit={() => {
+        toggle();
+      }}
+      onClose={() => {
+        toggle();
+      }}
+    />
+  );
+
+  //判断页面
   function findMType(AddCgType: string) {
-    if (AddCgType === 'add') {
-      return (
-        <Add
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
-      );
-    } else if (AddCgType === 'edit') {
-      return (
-        <Add
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
-      );
-    } else {
-      return (
-        <Inline
-          Type={AddCgType}
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
-      );
+    let result;
+    switch (AddCgType) {
+      case 'add':
+        result = AddPage;
+        break;
+      case 'edit':
+        result = AddPage;
+        break;
+      case 'detail':
+        result = InlinePage;
+        break;
+      case 'site':
+        result = InlinePage;
+        break;
+      case 'project':
+        result = (
+          <ProjectDetail
+            onSubmit={() => {
+              toggle();
+            }}
+            onClose={() => {
+              toggle();
+            }}
+          />
+        );
+      default:
+        break;
     }
+    return result;
   }
   //判断标头
   function findTitle(AddCgType: string) {
@@ -228,6 +249,9 @@ const Project = () => {
         break;
       case 'site':
         resule = '人员详情';
+        break;
+      case 'project':
+        resule = '项目详情';
         break;
       default:
         break;
@@ -274,7 +298,7 @@ const Project = () => {
         centered={true}
         onCancel={toggle}
         width={1300}
-        bodyStyle={{ height: '750px' }}
+        bodyStyle={{ height: '750px',padding:AddCgType === 'project'? '20px 40px 20px 40px' : '' }}
       >
         {findMType(AddCgType)}
       </Modal>

@@ -20,47 +20,22 @@ const Add = (props: Props) => {
       <Row justify={'space-between'}>
         <Col span={11}>
           <Form.Item
-            label="站点名称:"
+            label="所属项目:"
             name="diagram-name"
-            rules={[{ required: true, message: '请填写组态看板名称' }]}
+            rules={[{ required: true, message: '请选择项目' }]}
           >
-            <Input placeholder="请输入站点名称" />
+            <Select placeholder="请选择所属项目">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
           </Form.Item>
         </Col>
 
         <Col span={11}>
           <Form.Item
-            label="所属系统："
+            label="所属站点："
             name="diagram-name2"
-            rules={[{ required: true, message: '请选择所属系统' }]}
-          >
-            <Select placeholder="请选择所属系统">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-
-        <Col span={11}>
-          <Form.Item
-            label="站点所在地"
-            name="diagram-name3"
-            rules={[{ required: true, message: '请选择所属系统' }]}
-          >
-            <Select placeholder="请选择所在地">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row justify={'space-between'}>
-        <Col span={11}>
-          <Form.Item
-            label="所属区域："
-            name="diagram-name4"
             rules={[{ required: true, message: '请选择所属站点' }]}
           >
             <Select placeholder="请选择所属站点">
@@ -70,148 +45,39 @@ const Add = (props: Props) => {
             </Select>
           </Form.Item>
         </Col>
+      </Row>
+      <Row justify={'space-between'}>
         <Col span={11}>
           <Form.Item
-            label="组态看板类型"
+            label="缴费单位："
+            name="diagram-name3"
+            rules={[{ required: true, message: '请输入缴费单位' }]}
+          >
+            <Input placeholder="请输入缴费单位" />
+          </Form.Item>
+        </Col>
+        <Col span={11}>
+          <Form.Item
+            label="用气类型"
+            name="diagram-name4"
+            rules={[{ required: true, message: '请输入用气类型' }]}
+          >
+            <Select placeholder="请选择用气类型">
+              <Option value="red">Red</Option>
+              <Option value="green">Green</Option>
+              <Option value="blue">Blue</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row justify={'space-between'}>
+        <Col span={11}>
+          <Form.Item
+            label="费用单价(元/Nm³):"
             name="diagram-name5"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
+            rules={[{ required: true, message: '请输入费用单价' }]}
           >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="组态看板类型"
-            name="diagram-name6"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row justify={'space-between'}>
-        <Col span={11}>
-          <Form.Item
-            label="供冷面积(万m)："
-            name="diagram-name7"
-            rules={[{ required: true, message: '请选择所属站点' }]}
-          >
-              <Input placeholder="请输入供冷面积" />
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="供冷季开始日期"
-            name="diagram-name8"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="供冷季结束日期"
-            name="diagram-name9"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row justify={'space-between'}>
-        <Col span={11}>
-          <Form.Item
-            label="供热面积"
-            name="diagram-name10"
-            rules={[{ required: true, message: '请选择所属站点' }]}
-          >
-           <Input placeholder="请输入供热面积" />
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="供热开始日期"
-            name="diagram-name11"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="供冷开始日期"
-            name="diagram-name12"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row justify={'space-between'}>
-        <Col span={11}>
-          <Form.Item
-            label="负责人"
-            name="diagram-name13"
-            rules={[{ required: true, message: '请选择所属站点' }]}
-          >
-           <Input placeholder="请输入负责人姓名" />
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="联系电话"
-            name="diagram-name14"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-             <Input placeholder="请输入负责人联系电话" />
-          </Form.Item>
-        </Col>
-        <Col span={11}>
-          <Form.Item
-            label="消防设备"
-            name="diagram-name15"
-            rules={[{ required: true, message: '请选择组态看板类型' }]}
-          >
-            <Select placeholder="--请选择--">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row justify={'space-between'}>
-        <Col span={24}>
-          <Form.Item
-            label="备注"
-            name="diagram-name13"
-            rules={[{ required: true, message: '请选择所属站点' }]}
-          >
-           <Input placeholder="请输入负责人姓名" />
+            <Input placeholder="请输入费用单价" />
           </Form.Item>
         </Col>
       </Row>

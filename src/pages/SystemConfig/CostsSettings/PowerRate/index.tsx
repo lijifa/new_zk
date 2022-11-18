@@ -4,8 +4,9 @@ import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Add from './Add';
+import PriceDetail from './PriceDetail';
 
 const { RangePicker } = DatePicker;
 
@@ -13,6 +14,7 @@ const PowerRate = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
+  const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
 
   // 表格列字段
   const columns = [
@@ -53,6 +55,7 @@ const PowerRate = () => {
           btnList={[{ key: 'detail', text: '单价详情' }]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
+            toggle();
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -87,6 +90,7 @@ const PowerRate = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+    setAddCgType(e);
   };
 
   // 高级搜索栏Form
@@ -171,6 +175,62 @@ const PowerRate = () => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
+  //判断页面类型
+  const Addpage = (
+    <Add
+      onSubmit={() => {
+        toggle();
+      }}
+      onClose={() => {
+        toggle();
+      }}
+    />
+  );
+  function findMType(AddCgType: string) {
+    let result;
+    switch (AddCgType) {
+      case 'add':
+        result = Addpage;
+        break;
+      case 'edit':
+        result = Addpage;
+        break;
+      case 'detail':
+        result = (
+          <PriceDetail
+            onSubmit={() => {
+              toggle();
+            }}
+            onClose={() => {
+              toggle();
+            }}
+          />
+        );
+        break;
+      default:
+        break;
+    }
+    return result
+  }
+   //判断标头
+   function findTitle(AddCgType: string) {
+    let resule;
+    switch (AddCgType) {
+      case 'add':
+        resule = '新增电费单价';
+        break;
+      case 'edit':
+        resule = '修改电费单价';
+        break;
+      case 'detail':
+        resule = '单价详情';
+        break;
+      default:
+        break;
+    }
+    return resule;
+  }
+
 
   return (
     <>
@@ -197,29 +257,23 @@ const PowerRate = () => {
               console.log(t, d);
               console.log('点击表格上方操作按钮回调');
               toggle();
+              setAddCgType(t);
             }}
             ref={shareRef}
           />
         </div>
       </div>
       <Modal
-        title="添加"
+        title={findTitle(AddCgType)}
         open={state}
         footer={null}
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={650}
-        bodyStyle={{ height: '400px' }}
+        width={AddCgType === 'detail' ? 950 : 1300}
+        bodyStyle={{ height:  AddCgType === 'detail' ? '670px':'700px' }}
       >
-        <Add
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
+        {findMType(AddCgType)}
       </Modal>
     </>
   );

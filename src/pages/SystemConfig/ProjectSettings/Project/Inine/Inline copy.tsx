@@ -7,7 +7,7 @@ import ModalFooter from '@/components/ModalFooter';
 import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { Button, Form, Input, Select, Space, Tag } from 'antd';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Inine.less';
 
 const { Option } = Select;
@@ -21,8 +21,11 @@ const Inline = (props: Props) => {
   const shareRef = useRef();
   const [tags, setTag] = useState<Array<string>>(['默认标题']);
   const [selectvallue, setselectvallue] = useState<Array<string>>(['']);
+  const [slectId,setSlectId] = useState<Array<string>>([])
+  const [newcheckList,setNewcheckList] = useState<Array<any>>([])
   const { Type } = props;
 
+  useEffect(() => {}, [selectvallue]);
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
     props.onSubmit();
@@ -105,23 +108,30 @@ const Inline = (props: Props) => {
   //添加标签
   function Taddtag(e: any) {
     //console.log(e);
+    console.log(e)
+    setNewcheckList(e)
     let tagList: Array<string> = [];
+    setselectvallue(e);
     e.map((item: any) => {
-      // tagList.push(item.reason);
-      //console.log(tagList)
+      tagList.push(item.businessAlarmRuleTempId)
+      const reslut = Array.from(new Set(tagList))
+      setSlectId(reslut)
       if (tags.indexOf(item.reason) === -1) {
         setTag([...tags, item.reason]);
       }
     });
   }
+  console.log(slectId)
   //删除标签
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter((tag) => tag !== removedTag);
     setTag(newTags);
+    console.log(slectId)
   };
-  const forMap = (tag: string) => {
+  const forMap = (tag: string, index: number) => {
     const tagElem = (
       <Tag
+        key={index}
         closable
         onClose={(e) => {
           e.preventDefault();
@@ -134,6 +144,7 @@ const Inline = (props: Props) => {
     return <span style={{ display: 'inline-block' }}>{tagElem}</span>;
   };
   const tagChild = tags.map(forMap);
+  console.log(tags);
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
@@ -165,6 +176,7 @@ const Inline = (props: Props) => {
           }}
           ref={shareRef}
           onRowCheckBoxFun={Taddtag}
+          onSlectCheck={slectId}
         />
       </div>
 

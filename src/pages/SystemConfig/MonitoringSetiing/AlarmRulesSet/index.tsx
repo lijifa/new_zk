@@ -4,8 +4,9 @@ import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef } from 'react';
-import Add from './Add';
+import { useRef,useState} from 'react';
+import Add from './Add/Add';
+import PriceDetail from './PriceDetail'
 
 const { RangePicker } = DatePicker;
 
@@ -13,6 +14,8 @@ const AlarmRulesSet = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
+  const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
+  
 
   // 表格列字段
   const columns = [
@@ -58,9 +61,11 @@ const AlarmRulesSet = () => {
       key: 'operation',
       render: (record: any) => (
         <RowOperBtn
-          btnList={[{ key: 'detail', text: '停用' },{ key: 'detail', text: '' }]}
+          btnList={[{ key: 'block', text: '停用' },{ key: 'detail', text: '解决建议' }]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
+            setAddCgType(e)
+            toggle();
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -179,6 +184,61 @@ const AlarmRulesSet = () => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
+    //判断页面类型
+    const Addpage = (
+      <Add
+        onSubmit={() => {
+          toggle();
+        }}
+        onClose={() => {
+          toggle();
+        }}
+      />
+    );
+    function findMType(AddCgType: string) {
+      let result;
+      switch (AddCgType) {
+        case 'add':
+          result = Addpage;
+          break;
+        case 'edit':
+          result = Addpage;
+          break;
+        case 'detail':
+          result = (
+            <PriceDetail
+              onSubmit={() => {
+                toggle();
+              }}
+              onClose={() => {
+                toggle();
+              }}
+            />
+          );
+          break;
+        default:
+          break;
+      }
+      return result;
+    }
+    //判断标头
+    function findTitle(AddCgType: string) {
+      let resule;
+      switch (AddCgType) {
+        case 'add':
+          resule = '新增告警规则';
+          break;
+        case 'edit':
+          resule = '修改告警规则';
+          break;
+        case 'detail':
+          resule = '解决建议';
+          break;
+        default:
+          break;
+      }
+      return resule;
+    }
 
   return (
     <>
@@ -205,29 +265,23 @@ const AlarmRulesSet = () => {
               console.log(t, d);
               console.log('点击表格上方操作按钮回调');
               toggle();
+              setAddCgType(t)
             }}
             ref={shareRef}
           />
         </div>
       </div>
       <Modal
-        title="添加"
+        title={findTitle(AddCgType)}
         open={state}
         footer={null}
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={650}
-        bodyStyle={{ height: '400px' }}
+        width={950}
+        bodyStyle={{ height: '750px' }}
       >
-        <Add
-          onSubmit={() => {
-            toggle();
-          }}
-          onClose={() => {
-            toggle();
-          }}
-        />
+        {findMType(AddCgType)}
       </Modal>
     </>
   );

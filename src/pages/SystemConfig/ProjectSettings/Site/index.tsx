@@ -6,8 +6,8 @@ import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef, useState } from 'react';
 import Add from './Add';
-import Detailpage from './Detailpage';
-import Inline from './Inline';
+import Detailpage from './Detailpage'; //站点详情
+import Inline from './Inline'; //人员详情
 
 const Site = () => {
   const [form] = Form.useForm();
@@ -184,6 +184,7 @@ const Site = () => {
       }}
     />
   );
+  //判断页面
   function findMType(AddCgType: string) {
     let result;
     switch (AddCgType) {
@@ -222,6 +223,28 @@ const Site = () => {
     }
     return result;
   }
+  //判断标头
+  function findTitle(AddCgType: string) {
+    let resule;
+    switch (AddCgType) {
+      case 'add':
+        resule = '新增站点';
+        break;
+      case 'edit':
+        resule = '修改站点';
+        break;
+      case 'detail':
+        resule = '人员详情';
+        break;
+      case 'site':
+        resule = '站点详情';
+        break;
+      default:
+        break;
+    }
+    return resule;
+  }
+
   return (
     <>
       <div>
@@ -254,7 +277,7 @@ const Site = () => {
         </div>
       </div>
       <Modal
-        title="新增站点"
+        title={findTitle(AddCgType)}
         open={state}
         footer={null}
         destroyOnClose={true}
