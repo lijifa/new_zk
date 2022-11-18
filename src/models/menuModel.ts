@@ -2,6 +2,7 @@
 import { getMenuData } from '@/services/zg-base/login';
 import { getFirstMenuItem, zkMenuFormat } from '@/utils/format';
 import { getStorageItems, setStorageItems } from '@/utils/storageTool';
+import { history } from '@umijs/max';
 import { useCallback, useState } from 'react';
 
 // 单个菜单项的数据类型
@@ -38,12 +39,18 @@ export default () => {
 
   const [tags, setTags] = useState<tagDataType[]>([]);
 
-  // 添加标签
-  const addTag = (tagData: tagDataType) => {
+  // 添加标签    menu 点击路由跳转  ||  table 点击表单按钮内跳转
+  const addTag = (tagData: tagDataType, flag: 'menu' | 'table') => {
     console.log('-----------addTag-------------');
     console.log(tagData);
-    tags.push(tagData);
-    setTags(tags);
+    if (flag === 'menu') {
+      tags.push(tagData);
+      setTags(tags);
+    } else if (flag === 'table') {
+      tags.push(tagData);
+      setTags(tags);
+      history.push(tagData.path);
+    }
   };
 
   // 删除标签
@@ -1907,6 +1914,193 @@ export default () => {
         perms: '',
         url: '#',
       },
+      {
+        ancestors: ',1',
+        children: [
+          {
+            ancestors: ',1,1742',
+            children: [
+              {
+                ancestors: ',1,1742,11',
+                children: [],
+                createTime: 1521171180000,
+                icon: '',
+                menuId: 101,
+                menuName: '角色管理',
+                menuType: 'C',
+                orderNum: '2',
+                params: {},
+                parentId: 11,
+                perms: 'system:role:view',
+                url: '/system/role',
+              },
+              {
+                ancestors: ',1,1742,11',
+                children: [],
+                createTime: 1521171180000,
+                icon: '',
+                menuId: 102,
+                menuName: '菜单管理',
+                menuType: 'C',
+                orderNum: '3',
+                params: {},
+                parentId: 11,
+                perms: 'system:menu:view',
+                url: '/system/menu',
+              },
+              {
+                ancestors: ',1,1742,11',
+                children: [],
+                createTime: 1521171180000,
+                icon: '',
+                menuId: 105,
+                menuName: '字典管理',
+                menuType: 'C',
+                orderNum: '6',
+                params: {},
+                parentId: 11,
+                perms: 'system:dict:view',
+                url: '/system/dict',
+              },
+              {
+                ancestors: ',1,1742,11',
+                children: [],
+                createTime: 1521171180000,
+                icon: '',
+                menuId: 106,
+                menuName: '参数设置',
+                menuType: 'C',
+                orderNum: '7',
+                params: {},
+                parentId: 11,
+                perms: 'system:config:view',
+                url: '/system/config',
+              },
+              {
+                ancestors: ',1,1742,11',
+                children: [],
+                createTime: 1649293001000,
+                icon: '',
+                menuId: 1653,
+                menuName: '短信推送',
+                menuType: 'C',
+                orderNum: '8',
+                params: {},
+                parentId: 11,
+                perms: 'system:massage:view',
+                url: '/system/massage/user',
+              },
+            ],
+            createTime: 1521171180000,
+            icon: 'fa fa-gear',
+            menuId: 11,
+            menuName: '系统管理',
+            menuType: 'M',
+            orderNum: '1',
+            params: {},
+            parentId: 1742,
+            perms: '',
+            url: '#',
+          },
+          {
+            ancestors: ',1,1742',
+            children: [
+              {
+                ancestors: ',1,1742,12',
+                children: [],
+                createTime: 1521171180000,
+                icon: '',
+                menuId: 111,
+                menuName: '数据监控',
+                menuType: 'C',
+                orderNum: '3',
+                params: {},
+                parentId: 12,
+                perms: 'monitor:data:view',
+                url: '/monitor/data',
+              },
+            ],
+            createTime: 1521171180000,
+            icon: 'fa fa-binoculars',
+            menuId: 12,
+            menuName: '系统监控',
+            menuType: 'M',
+            orderNum: '2',
+            params: {},
+            parentId: 1742,
+            perms: '',
+            url: '#',
+          },
+          {
+            ancestors: ',1,1742',
+            children: [
+              {
+                ancestors: ',1,1742,1512',
+                children: [],
+                createTime: 1632443914000,
+                icon: '',
+                menuId: 1513,
+                menuName: '版本更新',
+                menuType: 'C',
+                orderNum: '0',
+                params: {},
+                parentId: 1512,
+                perms: 'business:apk:view',
+                url: '/mobile/updateVersion',
+              },
+            ],
+            createTime: 1632443878000,
+            icon: 'fa fa-sliders',
+            menuId: 1512,
+            menuName: '系统工具',
+            menuType: 'M',
+            orderNum: '3',
+            params: {},
+            parentId: 1742,
+            perms: '',
+            url: '#',
+          },
+          {
+            ancestors: ',1,1742',
+            children: [
+              {
+                ancestors: ',1,1742,1744',
+                children: [],
+                createTime: 1603082011000,
+                icon: '',
+                menuId: 1418,
+                menuName: '智观菜单配置',
+                menuType: 'C',
+                orderNum: '4',
+                params: {},
+                parentId: 1744,
+                perms: 'system:zgmenuleft:view',
+                url: 'system/syszgmenu/mfrs',
+              },
+            ],
+            createTime: 1651825760000,
+            icon: 'fa fa-dashboard',
+            menuId: 1744,
+            menuName: '智观菜单',
+            menuType: 'M',
+            orderNum: '4',
+            params: {},
+            parentId: 1742,
+            perms: '',
+            url: '#',
+          },
+        ],
+        createTime: 1651805170000,
+        icon: 'fa fa-cog',
+        menuId: 1742,
+        menuName: '系统管理',
+        menuType: 'M',
+        orderNum: '7',
+        params: {},
+        parentId: 1,
+        perms: '',
+        url: '#',
+      },
     ];
     let zkMenu = zkMenuFormat(zk_menu_data);
     setMenuApiData(zkMenu.menuAll);
@@ -1952,7 +2146,10 @@ export default () => {
     }
   }, []);
 
-  const addTagFun = useCallback((e: tagDataType) => addTag(e), []);
+  const addTagFun = useCallback(
+    (e: tagDataType, flag: 'menu' | 'table') => addTag(e, flag),
+    [],
+  );
   const removeTagFun = useCallback((e: string) => removeTag(e), []);
 
   const [counter, setCounter] = useState(0);

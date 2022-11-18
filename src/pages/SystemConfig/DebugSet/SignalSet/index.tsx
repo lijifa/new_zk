@@ -1,14 +1,23 @@
+import DelWarnModal from '@/components/DelWarnModal';
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
+import { useModel } from '@umijs/max';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Select, Space } from 'antd';
-import React, { memo, useRef } from 'react';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
+import { memo, useRef, useState } from 'react';
+import Add from './Add';
+import Detail from './Detail';
 
 const SignalSet = memo(() => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef<any>();
+  const [del, setDel] = useState(false);
+  const [detail, setDetail] = useState(false);
+  const [start, setStart] = useState(false);
+  const { addTagFun } = useModel('menuModel');
 
   // 表格数据
   const columns = [
@@ -63,6 +72,7 @@ const SignalSet = memo(() => {
     {
       title: '操作',
       key: 'operation',
+      width: 200,
       render: (record: any) => (
         <RowOperBtn
           btnList={[
@@ -79,11 +89,31 @@ const SignalSet = memo(() => {
     },
   ];
 
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
+
   // 点击行内操作按钮回调
   const clickRowbtn = (e: string, data: any) => {
-    console.log('e：按钮标识(key);\n data当前操作行数据');
-    console.log(e);
-    console.log(data);
+    console.log('clickRowbtn:', e, data);
+
+    if (e == 'detail') {
+      setDetail(true);
+    } else {
+      setStart(true);
+    }
   };
 
   // 点击搜索、重置按钮
@@ -274,13 +304,21 @@ const SignalSet = memo(() => {
           btnList={['add', 'edit', 'del']}
           searchForm={form}
           tableColumns={columns}
+          tableDataFun={getTableData}
           clickOperBtn={(t: string, d: any) => {
-            console.log(
-              't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
-            );
-            console.log(t, d);
-            console.log('点击表格上方操作按钮回调');
-            toggle();
+            switch (t) {
+              case 'add':
+                toggle();
+                break;
+              case 'edit':
+                toggle();
+                break;
+              case 'del':
+                setDel(true);
+                break;
+              default:
+                break;
+            }
           }}
           ref={shareRef}
           otherBtnFun={(e: any) => {
@@ -292,6 +330,67 @@ const SignalSet = memo(() => {
           }}
         />
       </div>
+      <Modal
+        title="添加"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
+      <Modal
+        title="信号模板详情"
+        open={detail}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={() => setDetail(false)}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Detail
+          onSubmit={() => {
+            setDetail(false);
+          }}
+          onClose={() => {
+            setDetail(false);
+          }}
+        />
+      </Modal>
+      <DelWarnModal
+        Show={del}
+        Delete={() => {
+          console.log('父级删除');
+          setDel(false);
+        }}
+        Cancal={() => {
+          console.log('父级取消');
+          setDel(false);
+        }}
+      />
+      <DelWarnModal
+        Show={start}
+        Delete={() => {
+          console.log('父级删除');
+          setStart(false);
+        }}
+        Cancal={() => {
+          console.log('父级取消');
+          setStart(false);
+        }}
+        Content="是否确定操作？"
+      />
     </>
   );
 });

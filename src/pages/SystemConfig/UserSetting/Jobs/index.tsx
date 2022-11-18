@@ -1,9 +1,11 @@
+import DelWarnModal from '@/components/DelWarnModal';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Space } from 'antd';
-import { useRef } from 'react';
-
+import { Button, Form, Input, Modal, Space } from 'antd';
+import { useRef, useState } from 'react';
+import Add from './Add';
 // 表格数据
 const columns = [
   {
@@ -23,7 +25,24 @@ const columns = [
 const Jobs = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
+  const [del, setDel] = useState(false);
   const shareRef = useRef<any>();
+
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
 
   // 点击搜索、重置按钮
   const searchOper = (type: string) => {
@@ -58,39 +77,55 @@ const Jobs = () => {
           btnList={['add', 'edit', 'del']}
           searchForm={form}
           tableColumns={columns}
+          tableDataFun={getTableData}
           clickOperBtn={(t: string, d: any) => {
-            console.log(
-              't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
-            );
-            console.log(t, d);
-            console.log('点击表格上方操作按钮回调');
-            toggle();
+            switch (t) {
+              case 'add':
+                toggle();
+                break;
+              case 'edit':
+                toggle();
+                break;
+              case 'del':
+                setDel(true);
+                break;
+              default:
+                break;
+            }
           }}
-          // isRowCheck={false}
-          // checkboxType="radio"
-          // disabledFun={(res: { gender: string }) => {
-          //   return {
-          //     disabled: isDisabledFun(res), // 过滤不可选择的行属性
-          //     // name: record.gender,
-          //   };
-          // }}
-          // otherBtnFun={(e: any) => {
-          //   return [
-          //     <Button
-          //       key="other1"
-          //       type="primary"
-          //       onClick={() => {
-          //         console.log(e);
-          //       }}
-          //       disabled={!(e.length === 1)}
-          //     >
-          //       其他
-          //     </Button>,
-          //   ];
-          // }}
           ref={shareRef}
         />
       </div>
+      <Modal
+        title="添加"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={950}
+        bodyStyle={{ height: '450px' }}
+      >
+        <Add
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
+      <DelWarnModal
+        Show={del}
+        Delete={() => {
+          console.log('父级删除');
+          setDel(false);
+        }}
+        Cancal={() => {
+          console.log('父级取消');
+          setDel(false);
+        }}
+      />
     </>
   );
 };

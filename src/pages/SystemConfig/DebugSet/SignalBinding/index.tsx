@@ -1,13 +1,17 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
+import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Select, Space } from 'antd';
-import React, { memo, useRef } from 'react';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
+import React, { memo, useRef, useState } from 'react';
+import Detail from './Detail';
+import Setting from './Setting';
 
 const SignalBinding = memo(() => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
+  const [detail, setDetail] = useState(false);
   const shareRef = useRef<any>();
 
   // 表格数据
@@ -50,7 +54,7 @@ const SignalBinding = memo(() => {
       render: (record: any) => (
         <RowOperBtn
           btnList={[
-            { key: 'copy', text: '参数设置' },
+            { key: 'setting', text: '参数设置' },
             { key: 'detail', text: '绑定信号详情' },
           ]}
           btnCilck={(e: string) => {
@@ -65,14 +69,32 @@ const SignalBinding = memo(() => {
 
   // 点击行内操作按钮回调
   const clickRowbtn = (e: string, data: any) => {
-    console.log('e：按钮标识(key);\n data当前操作行数据');
-    console.log(e);
-    console.log(data);
+    if (e == 'setting') {
+      toggle();
+    } else {
+      setDetail(true);
+    }
   };
 
   // 点击搜索、重置按钮
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
+  };
+
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    return getalarmNoticeList(paramData).then((data) => {
+      if (data.code == 0) {
+        return {
+          total: data.total,
+          list: data.rows,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
   };
 
   // 高级搜索栏Form
@@ -252,6 +274,7 @@ const SignalBinding = memo(() => {
           btnList={[]}
           searchForm={form}
           tableColumns={columns}
+          tableDataFun={getTableData}
           clickOperBtn={(t: string, d: any) => {
             console.log(
               't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
@@ -271,6 +294,44 @@ const SignalBinding = memo(() => {
           }}
         />
       </div>
+      <Modal
+        title="参数设置"
+        open={state}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={toggle}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Setting
+          onSubmit={() => {
+            toggle();
+          }}
+          onClose={() => {
+            toggle();
+          }}
+        />
+      </Modal>
+      <Modal
+        title="信号绑定详情"
+        open={detail}
+        footer={null}
+        destroyOnClose={true}
+        centered={true}
+        onCancel={() => setDetail(false)}
+        width={1400}
+        bodyStyle={{ height: '770px' }}
+      >
+        <Detail
+          onSubmit={() => {
+            setDetail(false);
+          }}
+          onClose={() => {
+            setDetail(false);
+          }}
+        />
+      </Modal>
     </>
   );
 });
