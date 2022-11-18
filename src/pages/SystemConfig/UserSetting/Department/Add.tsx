@@ -3,16 +3,41 @@ interface Props {
   onSubmit: Function; // 提交按钮回调方法
 }
 import ModalFooter from '@/components/ModalFooter';
-import { Col, Form, Input, Row, Select } from 'antd';
+import { Col, Form, Input, Row, TreeSelect } from 'antd';
+import { useState } from 'react';
 
-const { Option } = Select;
+const treeData = [
+  {
+    value: 'parent 1',
+    title: 'parent 1',
+    children: [
+      {
+        value: 'parent 1-0',
+        title: 'parent 1-0',
+      },
+      {
+        value: 'leaf1',
+        title: 'leaf1',
+      },
+      {
+        value: 'leaf2',
+        title: 'leaf2',
+      },
+    ],
+  },
+];
 
 const Add = (props: Props) => {
+  const [value, setValue] = useState<string | undefined>(undefined);
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
     props.onSubmit();
+  };
+
+  const onChange = (newValue: string) => {
+    setValue(newValue);
   };
 
   return (
@@ -24,7 +49,17 @@ const Add = (props: Props) => {
             name="diagram-name"
             rules={[{ required: true, message: '请选择所属部门' }]}
           >
-            <Input placeholder="请选择所属部门" />
+            <TreeSelect
+              showSearch
+              style={{ width: '100%' }}
+              value={value}
+              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+              placeholder="请选择所属部门"
+              allowClear
+              treeDefaultExpandAll
+              onChange={onChange}
+              treeData={treeData}
+            />
           </Form.Item>
         </Col>
 
