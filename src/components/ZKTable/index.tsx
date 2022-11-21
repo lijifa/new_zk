@@ -43,10 +43,10 @@ const ZKTable = forwardRef((props: any, ref) => {
     btnList, // 更多的表格上方按钮, 默认：['add','edit', 'del']
     otherBtnFun, // 更多的表格上方按钮, 必须要返回按钮数组
     onRowCheckBoxFun, // 点击行选择框回调
-    onSlectCheck,//父选择中的id
+    onSlectCheck, //父选择中的id
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  console.log(onSlectCheck,'sssss')
+  console.log(onSlectCheck, 'sssss');
 
   // 获取表格数据
   // const getTableData = (
@@ -141,8 +141,13 @@ const ZKTable = forwardRef((props: any, ref) => {
   // 向父层输出对外的搜索点击事件
   useImperativeHandle(ref, () => ({
     clickSearchBtn,
+    changeRowCheckBox,
   }));
-
+  const changeRowCheckBox = (data: React.SetStateAction<React.Key[]>) => {
+    if (data && Array.isArray(data)) {
+      setSelectedRowKeys(data);
+    }
+  };
   return (
     <>
       <OperationBtn
