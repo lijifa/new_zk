@@ -46,8 +46,6 @@ const ZKTable = forwardRef((props: any, ref) => {
     onSlectCheck,//父选择中的id
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  console.log(onSlectCheck,'sssss')
-
   // 获取表格数据
   // const getTableData = (
   //   { current, pageSize }: { current: number; pageSize: number },

@@ -20,12 +20,11 @@ const Inline = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
   const [tags, setTag] = useState<Array<string>>(['默认标题']);
-  const [selectvallue, setselectvallue] = useState<Array<string>>(['']);
+
   const [slectId,setSlectId] = useState<Array<string>>([])
   const [newcheckList,setNewcheckList] = useState<Array<any>>([])
   const { Type } = props;
 
-  useEffect(() => {}, [selectvallue]);
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
     props.onSubmit();
@@ -88,7 +87,7 @@ const Inline = (props: Props) => {
   // 高级搜索栏Form
   const advanceSearchForm = (
     <div className="zkSearchBox">
-      <Form form={form}>
+     
         <Space align="center">
           <Form.Item name="name">
             <Input placeholder="请输入站点名称" />
@@ -98,7 +97,7 @@ const Inline = (props: Props) => {
           </Button>
           <Button onClick={() => searchOper('reset')}>重置</Button>
         </Space>
-      </Form>
+
     </div>
   );
   // 点击搜索、重置按钮
@@ -107,11 +106,8 @@ const Inline = (props: Props) => {
   };
   //添加标签
   function Taddtag(e: any) {
-    //console.log(e);
-    console.log(e)
     setNewcheckList(e)
     let tagList: Array<string> = [];
-    setselectvallue(e);
     e.map((item: any) => {
       tagList.push(item.businessAlarmRuleTempId)
       const reslut = Array.from(new Set(tagList))
@@ -121,14 +117,13 @@ const Inline = (props: Props) => {
       }
     });
   }
-  console.log(slectId)
   //删除标签
   const handleClose = (removedTag: string) => {
-    const newTags = tags.filter((tag) => tag !== removedTag);
-    setTag(newTags);
-    console.log(slectId)
+    const newTags = newcheckList.filter((tag) => tag !== removedTag);
+    setNewcheckList(newTags);
+    console.log(newcheckList)
   };
-  const forMap = (tag: string, index: number) => {
+  const forMap = (tag: any, index: number) => {
     const tagElem = (
       <Tag
         key={index}
@@ -138,13 +133,12 @@ const Inline = (props: Props) => {
           handleClose(tag);
         }}
       >
-        {tag}
+        {tag.reason}
       </Tag>
     );
     return <span style={{ display: 'inline-block' }}>{tagElem}</span>;
   };
-  const tagChild = tags.map(forMap);
-  console.log(tags);
+  const tagChild = newcheckList.map(forMap);
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
