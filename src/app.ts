@@ -5,7 +5,8 @@ import type { RequestConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import { message } from 'antd';
 import { hasAccessToken, outLogin } from './services/zg-base/login';
-// const querystring = require('querystring');
+// import querystring from 'querystring';
+const querystring = require('querystring');
 
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 const loginPath = '/login';
@@ -118,9 +119,13 @@ export function onRouteChange() {
 // }
 
 export const request: RequestConfig = {
-  // 请求前拦截器
+  // 请求前拦截器b
   requestInterceptors: [
     (config) => {
+      if (!config.prefix) {
+        config['data'] = querystring.stringify(config['data']);
+      }
+
       // const authHeader = { Authorization: 'Bearer xxxxxx' };
       let def_prefix = config.prefix ? config.prefix : '/apis';
       let url = `${def_prefix + config.url}`;
