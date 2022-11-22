@@ -1,7 +1,7 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import { getalarmNoticeList } from '@/services/Ralis/WarningList';
+import { getSiteList } from '@/services/SystemConfig/ProjectSetting/site';
 import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef, useState } from 'react';
@@ -24,7 +24,7 @@ const Site = () => {
     },
     {
       title: '站点所在地',
-      dataIndex: 'systemName',
+      dataIndex: 'address',
     },
     {
       title: '站点人数',
@@ -68,11 +68,11 @@ const Site = () => {
 
   // 获取表格数据
   const getTableData = (paramData: any) => {
-    return getalarmNoticeList(paramData).then((data) => {
-      if (data.code == 0) {
+    return getSiteList(paramData).then((res) => {
+      if (res.code == 200) {
         return {
-          total: data.total,
-          list: data.rows,
+          total: res.data.total,
+          list: res.data.list,
         };
       }
       return {
