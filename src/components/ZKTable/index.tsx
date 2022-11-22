@@ -43,9 +43,9 @@ const ZKTable = forwardRef((props: any, ref) => {
     btnList, // 更多的表格上方按钮, 默认：['add','edit', 'del']
     otherBtnFun, // 更多的表格上方按钮, 必须要返回按钮数组
     onRowCheckBoxFun, // 点击行选择框回调
-    onSlectCheck, //父选择中的id
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
   // 获取表格数据
   // const getTableData = (
   //   { current, pageSize }: { current: number; pageSize: number },
@@ -109,7 +109,7 @@ const ZKTable = forwardRef((props: any, ref) => {
   };
 
   const rowSelection = {
-    // selectedRowKeys,
+    selectedRowKeys,
     onChange: onSelectChange,
     getCheckboxProps: (record: any) => {
       if (disabledFun && typeof disabledFun === 'function') {

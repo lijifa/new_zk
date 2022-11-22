@@ -134,7 +134,6 @@ const Add = (props: Props) => {
           >
             <DatePicker
               style={{ width: '100%' }}
-              showTime
               placeholder="请选择供冷季开始日期"
             />
           </Form.Item>
@@ -147,7 +146,6 @@ const Add = (props: Props) => {
           >
             <DatePicker
               style={{ width: '100%' }}
-              showTime
               placeholder="请选择供冷季结束日期"
             />
           </Form.Item>
@@ -171,7 +169,6 @@ const Add = (props: Props) => {
           >
             <DatePicker
               style={{ width: '100%' }}
-              showTime
               placeholder="请选择供热开始日期"
             />
           </Form.Item>
@@ -184,7 +181,6 @@ const Add = (props: Props) => {
           >
             <DatePicker
               style={{ width: '100%' }}
-              showTime
               placeholder="请选择供热季结束日期"
             />
           </Form.Item>

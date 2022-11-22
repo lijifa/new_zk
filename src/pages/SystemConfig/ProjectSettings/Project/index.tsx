@@ -104,12 +104,12 @@ const Project = () => {
       <Form form={form}>
         <Space align="center">
           <Form.Item name="name">
-            <Input placeholder="请输入组态图名称搜索" />
+            <Input placeholder="请输入项目名称搜索" />
           </Form.Item>
 
           <Form.Item name="email">
             <Select
-              placeholder="请选择组态图类型"
+              placeholder="请选择项目类型"
               style={{ width: 200 }}
               optionFilterProp="label"
               filterOption={(input, option) =>
@@ -132,38 +132,6 @@ const Project = () => {
               ]}
             />
           </Form.Item>
-
-          <Form.Item name="phone">
-            <Select
-              placeholder="请选择站点"
-              showSearch
-              style={{ width: 200 }}
-              optionFilterProp="label"
-              filterOption={(input, option) =>
-                (option?.label ?? '').includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? '')
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? '').toLowerCase())
-              }
-              options={[
-                {
-                  value: '1',
-                  label: 'A光合谷A能源站',
-                },
-                {
-                  value: '2',
-                  label: 'B光合谷B能源站',
-                },
-                {
-                  value: '3',
-                  label: 'C光合谷C能源站',
-                },
-              ]}
-            />
-          </Form.Item>
-
           <Button type="primary" onClick={() => searchOper('submit')}>
             搜索
           </Button>
@@ -273,9 +241,8 @@ const Project = () => {
             tableColumns={columns}
             tableDataFun={getTableData}
             defaultFormItem={{
-              name: 'hello',
-              email: '1',
-              phone: '2',
+              // name: 'hello',
+              // email: '1',
             }}
             clickOperBtn={(t: string, d: any) => {
               console.log(

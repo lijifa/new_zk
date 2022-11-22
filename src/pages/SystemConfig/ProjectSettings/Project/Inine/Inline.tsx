@@ -6,11 +6,9 @@ interface Props {
 import ModalFooter from '@/components/ModalFooter';
 import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
-import { Button, Form, Input, Select, Space, Tag } from 'antd';
+import { Button, Form, Input, Space, Tag } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Inine.less';
-
-const { Option } = Select;
 
 const onChange = (value: string[]) => {
   console.log(value);
@@ -21,8 +19,8 @@ const Inline = (props: Props) => {
   const shareRef = useRef();
   const [tags, setTag] = useState<Array<string>>(['默认标题']);
 
-  const [slectId,setSlectId] = useState<Array<string>>([])
-  const [newcheckList,setNewcheckList] = useState<Array<any>>([])
+  const [slectId, setSlectId] = useState<Array<string>>([]);
+  const [newcheckList, setNewcheckList] = useState<Array<any>>([]);
   const { Type } = props;
 
   const onFinish = (values: any) => {
@@ -68,6 +66,7 @@ const Inline = (props: Props) => {
       dataIndex: 'siteProject',
     },
   ];
+  useEffect(() => {}, [newcheckList]);
 
   // 获取表格数据
   const getTableData = (paramData: any) => {
@@ -87,17 +86,15 @@ const Inline = (props: Props) => {
   // 高级搜索栏Form
   const advanceSearchForm = (
     <div className="zkSearchBox">
-     
-        <Space align="center">
-          <Form.Item name="name">
-            <Input placeholder="请输入站点名称" />
-          </Form.Item>
-          <Button type="primary" onClick={() => searchOper('submit')}>
-            搜索
-          </Button>
-          <Button onClick={() => searchOper('reset')}>重置</Button>
-        </Space>
-
+      <Space align="center">
+        <Form.Item name="name">
+          <Input placeholder="请输入站点名称" />
+        </Form.Item>
+        <Button type="primary" onClick={() => searchOper('submit')}>
+          搜索
+        </Button>
+        <Button onClick={() => searchOper('reset')}>重置</Button>
+      </Space>
     </div>
   );
   // 点击搜索、重置按钮
@@ -106,12 +103,13 @@ const Inline = (props: Props) => {
   };
   //添加标签
   function Taddtag(e: any) {
-    setNewcheckList(e)
+    console.log(e)
+    setNewcheckList(e);
     let tagList: Array<string> = [];
     e.map((item: any) => {
-      tagList.push(item.businessAlarmRuleTempId)
-      const reslut = Array.from(new Set(tagList))
-      setSlectId(reslut)
+      tagList.push(item.businessAlarmRuleTempId);
+      const reslut = Array.from(new Set(tagList));
+      setSlectId(reslut);
       if (tags.indexOf(item.reason) === -1) {
         setTag([...tags, item.reason]);
       }
@@ -121,12 +119,15 @@ const Inline = (props: Props) => {
   const handleClose = (removedTag: string) => {
     const newTags = newcheckList.filter((tag) => tag !== removedTag);
     setNewcheckList(newTags);
-    console.log(newcheckList)
+    let newIdList: Array<number> = [];
+    newTags.map((item) => {
+      newIdList.push(item.businessAlarmRuleTempId);
+    });
+    shareRef?.current?.changeRowCheckBox(newIdList);
   };
-  const forMap = (tag: any, index: number) => {
+  const forMap = (tag: any) => {
     const tagElem = (
       <Tag
-        key={index}
         closable
         onClose={(e) => {
           e.preventDefault();
@@ -136,7 +137,7 @@ const Inline = (props: Props) => {
         {tag.reason}
       </Tag>
     );
-    return <span style={{ display: 'inline-block' }}>{tagElem}</span>;
+    return <span key={tag.businessAlarmRuleTempId} style={{ display: 'inline-block' }}>{tagElem}</span>;
   };
   const tagChild = newcheckList.map(forMap);
 
@@ -170,7 +171,6 @@ const Inline = (props: Props) => {
           }}
           ref={shareRef}
           onRowCheckBoxFun={Taddtag}
-          onSlectCheck={slectId}
         />
       </div>
 
@@ -179,11 +179,6 @@ const Inline = (props: Props) => {
           props.onClose();
         }}
       />
-      {/* <Form.Item>
-          <Button type="primary" htmlType="submit">
-            登录
-          </Button>
-        </Form.Item> */}
     </Form>
   );
 };
