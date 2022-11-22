@@ -2,7 +2,6 @@ import OperationBtn from '@/components/OperationBtn';
 import { useAntdTable } from 'ahooks';
 import { Table } from 'antd';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
-
 interface Result {
   total: number;
   list: Object[];
@@ -43,39 +42,16 @@ const ZKTable = forwardRef((props: any, ref) => {
     btnList, // 更多的表格上方按钮, 默认：['add','edit', 'del']
     otherBtnFun, // 更多的表格上方按钮, 必须要返回按钮数组
     onRowCheckBoxFun, // 点击行选择框回调
-    onSlectCheck, //父选择中的id
+    onSlectCheck, // 父选择中的id
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  console.log(onSlectCheck, 'sssss');
-
-  // 获取表格数据
-  // const getTableData = (
-  //   { current, pageSize }: { current: number; pageSize: number },
-  //   formData: Object,
-  // ): Promise<Result> => {
-  //   let query = `page=${current}&size=${pageSize}`;
-  //   Object.entries(formData).forEach(([key, value]) => {
-  //     if (value) {
-  //       query += `&${key}=${value}`;
-  //     }
-  //   });
-
-  //   return fetch(`https://randomuser.me/api?results=55&${query}`)
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setSelectedRowKeys([]);
-  //       return {
-  //         total: res.info.results,
-  //         list: res.results,
-  //       };
-  //     });
-  // };
+  console.log(onSlectCheck, '父选择中的id');
 
   const getTableData = (
     { current, pageSize }: { current: number; pageSize: number },
     formData: Object,
   ): Promise<Result> => {
-    const paramData = { ...formData, ...{ pageNum: current, pageSize } };
+    const paramData = { ...formData, ...{ currentPage: current, pageSize } };
 
     if (tableDataFun && typeof tableDataFun === 'function') {
       return tableDataFun(paramData);
@@ -154,9 +130,9 @@ const ZKTable = forwardRef((props: any, ref) => {
         btnList={btnList ? btnList : ['add', 'edit', 'del']}
         Loading={loading}
         btnCilck={(t: string, d: any) => {
-          console.log('t：按钮的类型【add/edit/del/export】;\n d：选中行数据');
-          console.log(t, d);
-          console.log('点击表格上方操作按钮回调');
+          // console.log('t：按钮的类型【add/edit/del/export】;\n d：选中行数据');
+          // console.log(t, d);
+          // console.log('点击表格上方操作按钮回调');
 
           // console.log(_.random(0, 5));
           // toggle();
