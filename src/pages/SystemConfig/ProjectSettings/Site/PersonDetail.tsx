@@ -14,7 +14,7 @@ const onChange = (value: string[]) => {
   console.log(value);
 };
 
-const Inline = (props: Props) => {
+const PersonDetail = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
 
@@ -116,4 +116,4 @@ const Inline = (props: Props) => {
   );
 };
 
-export default Inline;
+export default PersonDetail;

@@ -1,25 +1,30 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import { getSiteList } from '@/services/SystemConfig/ProjectSetting/site';
+import {
+  getChangeSite,
+  getSiteList,
+} from '@/services/SystemConfig/ProjectSetting/site';
 import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef, useState } from 'react';
 import Add from './Add';
 import Detailpage from './Detailpage'; //站点详情
-import Inline from './Inline'; //人员详情
+import PersonDetail from './PersonDetail'; //人员详情
 
 const Site = () => {
   const [form] = Form.useForm();
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
   const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
+  const [Id, setId] = useState<any>();
+  const [newList, setNewList] = useState<any>();
 
   // 表格列字段
   const columns = [
     {
       title: '站点名称',
-      dataIndex: 'reason',
+      dataIndex: 'name',
       align: 'left',
     },
     {
@@ -28,23 +33,23 @@ const Site = () => {
     },
     {
       title: '站点人数',
-      dataIndex: 'siteName',
+      dataIndex: 'sitePeopleNummer',
     },
     {
       title: '所属项目',
-      dataIndex: 'siteProject',
+      dataIndex: 'projectName',
     },
     {
       title: '所属系统',
-      dataIndex: 'siteSystem',
+      dataIndex: 'systemName',
     },
     {
       title: '创建人',
-      dataIndex: 'businessAlarmRuleTempId',
+      dataIndex: 'createBy',
     },
     {
       title: '创建时间',
-      dataIndex: ['alarmTime'],
+      dataIndex: ['createTime'],
     },
     {
       title: '操作',
@@ -65,7 +70,6 @@ const Site = () => {
       ),
     },
   ];
-
   // 获取表格数据
   const getTableData = (paramData: any) => {
     return getSiteList(paramData).then((res) => {
@@ -92,6 +96,9 @@ const Site = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+    const id = data.id
+    setId(id)
+    console.log(id)
     setAddCgType(e);
   };
 
@@ -120,11 +127,19 @@ const Site = () => {
               options={[
                 {
                   value: '1',
-                  label: '供冷',
+                  label: '暖通系统',
                 },
                 {
                   value: '2',
-                  label: '供热',
+                  label: '供配电系统',
+                },
+                {
+                  value: '1',
+                  label: '空调末端',
+                },
+                {
+                  value: '2',
+                  label: '综合系统',
                 },
               ]}
             />
@@ -147,15 +162,19 @@ const Site = () => {
               options={[
                 {
                   value: '1',
-                  label: 'A光合谷A能源站',
+                  label: '暖通系统',
                 },
                 {
                   value: '2',
-                  label: 'B光合谷B能源站',
+                  label: '供配电系统',
                 },
                 {
                   value: '3',
-                  label: 'C光合谷C能源站',
+                  label: '空调末端',
+                },
+                {
+                  value: '4',
+                  label: '综合系统',
                 },
               ]}
             />
@@ -176,6 +195,8 @@ const Site = () => {
   //根据Type显示不同页面
   const AddPage = (
     <Add
+      type={AddCgType}
+      id={Id}
       onSubmit={() => {
         toggle();
       }}
@@ -196,7 +217,7 @@ const Site = () => {
         break;
       case 'detail':
         result = (
-          <Inline
+          <PersonDetail
             onSubmit={() => {
               toggle();
             }}
@@ -209,6 +230,7 @@ const Site = () => {
       case 'site':
         result = (
           <Detailpage
+            id={Id}
             onSubmit={() => {
               toggle();
             }}
@@ -253,24 +275,24 @@ const Site = () => {
           {advanceSearchForm}
 
           <ZKTable
-            rowId={'businessAlarmRuleTempId'}
+            rowId={'id'}
             btnList={['add', 'edit', 'del']}
             searchForm={form}
             tableColumns={columns}
             tableDataFun={getTableData}
-            defaultFormItem={{
-              name: 'hello',
-              email: '1',
-              phone: '2',
-            }}
+            defaultFormItem={{}}
             clickOperBtn={(t: string, d: any) => {
               console.log(
                 't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
               );
-              console.log(t, d);
+              console.log(d, 'sssssss');
               console.log('点击表格上方操作按钮回调');
               toggle();
               setAddCgType(t);
+              if (t === 'edit') {
+                let id = d[0];
+                setId(id);
+              }
             }}
             ref={shareRef}
           />
