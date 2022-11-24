@@ -79,4 +79,24 @@ export async function getBindprojectSite(body:{projectId:number,siteIds:string},
 
 }
 
+//查询项目已绑定站点
+export async function getBindHprojectSite(body:{id:number},options?: { [key: string]: any }){
+    return request<any>('/system_configuration/project_setting/check/bound_sites',{
+        method:'POST',
+        data:body,
+        ...(options || {prefix: '/zk'}),
+    })
+
+}
+
+//项目详情
+export async function getprojectDetail(body:{id:number},options?: { [key: string]: any }){
+    return request<any>('/system_configuration/project_setting/check_bound_sites',{
+        method:'POST',
+        data:body,
+        ...(options || {prefix: '/zk'}),
+    })
+
+}
+
 

@@ -493,6 +493,7 @@ const Add = forwardRef((props: Props, ref) => {
       </Form>
       <Ischange
         Show={del}
+        Content='确定修改项目信息?'
         Delete={() => {
           setDel(false);
         }}

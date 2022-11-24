@@ -1,6 +1,6 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
-import styles from './index.less'
+import styles from './index.less';
 
 const { confirm } = Modal;
 
@@ -19,10 +19,11 @@ const Ischange = (props: DelWarnning) => {
       centered: true,
       title: '系统提示',
       icon: <QuestionCircleOutlined />,
-      content: Content || '确定修改项目信息?',
-      okText: '删除',
-      okType: 'danger',
+      content: Content || '确定删除项目信息?',
       cancelText: '取消',
+      okText: '修改',
+      okType: 'primary',
+
       onOk() {
         Delete();
       },

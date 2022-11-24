@@ -3,7 +3,8 @@ interface Props {
   onSubmit: Function; // 提交按钮回调方法
   id: number; //父组件选择的id
   type: string; //父组件传递来的类型
-  projectType:{ label: string; value: string }[] | undefined; //父组件传递来的类型
+  projectType: { label: string; value: string }[] | undefined; //父组件传递来的类型
+  searchOper: any;
 }
 import ModalFooter from '@/components/ModalFooter';
 import {
@@ -11,19 +12,55 @@ import {
   getAmendProject,
   getCheckProject,
 } from '@/services/SystemConfig/ProjectSetting/project';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Col, Form, Input, Row, Select, Upload } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Col, Form, Input, Modal, Row, Select, Upload } from 'antd';
+import type { RcFile, UploadProps } from 'antd/es/upload';
+import type { UploadFile } from 'antd/es/upload/interface';
 import { useEffect, useState } from 'react';
 
 const { Option } = Select;
 const { TextArea } = Input;
+const getBase64 = (file: RcFile): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
 
 const Add = (props: Props) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const [List, setlist] = useState<any>();
-  const { id, type,projectType } = props;
+  const { id, type, projectType, searchOper } = props;
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+  const handleCancel = () => setPreviewOpen(false);
+  const [fileList, setFileList] = useState<UploadFile[]>();
+
+  const handlePreview = async (file: UploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj as RcFile);
+    }
+
+    setPreviewImage(file.url || (file.preview as string));
+    setPreviewOpen(true);
+    setPreviewTitle(
+      file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1),
+    );
+  };
+
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+    setFileList(newFileList);
+
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
   useEffect(() => {
     if (type === 'add') {
       setlist(undefined);
@@ -34,8 +71,8 @@ const Add = (props: Props) => {
     }
   }, []);
 
-
   const onFinish = (values: any) => {
+    console.log(values);
     let {
       address,
       area,
@@ -76,12 +113,9 @@ const Add = (props: Props) => {
         picId,
       });
     }
-
+    searchOper('reset');
     props.onSubmit();
   };
-  const uploadButton = (
-    <div>{loading ? <LoadingOutlined /> : <PlusOutlined />}</div>
-  );
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
@@ -110,9 +144,10 @@ const Add = (props: Props) => {
               initialValue={List && List.projectTypeId.toString()}
               rules={[{ required: true, message: '请选择项目类型' }]}
             >
-              <Select placeholder="请选择项目类型" options={projectType}>
-          
-              </Select>
+              <Select
+                placeholder="请选择项目类型"
+                options={projectType}
+              ></Select>
             </Form.Item>
           </Col>
 
@@ -225,27 +260,29 @@ const Add = (props: Props) => {
               name="picId"
               // rules={[{ required: true, message: '请输入负责人姓名' }]}
             >
-              <Form.Item>
+              <>
                 <Upload
-                  name="avatar"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  showUploadList={false}
                   action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  // beforeUpload={beforeUpload}
-                  //onChange={handleChange}
+                  listType="picture-card"
+                  fileList={fileList}
+                  onPreview={handlePreview}
+                  onChange={handleChange}
                 >
-                  {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt="avatar"
-                      style={{ width: '100%' }}
-                    />
-                  ) : (
-                    uploadButton
-                  )}
+                 {fileList&&fileList.length >= 1 ? null : uploadButton}
                 </Upload>
-              </Form.Item>
+                <Modal
+                  open={previewOpen}
+                  title={previewTitle}
+                  footer={null}
+                  onCancel={handleCancel}
+                >
+                  <img
+                    alt="example"
+                    style={{ width: '100%' }}
+                    src={previewImage}
+                  />
+                </Modal>
+              </>
             </Form.Item>
           </Col>
         </Row>
