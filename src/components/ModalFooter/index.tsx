@@ -12,7 +12,7 @@ const ModalFooter = (props: Props) => {
   const okBtn = () => {
     if (okFun && typeof okFun === 'function') {
       return (
-        <Button type="primary" onClick={okFun()}>
+        <Button type="primary" onClick={() => okFun!()}>
           {okText ? okText : '确定'}
         </Button>
       );

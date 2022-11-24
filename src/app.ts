@@ -99,7 +99,7 @@ const GetJqueryHistory = () => {
 
 // 在初始加载和路由切换时做一些事情。
 export function onRouteChange() {
-  GetJqueryHistory();
+  // GetJqueryHistory();
 
   // 优化u3d重复加载生成的Js
   let u3dScriptDom = document.getElementsByClassName('newU3d');
