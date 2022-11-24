@@ -6,6 +6,7 @@ interface Props {
 }
 import ZKTable from '@/components/ZKTable';
 import { getCheckProject } from '@/services/SystemConfig/ProjectSetting/project';
+import {getprojectDetail} from '@/services/SystemConfig/ProjectSetting/project'
 import { Col, Image, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
@@ -13,6 +14,7 @@ import styles from './index.less';
 const ProjectDetail = (props: Props) => {
   const [List, setlist] = useState<any>();
   const { id } = props;
+  const [total,setTotal] = useState<number|undefined>()
   useEffect(() => {
     getCheckProject({ id }).then((res) => {
       let result = res.data;
@@ -23,7 +25,7 @@ const ProjectDetail = (props: Props) => {
   const columns = [
     {
       title: '站点名称',
-      dataIndex: 'reason',
+      dataIndex: 'name',
       align: 'left',
     },
     {
@@ -32,14 +34,32 @@ const ProjectDetail = (props: Props) => {
     },
     {
       title: '创建人',
-      dataIndex: 'siteName',
+      dataIndex: 'createBy',
     },
     {
       title: '创建时间',
-      dataIndex: 'siteProject',
+      dataIndex: 'createTime',
     },
   ];
-
+  // 获取表格数据
+  const getTableData = (paramData: any) => {
+    paramData['id'] = id;
+    return getprojectDetail(paramData).then((res) => {
+      if (res.code == 200) {
+        console.log(res)
+        setTotal(res.data.total)
+        return {
+          total: res.data.total,
+          list: res.data.list,
+        };
+      }
+      return {
+        total: 0,
+        list: [],
+      };
+    });
+  };
+  console.log(total)
   return (
     <>
       <Row justify={'space-between'}>
@@ -56,11 +76,11 @@ const ProjectDetail = (props: Props) => {
               </div>
               <div className={styles.labelConternItem}>
                 <label>项目总金额:</label>
-                <span className={styles.content}>{List.sumMoney}</span>
+                <span className={styles.content}>{List.sumMoney}元</span>
               </div>
               <div className={styles.labelConternItem}>
                 <label>项目总面积:</label>
-                <span className={styles.content}>{List.area}</span>
+                <span className={styles.content}>{List.area}㎡</span>
               </div>
               <div className={styles.labelConternItem}>
                 <label>项目所在地:</label>
@@ -68,7 +88,7 @@ const ProjectDetail = (props: Props) => {
               </div>
               <div className={styles.labelConternItem}>
                 <label>联系人姓名:</label>
-                <span className={styles.content}>--</span>
+                <span className={styles.content}>{List.linkmanName }</span>
               </div>
               <div className={styles.labelConternItem}>
                 <label>联系人电话:</label>
@@ -108,22 +128,19 @@ const ProjectDetail = (props: Props) => {
       <Row justify={'space-between'}>
         <Col span={24}>
           <div className={styles.pubtitle}>
-            <span></span>项目绑定站点(合计0)
+            <span></span>项目绑定站点(合计{total&&total})
           </div>
           <div
             className={'zkTableContent'}
-            style={{ padding: '0', marginTop: '10px' }}
+            style={{ padding: '0', marginTop: '10px'}}
           >
             <ZKTable
               rowId={'businessAlarmRuleTempId'}
               btnList={[]}
               isRowCheck={false}
               tableColumns={columns}
-              //tableDataFun={getTableData} 获取表格数据方法
+              tableDataFun={getTableData}
               defaultFormItem={{
-                name: 'hello',
-                email: '1',
-                phone: '2',
               }}
             />
           </div>
