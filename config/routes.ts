@@ -381,6 +381,13 @@ const routes = [
     component: './SystemConfig/DebugSet/MeterParamSet',
   },
 
+  /* 能源计划================ */
+  {
+    name: '能源指标录入',
+    path: '/business/quota',
+    component: './Business/Quota',
+  },
+
   /*
    *  异常模块路由
    */
