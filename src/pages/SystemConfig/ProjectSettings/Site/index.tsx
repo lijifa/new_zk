@@ -1,10 +1,7 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import {
-  getChangeSite,
-  getSiteList,
-} from '@/services/SystemConfig/ProjectSetting/site';
+import { getSiteList } from '@/services/SystemConfig/ProjectSetting/site';
 import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef, useState } from 'react';
@@ -96,9 +93,9 @@ const Site = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
-    const id = data.id
-    setId(id)
-    console.log(id)
+    const id = data.id;
+    setId(id);
+    console.log(id);
     setAddCgType(e);
   };
 

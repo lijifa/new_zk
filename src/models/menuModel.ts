@@ -41,8 +41,6 @@ export default () => {
 
   // 添加标签    menu 点击路由跳转  ||  table 点击表单按钮内跳转
   const addTag = (tagData: tagDataType, flag: 'menu' | 'table') => {
-    console.log('-----------addTag-------------');
-    console.log(tagData);
     if (flag === 'menu') {
       tags.push(tagData);
       setTags(tags);
@@ -55,8 +53,6 @@ export default () => {
 
   // 删除标签
   const removeTag = (id: string) => {
-    console.log('-----------removeTag-------------');
-    console.log(id);
     tags.splice(
       tags.findIndex((item) => item.key === id),
       1,
@@ -2152,15 +2148,7 @@ export default () => {
   );
   const removeTagFun = useCallback((e: string) => removeTag(e), []);
 
-  const [counter, setCounter] = useState(0);
-
-  const increment = useCallback(() => setCounter((c) => c + 1), []);
-  const decrement = useCallback(() => setCounter((c) => c - 1), []);
-
   return {
-    counter,
-    increment,
-    decrement,
     tags,
     addTagFun,
     removeTagFun,

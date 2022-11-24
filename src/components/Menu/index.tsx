@@ -167,6 +167,7 @@ const IndexMenu: React.FC = () => {
         items={menuData}
         className={styles.LeftMenu}
         onOpenChange={onOpenChange}
+        inlineIndent={28}
       />
       {React.createElement(collapsed ? RightOutlined : LeftOutlined, {
         className: `${styles.trigger}`,
