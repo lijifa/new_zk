@@ -20,4 +20,18 @@ declare namespace API {
         voltageLevel?:string;//配电室电压等级
         transformerCapacity?:string;//变压器容量
     }
+    //新增/修改项目
+    type addchangeProject = {
+        id?:number;//id
+        name:string;//项目名称
+        projectTypeId:number;//项目类型Id
+        sumMoney:number;//项目总金额
+        area:number;//项目总面积
+        address:string;//项目所在地
+        linkmanName:string;//联系人姓名
+        linkmanPhone:string;//联系人电话
+        memberCount:number;//用能人数
+        projectIntroduction:string;//项目简介
+        picId:number;//项目站点id
+    }
 }

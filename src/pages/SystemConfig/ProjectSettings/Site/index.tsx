@@ -1,13 +1,18 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import { getSiteList } from '@/services/SystemConfig/ProjectSetting/site';
+import {
+  getBelongProject,
+  getBelongSystem,
+  getSiteList,
+} from '@/services/SystemConfig/ProjectSetting/site';
 import { useBoolean } from 'ahooks';
 import { Button, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef, useState } from 'react';
-import Add from './Add';
-import Detailpage from './Detailpage'; //站点详情
-import PersonDetail from './PersonDetail'; //人员详情
+import { useEffect, useRef, useState } from 'react';
+import Add from './ADD/Add';
+import DeletePage from './DeletePage';
+import Detailpage from './Detailpage/Detailpage'; //站点详情
+import PersonDetail from './PersonDetail/PersonDetail'; //人员详情
 
 const Site = () => {
   const [form] = Form.useForm();
@@ -15,7 +20,13 @@ const Site = () => {
   const shareRef = useRef();
   const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
   const [Id, setId] = useState<any>();
-  const [newList, setNewList] = useState<any>();
+  const [List, setList] = useState<any>(); //请求表格数据
+  const [del, setDel] = useState(false);
+  const [project, setProject] = useState<{ label: string; value: string }[]>(
+    [],
+  );
+  const [system, setSystem] = useState<{ label: string; value: string }[]>();
+  const Cref = useRef();
 
   // 表格列字段
   const columns = [
@@ -27,30 +38,40 @@ const Site = () => {
     {
       title: '站点所在地',
       dataIndex: 'address',
+      width: '320px',
+      align: 'left',
     },
     {
       title: '站点人数',
       dataIndex: 'sitePeopleNummer',
+      width: '80px',
+      align: 'left',
     },
     {
       title: '所属项目',
       dataIndex: 'projectName',
+      align: 'left',
     },
     {
       title: '所属系统',
       dataIndex: 'systemName',
+      align: 'left',
     },
     {
       title: '创建人',
       dataIndex: 'createBy',
+      width: '120px',
+      align: 'left',
     },
     {
-      title: '创建时间',
-      dataIndex: ['createTime'],
+      title: '最近修改时间',
+      dataIndex: 'createTime',
+      align: 'left',
     },
     {
       title: '操作',
       key: 'operation',
+      align: 'left',
       render: (record: any) => (
         <RowOperBtn
           btnList={[
@@ -71,6 +92,7 @@ const Site = () => {
   const getTableData = (paramData: any) => {
     return getSiteList(paramData).then((res) => {
       if (res.code == 200) {
+        setList(res.data.list);
         return {
           total: res.data.total,
           list: res.data.list,
@@ -82,6 +104,22 @@ const Site = () => {
       };
     });
   };
+  useEffect(() => {
+    getBelongProject({}).then((res) => {
+      let projectData = res.data.map((item: any) => ({
+        label: item.name,
+        value: item.id.toString(),
+      }));
+      setProject(projectData);
+    });
+    getBelongSystem({}).then((res) => {
+      let systemData = res.data.map((item: any) => ({
+        label: item.systemName,
+        value: item.id.toString(),
+      }));
+      setSystem(systemData);
+    });
+  }, []);
 
   // 过滤不可选择的行属性
   const isDisabledFun = (res: { gender: string }) => {
@@ -95,7 +133,6 @@ const Site = () => {
     console.log(data);
     const id = data.id;
     setId(id);
-    console.log(id);
     setAddCgType(e);
   };
 
@@ -105,13 +142,14 @@ const Site = () => {
       <Form form={form}>
         <Space align="center">
           <Form.Item name="name">
-            <Input placeholder="请输入组态图名称搜索" />
+            <Input placeholder="请输入站点名称搜索" />
           </Form.Item>
 
-          <Form.Item name="email">
+          <Form.Item name="projectId">
             <Select
-              placeholder="请选择组态图类型"
+              placeholder="请选择所属项目"
               style={{ width: 200 }}
+              showSearch
               optionFilterProp="label"
               filterOption={(input, option) =>
                 (option?.label ?? '').includes(input)
@@ -121,30 +159,13 @@ const Site = () => {
                   .toLowerCase()
                   .localeCompare((optionB?.label ?? '').toLowerCase())
               }
-              options={[
-                {
-                  value: '1',
-                  label: '暖通系统',
-                },
-                {
-                  value: '2',
-                  label: '供配电系统',
-                },
-                {
-                  value: '1',
-                  label: '空调末端',
-                },
-                {
-                  value: '2',
-                  label: '综合系统',
-                },
-              ]}
+              options={project}
             />
           </Form.Item>
 
-          <Form.Item name="phone">
+          <Form.Item name="systemId">
             <Select
-              placeholder="请选择站点"
+              placeholder="请选择所属系统"
               showSearch
               style={{ width: 200 }}
               optionFilterProp="label"
@@ -156,24 +177,7 @@ const Site = () => {
                   .toLowerCase()
                   .localeCompare((optionB?.label ?? '').toLowerCase())
               }
-              options={[
-                {
-                  value: '1',
-                  label: '暖通系统',
-                },
-                {
-                  value: '2',
-                  label: '供配电系统',
-                },
-                {
-                  value: '3',
-                  label: '空调末端',
-                },
-                {
-                  value: '4',
-                  label: '综合系统',
-                },
-              ]}
+              options={system}
             />
           </Form.Item>
           <Button type="primary" onClick={() => searchOper('submit')}>
@@ -189,16 +193,22 @@ const Site = () => {
   const searchOper = (type: string) => {
     shareRef?.current?.clickSearchBtn(type);
   };
+
   //根据Type显示不同页面
   const AddPage = (
     <Add
+      ref={Cref}
       type={AddCgType}
       id={Id}
+      system={system}
       onSubmit={() => {
         toggle();
+        // Cref?.current?.changshow('show');
+        shareRef?.current?.clickSearchBtn('submit');
       }}
       onClose={() => {
         toggle();
+        // Cref?.current?.changshow();
       }}
     />
   );
@@ -225,17 +235,7 @@ const Site = () => {
         );
         break;
       case 'site':
-        result = (
-          <Detailpage
-            id={Id}
-            onSubmit={() => {
-              toggle();
-            }}
-            onClose={() => {
-              toggle();
-            }}
-          />
-        );
+        result = <Detailpage id={Id} />;
         break;
       default:
         break;
@@ -282,9 +282,15 @@ const Site = () => {
               console.log(
                 't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
               );
-              console.log(d, 'sssssss');
               console.log('点击表格上方操作按钮回调');
-              toggle();
+              if (t === 'del') {
+                setDel(true);
+                let id = d[0];
+                setId(id);
+              } else {
+                toggle();
+              }
+
               setAddCgType(t);
               if (t === 'edit') {
                 let id = d[0];
@@ -307,6 +313,17 @@ const Site = () => {
       >
         {findMType(AddCgType)}
       </Modal>
+      <DeletePage
+        Show={del}
+        id={Id}
+        Delete={() => {
+          setDel(false);
+          shareRef?.current?.clickSearchBtn('reset');
+        }}
+        Cancal={() => {
+          setDel(false);
+        }}
+      />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
-import {getdeleteSite} from '@/services/SystemConfig/ProjectSetting/site'
+import {getdeleteProject} from '@/services/SystemConfig/ProjectSetting/project'
 
 const { confirm } = Modal;
 
@@ -12,10 +12,8 @@ interface DelWarnning {
   id:number;
 }
 
-const DelWarnModal = (props: DelWarnning) => {
+const DeletePage = (props: DelWarnning) => {
   const { Show, Delete, Cancal, Content ,id} = props;
-  console.log(id)
-
   function showConfirm() {
     confirm({
       centered: true,
@@ -27,7 +25,7 @@ const DelWarnModal = (props: DelWarnning) => {
       cancelText: '取消',
       onOk() {
         Delete();
-        getdeleteSite({id})
+        getdeleteProject({id})
       },
       onCancel() {
         Cancal();
@@ -38,4 +36,4 @@ const DelWarnModal = (props: DelWarnning) => {
   return <>{Show ? showConfirm() : null}</>;
 };
 
-export default DelWarnModal;
+export default DeletePage;
