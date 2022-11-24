@@ -2,39 +2,37 @@ interface Props {
   onClose: Function; // 关闭按钮回调方法
   onSubmit: Function; // 提交按钮回调方法
   Type: string; // 传入的类型
+  id: number; //父组件传递来的类型
 }
 import ModalFooter from '@/components/ModalFooter';
 import ZKTable from '@/components/ZKTable';
-import { getalarmNoticeList } from '@/services/Ralis/WarningList';
-import { Button, Form, Input, Select, Space, Tag } from 'antd';
+import { getBindSite ,getBindprojectSite} from '@/services/SystemConfig/ProjectSetting/project';
+import { Button, Form, Input, Space, Tag } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Inine.less';
 
-const { Option } = Select;
 
-const onChange = (value: string[]) => {
-  console.log(value);
-};
 
-const Inline = (props: Props) => {
+const SiteBinding = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
   const [tags, setTag] = useState<Array<string>>(['默认标题']);
-  const [selectvallue, setselectvallue] = useState<Array<string>>(['']);
-  const [slectId,setSlectId] = useState<Array<string>>([])
-  const [newcheckList,setNewcheckList] = useState<Array<any>>([])
-  const { Type } = props;
 
-  useEffect(() => {}, [selectvallue]);
+  const [slectId, setSlectId] = useState<Array<string>>([]);
+  const [newcheckList, setNewcheckList] = useState<Array<any>>([]);
+  const [newprojectId,setnewProject] = useState<string>('')
+  const { Type, id } = props;
+
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
+    getBindprojectSite({projectId:id,siteIds:newprojectId})
     props.onSubmit();
   };
   // 表格列字段
   const columns = [
     {
       title: '站点名称',
-      dataIndex: 'reason',
+      dataIndex: 'name',
       align: 'left',
     },
     {
@@ -43,11 +41,11 @@ const Inline = (props: Props) => {
     },
     {
       title: '创建人',
-      dataIndex: 'siteName',
+      dataIndex: 'createBy',
     },
     {
       title: '创建时间',
-      dataIndex: 'siteProject',
+      dataIndex: 'createTime',
     },
   ];
   const columnsI = [
@@ -69,14 +67,17 @@ const Inline = (props: Props) => {
       dataIndex: 'siteProject',
     },
   ];
+  useEffect(() => {}, [newcheckList]);
 
   // 获取表格数据
   const getTableData = (paramData: any) => {
-    return getalarmNoticeList(paramData).then((data) => {
-      if (data.code == 0) {
+    paramData['id'] = id;
+    return getBindSite(paramData).then((res) => {
+      console.log(res.data.list)
+      if (res.code == 200) {
         return {
-          total: data.total,
-          list: data.rows,
+          total: res.data.total,
+          list: res.data.list,
         };
       }
       return {
@@ -88,17 +89,15 @@ const Inline = (props: Props) => {
   // 高级搜索栏Form
   const advanceSearchForm = (
     <div className="zkSearchBox">
-      <Form form={form}>
-        <Space align="center">
-          <Form.Item name="name">
-            <Input placeholder="请输入站点名称" />
-          </Form.Item>
-          <Button type="primary" onClick={() => searchOper('submit')}>
-            搜索
-          </Button>
-          <Button onClick={() => searchOper('reset')}>重置</Button>
-        </Space>
-      </Form>
+      <Space align="center">
+        <Form.Item name="name">
+          <Input placeholder="请输入站点名称" />
+        </Form.Item>
+        <Button type="primary" onClick={() => searchOper('submit')}>
+          搜索
+        </Button>
+        <Button onClick={() => searchOper('reset')}>重置</Button>
+      </Space>
     </div>
   );
   // 点击搜索、重置按钮
@@ -107,44 +106,52 @@ const Inline = (props: Props) => {
   };
   //添加标签
   function Taddtag(e: any) {
-    //console.log(e);
-    console.log(e)
-    setNewcheckList(e)
+    let projectIdData= e.map((item: any) => item.id).toString();
+    console.log(projectIdData);
+    setnewProject(projectIdData)
+    setNewcheckList(e);
     let tagList: Array<string> = [];
-    setselectvallue(e);
     e.map((item: any) => {
-      tagList.push(item.businessAlarmRuleTempId)
-      const reslut = Array.from(new Set(tagList))
-      setSlectId(reslut)
+      tagList.push(item.businessAlarmRuleTempId);
+      const reslut = Array.from(new Set(tagList));
+      setSlectId(reslut);
       if (tags.indexOf(item.reason) === -1) {
         setTag([...tags, item.reason]);
       }
     });
   }
-  console.log(slectId)
   //删除标签
   const handleClose = (removedTag: string) => {
-    const newTags = tags.filter((tag) => tag !== removedTag);
-    setTag(newTags);
-    console.log(slectId)
+    const newTags = newcheckList.filter((tag) => tag !== removedTag);
+    setNewcheckList(newTags);
+    let newIdList: Array<number> = [];
+    newTags.map((item) => {
+      newIdList.push(item.id);
+    });
+    shareRef?.current?.changeRowCheckBox(newIdList);
   };
-  const forMap = (tag: string, index: number) => {
+  const forMap = (tag: any) => {
     const tagElem = (
       <Tag
-        key={index}
         closable
         onClose={(e) => {
           e.preventDefault();
           handleClose(tag);
         }}
       >
-        {tag}
+        {tag.name}
       </Tag>
     );
-    return <span style={{ display: 'inline-block' }}>{tagElem}</span>;
+    return (
+      <span
+        key={tag.businessAlarmRuleTempId}
+        style={{ display: 'inline-block' }}
+      >
+        {tagElem}
+      </span>
+    );
   };
-  const tagChild = tags.map(forMap);
-  console.log(tags);
+  const tagChild = newcheckList.map(forMap);
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
@@ -156,17 +163,13 @@ const Inline = (props: Props) => {
         style={{ paddingLeft: '0px', paddingRight: '0px' }}
       >
         <ZKTable
-          rowId={'businessAlarmRuleTempId'}
+          rowId={'id'}
           btnList={[]}
           searchForm={form}
           isRowCheck={Type === 'detail' ? true : false}
-          tableColumns={Type === 'detail ' ? columns : columnsI}
+          tableColumns={Type === 'detail' ? columns : columnsI}
           tableDataFun={getTableData}
-          defaultFormItem={{
-            name: 'hello',
-            email: '1',
-            phone: '2',
-          }}
+          defaultFormItem={{}}
           clickOperBtn={(t: string, d: any) => {
             console.log(
               't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
@@ -176,7 +179,6 @@ const Inline = (props: Props) => {
           }}
           ref={shareRef}
           onRowCheckBoxFun={Taddtag}
-          onSlectCheck={slectId}
         />
       </div>
 
@@ -185,13 +187,8 @@ const Inline = (props: Props) => {
           props.onClose();
         }}
       />
-      {/* <Form.Item>
-          <Button type="primary" htmlType="submit">
-            登录
-          </Button>
-        </Form.Item> */}
     </Form>
   );
 };
 
-export default Inline;
+export default SiteBinding;

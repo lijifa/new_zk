@@ -5,7 +5,7 @@ import { getalarmNoticeList } from '@/services/Ralis/WarningList';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import { useRef } from 'react';
-import Add from './Add';
+import Add from './Add/Add';
 
 const { RangePicker } = DatePicker;
 
@@ -57,6 +57,7 @@ const Logs = () => {
           btnList={[{ key: 'detail', text: '详细' }]}
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
+            toggle()
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -208,14 +209,14 @@ const Logs = () => {
         </div>
       </div>
       <Modal
-        title="添加"
+        title="操作日志详细"
         open={state}
         footer={null}
         destroyOnClose={true}
         centered={true}
         onCancel={toggle}
-        width={650}
-        bodyStyle={{ height: '400px' }}
+        width={800}
+        bodyStyle={{ height: '703px',padding:'50px 40px 0px 80px'}}
       >
         <Add
           onSubmit={() => {

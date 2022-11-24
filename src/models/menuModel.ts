@@ -222,7 +222,7 @@ export default () => {
                 params: {},
                 parentId: 5694,
                 perms: 'business:camera:view',
-                url: '/business/camera',
+                url: '/videoSformerPanel',
               },
             ],
             createTime: 1651134390000,
@@ -235,7 +235,7 @@ export default () => {
             params: {},
             parentId: 5692,
             perms: '',
-            url: '#',
+            url: '',
           },
           {
             ancestors: ',4001,5692',

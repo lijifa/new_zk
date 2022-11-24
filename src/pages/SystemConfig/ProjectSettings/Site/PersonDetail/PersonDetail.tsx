@@ -6,47 +6,19 @@ interface Props {
 import ModalFooter from '@/components/ModalFooter';
 import ZKTable from '@/components/ZKTable';
 import { getalarmNoticeList } from '@/services/Ralis/WarningList';
-import { Button, Form, Input, Select, Space, Tag } from 'antd';
-import { useRef, useState } from 'react';
+import { Button, Form, Input, Space } from 'antd';
+import { useRef } from 'react';
 import styles from './Inine.less';
 
-const { Option } = Select;
-
-const onChange = (value: string[]) => {
-  console.log(value);
-};
-
-const Inline = (props: Props) => {
+const PersonDetail = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
-  const [tags, setTag] = useState<Array<string>>(['默认标题']);
-  const [selectvallue, setselectvallue] = useState<Array<string>>(['']);
-  const { Type } = props;
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
     props.onSubmit();
   };
   // 表格列字段
-  const columns = [
-    {
-      title: '站点名称',
-      dataIndex: 'reason',
-      align: 'left',
-    },
-    {
-      title: '所属系统',
-      dataIndex: 'systemName',
-    },
-    {
-      title: '创建人',
-      dataIndex: 'siteName',
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'siteProject',
-    },
-  ];
   const columnsI = [
     {
       title: '姓名',
@@ -85,17 +57,15 @@ const Inline = (props: Props) => {
   // 高级搜索栏Form
   const advanceSearchForm = (
     <div className="zkSearchBox">
-      <Form form={form}>
-        <Space align="center">
-          <Form.Item name="name">
-            <Input placeholder="请输入站点名称" />
-          </Form.Item>
-          <Button type="primary" onClick={() => searchOper('submit')}>
-            搜索
-          </Button>
-          <Button onClick={() => searchOper('reset')}>重置</Button>
-        </Space>
-      </Form>
+      <Space align="center">
+        <Form.Item name="name">
+          <Input placeholder="请输入站点名称" />
+        </Form.Item>
+        <Button type="primary" onClick={() => searchOper('submit')}>
+          搜索
+        </Button>
+        <Button onClick={() => searchOper('reset')}>重置</Button>
+      </Space>
     </div>
   );
   // 点击搜索、重置按钮
@@ -103,12 +73,9 @@ const Inline = (props: Props) => {
     shareRef?.current?.clickSearchBtn(type);
   };
 
-
-
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{}}>
       <div className={styles.title}>{advanceSearchForm}</div>
-
       <div
         className={'zkTableContent'}
         style={{ paddingLeft: '0px', paddingRight: '0px' }}
@@ -117,8 +84,8 @@ const Inline = (props: Props) => {
           rowId={'businessAlarmRuleTempId'}
           btnList={[]}
           searchForm={form}
-          isRowCheck={Type === 'detail' ? true : false}
-          tableColumns={Type === 'detail ' ? columns : columnsI}
+          isRowCheck={false}
+          tableColumns={columnsI}
           tableDataFun={getTableData}
           defaultFormItem={{
             name: 'hello',
@@ -141,13 +108,8 @@ const Inline = (props: Props) => {
           props.onClose();
         }}
       />
-      {/* <Form.Item>
-          <Button type="primary" htmlType="submit">
-            登录
-          </Button>
-        </Form.Item> */}
     </Form>
   );
 };
 
-export default Inline;
+export default PersonDetail;

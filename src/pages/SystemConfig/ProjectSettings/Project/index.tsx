@@ -1,12 +1,13 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import { getalarmNoticeList } from '@/services/Ralis/WarningList';
+import { getProjectList,getBelongProject } from '@/services/SystemConfig/ProjectSetting/project';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Add from './Add/Add';
-import Inline from './Inine/Inline';
+import DeletePage from './DeletePage';
+import Inline from './SiteBinding/SiteBinding';
 import ProjectDetail from './ProjectDetail';
 
 const { RangePicker } = DatePicker;
@@ -16,33 +17,42 @@ const Project = () => {
   const [state, { toggle }] = useBoolean(false);
   const shareRef = useRef();
   const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
+  const [Id, setId] = useState<any>();
+  const [del, setDel] = useState(false);
+  const [projectType,setProjectType] = useState<{label:string,value:string}[]>([])
+  useEffect(()=>{
+    getBelongProject({}).then(res=>{
+      let projectTypeData = res.data.map((item:any)=>({
+        label:item.name,
+        value:item.id.toString()
+      }))
+      setProjectType(projectTypeData)
+    })
+
+  },[])
 
   // 表格列字段
   const columns = [
     {
       title: '项目名称',
-      dataIndex: 'reason',
+      dataIndex: 'name',
       align: 'left',
     },
     {
       title: '站项目所在地',
-      dataIndex: 'systemName',
+      dataIndex: 'address',
     },
     {
       title: '项目类型',
-      dataIndex: 'siteName',
+      dataIndex: 'projectTypeName',
     },
     {
       title: '项目总面积(万m³)',
-      dataIndex: 'siteProject',
-    },
-    {
-      title: '供热/供冷面积(m³)',
-      dataIndex: 'siteSystem',
+      dataIndex: 'area',
     },
     {
       title: '项目总金额(元)',
-      dataIndex: 'businessAlarmRuleTempId',
+      dataIndex: 'sumMoney',
     },
     {
       title: '项目人数',
@@ -62,6 +72,7 @@ const Project = () => {
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
             toggle();
+     
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -72,11 +83,11 @@ const Project = () => {
 
   // 获取表格数据
   const getTableData = (paramData: any) => {
-    return getalarmNoticeList(paramData).then((data) => {
-      if (data.code == 0) {
+    return getProjectList(paramData).then((res) => {
+      if (res.code == 200) {
         return {
-          total: data.total,
-          list: data.rows,
+          total: res.data.total,
+          list: res.data.list,
         };
       }
       return {
@@ -96,6 +107,8 @@ const Project = () => {
     console.log('e：按钮标识(key);\n data当前操作行数据');
     console.log(e);
     console.log(data);
+    const id = data.id;
+    setId(id);
     setAddCgType(e);
   };
   // 高级搜索栏Form
@@ -104,12 +117,12 @@ const Project = () => {
       <Form form={form}>
         <Space align="center">
           <Form.Item name="name">
-            <Input placeholder="请输入组态图名称搜索" />
+            <Input placeholder="请输入项目名称搜索" />
           </Form.Item>
 
-          <Form.Item name="email">
+          <Form.Item name="projectTypeId">
             <Select
-              placeholder="请选择组态图类型"
+              placeholder="请选择项目类型"
               style={{ width: 200 }}
               optionFilterProp="label"
               filterOption={(input, option) =>
@@ -120,50 +133,9 @@ const Project = () => {
                   .toLowerCase()
                   .localeCompare((optionB?.label ?? '').toLowerCase())
               }
-              options={[
-                {
-                  value: '1',
-                  label: '供冷',
-                },
-                {
-                  value: '2',
-                  label: '供热',
-                },
-              ]}
+              options={projectType}
             />
           </Form.Item>
-
-          <Form.Item name="phone">
-            <Select
-              placeholder="请选择站点"
-              showSearch
-              style={{ width: 200 }}
-              optionFilterProp="label"
-              filterOption={(input, option) =>
-                (option?.label ?? '').includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? '')
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? '').toLowerCase())
-              }
-              options={[
-                {
-                  value: '1',
-                  label: 'A光合谷A能源站',
-                },
-                {
-                  value: '2',
-                  label: 'B光合谷B能源站',
-                },
-                {
-                  value: '3',
-                  label: 'C光合谷C能源站',
-                },
-              ]}
-            />
-          </Form.Item>
-
           <Button type="primary" onClick={() => searchOper('submit')}>
             搜索
           </Button>
@@ -182,8 +154,12 @@ const Project = () => {
   //根据Type显示不同页面
   const AddPage = (
     <Add
+      projectType={projectType}
+      type={AddCgType}
+      id={Id}
       onSubmit={() => {
         toggle();
+        shareRef?.current?.clickSearchBtn('reset');
       }}
       onClose={() => {
         toggle();
@@ -192,6 +168,7 @@ const Project = () => {
   );
   const InlinePage = (
     <Inline
+      id={Id}
       Type={AddCgType}
       onSubmit={() => {
         toggle();
@@ -221,6 +198,7 @@ const Project = () => {
       case 'project':
         result = (
           <ProjectDetail
+            id = {Id}
             onSubmit={() => {
               toggle();
             }}
@@ -267,24 +245,35 @@ const Project = () => {
           {advanceSearchForm}
 
           <ZKTable
-            rowId={'businessAlarmRuleTempId'}
+            rowId={'id'}
             btnList={['add', 'edit', 'del']}
             searchForm={form}
             tableColumns={columns}
             tableDataFun={getTableData}
-            defaultFormItem={{
-              name: 'hello',
-              email: '1',
-              phone: '2',
-            }}
+            defaultFormItem={
+              {
+                // name: 'hello',
+                // email: '1',
+              }
+            }
             clickOperBtn={(t: string, d: any) => {
               console.log(
                 't：按钮的类型【add/edit/del/export】;\n d：选中行数据',
               );
               console.log(t, d);
               console.log('点击表格上方操作按钮回调');
-              toggle();
               setAddCgType(t);
+              if (t === 'del') {
+                setDel(true);
+                let id = d[0];
+                setId(id);
+              } else {
+                toggle();
+              }
+              if (t === 'edit') {
+                let id = d[0];
+                setId(id);
+              }
             }}
             ref={shareRef}
           />
@@ -298,10 +287,24 @@ const Project = () => {
         centered={true}
         onCancel={toggle}
         width={1300}
-        bodyStyle={{ height: '750px',padding:AddCgType === 'project'? '20px 40px 20px 40px' : '' }}
+        bodyStyle={{
+          height: '750px',
+          padding: AddCgType === 'project' ? '20px 40px 20px 40px' : '',
+        }}
       >
         {findMType(AddCgType)}
       </Modal>
+      <DeletePage
+        Show={del}
+        id={Id}
+        Delete={() => {
+          shareRef?.current?.clickSearchBtn('reset');
+          setDel(false);
+        }}
+        Cancal={() => {
+          setDel(false);
+        }}
+      />
     </>
   );
 };

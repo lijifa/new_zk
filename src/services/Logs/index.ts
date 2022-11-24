@@ -9,4 +9,3 @@ export async function getLogList(pageSize:number = 10,pageNum:number = 1,options
 
     })
 }
-

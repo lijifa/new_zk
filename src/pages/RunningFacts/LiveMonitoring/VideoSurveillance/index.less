@@ -1,0 +1,113 @@
+.main{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: rgba(54, 68, 91, 1);
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0 10px;
+    font-family: '微软雅黑';
+    .mainContent{
+        height: calc(100% - 130px);
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        .cameraItem{
+            width: 410px;
+            height: 240px;
+            margin: 0 20px 10px 0;
+            background-color: rgba(32, 39, 53, 1);
+            .ctitle{
+                height: 40px;
+                width: 100%;
+                display: flex;
+                line-break: 40px;
+                padding: 0 10px;
+                justify-content: space-between;
+                align-items: center;
+                img{
+                    border: none;
+                    vertical-align: middle;
+                    display: inline-block;
+                    height: 19px;
+                    width: 21px;
+                }
+                .right{
+                   width: 50px;
+                   font-size: 14px;
+                   text-align: center;
+                   color:  rgba(0, 216, 160, 1);
+                   i{
+                    width: 10px;
+                    height: 10px;
+                    display: inline-block;
+                    border-radius: 100%;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    background-color:rgba(0, 216, 160, 1);
+
+                   }
+                }
+                .text{
+                    flex: 1;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    color: rgba(255, 255, 255, 1);
+                    padding: 0 10px;
+                }
+            }
+            .cmain{
+                width: 100%;
+                height: calc(100% - 40px);
+                cursor: pointer;
+                position: relative;
+                 overflow: hidden;
+                 .camer{
+                     width: 100%;
+                     height: 100%;
+                     vertical-align: middle;
+                 }
+                 .cameraPlay{
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 70px;
+                    height: 70px;
+
+                 }
+            }
+        }
+    
+    }
+    .page{
+        height: 20px;
+        width: 100%;
+        position: relative;
+        box-sizing: content-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span{
+            color: rgba(255, 255, 255, 1);
+            font: 12px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+        }
+        
+        :global{
+            .ant-pagination-item-active a{
+                color: white;
+            }
+              .ant-pagination-item-active  {
+                font-weight: 500;
+                background: #36445b !important;
+                border-color: #36445b;
+              }
+              .ant-pagination-item :hover{
+                  color: white;
+              }
+        }
+
+    }
+}
