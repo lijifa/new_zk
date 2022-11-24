@@ -12,9 +12,8 @@ interface DelWarnning {
   id:number;
 }
 
-const DelWarnModal = (props: DelWarnning) => {
+const DeletePage = (props: DelWarnning) => {
   const { Show, Delete, Cancal, Content ,id} = props;
-  console.log(id)
 
   function showConfirm() {
     confirm({
@@ -38,4 +37,4 @@ const DelWarnModal = (props: DelWarnning) => {
   return <>{Show ? showConfirm() : null}</>;
 };
 
-export default DelWarnModal;
+export default DeletePage;

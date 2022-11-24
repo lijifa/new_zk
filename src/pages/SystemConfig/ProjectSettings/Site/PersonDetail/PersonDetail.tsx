@@ -10,10 +10,6 @@ import { Button, Form, Input, Space } from 'antd';
 import { useRef } from 'react';
 import styles from './Inine.less';
 
-const onChange = (value: string[]) => {
-  console.log(value);
-};
-
 const PersonDetail = (props: Props) => {
   const [form] = Form.useForm();
   const shareRef = useRef();
