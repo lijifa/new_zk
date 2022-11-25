@@ -380,14 +380,18 @@ const routes = [
     path: '/meterParamSet',
     component: './SystemConfig/DebugSet/MeterParamSet',
   },
-
   /* 能源计划================ */
   {
     name: '能源指标录入',
     path: '/business/quota',
     component: './Business/Quota',
   },
-
+  /* 运行策略================ */
+  {
+    name: '基本控制',
+    path: '/business/runPlan/baseControl',
+    component: './Business/RunPlan/BaseControl',
+  },
   /*
    *  异常模块路由
    */

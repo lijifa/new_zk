@@ -79,14 +79,27 @@ export async function getBelongSystem({},options?: { [key: string]: any }){
 
 
 //查询所有省
-export async function getProvince({},options?: { [key: string]: any }){
-    return request<any>('/system_configuration/area/province/list',{
-        method:'POST',
-        data:{},
-        ...(options || {prefix: '/zk'}),
+export function getProvince(){
+    return request<API.Response<API.Province[]>>('/system_configuration/area/province/list',{
+        method: 'POST',
+        prefix: '/zk'
     })
 }
 
+//查询所有市
+export function getCity(pid: number){
+    return request<API.Response<API.City[]>>('/system_configuration/area/city/list',{
+        method: 'POST',
+        prefix: '/zk',
+        data: { pid }
+    })
+}
 
-
-
+//查询所有县
+export function getCounty(pid: number){
+    return request<API.Response<API.County[]>>('/system_configuration/area/county/list',{
+        method: 'POST',
+        prefix: '/zk',
+        data: { pid }
+    })
+}

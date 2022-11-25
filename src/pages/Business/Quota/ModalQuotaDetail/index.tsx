@@ -79,7 +79,7 @@ const PriceDetailModal: React.FC<ModalProps> = () => {
               activeKey={periodYear}
               items={[curYear, `${+curYear + 1}`].map((year) => ({ label: year + '年', key: year }))}
               onChange={(activeKey) => setPeriodYear(activeKey)}
-            />  
+            />
           </div>
           {/* 列表-月份 */}
           <Table {...gridQuota} />
