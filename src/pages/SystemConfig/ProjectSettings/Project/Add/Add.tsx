@@ -30,8 +30,6 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 const Add = (props: Props) => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
   const [List, setlist] = useState<any>();
   const { id, type, projectType, searchOper } = props;
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -52,8 +50,12 @@ const Add = (props: Props) => {
     );
   };
 
-  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>{
+    console.log(newFileList)
     setFileList(newFileList);
+
+  }
+   
 
   const uploadButton = (
     <div>
@@ -268,7 +270,7 @@ const Add = (props: Props) => {
                   onPreview={handlePreview}
                   onChange={handleChange}
                 >
-                 {fileList&&fileList.length >= 1 ? null : uploadButton}
+                  {fileList&&fileList.length >= 1 ? null : uploadButton}
                 </Upload>
                 <Modal
                   open={previewOpen}

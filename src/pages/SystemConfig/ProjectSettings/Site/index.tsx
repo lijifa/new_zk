@@ -44,7 +44,9 @@ const Site = () => {
     {
       title: '站点人数',
       dataIndex: 'sitePeopleNummer',
+      render: (_, record: any) => <span>{0}</span>,
       width: '80px',
+
       align: 'left',
     },
     {
