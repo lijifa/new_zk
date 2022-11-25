@@ -1,14 +1,39 @@
+import SubHeader from '@/components/SubHeader';
+import { Select } from 'antd';
 import React from 'react';
 
-// 暖通组态看板
-const HvacDiagramPanel: React.FC = () => {
+const { Option } = Select;
+const data: any = [
+  {
+    label: '静海政府能源管理',
+  },
+  {
+    label: '武清人民医院',
+  },
+];
+// 电力组态看板
+const ElectricDiagramPanel: React.FC = () => {
   return (
     <div style={{ backgroundColor: 'rgb(54, 68, 91)', height: '100%' }}>
-      <h1 style={{ color: '#FFF', fontSize: 30, textAlign: 'center' }}>
-        暖通组态看板
-      </h1>
+      <SubHeader
+        title={'暖通组态看板'}
+        leftItem={
+          <>
+            <div>
+              {data.map((res: any, index: any) => {
+                return <Option key={index}>{res.label}</Option>;
+              })}
+            </div>
+            <div>
+              {data.map((res: any, index: any) => {
+                return <Option key={index}>{res.label}</Option>;
+              })}
+            </div>
+          </>
+        }
+      />
     </div>
   );
 };
 
-export default HvacDiagramPanel;
+export default ElectricDiagramPanel;

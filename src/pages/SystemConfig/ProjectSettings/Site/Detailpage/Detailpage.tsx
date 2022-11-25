@@ -1,6 +1,4 @@
 interface Props {
-  onClose: Function; // 关闭按钮回调方法
-  onSubmit: Function; // 提交按钮回调方法
   //Type: string; // 传入的类型
   id: number; //父传来的id
 }

@@ -11,8 +11,8 @@ import {
   getAddSite,
   getAmendSite,
   getChangeSite,
+  getProvince,
   getVoltagechange,
-  getProvince
 } from '@/services/SystemConfig/ProjectSetting/site';
 import {
   Cascader,
@@ -66,10 +66,9 @@ const Add = forwardRef((props: Props, ref) => {
 
         setVoltage(voltageData);
       });
-      getProvince({}).then(res=>{
-        console.log(res)
-
-      })
+      getProvince({}).then((res) => {
+        console.log(res);
+      });
     } else {
       getChangeSite({ id }).then((res) => {
         let result = res.data;
@@ -493,6 +492,7 @@ const Add = forwardRef((props: Props, ref) => {
       </Form>
       <Ischange
         Show={del}
+        Content='确定修改项目信息?'
         Delete={() => {
           setDel(false);
         }}

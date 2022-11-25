@@ -1,14 +1,17 @@
 import { RowOperBtn } from '@/components/OperationBtn';
 import { PageHeader } from '@/components/SubHeader';
 import ZKTable from '@/components/ZKTable';
-import { getProjectList,getBelongProject } from '@/services/SystemConfig/ProjectSetting/project';
+import {
+  getBelongProject,
+  getProjectList,
+} from '@/services/SystemConfig/ProjectSetting/project';
 import { useBoolean } from 'ahooks';
 import { Button, DatePicker, Form, Input, Modal, Select, Space } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import Add from './Add/Add';
 import DeletePage from './DeletePage';
-import Inline from './SiteBinding/SiteBinding';
 import ProjectDetail from './ProjectDetail';
+import Inline from './SiteBinding/SiteBinding';
 
 const { RangePicker } = DatePicker;
 
@@ -19,17 +22,18 @@ const Project = () => {
   const [AddCgType, setAddCgType] = useState<string>(''); //判断添加，修改以及行内操作
   const [Id, setId] = useState<any>();
   const [del, setDel] = useState(false);
-  const [projectType,setProjectType] = useState<{label:string,value:string}[]>([])
-  useEffect(()=>{
-    getBelongProject({}).then(res=>{
-      let projectTypeData = res.data.map((item:any)=>({
-        label:item.name,
-        value:item.id.toString()
-      }))
-      setProjectType(projectTypeData)
-    })
-
-  },[])
+  const [projectType, setProjectType] = useState<
+    { label: string; value: string }[]
+  >([]);
+  useEffect(() => {
+    getBelongProject({}).then((res) => {
+      let projectTypeData = res.data.map((item: any) => ({
+        label: item.name,
+        value: item.id.toString(),
+      }));
+      setProjectType(projectTypeData);
+    });
+  }, []);
 
   // 表格列字段
   const columns = [
@@ -37,31 +41,44 @@ const Project = () => {
       title: '项目名称',
       dataIndex: 'name',
       align: 'left',
+      width:200
     },
     {
       title: '站项目所在地',
       dataIndex: 'address',
+      align:'left'
     },
     {
       title: '项目类型',
       dataIndex: 'projectTypeName',
+      align:'left',
+      width:180,
     },
     {
       title: '项目总面积(万m³)',
       dataIndex: 'area',
+      align:'left',
+      width:180,
     },
     {
       title: '项目总金额(元)',
       dataIndex: 'sumMoney',
+      width:220,
+      align:'left'
+      
     },
     {
       title: '项目人数',
-      dataIndex: ['alarmTime'],
+      dataIndex: '0',
+      width:170,
+      render: (_, record: any) => <span>{0}</span>,
+      align:'left'
     },
     {
       title: '操作',
       key: 'operation',
-      width: '15%',
+      width: '18%',
+      align:'left',
       render: (record: any) => (
         <RowOperBtn
           btnList={[
@@ -72,7 +89,6 @@ const Project = () => {
           btnCilck={(e: string) => {
             clickRowbtn(e, record);
             toggle();
-     
           }}
           rowData={record}
           // isDisabled={isDisabledFun(record)}
@@ -154,12 +170,16 @@ const Project = () => {
   //根据Type显示不同页面
   const AddPage = (
     <Add
+      searchOper={searchOper}
       projectType={projectType}
       type={AddCgType}
       id={Id}
       onSubmit={() => {
         toggle();
-        shareRef?.current?.clickSearchBtn('reset');
+        if (AddCgType === 'edit') {
+          shareRef?.current?.changeRowCheckBox([]);
+          shareRef?.current?.clickSearchBtn('reset');
+        }
       }}
       onClose={() => {
         toggle();
@@ -198,7 +218,7 @@ const Project = () => {
       case 'project':
         result = (
           <ProjectDetail
-            id = {Id}
+            id={Id}
             onSubmit={() => {
               toggle();
             }}
@@ -288,6 +308,7 @@ const Project = () => {
         onCancel={toggle}
         width={1300}
         bodyStyle={{
+          overflowY: 'auto',
           height: '750px',
           padding: AddCgType === 'project' ? '20px 40px 20px 40px' : '',
         }}
@@ -298,8 +319,8 @@ const Project = () => {
         Show={del}
         id={Id}
         Delete={() => {
-          shareRef?.current?.clickSearchBtn('reset');
           setDel(false);
+          shareRef?.current?.clickSearchBtn('reset');
         }}
         Cancal={() => {
           setDel(false);

@@ -38,33 +38,42 @@ const Site = () => {
     {
       title: '站点所在地',
       dataIndex: 'address',
-      width: ' 320px',
+      width: '320px',
+      align: 'left',
     },
     {
       title: '站点人数',
       dataIndex: 'sitePeopleNummer',
-      width: ' 80px',
+      render: (_, record: any) => <span>{0}</span>,
+      width: '80px',
+
+      align: 'left',
     },
     {
       title: '所属项目',
       dataIndex: 'projectName',
+      align: 'left',
     },
     {
       title: '所属系统',
       dataIndex: 'systemName',
+      align: 'left',
     },
     {
       title: '创建人',
       dataIndex: 'createBy',
-      width: ' 120px',
+      width: '120px',
+      align: 'left',
     },
     {
       title: '最近修改时间',
-      dataIndex: ['createTime'],
+      dataIndex: 'createTime',
+      align: 'left',
     },
     {
       title: '操作',
       key: 'operation',
+      align: 'left',
       render: (record: any) => (
         <RowOperBtn
           btnList={[
@@ -196,11 +205,12 @@ const Site = () => {
       system={system}
       onSubmit={() => {
         toggle();
-        Cref?.current?.changshow('show');
+        // Cref?.current?.changshow('show');
+        shareRef?.current?.clickSearchBtn('submit');
       }}
       onClose={() => {
         toggle();
-        Cref?.current?.changshow();
+        // Cref?.current?.changshow();
       }}
     />
   );
@@ -227,17 +237,7 @@ const Site = () => {
         );
         break;
       case 'site':
-        result = (
-          <Detailpage
-            id={Id}
-            onSubmit={() => {
-              toggle();
-            }}
-            onClose={() => {
-              toggle();
-            }}
-          />
-        );
+        result = <Detailpage id={Id} />;
         break;
       default:
         break;

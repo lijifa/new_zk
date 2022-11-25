@@ -118,13 +118,19 @@ const ZKTable = forwardRef((props: any, ref) => {
   };
 
   // 点击搜索、重置按钮事件回调
-  const clickSearchBtn = (type: string) => {
+  const clickSearchBtn = (type: string, isResetRowChecked: boolean = true) => {
     switch (type) {
       case 'submit':
         submit();
+        if (isResetRowChecked) {
+          setSelectedRowKeys([]);
+        }
         break;
       case 'reset':
         reset();
+        if (isResetRowChecked) {
+          setSelectedRowKeys([]);
+        }
         break;
       case 'changeType':
         console.log('changeType');
