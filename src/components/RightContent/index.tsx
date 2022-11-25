@@ -1,7 +1,7 @@
 import { outLogin, updateMfrsId } from '@/services/zg-base/login';
 import { getCompanySelected, saveCompanySelected } from '@/utils/format';
-import { clearStorageAll } from '@/utils/storageTool';
-import { DownOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { clearStorageAll, getStorageItems } from '@/utils/storageTool';
+import { PoweroffOutlined } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import type { MenuProps } from 'antd';
 import { Button, Divider, Dropdown, Menu, message, Space } from 'antd';
@@ -13,6 +13,7 @@ import styles from './index.less';
 const GlobalHeaderRight: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
   const { updateMenuApiData, tags, removeTagFun } = useModel('menuModel');
+  const sex = getStorageItems('USER_INFO_CACHE');
 
   const { clear, drop } = useAliveController();
   // const companyName = initialState?.currentCompany.find((item: { key: number | undefined; }) => item.key === initialState.mfrsId)
@@ -87,12 +88,11 @@ const GlobalHeaderRight: React.FC = () => {
           <Space>
             <div style={{ marginTop: 8 }}>
               <IconFont
-                type="icon-jianzhu1"
-                style={{ color: '#0ED1F9', fontSize: 22 }}
+                type="icon-qiye-tianchong"
+                style={{ color: '#dcdbd8', fontSize: 22 }}
               />
             </div>
             {getCompanySelected().label}
-            <DownOutlined />
           </Space>
         </a>
       </Dropdown>
@@ -100,16 +100,15 @@ const GlobalHeaderRight: React.FC = () => {
       <Space>
         <div style={{ marginTop: 10 }}>
           <IconFont
-            type="icon-yonghu"
+            type={sex.sex == '0' ? 'icon-nanxing' : 'icon-nvshangjia'}
             style={{
-              color: '#FF62D7',
+              color: 'rgb(14, 209, 249)',
               fontSize: 22,
             }}
           />
         </div>
 
         <span className={`${styles.name} anticon`}>
-          {' '}
           {initialState?.currentUser ? initialState.currentUser.userName : '-'}
         </span>
       </Space>

@@ -1,10 +1,12 @@
-import { FullscreenOutlined, RedoOutlined } from '@ant-design/icons';
+import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 import { history, useLocation, useModel } from '@umijs/max';
 import { Button, Col, Row, Space } from 'antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import IconFont from '../IconFont';
 import styles from './index.less';
 import Tab from './Tab';
 const HeadTags: React.FC = () => {
+  const [float, setFloat] = useState(true);
   // 是否全屏
   const { full, ScreenOpen, ScreenClose } = useModel(
     'isFullModel',
@@ -30,7 +32,7 @@ const HeadTags: React.FC = () => {
           type="text"
           style={{ color: '#A5EAFF' }}
           size="small"
-          icon={<FullscreenOutlined />}
+          icon={<IconFont type="icon-zhankai2" />}
           onClick={ScreenClose}
         >
           全屏
@@ -42,7 +44,7 @@ const HeadTags: React.FC = () => {
           type="text"
           style={{ color: '#A5EAFF' }}
           size="small"
-          icon={<FullscreenOutlined />}
+          icon={<IconFont type="icon-zhankai1" />}
           onClick={ScreenOpen}
         >
           全屏
@@ -61,18 +63,38 @@ const HeadTags: React.FC = () => {
   return (
     <Row wrap={false} className={styles.tabTools}>
       <Col flex="1" className={styles.tabList}>
+        <span className={styles.tab_button} onClick={() => setFloat(false)}>
+          <BackwardOutlined />
+        </span>
         <ul>
-          <li
-            key={'home'}
-            className={`${styles.tabItem} ${
-              location.pathname === '/home' ? styles.active : ''
-            }`}
-            onClick={() => history.push('/home')}
+          <div
+            className={styles.content}
+            style={{
+              float: float ? 'right' : 'left',
+            }}
           >
-            <span>{'首页'}</span>
-          </li>
-          <Tab />
+            <li
+              key={'home'}
+              className={`${styles.tabItem} ${
+                location.pathname === '/home' ? styles.active : ''
+              }`}
+              onClick={() => history.push('/home')}
+            >
+              <span>{'首页'}</span>
+            </li>
+            <Tab />
+          </div>
         </ul>
+        <span
+          className={styles.tab_button}
+          onClick={() => setFloat(true)}
+          style={{
+            marginLeft: 'auto',
+            borderLeft: 'solid 1px rgba(157, 203, 255, 0.3)',
+          }}
+        >
+          <ForwardOutlined />
+        </span>
       </Col>
       <Col className={styles.headRight}>
         <Space>
@@ -80,7 +102,7 @@ const HeadTags: React.FC = () => {
             type="text"
             style={{ color: '#A5EAFF' }}
             size="small"
-            icon={<RedoOutlined />}
+            icon={<IconFont type="icon-gengxin" />}
             onClick={() => Refresh()}
           >
             刷新

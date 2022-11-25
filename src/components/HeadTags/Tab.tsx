@@ -10,7 +10,6 @@ const Tab = () => {
   const onClick = (path: string) => {
     history.push(path);
   };
-
   // 关闭菜单
   const onClose = (e: any, id: string) => {
     e.stopPropagation();

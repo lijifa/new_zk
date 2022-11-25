@@ -382,6 +382,96 @@ const routes = [
   },
 
   /*
+   *  设备运维
+   */
+  /* 运维管理================ */
+  // 保养标准
+  {
+    name: '保养标准',
+    path: '/maintenStandard',
+    component: './EquipmentOp/OperationsMGT/MaintenStandard',
+  },
+  // 巡检标准
+  {
+    name: '巡检标准',
+    path: '/inspectionStandard',
+    component: './EquipmentOp/OperationsMGT/InspectionStandard',
+  },
+  // 任务派发
+  {
+    name: '任务派发',
+    path: '/taskDistribution',
+    component: './EquipmentOp/OperationsMGT/TaskDistribution',
+  },
+  // 保养补录
+  {
+    name: '保养补录',
+    path: '/maintenRecord',
+    component: './EquipmentOp/OperationsMGT/MaintenRecord',
+  },
+  // 巡检补录
+  {
+    name: '巡检补录',
+    path: '/inspectionRecord',
+    component: './EquipmentOp/OperationsMGT/InspectionRecord',
+  },
+  // 维修补录
+  {
+    name: '维修补录',
+    path: '/repairRecord',
+    component: './EquipmentOp/OperationsMGT/RepairRecord',
+  },
+  // 自动抄表
+  {
+    name: '自动抄表',
+    path: '/autoMeter',
+    component: './EquipmentOp/OperationsMGT/AutoMeter',
+  },
+  // 运维记录
+  {
+    name: '运维记录',
+    path: '/opRecord',
+    component: './EquipmentOp/OperationsMGT/OpRecord',
+  },
+  // 工单记录
+  {
+    name: '工单记录',
+    path: '/workOrderRecord',
+    component: './EquipmentOp/OperationsMGT/WorkOrderRecord',
+  },
+  /* 设备管理================ */
+  // 设备管理
+  {
+    name: '设备管理',
+    path: '/equipmentMGT',
+    component: './EquipmentOp/EquipmentMGT/EquipmentMGT',
+  },
+  // 易损清单
+  {
+    name: '易损清单',
+    path: '/vulnerableList:id',
+    component: './EquipmentOp/EquipmentMGT/EquipmentMGT/VulnerableList',
+  },
+  // 设备查询
+  {
+    name: '设备查询',
+    path: '/equipmentQuery',
+    component: './EquipmentOp/EquipmentMGT/EquipmentQuery',
+  },
+  // 设备详情
+  {
+    name: '设备详情',
+    path: '/detailsPage:id',
+    component: './EquipmentOp/EquipmentMGT/EquipmentQuery/DetailsPage',
+  },
+  // 设备规格配置
+  {
+    name: '设备规格配置',
+    path: '/equipmentSpec',
+    component: './EquipmentOp/EquipmentMGT/EquipmentSpec',
+  },
+
+  /*
    *  异常模块路由
    */
   {
