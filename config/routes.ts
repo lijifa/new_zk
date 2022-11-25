@@ -229,7 +229,7 @@ const routes = [
   // 影像监控
   {
     name: '影像监控',
-    path: '/videoSurveillance',
+    path: '/videoSformerPanel',
     component: './RunningFacts/LiveMonitoring/VideoSurveillance',
   },
 

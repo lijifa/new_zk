@@ -2,7 +2,6 @@ import OperationBtn from '@/components/OperationBtn';
 import { useAntdTable } from 'ahooks';
 import { Table } from 'antd';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
-
 interface Result {
   total: number;
   list: Object[];
@@ -43,10 +42,8 @@ const ZKTable = forwardRef((props: any, ref) => {
     btnList, // 更多的表格上方按钮, 默认：['add','edit', 'del']
     otherBtnFun, // 更多的表格上方按钮, 必须要返回按钮数组
     onRowCheckBoxFun, // 点击行选择框回调
-    onSlectCheck, //父选择中的id
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  console.log(onSlectCheck, 'onSlectCheck');
 
   // 获取表格数据
   // const getTableData = (
@@ -75,7 +72,7 @@ const ZKTable = forwardRef((props: any, ref) => {
     { current, pageSize }: { current: number; pageSize: number },
     formData: Object,
   ): Promise<Result> => {
-    const paramData = { ...formData, ...{ pageNum: current, pageSize } };
+    const paramData = { ...formData, ...{ currentPage: current, pageSize } };
 
     if (tableDataFun && typeof tableDataFun === 'function') {
       return tableDataFun(paramData);
@@ -111,7 +108,7 @@ const ZKTable = forwardRef((props: any, ref) => {
   };
 
   const rowSelection = {
-    // selectedRowKeys,
+    selectedRowKeys,
     onChange: onSelectChange,
     getCheckboxProps: (record: any) => {
       if (disabledFun && typeof disabledFun === 'function') {
@@ -121,13 +118,19 @@ const ZKTable = forwardRef((props: any, ref) => {
   };
 
   // 点击搜索、重置按钮事件回调
-  const clickSearchBtn = (type: string) => {
+  const clickSearchBtn = (type: string, isResetRowChecked: boolean = true) => {
     switch (type) {
       case 'submit':
         submit();
+        if (isResetRowChecked) {
+          setSelectedRowKeys([]);
+        }
         break;
       case 'reset':
         reset();
+        if (isResetRowChecked) {
+          setSelectedRowKeys([]);
+        }
         break;
       case 'changeType':
         console.log('changeType');
@@ -141,17 +144,22 @@ const ZKTable = forwardRef((props: any, ref) => {
   // 向父层输出对外的搜索点击事件
   useImperativeHandle(ref, () => ({
     clickSearchBtn,
+    changeRowCheckBox,
   }));
-
+  const changeRowCheckBox = (data: React.SetStateAction<React.Key[]>) => {
+    if (data && Array.isArray(data)) {
+      setSelectedRowKeys(data);
+    }
+  };
   return (
     <>
       <OperationBtn
         btnList={btnList ? btnList : ['add', 'edit', 'del']}
         Loading={loading}
         btnCilck={(t: string, d: any) => {
-          console.log('t：按钮的类型【add/edit/del/export】;\n d：选中行数据');
-          console.log(t, d);
-          console.log('点击表格上方操作按钮回调');
+          // console.log('t：按钮的类型【add/edit/del/export】;\n d：选中行数据');
+          // console.log(t, d);
+          // console.log('点击表格上方操作按钮回调');
 
           // console.log(_.random(0, 5));
           // toggle();

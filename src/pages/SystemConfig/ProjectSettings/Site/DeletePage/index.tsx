@@ -12,9 +12,8 @@ interface DelWarnning {
   id:number;
 }
 
-const DelWarnModal = (props: DelWarnning) => {
+const DeletePage = (props: DelWarnning) => {
   const { Show, Delete, Cancal, Content ,id} = props;
-  console.log(id)
 
   function showConfirm() {
     confirm({
@@ -22,8 +21,8 @@ const DelWarnModal = (props: DelWarnning) => {
       title: '系统提示',
       icon: <ExclamationCircleOutlined />,
       content: Content || '是否要删除选中数据?',
-      okText: Content ? '确定' : '删除',
-      okType: Content ? 'primary' : 'danger',
+      okText: '删除',
+      okType: 'danger',
       cancelText: '取消',
       onOk() {
         Delete();
@@ -38,4 +37,4 @@ const DelWarnModal = (props: DelWarnning) => {
   return <>{Show ? showConfirm() : null}</>;
 };
 
-export default DelWarnModal;
+export default DeletePage;

@@ -9,10 +9,14 @@
 export default {
   dev: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
-    '/apis/': {
-      target: 'http://192.168.1.113:8090',
+    '/zk/': {
+      target: 'http://192.168.1.232:8080',
       changeOrigin: true,
-      pathRewrite: { '^/apis': '' },
+    },
+    '/apis/': {
+      target: 'http://192.168.1.201',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
     },
   },
   test: {

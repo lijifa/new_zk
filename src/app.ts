@@ -4,11 +4,11 @@ import { clearStorageAll, getStorageItems } from '@/utils/storageTool';
 import type { RequestConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import { message } from 'antd';
-// import queryString from 'query-string';
-// 全局初始化数据配置，用于 Layout 用户信息和权限初始化
-// 更多信息见文档：https://next.umijs.org/docs/api/runtime-config#getinitialstate
-import URLSearchParams from 'querystring';
 import { hasAccessToken, outLogin } from './services/zg-base/login';
+// import querystring from 'querystring';
+const querystring = require('querystring');
+
+// 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 const loginPath = '/login';
 export async function getInitialState(): Promise<{
   currentUser?: any;
@@ -119,25 +119,18 @@ export function onRouteChange() {
 // }
 
 export const request: RequestConfig = {
-  // 请求前拦截器
+  // 请求前拦截器b
   requestInterceptors: [
-    (url: string, options: RequestConfig) => {
-      // const authHeader = { Authorization: 'Bearer xxxxxx' };
-
-      let dataTmp = options['data'];
-
-      if (options['method'] === 'post' && options['data']) {
-        dataTmp = URLSearchParams.stringify(options['data']);
-        // dataTmp = new FormData();
-        // Object.keys(options['data']).forEach(keyItem => {
-        //   dataTmp.append(keyItem, options['data'][keyItem]);
-        // })
+    (config) => {
+      if (!config.prefix) {
+        config['data'] = querystring.stringify(config['data']);
       }
 
-      return {
-        url: `${'/apis' + url}`,
-        options: { ...options, data: dataTmp },
-      };
+      // const authHeader = { Authorization: 'Bearer xxxxxx' };
+      let def_prefix = config.prefix ? config.prefix : '/apis';
+      let url = `${def_prefix + config.url}`;
+      
+      return {...config, url}
     },
   ],
   // 响应拦截器
@@ -159,7 +152,7 @@ export const request: RequestConfig = {
             history.replace('/login');
             return;
           } else {
-            message.error(response.data.msg);
+            message.error(response.data.message);
           }
           break;
         case 0:
@@ -172,8 +165,12 @@ export const request: RequestConfig = {
           }
           return response;
           break;
+        case '200':
+          message.success(response.data.message);
+          return response;
+          break;
         default:
-          message.error(response.data.msg);
+          message.error(response.data.message);
           if (!response.data || !response.data.data) {
             response.data.data = [];
           }
