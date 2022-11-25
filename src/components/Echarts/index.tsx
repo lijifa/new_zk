@@ -751,7 +751,7 @@ export default function Chart({
         if (ele == undefined) {
         }
         setTimeout(() => {
-          MyChart.resize();
+          MyChart?.resize();
         }, 301);
       }
     });

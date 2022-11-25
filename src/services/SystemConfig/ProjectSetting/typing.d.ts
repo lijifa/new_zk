@@ -34,4 +34,21 @@ declare namespace API {
         projectIntroduction:string;//项目简介
         picIds:number|undefined;//项目站点id
     }
+    type Response<T = any> = {
+        code: string;
+        message: string;
+        data: T;
+    }
+    type Province = {
+        provinceId: number
+        name: string
+    }
+    type City = {
+        cityId: number
+        name: string
+    }
+    type County = {
+        countyId: number
+        name: string
+    }
 }

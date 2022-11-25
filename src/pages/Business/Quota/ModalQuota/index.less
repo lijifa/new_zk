@@ -1,0 +1,36 @@
+.period {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 158px;
+  
+  :global(.ant-tabs-nav) {
+    margin-bottom: 0;
+  }
+}
+
+.cell-value-wrap {
+  padding: 5px 12px;
+
+  &.editable {
+    cursor: pointer;
+    color: rgb(19, 172, 159);
+    font-weight: bold;
+  }
+}
+
+
+.editable-row:hover {
+  
+  .cell-value-wrap.editable {
+    padding: 4px 11px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+  }
+}
+
+.title-row :global(.ant-table-cell) {
+  background-color: #fafafa;
+}
+
+
