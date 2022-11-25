@@ -99,4 +99,17 @@ export async function getprojectDetail(body:{id:number},options?: { [key: string
 
 }
 
+//上传图片
+export async function getuploading(body:{file:any,type:string},options?: { [key: string]: any }){
+    const formData = new FormData();
+    formData.append('file',body.file)
+    formData.append('type',body.type)
+    return request<any>('/system_configuration/picture/upload/batch',{
+        method:'POST',
+        data:formData,
+        ...(options || {prefix: '/zk'}),
+    })
+
+}
+
 

@@ -11,6 +11,7 @@ import {
   getAddProject,
   getAmendProject,
   getCheckProject,
+  getuploading
 } from '@/services/SystemConfig/ProjectSetting/project';
 import { PlusOutlined } from '@ant-design/icons';
 import { Col, Form, Input, Modal, Row, Select, Upload } from 'antd';
@@ -35,6 +36,7 @@ const Add = (props: Props) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
+  const [imgInfo,setImginfo] = useState<{id:number,url:string}>()
   const handleCancel = () => setPreviewOpen(false);
   const [fileList, setFileList] = useState<UploadFile[]>();
 
@@ -51,9 +53,17 @@ const Add = (props: Props) => {
   };
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>{
-    console.log(newFileList)
+   // getBase64()
     setFileList(newFileList);
-
+    let file = newFileList[0]?.originFileObj
+    getuploading({file:file,type:'10'}).then(res=>{
+        let id = res.data[0]?.picId
+        let url = res.data[0]?.picFilepath
+        setImginfo({...imgInfo,id:id,url:url})
+    })
+  }
+  const beforeUpload = (file:any)=>{
+    console.log(file)
   }
    
 
@@ -82,11 +92,11 @@ const Add = (props: Props) => {
       linkmanPhone,
       memberCount,
       name,
-      picId = 1,
       projectIntroduction,
       projectTypeId,
       sumMoney,
     } = values;
+    let picIds = imgInfo&&imgInfo.id
     if (type === 'add') {
       getAddProject({
         name,
@@ -98,7 +108,7 @@ const Add = (props: Props) => {
         linkmanPhone,
         memberCount,
         projectIntroduction,
-        picId,
+        picIds,
       });
     } else {
       getAmendProject({
@@ -112,7 +122,7 @@ const Add = (props: Props) => {
         linkmanPhone,
         memberCount,
         projectIntroduction,
-        picId,
+        picIds,
       });
     }
     searchOper('reset');
@@ -264,10 +274,12 @@ const Add = (props: Props) => {
             >
               <>
                 <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                   listType="picture-card"
+                  headers={{ 'content-type': 'multipart/form-data' }}
                   fileList={fileList}
+                  //customRequest={()=>{}}
                   onPreview={handlePreview}
+                  beforeUpload={beforeUpload}
                   onChange={handleChange}
                 >
                   {fileList&&fileList.length >= 1 ? null : uploadButton}

@@ -32,6 +32,6 @@ declare namespace API {
         linkmanPhone:string;//联系人电话
         memberCount:number;//用能人数
         projectIntroduction:string;//项目简介
-        picId:number;//项目站点id
+        picIds:number|undefined;//项目站点id
     }
 }
